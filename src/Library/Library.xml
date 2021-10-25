@@ -4,6 +4,77 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:ClassLibrary.Bot">
+            <summary>
+            Esta clase representa el Bot.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Chat">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ChatRecord">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Company">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Creator">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.IHandler">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IHandler.Execute">
+            <summary>
+            Ejecuta el comando
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IHandler.NextHandler(System.String)">
+            <summary>
+            Pasa el mensaje al proximo Handler
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:ClassLibrary.Location">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Market">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Material">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ModifyOffer">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Offer">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Register">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.
@@ -30,6 +101,26 @@
             <returns>
             <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
             </returns>
+        </member>
+        <member name="T:ClassLibrary.AdminUser">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.CompanyUser">
+            <summary>
+            Esta clase
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.EntrepeneurUser">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.User">
+            <summary>
+            Esta clase 
+            </summary>
         </member>
     </members>
 </doc>
