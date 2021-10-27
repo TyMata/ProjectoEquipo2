@@ -34,16 +34,16 @@
             Esta clase
             </summary>
         </member>
-        <member name="M:ClassLibrary.IHandler.Execute">
+        <member name="M:ClassLibrary.IHandler.Handle">
             <summary>
-            Ejecuta el comando
+            Se ocupa de hacer el Handle
             </summary>
         </member>
-        <member name="M:ClassLibrary.IHandler.NextHandler(System.String)">
+        <member name="M:ClassLibrary.IHandler.SetNextHandler(System.EventHandler)">
             <summary>
-            Pasa el mensaje al proximo Handler
+            Setea el proximo Handler
             </summary>
-            <param name="message"></param>
+            <param name="IHandler"></param>
         </member>
         <member name="T:ClassLibrary.Location">
             <summary>
