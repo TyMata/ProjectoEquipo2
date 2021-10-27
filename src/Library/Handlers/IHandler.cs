@@ -8,13 +8,14 @@ namespace ClassLibrary
     public interface IHandler
     {
         /// <summary>
-        /// Ejecuta el comando
-        /// </summary>
-        void Execute();
-        /// <summary>
         /// Pasa el mensaje al proximo Handler
         /// </summary>
-        /// <param name="message"></param>
-        void NextHandler(string message);
+        /// <param name="handler"></param>
+        IHandler SetNext(IHandler handler);
+        /// <summary>
+        /// Ejecución del proceso de Handler
+        /// </summary>
+        object Handle(string request);
+
     }
 }
