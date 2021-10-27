@@ -16,6 +16,5 @@ namespace ClassLibrary
         /// Ejecución del proceso de Handler
         /// </summary>
         object Handle(string request);
-
     }
 }
