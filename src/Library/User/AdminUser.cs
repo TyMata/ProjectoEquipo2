@@ -11,4 +11,5 @@ namespace ClassLibrary
     {
           public void InviteCompany(){}
 
-    }   
+    } 
+}  
