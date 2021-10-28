@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -28,9 +30,6 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Offer> BoughtList{get;set;}
-
-    
-
     }
 }
         
