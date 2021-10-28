@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+
+
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -7,14 +10,28 @@ namespace ClassLibrary
     /// </summary>
     public class EntrepeneurUser
     {
+        /// <summary>
+        /// Rubro del emprendedor
+        /// </summary>
+        /// <value></value>
         public string Heading{get;set;}
+        /// <summary>
+        /// Habilitaciones del emprendedor
+        /// </summary>
+        /// <value></value>
         public string Habilitation{get;set;}
-        public Location Location{get;set;}
-       public List<Offer> BoughtList{get;set;}
-
-    
-
+        /// <summary>
+        /// Ubicacion del emprendedor
+        /// </summary>
+        /// <value></value>
+        public Location Location{get;private set;}
+        /// <summary>
+        /// Lista de compras pasadas del emprendedor
+        /// </summary>
+        /// <value></value>
+        public List<Offer> BoughtList{get;set;}
     }
+}
         
 
        

@@ -7,13 +7,27 @@ namespace ClassLibrary
     /// </summary>
     public class User
     {
-        public string name{get;set;}
-        public int Id{get;set;}
-
-        public User(string name, int Id)
+        private string name;
+        private string id;
+        /// <summary>
+        /// Nombre del usuario
+        /// </summary>
+        /// <value></value>
+        public string Name{get;private set;}
+        /// <summary>
+        /// Id del usuario
+        /// </summary>
+        /// <value></value>
+        public int Id{get;private set;}
+        /// <summary>
+        /// Constructor del usuario
+        /// </summary>
+        /// <param name="namePar"></param>
+        /// <param name="idPar"></param>
+        public User(string namePar, int idPar)
     {
-        this.name = name;
-        this.Id = Id;
+        this.Name = namePar;
+        this.Id = idPar;
     }
   }
 }
