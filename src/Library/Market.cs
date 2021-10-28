@@ -34,7 +34,7 @@ namespace ClassLibrary
             List<Offer> ValidOffer = new List<Offer>();
             foreach (Offer x in ActualOfferList)
             {
-                if (x./*algo*/ = /*param*/)
+                if (/*x.algo == param*/ true)
                 {
                     ValidOffer.Add(x);
                 }
