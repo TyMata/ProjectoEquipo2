@@ -29,21 +29,96 @@
             Esta clase 
             </summary>
         </member>
+        <member name="T:ClassLibrary.AbstractHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AbstractHandler.messageChannel">
+            <summary>
+            Canal por el cual se envian los mensajes
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AbstractHandler.SetNext(ClassLibrary.IHandler)">
+            <summary>
+            Se setea el próximo handler (nextHandler)
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
             Esta clase
             </summary>
         </member>
-        <member name="M:ClassLibrary.IHandler.Handle">
+        <member name="M:ClassLibrary.IHandler.SetNext(ClassLibrary.IHandler)">
             <summary>
-            Se ocupa de hacer el Handle
+            Pasa el mensaje al proximo Handler
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Ejecución del proceso de Handler
             </summary>
         </member>
-        <member name="M:ClassLibrary.IHandler.SetNextHandler(System.EventHandler)">
+        <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
-            Setea el proximo Handler
+            Marcamos el formato del resto de handlers
             </summary>
-            <param name="IHandler"></param>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.UnregisteredUserHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.Location">
             <summary>
@@ -59,6 +134,80 @@
             <summary>
             Esta clase
             </summary>
+        </member>
+        <member name="T:ClassLibrary.ConsoleMessage">
+            <summary>
+            Esta clase representa los mensajes.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ConsoleMessage.Id">
+            <summary>
+            Devuelve el Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.ConsoleMessage.Text">
+            <summary>
+            Devuelve el Message
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.ConsoleMessage.#ctor(System.String)">
+            <summary>
+            Constructor de ConsoleMessage
+            </summary>
+            <param name="mensaje"></param>
+        </member>
+        <member name="T:ClassLibrary.ConsoleMessageChannel">
+            <summary>
+            Esta clase representa el canal de mensajes por Consola.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ConsoleMessageChannel.ReceiveMessage">
+            <summary>
+            Recibe un mensaje por consola y lo devuelve en un objeto IMessage
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ConsoleMessageChannel.SendMessage(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mensaje"></param>
+        </member>
+        <member name="T:ClassLibrary.IMessage">
+            <summary>
+            Esta clase representa los mensajes.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IMessage.Id">
+            <summary>
+            Devuelve el Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.IMessage.Text">
+            <summary>
+            Devuelve el Message
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:ClassLibrary.IMessageChannel">
+            <summary>
+            Esta clase representa los mensajes.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IMessageChannel.ReceiveMessage">
+            <summary>
+            Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.IMessageChannel.SendMessage(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mensaje"></param>
         </member>
         <member name="T:ClassLibrary.ModifyOffer">
             <summary>
