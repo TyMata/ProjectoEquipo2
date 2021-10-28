@@ -12,7 +12,7 @@ namespace ClassLibrary
         /// </summary>
         protected IMessageChannel messageChannel;
 
-        private IHandler nextHandler;
+        protected IHandler nextHandler;
         /// <summary>
         /// Se setea el próximo handler (nextHandler)
         /// </summary>
