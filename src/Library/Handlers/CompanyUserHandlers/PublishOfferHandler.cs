@@ -2,33 +2,48 @@ using System;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler para publicar una nueva oferta
+    /// </summary>
     public class PublishOfferHandler : AbstractHandler , IHandler
     {
-        protected IHandler NextHandler;
-        public override object Handle(object request)
+        private IHandler NextHandler;
+
+        public PublishOfferHandler(IMessageChannel channel)
         {
-            if (request == "/Publicar Oferta")
+            this.messageChannel = channel;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public override void Handle(IMessage input)
+        {
+            if (input.Text.ToLower().Trim() == "/Publicar Oferta")
             {
-                Console.WriteLine("¿Qué material desea vender?");
+                
 
-                Console.WriteLine("Cantidad de material:");
+                this.messageChannel.SendMessage("¿Qué material desea vender?");
+                string material = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Cantidad de material:");
+                string cantidad= this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("En que ubicación se encuentran los materiales?");
+                string ubicacion = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("¿Que habilitaciones son necesarias para poder manipular este material?");
+                string habilitaciones = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda:");
 
-                Console.WriteLine("En que ubicación se encuentran los materiales?");
-
-                Console.WriteLine("¿Que habilitaciones son necesarias para poder manipular este material?");
-
-                Console.WriteLine("Insertar palabras claves para facilitar la  búsqueda:");
+                
             }
             else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
 
         }
         
-        public void SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-        }
+        
     }
 }

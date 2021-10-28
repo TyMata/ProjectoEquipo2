@@ -1,37 +1,42 @@
 using System;
 
 namespace ClassLibrary
-{
+{   
+    /// <summary>
+    /// Handler para pausar una determinada oferta
+    /// </summary>
     public class SuspendOfferHandler : AbstractHandler , IHandler
     {
         
-        protected IHandler NextHandler;
-        public override object Handle(object request)
+        private IHandler NextHandler ;
+        public SuspendOfferHandler(IMessageChannel channel)
         {
-             if(request == "/Suspender Oferta")
+            this.messageChannel = channel;
+        }
+
+        public override void Handle(IMessage input)
+        {
+             if(input.Text.ToLower().Trim() == "/Suspender Oferta")
             {
-                 if(Company.ActualOffers != null)
+                 if("Company.ActualOffers" != null)
                 {
-                    Console.WriteLine($"Estas son tus ofertas actuales: {Company.ActualOffers}./n ¿Cual es el Id de la que quiere pausar?");
-                    Console.ReadLine();
-                    Console.WriteLine($"La oferta {Oferta} ha sido pausada.");
+                    this.messageChannel.SendMessage($"Estas son tus ofertas actuales: Company.ActualOffers./n ¿Cual es el Id de la que quiere pausar?");
+                    string id = this.messageChannel.ReceiveMessage().Text;
+                    this.messageChannel.SendMessage($"La oferta Oferta ha sido pausada.");
                 }
                 else 
                 {
-                    Console.WriteLine("No hay ninguna oferta publicada bajo el nombre de esta empresa.");
+                    this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa.");
                 }
 
             }
              else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
 
         }
         
-        public override void SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-        }
+       
     }
 }

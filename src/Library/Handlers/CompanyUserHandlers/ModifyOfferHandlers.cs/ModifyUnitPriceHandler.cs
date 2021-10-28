@@ -2,24 +2,30 @@ using System;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler para qu eel usario empresa pueda modifcar el precio por unidad de un determinado material en una oferta
+    /// </summary>
     public class ModifyUnitPriceHandler : AbstractHandler ,IHandler
     {
-        protected IHandler NextHandler;
-        public override object Handle(object request)
+        private IHandler NextHandler;
+        public ModifyUnitPriceHandler(IMessageChannel channel)
         {
-            if(request == "/Modificar precio")
+            this.messageChannel = channel;
+        }
+
+        public override void Handle(IMessage input)
+        {
+            if(input.Text.ToLower().Trim() == "/Modificar precio")
             {
+                this.messageChannel.SendMessage("Escribe el nueva precio: ");
+                string price = this.messageChannel.ReceiveMessage().Text;
             }
              else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
 
         }
         
-        public void SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-        }
     }
 }

@@ -2,27 +2,30 @@ using System;
 
 namespace ClassLibrary
 {
-    public class ModifyOfferHAndler : IHandler
+    /// <summary>
+    /// Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
+    /// </summary>
+    public class ModifyHabilitationsHandler : AbstractHandler, IHandler
     {
-        protected IHandler NextHandler;
-        public override object Handle(object request)
+        private IHandler NextHandler;
+        public ModifyHabilitationsHandler(IMessageChannel channel)
         {
-            if(request == "/Modificar Habilitaciones")
+            this.messageChannel = channel;
+        }
+        public override void Handle(IMessage input)
+        {
+            if(input.Text.ToLower().Trim() == "/Modificar Habilitaciones")
             {
                 
 
             }
              else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
 
         }
         
-        public IHandler SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-
-        }
+      
     }
 }

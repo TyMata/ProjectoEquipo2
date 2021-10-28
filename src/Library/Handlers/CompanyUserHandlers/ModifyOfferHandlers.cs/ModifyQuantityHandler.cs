@@ -2,27 +2,30 @@ using System;
 
 namespace ClassLibrary
 {
-    public class ModifyQuantityHandler : IHandler
+    /// <summary>
+    /// Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
+    /// </summary>
+    public class ModifyQuantityHandler : AbstractHandler, IHandler
     {
-        protected IHandler NextHandler;
-        public override object  Handle(object request)
+        private IHandler NextHandler;
+        public ModifyQuantityHandler(IMessageChannel channel)
         {
-            if(request == "/Modificar cantidad")
+            this.messageChannel = channel;
+        }
+        public override void Handle(IMessage input)
+        {
+            if(input.Text.ToLower().Trim()  == "/Modificar cantidad")
             {
-                Console.WriteLine("Escriba la nueva cantidad de material:");
-                Offer.Cuantity = Console.ReadLine();
+                this.messageChannel.SendMessage("Escriba la nueva cantidad de material:");
+                string cuantity = this.messageChannel.ReceiveMessage().Text;
+
                
             }
              else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
         }
         
-        public void SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-
-        }
     }
 }
