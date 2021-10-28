@@ -7,6 +7,11 @@ namespace ClassLibrary
     /// </summary>
     public abstract class AbstractHandler : IHandler
     {
+        /// <summary>
+        /// Canal por el cual se envian los mensajes
+        /// </summary>
+        protected IMessageChannel messageChannel;
+
         private IHandler nextHandler;
         /// <summary>
         /// Se setea el próximo handler (nextHandler)
@@ -21,17 +26,18 @@ namespace ClassLibrary
         /// <summary>
         /// Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public virtual object Handle(string request)
+        public virtual void Handle(IMessage input)
         {
+
             if (this.nextHandler != null)
             {
-                return this.nextHandler.Handle(request);
+                this.nextHandler.Handle(input);
             }
             else
             {
-                return null;
+                messageChannel.SendMessage("Ni idea");
             }
         }
     }

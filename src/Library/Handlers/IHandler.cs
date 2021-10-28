@@ -15,6 +15,6 @@ namespace ClassLibrary
         /// <summary>
         /// Ejecución del proceso de Handler
         /// </summary>
-        object Handle(string request);
+        void Handle(IMessage input);
     }
 }
