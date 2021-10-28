@@ -19,9 +19,12 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            var train = new Train();
-            train.StartEngines();
-            Console.WriteLine("Hello World!");
+            // var train = new Train();
+            // train.StartEngines();
+            // Console.WriteLine("Hello World!");
+            IMessageChannel mc = new ConsoleMessageChannel();
+            IHandler unUserHandler = new UnregisteredUserHandler(mc);
+            unUserHandler.Handle(mc.ReceiveMessage());
         }
     }
 }
