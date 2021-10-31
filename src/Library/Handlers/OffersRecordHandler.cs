@@ -1,6 +1,6 @@
 namespace ClassLibrary
 {
-    class OffersRecordsHandler
+    public class OffersRecordHandler : AbstractHandler, IHandler
     {
         
     }

@@ -17,7 +17,7 @@ namespace ClassLibrary
             if(input.Text.ToLower().Trim()  == "/Modificar cantidad")
             {
                 this.messageChannel.SendMessage("Escriba la nueva cantidad de material:");
-                string cuantity = this.messageChannel.ReceiveMessage().Text;
+                string quantity = this.messageChannel.ReceiveMessage().Text;
 
                
             }

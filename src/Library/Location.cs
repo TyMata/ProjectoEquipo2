@@ -7,5 +7,6 @@ namespace ClassLibrary
     /// </summary>
     public class Location
     {
+        
     }
 }
