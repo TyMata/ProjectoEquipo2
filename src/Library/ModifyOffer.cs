@@ -10,31 +10,31 @@ namespace ClassLibrary
          /// <summary>
          /// Modifica la cantidad de materiales en una oferta
          /// </summary>
-         /// <param name="NewOffer"></param>
-         /// <param name="NewQuantity"></param>
-          public void Quantity(Offer NewOffer,int NewQuantity )
+         /// <param name="newOffer"></param>
+         /// <param name="newQuantity"></param>
+          public void Quantity(Offer newOffer,int newQuantity )
           {
-              NewOffer.QuantityMaterial=NewQuantity;
+            newOffer.QuantityMaterial=newQuantity;
 
           }
           /// <summary>
           /// Modifica las palabras claves de una oferta
           /// </summary>
-          /// <param name="NewOffer"></param>
-          /// <param name="NewKeyword"></param>
-          public void Keywords(Offer NewOffer,string NewKeyword )
+          /// <param name="newOffer"></param>
+          /// <param name="newKeyword"></param>
+          public void Keywords(Offer newOffer,string newKeyword )
           {
-               NewOffer.Keywords=NewKeyword;
+            newOffer.Keywords=newKeyword;
 
           }
           /// <summary>
           /// Modifica la disponibilidad de una oferta
           /// </summary>
-          /// <param name="NewOffer"></param>
-          /// <param name="NewDisponibility"></param>
-          public void Disponibility(Offer NewOffer,bool NewDisponibility )
+          /// <param name="newOffer"></param>
+          /// <param name="newAvailability"></param>
+          public void Availability(Offer newOffer,bool newAvailability )
           {
-              NewOffer.Disponibility=NewDisponibility;
+            newOffer.Availability=newAvailability;
 
           }
           /// <summary>
@@ -44,8 +44,15 @@ namespace ClassLibrary
           /// <param name="NewExtendTerm"></param>
           public void Term(Offer NewOffer,int NewExtendTerm )
           {
-               NewOffer.Term=NewExtendTerm;
+            NewOffer.Term=NewExtendTerm;
 
+          }
+
+          public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
+          {
+            /*NewOffer.Location = newAdress;
+            NewOffer.Location = newCity;
+            NewOffer.Location = newDepartment;*/         
           }
     }
 }

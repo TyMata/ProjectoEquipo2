@@ -49,12 +49,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public string Keywords{get;set;}
-        private bool disponibility;
+        private bool availability;
         /// <summary>
         /// Disponibilidad de la oferta
         /// </summary>
         /// <value></value>
-        public bool Disponibility{get;set;}
+        public bool Availability{get;set;}
         private string publicationDate;
         /// <summary>
         /// Fecha de publicacion de la oferta
@@ -75,22 +75,22 @@ namespace ClassLibrary
         /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
-        /// <param name="cuantityMaterial"></param>
+        /// <param name="quantityMaterial"></param>
         /// <param name="company"></param>
         /// <param name="keywords"></param>
-        /// <param name="disponibility"></param>
+        /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
         /// <param name="term"></param>
-        public Offer(int id,Material material,string habilitation,Location location,int cuantityMaterial,Company company,string keywords,bool disponibility,string publicationDate,int term)
+        public Offer(int id,Material material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability,string publicationDate,int term)
     {
         this.Id = id;
         this.Material=material;
         this.Habilitation=habilitation;
         this.Location=location;
-        this.QuantityMaterial=cuantityMaterial;
+        this.QuantityMaterial=quantityMaterial;
         this.Company=company;
         this.Keywords=keywords;
-        this.Disponibility=disponibility;
+        this.Availability=availability;
         this.PublicationDate=publicationDate;
         this.Term=term;
     }
