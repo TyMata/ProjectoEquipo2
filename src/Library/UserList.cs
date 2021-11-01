@@ -5,7 +5,7 @@ namespace ClassLibrary
 {
     public class UserRegister
     {
-        private List<User> DataUsers { get; set; }
+        public List<User> DataUsers { get; private set; }
 
         public void AddUser(int Id, IRole role)
         {

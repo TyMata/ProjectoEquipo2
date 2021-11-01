@@ -46,5 +46,18 @@ namespace ClassLibrary
                 }
             }
         }
+        public bool IsRegistered(int id)
+        {
+
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id)
+                {
+                  return true;  
+                }
+            }
+            return false;
+
+        }
     }
 }
