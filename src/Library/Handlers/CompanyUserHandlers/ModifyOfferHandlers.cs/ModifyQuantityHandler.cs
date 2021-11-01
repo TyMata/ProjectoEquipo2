@@ -8,13 +8,16 @@ namespace ClassLibrary
     public class ModifyQuantityHandler : AbstractHandler, IHandler
     {
         private IHandler NextHandler;
-        public ModifyQuantityHandler(IMessageChannel channel)
+        private string Command;
+        public ModifyQuantityHandler(IMessageChannel channel,IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
+            this.Command = "/Modificar cantidad";
         }
         public override void Handle(IMessage input)
         {
-            if(input.Text.ToLower().Trim()  == "/Modificar cantidad")
+            if(input.Text.ToLower().Trim()  == this.Command)
             {
                 this.messageChannel.SendMessage("Escriba la nueva cantidad de material:");
                 string quantity = this.messageChannel.ReceiveMessage().Text;

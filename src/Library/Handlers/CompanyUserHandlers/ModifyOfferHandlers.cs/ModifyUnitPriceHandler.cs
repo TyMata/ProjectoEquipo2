@@ -8,14 +8,17 @@ namespace ClassLibrary
     public class ModifyUnitPriceHandler : AbstractHandler ,IHandler
     {
         private IHandler NextHandler;
-        public ModifyUnitPriceHandler(IMessageChannel channel)
+        private string Command;
+        public ModifyUnitPriceHandler(IMessageChannel channel, IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
+            this.Command = "/modificar precio";
         }
 
         public override void Handle(IMessage input)
         {
-            if(input.Text.ToLower().Trim() == "/Modificar precio")
+            if(input.Text.ToLower().Trim() == this.Command)
             {
                 this.messageChannel.SendMessage("Escribe el nueva precio: ");
                 string price = this.messageChannel.ReceiveMessage().Text;

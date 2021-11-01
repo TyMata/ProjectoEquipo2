@@ -7,27 +7,30 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyUserHandler : AbstractHandler, IHandler
     {
-        private IHandler NextHandler1;
+        private IHandler NextHandler;
         private IHandler nextHandler2;
         private IHandler nextHandler3;
         private IHandler nextHandler4;
         private IHandler nextHandler5;
         private IHandler nextHandler6;
+        private string  Command;
 
-        public CompanyUserHandler(IMessageChannel channel)
+        public CompanyUserHandler(IMessageChannel channel,IHandler next)
         {
             this.messageChannel = channel;
-            this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
-            this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);
+            this.NextHandler = next;
+            this.Command = "/Empresa";
+            // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
+            // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);
           
-            this.nextHandler4 = new SuspendOfferHandler(this.messageChannel);
-            this.nextHandler5 = new UnsuspendOfferHandler(this.messageChannel);
-            this.nextHandler6 = new ModifyOfferHandler(this.messageChannel);
+            // this.nextHandler4 = new SuspendOfferHandler(this.messageChannel);
+            // this.nextHandler5 = new UnsuspendOfferHandler(this.messageChannel);
+            // this.nextHandler6 = new ModifyOfferHandler(this.messageChannel);
             
-            this.nextHandler2.SetNext(this.nextHandler3);
-            this.nextHandler3.SetNext(this.nextHandler4);
-            this.nextHandler4.SetNext(this.nextHandler5);
-            this.nextHandler5.SetNext(this.nextHandler6);
+            // this.nextHandler2.SetNext(this.nextHandler3);
+            // this.nextHandler3.SetNext(this.nextHandler4);
+            // this.nextHandler4.SetNext(this.nextHandler5);
+            // this.nextHandler5.SetNext(this.nextHandler6);
 
         }
         public override void Handle(IMessage input)
@@ -46,9 +49,9 @@ namespace ClassLibrary
                 input = this.messageChannel.ReceiveMessage();
                 this.nextHandler2.Handle(input);
             }
-            else if (NextHandler1 != null)
+            else if (NextHandler != null)
             {
-                this.NextHandler1.Handle(input);
+                this.NextHandler.Handle(input);
             }
         }
        

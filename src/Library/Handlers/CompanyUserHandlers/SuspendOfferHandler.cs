@@ -8,10 +8,11 @@ namespace ClassLibrary
     public class SuspendOfferHandler : AbstractHandler , IHandler
     {
         
-        private IHandler NextHandler ;
-        public SuspendOfferHandler(IMessageChannel channel)
+        private IHandler NextHandler;
+        public SuspendOfferHandler(IMessageChannel channel, IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
         }
 
         public override void Handle(IMessage input)
