@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace ClassLibrary
 {
     /// <summary>
@@ -42,14 +43,14 @@ namespace ClassLibrary
                 messageChannel.SendMessage("Ni idea");
             }
         }
-        protected virtual bool CanHandle(Message message)
+        protected virtual bool CanHandle(IMessage input)
         {
             if (this.Command == null || this.Command.Length == 0)
             {
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
 
-            return this.Command.Any(s => message.Text.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+            return this.Command.Equals(input.Text, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }
