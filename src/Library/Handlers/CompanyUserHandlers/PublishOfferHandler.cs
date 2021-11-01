@@ -8,10 +8,13 @@ namespace ClassLibrary
     public class PublishOfferHandler : AbstractHandler , IHandler
     {
         private IHandler NextHandler;
+        private string Command;
 
-        public PublishOfferHandler(IMessageChannel channel)
+        public PublishOfferHandler(IMessageChannel channel,IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
+            this.Command = "/publicar oferta";
         }
 
         /// <summary>
@@ -21,7 +24,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public override void Handle(IMessage input)
         {
-            if (input.Text.ToLower().Trim() == "/Publicar Oferta")
+            if (this.CanHandle(input))
             {
                 
 

@@ -8,20 +8,23 @@ namespace ClassLibrary
     public class ModifyHabilitationsHandler : AbstractHandler, IHandler
     {
         private IHandler NextHandler;
-        public ModifyHabilitationsHandler(IMessageChannel channel)
+        private string Command;
+        public ModifyHabilitationsHandler(IMessageChannel channel, IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
+            this.Command = "/modificar habilitaciones";
         }
         public override void Handle(IMessage input)
         {
-            if(input.Text.ToLower().Trim() == "/Modificar Habilitaciones")
+            if(this.CanHandle(input))
             {
                 
 
             }
-             else if (NextHandler != null)
+             else if (this.NextHandler != null)
             {
-                NextHandler.Handle(input);
+                this.NextHandler.Handle(input);
             }
 
         }

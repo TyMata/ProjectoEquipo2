@@ -5,26 +5,29 @@ namespace ClassLibrary
 {
     public class ModifyOfferHandler: AbstractHandler, IHandler
     {
-        private IHandler NextHandler1;
+        private IHandler NextHandler;
         private IHandler nextHandler2;
         private IHandler nextHandler3;
         private IHandler nextHandler4;
-        public ModifyOfferHandler(IMessageChannel channel)
+        private string Command;
+        public ModifyOfferHandler(IMessageChannel channel, IHandler next)
         {
             this.messageChannel = channel;
-            this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
-            this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
-            this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
+            this.NextHandler =  next;
+            this.Command = "/modificar oferta";
+            // this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
+            // this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
+            // this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
 
-            this.nextHandler2.SetNext(nextHandler3);
-            this.nextHandler3.SetNext(nextHandler4);
+            // this.nextHandler2.SetNext(nextHandler3);
+            // this.nextHandler3.SetNext(nextHandler4);
 
 
         }
         public override void Handle(IMessage input)
         {
             
-            if(input.Text.ToLower().Trim() == "/Modificar Oferta")
+            if(this.CanHandle(input))
             {
                  if("Company.ActualOffers" != null)
                 { 
@@ -43,9 +46,9 @@ namespace ClassLibrary
                 }
 
             }
-             else if (NextHandler1 != null)
+             else if (NextHandler != null)
             {
-                NextHandler1.Handle(input);
+                NextHandler.Handle(input);
             }
 
            

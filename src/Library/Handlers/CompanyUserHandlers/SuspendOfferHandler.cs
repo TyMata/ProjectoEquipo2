@@ -8,15 +8,18 @@ namespace ClassLibrary
     public class SuspendOfferHandler : AbstractHandler , IHandler
     {
         
-        private IHandler NextHandler ;
-        public SuspendOfferHandler(IMessageChannel channel)
+        private IHandler NextHandler;
+        private string Command;
+        public SuspendOfferHandler(IMessageChannel channel, IHandler next)
         {
             this.messageChannel = channel;
+            this.NextHandler = next;
+            this.Command = "/pausar oferta";
         }
 
         public override void Handle(IMessage input)
         {
-             if(input.Text.ToLower().Trim() == "/Suspender Oferta")
+             if(this.CanHandle(input))
             {
                  if("Company.ActualOffers" != null)
                 {
