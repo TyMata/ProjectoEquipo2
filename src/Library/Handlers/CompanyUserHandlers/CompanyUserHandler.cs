@@ -36,7 +36,7 @@ namespace ClassLibrary
         public override void Handle(IMessage input)
         {
             
-            if (input.Text.ToLower().Trim() == "/Empresa")
+            if (this.CanHandle(input))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Bienvendio Company.Name.\n Que desea hacer?:\n")
                                                                             .Append("/Publicar Oferta\n")

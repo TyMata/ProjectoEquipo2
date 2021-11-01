@@ -17,11 +17,11 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
             this.NextHandler = next;
-            this.Command = "/Anular Suspencion Oferta";
+            this.Command = "/anular suspencion oferta";
         }
         public override void Handle(IMessage input)
         {
-             if(input.Text.ToLower().Trim() == "/Anular Suspencion Oferta")
+             if(this.CanHandle(input))
             {
                  if("Company.ActualOffers" != null)
                 {

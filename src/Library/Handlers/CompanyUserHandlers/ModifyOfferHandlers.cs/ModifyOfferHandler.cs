@@ -14,7 +14,7 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
             this.NextHandler =  next;
-            this.Command = "/Modificar oferta";
+            this.Command = "/modificar oferta";
             // this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
             // this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
             // this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
@@ -27,7 +27,7 @@ namespace ClassLibrary
         public override void Handle(IMessage input)
         {
             
-            if(input.Text.ToLower().Trim() == this.Command)
+            if(this.CanHandle(input))
             {
                  if("Company.ActualOffers" != null)
                 { 

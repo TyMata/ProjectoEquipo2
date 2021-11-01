@@ -14,7 +14,7 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
             this.NextHandler = next;
-            this.Command = "/Publicar Oferta";
+            this.Command = "/publicar oferta";
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public override void Handle(IMessage input)
         {
-            if (input.Text.ToLower().Trim() == this.Command)
+            if (this.CanHandle(input))
             {
                 
 

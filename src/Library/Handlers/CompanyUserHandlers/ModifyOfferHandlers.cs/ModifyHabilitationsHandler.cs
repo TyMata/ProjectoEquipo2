@@ -17,7 +17,7 @@ namespace ClassLibrary
         }
         public override void Handle(IMessage input)
         {
-            if(input.Text.ToLower().Trim() == this.Command)
+            if(this.CanHandle(input))
             {
                 
 

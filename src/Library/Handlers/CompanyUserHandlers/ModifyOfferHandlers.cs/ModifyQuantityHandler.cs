@@ -17,7 +17,7 @@ namespace ClassLibrary
         }
         public override void Handle(IMessage input)
         {
-            if(input.Text.ToLower().Trim()  == this.Command)
+            if(this.CanHandle(input))
             {
                 this.messageChannel.SendMessage("Escriba la nueva cantidad de material:");
                 string quantity = this.messageChannel.ReceiveMessage().Text;
