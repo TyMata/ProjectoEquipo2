@@ -2,33 +2,36 @@ using System;
 
 namespace ClassLibrary
 {
-    public class RemoveOfferHandler:AbstractHandler, IHandler
+    public class RemoveOfferHandler: AbstractHandler, IHandler
     {
-          protected IHandler NextHandler;
-        public override object Handle(object request)
+        private IHandler NextHandler;
+        
+        public RemoveOfferHandler(IMessageChannel channel)
         {
-            if(request == "/Remover Oferta")
+            this.messageChannel = channel ;
+        }
+        public override void Handle(IMessage input)
+        {
+            if(input.Text.ToLower().Trim() == "/Remover Oferta")
             {
-                if(Company.ActualOffers != null)
+                if("Company.ActualOffers" != null)
                 {
-                    Console.WriteLine($"Estas son tus ofertas actuales: {Company.ActualOffers}./n ¿Cual es el Id de la que quiere retirar?");
-                    Console.WriteLine($"La oferta {Oferta} se retiro del mercado");
+                    this.messageChannel.SendMessage($"Estas son tus ofertas actuales: Company.ActualOffers./n ¿Cual es el Id de la que quiere retirar?");
+                    string id = this.messageChannel.ReceiveMessage().Text;
+                    this.messageChannel.SendMessage($"La oferta Oferta se retiro del mercado");
                 }
                 else 
                 {
-                    Console.WriteLine("No hay ninguna oferta publicada bajo el nombre de esta empresa");
+                    this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                 }
 
             }
              else if (NextHandler != null)
             {
-                NextHandler.Handle(request);
+                NextHandler.Handle(input);
             }
         }
         
-        public override  void SetNextHandler(IHandler nextHandler)
-        {
-            NextHandler = nextHandler;
-        }
+       
     }
 }
