@@ -20,7 +20,7 @@ namespace ClassLibrary
         }
         public void RemoveOffer(int Id)
         {
-            foreach (User x in this.ActualOfferList)
+            foreach (Offer x in this.ActualOfferList)
             {
                 if(x.Id==Id)
                 {
