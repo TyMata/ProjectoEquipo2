@@ -12,24 +12,12 @@ namespace ClassLibrary
         /// Lista de usuarios registrados
         /// </summary>
         /// <value></value>        
-        public List<User> UserList{get;set;}
+        public UserRegister Users {get; private set;}
         /// <summary>
         /// Lista de companias registradas
         /// </summary>
         /// <value></value>
-        public List<Company> CompanyList{get;set;}
-        /// <summary>
-        /// Añade un usuario a la lista de usuarios registrados
-        /// </summary>
-        /// <param name="user"></param>
-        public void AddUser(User user)
-        {
-            if(UserList.Contains(user)==false)
-            {
-                this.UserList.Add(user);
-            }
-
-        }
+        public List<Company> CompanyList{get;set;}        
         /// <summary>
         /// Añade una empresa a la lista de empresas registradas
         /// </summary>
@@ -43,20 +31,6 @@ namespace ClassLibrary
             }
             
         }
-        /// <summary>
-        /// Remueve un usuario de la lista de usuarios registrados
-        /// </summary>
-        /// <param name="Id"></param>
-        public void RemoveUser(int Id)
-        {
-            foreach (User x in this.UserList)
-            {
-                if(x.Id==Id)
-                {
-                    this.UserList.Remove(x);
-                }
-            }
-        }
        
         /// <summary>
         /// Remueve una empresa de la lista de empresas registradas
@@ -64,11 +38,11 @@ namespace ClassLibrary
         /// <param name="Id"></param>
         public void RemoveCompany(int Id)
         {
-            foreach (User x in this.UserList)
+            foreach (Company x in this.CompanyList)
             {
                 if(x.Id==Id)
                 {
-                    this.UserList.Remove(x);
+                    this.CompanyList.Remove(x);
                 }
             }
         }
