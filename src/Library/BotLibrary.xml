@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Library</name>
+        <name>BotLibrary</name>
     </assembly>
     <members>
         <member name="T:ClassLibrary.Bot">
