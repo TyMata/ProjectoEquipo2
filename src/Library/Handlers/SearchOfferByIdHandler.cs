@@ -2,6 +2,7 @@ namespace ClassLibrary
 {
     class SearchOfferByIdHandler : AbstractHandler, IHandler
     {
+        private string Command;
         public SearchOfferByIdHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;

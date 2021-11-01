@@ -5,15 +5,10 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase 
     /// </summary>
-    public class User
+    public class User 
     {
-        private string name;
+        public IRole Role;
         private string id;
-        /// <summary>
-        /// Nombre del usuario
-        /// </summary>
-        /// <value></value>
-        public string Name{get;private set;}
         /// <summary>
         /// Id del usuario
         /// </summary>
@@ -22,12 +17,11 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor del usuario
         /// </summary>
-        /// <param name="namePar"></param>
         /// <param name="idPar"></param>
-        public User(string namePar, int idPar)
+        public User(int idPar, IRole role)
     {
-        this.Name = namePar;
         this.Id = idPar;
+        this.Role = role;
     }
   }
 }
