@@ -7,6 +7,9 @@ namespace ClassLibrary
     /// </summary>
     public class User 
     {
+        /// <summary>
+        /// Rol del usuario
+        /// </summary>
         public IRole Role;
         private string id;
         /// <summary>

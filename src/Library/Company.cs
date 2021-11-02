@@ -19,7 +19,7 @@ namespace ClassLibrary
         /// Nombre de la empresa
         /// </summary>
         /// <value></value>
-        public string Nombre{get;private set;}
+        public string Name{get;private set;}
         private List<Location> locations =new List<Location>();
         /// <summary>
         /// Ubicacion/es de la empresa

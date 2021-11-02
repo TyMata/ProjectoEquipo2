@@ -26,16 +26,16 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)) )
             {
-                StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!")
-                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales")
-                                                .Append("Ingrese su nombre y apellido");
+                StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
+                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
+                                                .Append("Ingrese su nombre y apellido\n");
                 this.messageChannel.SendMessage(datos.ToString());
                 string nombre = this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese su ubicacion");
+                this.messageChannel.SendMessage("Ingrese su ubicacion\n");
                 string ubi =  this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese sus habilitaciones");
+                this.messageChannel.SendMessage("Ingrese sus habilitaciones\n");
                 string habilitaciones =  this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese su rubro");
+                this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string rubro = this.messageChannel.ReceiveMessage().Text;
                 /*CreateEntrepeneurUser(input, nombre, ubi, habilitaciones,rubro); FALTA CREAR */
                
