@@ -6,15 +6,15 @@ namespace ClassLibrary
     /// <summary>
     /// Marcamos el formato del resto de handlers
     /// </summary>
-    public class UnregisteredEntrepeneurUserHandler : AbstractHandler
+    public class AddCompanyHandler : AbstractHandler
     {
         
         /// <summary>
         /// Handler para los usuarios no registrados.
         /// </summary>
-        public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
+        public AddCompanyHandler(IMessageChannel channel)
         {
-            this.Command = "emprendedor";
+            this.Command = "/unirempresa";
             this.messageChannel = channel;
         }
         /// <summary>
@@ -26,19 +26,17 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)) )
             {
-                StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
-                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
-                                                .Append("Ingrese su nombre y apellido\n");
+                StringBuilder datos = new StringBuilder("Para poder registrar una empresa vamos a necesitar algunos datos de esta\n")
+                                                .Append("Ingrese el nombre de la empresa\n");
                 this.messageChannel.SendMessage(datos.ToString());
                 string nombre = this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese su ubicacion\n");
+                this.messageChannel.SendMessage("Ingrese la ubicacion\n");
                 string ubi =  this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese sus habilitaciones\n");
-                string habilitaciones =  this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese los materiales producidos\n");
+                string materials =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
-                string rubro = this.messageChannel.ReceiveMessage().Text;
-                /*CreateEntrepeneurUser(input, nombre, ubi, habilitaciones,rubro); FALTA CREAR */
-               
+                string headings = this.messageChannel.ReceiveMessage().Text;
+                /*CreateCompany(input, nombre, ubi, headings, materials); FALTA CREAR TIENE QUE AÑADIR LA EMPRESA A EL REGISTRO DE TOKENS*/
             }
             else
             {

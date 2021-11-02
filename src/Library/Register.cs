@@ -31,20 +31,35 @@ namespace ClassLibrary
             }
             
         }
+        public bool IsRegisteredCompany(int id)
+        {
+            foreach(Company x in this.CompanyList)
+            {
+                if(x.Id == id)
+                {
+                  return true;  
+                }
+            }
+            return false;
+        }
        
         /// <summary>
         /// Remueve una empresa de la lista de empresas registradas
         /// </summary>
-        /// <param name="Id"></param>
-        public void RemoveCompany(int Id)
+        /// <param name="id"></param>
+        public void RemoveCompany(int id)
         {
             foreach (Company x in this.CompanyList)
             {
-                if(x.Id==Id)
+                if(x.Id==id)
                 {
                     this.CompanyList.Remove(x);
                 }
             }
+        }
+        public void RemoveUser(int id)
+        {
+            this.Users.RemoveUser(id);
         }
         public bool IsRegistered(int id)
         {

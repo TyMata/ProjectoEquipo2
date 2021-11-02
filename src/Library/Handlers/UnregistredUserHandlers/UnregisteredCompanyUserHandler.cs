@@ -30,7 +30,7 @@ namespace ClassLibrary
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion y algunos datos personales\n")
                                                 .Append("Ingrese el codigo de invitacion\n");
                 string codigo = this.messageChannel.ReceiveMessage().Text;
-                /*if (CodigoEsValido(codigo, out response)      FALTA CREAR
+                /*if (IsValidToken(codigo, out response)      FALTA CREAR (Creado en TokenRegister?????)   out response para que devuelva la empresa para crear el CompanyUser
                 {           
                     /*CreateCompanyUser(input,response );       FALTA CREAR
                 }

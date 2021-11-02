@@ -24,7 +24,13 @@ namespace ClassLibrary
             }
             else if(this.Registro.IsAdmin(input.Id))
             {
-                
+                IHandler respuesta =  new AdminStartHandler(channel);
+                respuesta.SetNext(new AddCompanyHandler(channel)
+                        .SetNext(new InviteTokenGeneratorHandler(channel)
+                        .SetNext(new RemoveUserHandler(channel)
+                        .SetNext(new RemoveCompanyHandler(channel)
+                        .SetNext(new EndHandler(channel, respuesta))))));
+                return respuesta;
             }
             else if (this.Registro.IsCompany(input.Id))
             {
