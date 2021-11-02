@@ -50,6 +50,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Material> ProducedMaterials {get; private set;}
+
+        public Company(string name, Location ubi, string headings, string materials)
+        {
+            this.name = name;
+            this.Locations.Add(ubi);
+        }
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa
         /// </summary>
