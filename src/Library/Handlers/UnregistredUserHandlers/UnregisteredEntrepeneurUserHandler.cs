@@ -14,9 +14,9 @@ namespace ClassLibrary
         /// </summary>
         public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
         {
+            this.Command = "emprendedor";
             this.messageChannel = channel;
         }
-        /*private IHandler nextHandler;*/
         /// <summary>
         /// Verifica si el usuario que emite el mensaje esta registrado
         /// y de no ser asi lo ayuda a registrarse
@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
-            if (/*this.nextHandler != null &&*/ (input.Text.ToLower().Trim() == "emprendedor") )
+            if (this.nextHandler != null && (CanHandle(input)) )
             {
                 StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!")
                                                 .Append("Para poder registrarte vamos a necesitar algunos datos personales")
@@ -37,13 +37,15 @@ namespace ClassLibrary
                 string habilitaciones =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese su rubro");
                 string rubro = this.messageChannel.ReceiveMessage().Text;
-                /*CreateEntrepeneurUser(nombre, ubi, habilitaciones,rubro);*/
+                /*CreateEntrepeneurUser(input, nombre, ubi, habilitaciones,rubro); FALTA CREAR */
                
             }
             else
             {
                 this.nextHandler.Handle(input);
             }
+            
         }
+        
     }
 }

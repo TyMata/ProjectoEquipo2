@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// <param name="handler"></param>
         /// <returns></returns>
         
-        private string Command;
+        protected string Command;
         public IHandler SetNext(IHandler handler)
         {
             this.nextHandler = handler;
@@ -50,7 +50,7 @@ namespace ClassLibrary
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
 
-            return this.Command.Equals(input.Text, StringComparison.InvariantCultureIgnoreCase);
+            return this.Command.Equals(input.Text.ToLower().Trim());
         }
     }
 }

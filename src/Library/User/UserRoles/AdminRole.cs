@@ -11,5 +11,9 @@ namespace ClassLibrary
         {
 
         }*/
+        public string TipoRol()
+        {
+            return "admin";
+        }
     }
 }

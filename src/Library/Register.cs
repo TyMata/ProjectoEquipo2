@@ -59,5 +59,38 @@ namespace ClassLibrary
             return false;
 
         }
+        public bool IsAdmin(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("admin")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool IsEntrepreneur(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("entrepreneur")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool IsCompany(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("company")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
