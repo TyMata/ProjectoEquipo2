@@ -9,5 +9,20 @@
             Prueba de la clase <see cref="!:GetLocation"/>.
             </summary>
         </member>
+        <member name="T:Tests.MaterialTest">
+            <summary>
+            Prueba de la clase <see cref="!:GetMaterial"/>.
+            </summary>
+        </member>
+        <member name="T:Tests.OfferTest">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.Offer"/>.
+            </summary>
+        </member>
+        <member name="T:Tests.RegisterTest">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.Register"/>.
+            </summary>
+        </member>
     </members>
 </doc>

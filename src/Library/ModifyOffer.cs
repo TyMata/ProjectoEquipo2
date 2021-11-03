@@ -56,7 +56,7 @@ namespace ClassLibrary
           /// <param name="newDepartment"></param>
           public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
           {
-            /*NewOffer.Location = newAdress;
+            /*NewOffer.Location = newAddress;
             NewOffer.Location = newCity;
             NewOffer.Location = newDepartment;*/         
           }
