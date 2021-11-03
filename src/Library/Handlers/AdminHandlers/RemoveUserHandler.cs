@@ -27,16 +27,16 @@ namespace ClassLibrary
             if (this.nextHandler != null && (CanHandle(input)) )
             {
                 this.messageChannel.SendMessage("¿Cual es el Id del usuario que quieres eliminar?");
-                string id = this.messageChannel.ReceiveMessage().Text;
-                //if IsRegistred(id)
-                // {
-                //     register.RemoveUser(id);
-                //     this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");
-                // }
-                // else 
-                // {
-                //     this.messageChannel.SendMessage($"El usuario de Id: {id} no esta registrado");
-                // }
+                int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);                               //COMO PASAMOS DE STRING A INT
+                if (UserRegisterServiceProvider.IsRegistredUser(id))
+                {
+                    UserRegisterServiceProvider.RemoveUser(id);
+                    this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");
+                }
+                else
+                {
+                    this.messageChannel.SendMessage($"El usuario de Id: {id} no esta registrado");
+                }
             }
             else
             {

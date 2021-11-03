@@ -10,18 +10,13 @@ namespace ClassLibrary
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Handler para los usuarios empresa no registrados.
         /// </summary>
         public UnregisteredCompanyUserHandler(IMessageChannel channel)
         {
             this.Command = "empresa";
             this.messageChannel = channel;
         }
-        /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
-        /// </summary>
-        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)) )
@@ -29,15 +24,23 @@ namespace ClassLibrary
                 StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion y algunos datos personales\n")
                                                 .Append("Ingrese el codigo de invitacion\n");
+                this.messageChannel.SendMessage(datos.ToString());
                 string codigo = this.messageChannel.ReceiveMessage().Text;
-                /*if (IsValidToken(codigo, out response)      FALTA CREAR (Creado en TokenRegister?????)   out response para que devuelva la empresa para crear el CompanyUser
-                {           
-                    /*CreateCompanyUser(input,response );       FALTA CREAR
+                TokenRegisterServiceProvider trsp = new TokenRegisterServiceProvider();
+                Company response;
+
+                if (trsp.IsValidToken(codigo, out response))
+                {
+                    CreateUserServiceProvider.CreateCompanyUser(input, response );       //FALTA CREAR
                 }
+                // else
+                // {
+                //    Excepcion?????? 
+                // }
                 else
                 {
-                   Excepcion?????? 
-                }*/
+                    this.messageChannel.SendMessage("No se pudo verificar el Token ingresado, intente nuevamente");
+                }
                
             }
             else
