@@ -11,7 +11,7 @@ namespace ClassLibrary
         /// Devuelve el Id
         /// </summary>
         /// <value></value>
-        string Id{get;}
+        int Id{get;}
         /// <summary>
         /// Devuelve el Message
         /// </summary>

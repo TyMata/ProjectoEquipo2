@@ -7,26 +7,53 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyOffer
     {
-         public void Quantity(Offer NewOffer,int NewQuantity )
-        {
-             NewOffer.QuantityMaterial=NewQuantity;
-            
-        }
-        public void Keywords(Offer NewOffer,string NewKeyword )
-        {
-             NewOffer.Keywords=NewKeyword;
-            
-        }
-        public void Disponibility(Offer NewOffer,bool NewDisponibility )
-        {
-             NewOffer.Disponibility=NewDisponibility;
-            
-        }
-        public void Term(Offer NewOffer,int NewExtendTerm )
-        {
-             NewOffer.Term=NewExtendTerm;
-            
-        }
+         /// <summary>
+         /// Modifica la cantidad de materiales en una oferta
+         /// </summary>
+         /// <param name="newOffer"></param>
+         /// <param name="newQuantity"></param>
+          public void Quantity(Offer newOffer,int newQuantity )
+          {
+            newOffer.QuantityMaterial=newQuantity;
+
+          }
+          /// <summary>
+          /// Modifica las palabras claves de una oferta
+          /// </summary>
+          /// <param name="newOffer"></param>
+          /// <param name="newKeyword"></param>
+          public void Keywords(Offer newOffer,string newKeyword )
+          {
+            newOffer.Keywords=newKeyword;
+
+          }
+          /// <summary>
+          /// Modifica la disponibilidad de una oferta
+          /// </summary>
+          /// <param name="newOffer"></param>
+          /// <param name="newAvailability"></param>
+          public void Availability(Offer newOffer,bool newAvailability )
+          {
+            newOffer.Availability=newAvailability;
+
+          }
+          /// <summary>
+          /// Modifica el plazo de una oferta
+          /// </summary>
+          /// <param name="NewOffer"></param>
+          /// <param name="NewExtendTerm"></param>
+          public void Term(Offer NewOffer,int NewExtendTerm )
+          {
+            NewOffer.Term=NewExtendTerm;
+
+          }
+
+          public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
+          {
+            /*NewOffer.Location = newAdress;
+            NewOffer.Location = newCity;
+            NewOffer.Location = newDepartment;*/         
+          }
     }
 }
  

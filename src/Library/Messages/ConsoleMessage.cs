@@ -7,12 +7,12 @@ namespace ClassLibrary
     /// </summary>
     public class ConsoleMessage : IMessage
     {
-        private string id;
+        private int id;
         /// <summary>
         /// Devuelve el Id
         /// </summary>
         /// <value></value>
-        public string Id{get;}
+        public int Id{get;}
         private string text;
         /// <summary>
         /// Devuelve el Message
@@ -31,7 +31,7 @@ namespace ClassLibrary
         public ConsoleMessage(string mensaje)
         {
             this.text = mensaje;
-            this.id = "0";
+            this.id = 0;
         }
     }
 }

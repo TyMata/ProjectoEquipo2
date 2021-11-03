@@ -22,9 +22,13 @@ namespace ConsoleApplication
             // var train = new Train();
             // train.StartEngines();
             // Console.WriteLine("Hello World!");
-            IMessageChannel mc = new ConsoleMessageChannel();
-            IHandler unUserHandler = new UnregisteredUserHandler(mc);
-            unUserHandler.Handle(mc.ReceiveMessage());
+            // IMessageChannel mc = new ConsoleMessageChannel();
+            // Register registro = new Register();
+            // //registro.CargarRegistro();
+            // SetUp inicio = new SetUp(registro);
+            // IMessage input = mc.ReceiveMessage();
+            // IHandler chainOfRes = inicio.Start(mc,input);
+            // chainOfRes.Handle(input);
         }
     }
 }

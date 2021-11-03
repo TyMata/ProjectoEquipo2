@@ -8,18 +8,20 @@ namespace ClassLibrary
     /// </summary>
     public class Register
     {
-        
-        public List<User> UserList{get;set;}
-        public List<Company> CompanyList{get;set;}
-        public void AddUser(User user)
-        {
-            if(UserList.Contains(user)==false)
-            {
-                this.UserList.Add(user);
-            }
-
-        }
-
+        /// <summary>
+        /// Lista de usuarios registrados
+        /// </summary>
+        /// <value></value>        
+        public UserRegister Users {get; private set;}
+        /// <summary>
+        /// Lista de companias registradas
+        /// </summary>
+        /// <value></value>
+        public List<Company> CompanyList{get;set;}        
+        /// <summary>
+        /// Añade una empresa a la lista de empresas registradas
+        /// </summary>
+        /// <param name="company"></param>
         public void AddCompany(Company company)
         
         {
@@ -29,28 +31,81 @@ namespace ClassLibrary
             }
             
         }
-
-        public void RemoveUser(int Id)
+        public bool IsRegisteredCompany(int id)
         {
-            foreach (User x in this.UserList)
+            foreach(Company x in this.CompanyList)
             {
-                if(x.Id==Id)
+                if(x.Id == id)
                 {
-                    this.UserList.Remove(x);
+                  return true;  
+                }
+            }
+            return false;
+        }
+       
+        /// <summary>
+        /// Remueve una empresa de la lista de empresas registradas
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveCompany(int id)
+        {
+            foreach (Company x in this.CompanyList)
+            {
+                if(x.Id==id)
+                {
+                    this.CompanyList.Remove(x);
                 }
             }
         }
-       
-
-        public void RemoveCompany(int Id)
+        public void RemoveUser(int id)
         {
-            foreach (User x in this.UserList)
+            this.Users.RemoveUser(id);
+        }
+        public bool IsRegistered(int id)
+        {
+
+            foreach(User x in this.Users.DataUsers)
             {
-                if(x.Id==Id)
+                if(x.Id==id)
                 {
-                    this.UserList.Remove(x);
+                  return true;  
                 }
             }
+            return false;
+
+        }
+        public bool IsAdmin(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("admin")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool IsEntrepreneur(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("entrepreneur")))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool IsCompany(int id)
+        {
+            foreach(User x in this.Users.DataUsers)
+            {
+                if(x.Id==id && (x.Role.TipoRol().Equals("company")))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -5,15 +5,26 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase 
     /// </summary>
-    public class User
+    public class User 
     {
-        public string name{get;set;}
-        public int Id{get;set;}
-
-        public User(string name, int Id)
+        /// <summary>
+        /// Rol del usuario
+        /// </summary>
+        public IRole Role;
+        private string id;
+        /// <summary>
+        /// Id del usuario
+        /// </summary>
+        /// <value></value>
+        public int Id{get;private set;}
+        /// <summary>
+        /// Constructor del usuario
+        /// </summary>
+        /// <param name="idPar"></param>
+        public User(int idPar, IRole role)
     {
-        this.name = name;
-        this.Id = Id;
+        this.Id = idPar;
+        this.Role = role;
     }
   }
 }

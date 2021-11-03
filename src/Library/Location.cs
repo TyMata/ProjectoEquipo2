@@ -1,5 +1,6 @@
 using System;
 
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -7,5 +8,6 @@ namespace ClassLibrary
     /// </summary>
     public class Location
     {
+       
     }
 }
