@@ -5,16 +5,12 @@ namespace ClassLibrary
     /// <summary>
     /// Handler para pausar una determinada oferta
     /// </summary>
-    public class SuspendOfferHandler : AbstractHandler , IHandler
+    public class SuspendOfferHandler : AbstractHandler
     {
-        
-        private IHandler NextHandler;
-        private string Command;
-        public SuspendOfferHandler(IMessageChannel channel, IHandler next)
+        public SuspendOfferHandler(IMessageChannel channel)
         {
+            this.Command = "/SuspenderOferta";
             this.messageChannel = channel;
-            this.NextHandler = next;
-            this.Command = "/pausar oferta";
         }
 
         public override void Handle(IMessage input)
@@ -33,9 +29,9 @@ namespace ClassLibrary
                 }
 
             }
-             else if (NextHandler != null)
+             else
             {
-                NextHandler.Handle(input);
+                nextHandler.Handle(input);
             }
 
         }
