@@ -1,4 +1,5 @@
 using System;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -37,7 +38,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int QuantityMaterial{get;set;}
-        private Company company1;
+        private Company company1;    
+        /// <summary>
+        /// Precio total del producto
+        /// </summary>
+        /// <value></value>
+        private double totalPrice{get;set;}
         /// <summary>
         /// Empresa que vende el producto
         /// </summary>
@@ -55,12 +61,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool Availability{get;set;}
-        private string publicationDate;
+        private DateTime publicationDate;
         /// <summary>
         /// Fecha de publicacion de la oferta
         /// </summary>
         /// <value></value>
-        public string PublicationDate{get;set;}
+        public DateTime PublicationDate{get;set;}
         private int term;
         /// <summary>
         /// Plazo de la oferta
@@ -76,12 +82,13 @@ namespace ClassLibrary
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="quantityMaterial"></param>
+        /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
-        /// <param name="publicationDate"></param>
+        /// <param name="dateTime"></param>
         /// <param name="term"></param>
-        public Offer(int id,Material material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability,string publicationDate,int term)
+        public Offer(int id,Material material,string habilitation,Location location,int quantityMaterial, double totalPrice,Company company,string keywords,bool availability,DateTime dateTime,int term)
     {
         this.Id = id;
         this.Material=material;
@@ -91,8 +98,9 @@ namespace ClassLibrary
         this.Company=company;
         this.Keywords=keywords;
         this.Availability=availability;
-        this.PublicationDate=publicationDate;
+        this.PublicationDate=dateTime;
         this.Term=term;
+        this.totalPrice = totalPrice;
     }
   }
 }

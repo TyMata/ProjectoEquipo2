@@ -13,15 +13,14 @@ namespace Tests
     /// Prueba de la clase <see cref="GetLocation"/>.
     /// </summary>
     [TestFixture]
-    public class LocationApiAdapterTest
+    public class LocationServiceProviderTest
     {
         //public LocationApiClient client;
-        public LocationApiAdapter adapter;
         [SetUp]
         public void Setup()
         {
         //this.client = new LocationApiClient();
-           this.adapter = new LocationApiAdapter();
+        
         }
         [Test]
 

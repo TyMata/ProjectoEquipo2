@@ -32,7 +32,7 @@ namespace ClassLibrary
                 Company company = CompanyRegisterServiceProvider.SearchCompany(companyName, out response);
                 if (response)
                 {
-                    CompanyRegisterServiceProvider.RemoveCompany(company.Id);
+                    CompanyRegisterServiceProvider.RemoveCompany(company.id);
                     this.messageChannel.SendMessage($"La empresa {companyName} ha sido eliminada");
                 }
                 else 

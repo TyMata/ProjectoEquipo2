@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
