@@ -1,19 +1,21 @@
+using System.Text;
+
 namespace ClassLibrary
 {
-    class SearchOfferByLocationHandler : AbstractHandler, IHandler
-    {
+    class SearchOfferByLocationHandler : AbstractHandler
+    {   
+        
         public SearchOfferByLocationHandler(IMessageChannel channel)
         {
+            this.Command = "/BuscarOfertaPorUbicación";
             this.messageChannel = channel;
         }
 
         public override void Handle(IMessage input)
         {
-            if (input.Text.ToLower().Trim() == "/searchOfferByLocationHandler")
+            if (this.nextHandler != null && (CanHandle(input)))
             {
-                this.messageChannel.SendMessage("Inserte Material a buscar");
-                string material = this.messageChannel.ReceiveMessage().Text;
-               
+                this.messageChannel.SendMessage("Escriba la ubicación de la oferta a buscar");     
             }
             else
             {

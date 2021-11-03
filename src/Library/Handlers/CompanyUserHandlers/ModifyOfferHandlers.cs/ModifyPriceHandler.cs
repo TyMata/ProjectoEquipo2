@@ -1,15 +1,13 @@
-using System;
-
 namespace ClassLibrary
 {
     /// <summary>
     /// Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
     /// </summary>
-    public class ModifyHabilitationsHandler : AbstractHandler
+    public class ModifyPriceHandler : AbstractHandler
     {
-        public ModifyHabilitationsHandler(IMessageChannel channel)
+        public ModifyPriceHandler(IMessageChannel channel)
         {
-            this.Command = "/modificarhabilitaciones";
+            this.Command = "/ModificarPrecio";
             this.messageChannel = channel;
         }
         public override void Handle(IMessage input)

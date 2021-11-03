@@ -5,21 +5,20 @@ namespace ClassLibrary
     /// <summary>
     ///  HAndler
     /// </summary>
-    public class CompanyUserHandler : AbstractHandler, IHandler
+    public class CompanyUserHandler : AbstractHandler
     {
-        private IHandler NextHandler;
-        private IHandler nextHandler2;
-        private IHandler nextHandler3;
-        private IHandler nextHandler4;
-        private IHandler nextHandler5;
-        private IHandler nextHandler6;
-        private string  Command;
+        // private IHandler NextHandler;
+        // private IHandler nextHandler2;
+        // private IHandler nextHandler3;
+        // private IHandler nextHandler4;
+        // private IHandler nextHandler5;
+        // private IHandler nextHandler6;
+        // private string  Command;
 
-        public CompanyUserHandler(IMessageChannel channel,IHandler next)
+        public CompanyUserHandler(IMessageChannel channel)
         {
-            this.messageChannel = channel;
-            this.NextHandler = next;
             this.Command = "/Empresa";
+            this.messageChannel = channel;
             // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
             // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);
           
@@ -36,22 +35,21 @@ namespace ClassLibrary
         public override void Handle(IMessage input)
         {
             
-            if (this.CanHandle(input))
+            if (this.nextHandler != null && (CanHandle(input)))
             {
-                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvendio Company.Name.\n Que desea hacer?:\n")
-                                                                            .Append("/Publicar Oferta\n")
-                                                                            .Append("/Retirar Oferta\n")
-                                                                            .Append("/Suspender Oferta\n")
-                                                                            .Append("/Anular Suspension Oferta\n")
-                                                                            .Append("/Modificar Oferta\n")
-                                                                            .Append("/Buscar Oferta\n");
+                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido Company.Name.\n Que desea hacer?:\n")
+                                                                            .Append("/PublicarOferta\n")
+                                                                            .Append("/RetirarOferta\n")
+                                                                            .Append("/SuspenderOferta\n")
+                                                                            .Append("/ReanudarOferta\n")
+                                                                            .Append("/ModificarOferta\n")
+                                                                            .Append("/BuscarOferta\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
-                input = this.messageChannel.ReceiveMessage();
-                this.nextHandler2.Handle(input);
+                //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
-            else if (NextHandler != null)
+            else
             {
-                this.NextHandler.Handle(input);
+                this.nextHandler.Handle(input);
             }
         }
        
