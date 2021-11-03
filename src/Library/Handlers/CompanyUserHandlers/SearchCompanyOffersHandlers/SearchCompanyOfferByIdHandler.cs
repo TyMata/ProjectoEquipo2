@@ -14,6 +14,7 @@ namespace ClassLibrary
             {
                 this.messageChannel.SendMessage("Inserte las keywords que desea utilizar, separadas por una coma, para buscar una oferta");
                 string[] keywords = this.messageChannel.ReceiveMessage().Text.Split(",");
+                // SearchOfferByKeywords(keywords)
                 
                
             }

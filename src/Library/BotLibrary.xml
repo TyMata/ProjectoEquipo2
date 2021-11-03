@@ -21,7 +21,7 @@
         </member>
         <member name="T:ClassLibrary.Company">
             <summary>
-            Esta clase
+            Esta clase representa una empresa
             </summary>
         </member>
         <member name="P:ClassLibrary.Company.Id">
@@ -48,7 +48,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Company.Rubro">
+        <member name="P:ClassLibrary.Company.Headings">
             <summary>
             Rubro al que pertenece la empresa
             </summary>
@@ -103,6 +103,13 @@
             Remueve una empresa de la lista de empresa registrados
             </summary>
             <param name="Id"></param>
+        </member>
+        <member name="M:ClassLibrary.Company.RemoveUser(System.Int32,ClassLibrary.Company)">
+            <summary>
+            Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
+            </summary>
+            <param name="id"></param>
+            <param name="company"></param>
         </member>
         <member name="T:ClassLibrary.Creator">
             <summary>
@@ -321,15 +328,8 @@
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Handler para los usuarios no registrados.
+            Handler para los usuarios empresa no registrados.
             </summary>
-        </member>
-        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
-            <summary>
-            Verifica si el usuario que emite el mensaje esta registrado
-            y de no ser asi lo ayuda a registrarse
-            </summary>
-            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
             <summary>
@@ -718,86 +718,16 @@
             <param name="publicationDate"></param>
             <param name="term"></param>
         </member>
-        <member name="T:ClassLibrary.Register">
+        <member name="T:ClassLibrary.CompanyRegister">
             <summary>
-            Esta clase es la encargada de los registros de usuarios y empresas
+            Esta clase representa un registro de empresas
             </summary>
         </member>
-        <member name="P:ClassLibrary.Register.Users">
+        <member name="P:ClassLibrary.CompanyRegister.CompanyList">
             <summary>
-            Devuelve el registro de usuarios UserRegister
-            </summary>
-            <value></value>        
-        </member>
-        <member name="P:ClassLibrary.Register.CompanyList">
-            <summary>
-            Devuelve la lista de empresas registradas
+            Lista de empresas registrados
             </summary>
             <value></value>
-        </member>
-        <member name="M:ClassLibrary.Register.AddCompany(ClassLibrary.Company)">
-            <summary>
-            Añade una empresa a la lista de empresas registradas
-            </summary>
-            <param name="company"></param>
-        </member>
-        <member name="M:ClassLibrary.Register.IsRegisteredCompany(System.Int32)">
-            <summary>
-            Verifica si una empresa ya esta registrada
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Register.RemoveCompany(System.Int32)">
-            <summary>
-            Remueve una empresa de la lista de empresas registradas
-            </summary>
-            <param name="id"></param>
-        </member>
-        <member name="M:ClassLibrary.Register.RemoveUser(System.Int32)">
-            <summary>
-            Remueve un usuario de la lista de usuarios registrados
-            </summary>
-            <param name="id"></param>
-        </member>
-        <member name="M:ClassLibrary.Register.IsRegistered(System.Int32)">
-            <summary>
-            Verifica si un usuario esta registrado
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Register.IsAdmin(System.Int32)">
-            <summary>
-            Verifica si el usuario es Admin
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Register.IsEntrepreneur(System.Int32)">
-            <summary>
-            Verifica si el usuario es emprendedor
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Register.IsCompany(System.Int32)">
-            <summary>
-            Verifica si el usuario es un usuario empresa
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="T:ClassLibrary.SetUp">
-            <summary>
-            Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.SetUp.#ctor(ClassLibrary.Register)">
-            <summary>
-            Constructor de objetos SetUp
-            </summary>
-            <param name="registro"></param>
         </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
@@ -808,21 +738,6 @@
             <summary>
             Diccionario con nombre de empresas y sus respectivos tokens habilitados
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TokenRegister.GenerateToken(System.String)">
-            <summary>
-            Genera un nuevo token de invitacion
-            </summary>
-            <param name="company"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TokenRegister.IsValidToken(System.String,System.String@)">
-            <summary>
-            Verifica si el token es valido
-            </summary>
-            <param name="codigo"></param>
-            <param name="response"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
@@ -836,18 +751,119 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.UserRegister.AddUser(System.Int32,ClassLibrary.IRole)">
+        <member name="T:ClassLibrary.CompanyRegisterServiceProvider">
+            <summary>
+            Esta clase  representa un registro de tokens
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.AddCompany(ClassLibrary.Company)">
+            <summary>
+            Se añande  empresa a la lista de empresas
+            </summary>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.RemoveCompany(System.Int32)">
+            <summary>
+            Remueve una empresa de la lista de empresa registrados
+            </summary>
+            <param name="Id"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.SearchCompany(System.String)">
+            <summary>
+            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.CompanyServiceProvider">
+            <summary>
+            Esta clase  representa un registro de tokens
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.CompanyServiceProvider.AddUserToCompany(ClassLibrary.User,ClassLibrary.Company)">
+            <summary>
+            Añade un usuario a la lista de usuarios de la empresa de un objeto Company
+            </summary>
+            <param name="user"></param>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyServiceProvider.RemoveUserFromCompany(System.Int32,ClassLibrary.Company)">
+            <summary>
+            Remueve un usuario de la lista de usuarios de la empresa registrados
+            </summary>
+            <param name="Id"></param>
+        </member>
+        <member name="T:ClassLibrary.CreateUserServiceProvider">
+            <summary>
+            Esta clase se encarga de crear usuarios de empresas y usuarios emprendedores
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.CreateUserServiceProvider.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
+            <summary>
+            Crea un usuario empresa
+            </summary>
+            <param name="input"></param>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CreateUserServiceProvider.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,ClassLibrary.Location,System.String,System.String)">
+            <summary>
+            Crea un usuario emprendedor
+            </summary>
+            <param name="input"></param>
+            <param name="name"></param>
+            <param name="location"></param>
+            <param name="headings"></param>
+            <param name="habilitations"></param>
+        </member>
+        <member name="T:ClassLibrary.TokenRegisterServiceProvider">
+            <summary>
+            Esta clase  representa un registro de tokens
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.TokenRegisterServiceProvider.GenerateToken(System.String)">
+            <summary>
+            Genera un nuevo token de invitacion
+            </summary>
+            <param name="nameCompany"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegisterServiceProvider.IsValidToken(System.String,ClassLibrary.Company@)">
+            <summary>
+            Verifica si el token es valido
+            </summary>
+            <param name="codigo"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.UserRegisterServiceProvider">
+            <summary>
+            Esta clase  representa un registro de tokens
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.UserRegisterServiceProvider.AddUser(System.Int32,ClassLibrary.IRole)">
             <summary>
             Añade un usuario a la lista de usuarios registrados
             </summary>
             <param name="Id"></param>
             <param name="role"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.RemoveUser(System.Int32)">
+        <member name="M:ClassLibrary.UserRegisterServiceProvider.RemoveUser(System.Int32)">
             <summary>
             Remueve un usuario de la lista de usuarios registrados
             </summary>
             <param name="Id"></param>
+        </member>
+        <member name="M:ClassLibrary.UserRegisterServiceProvider.SearchCompany(System.String)">
+            <summary>
+            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.SetUp">
+            <summary>
+            Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
+            </summary>
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>

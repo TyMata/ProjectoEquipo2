@@ -9,7 +9,7 @@ namespace ClassLibrary
     {
         public ModifyHabilitationsHandler(IMessageChannel channel)
         {
-            this.Command = "/ModificarHabilitaciones";
+            this.Command = "/modificarhabilitaciones";
             this.messageChannel = channel;
         }
         public override void Handle(IMessage input)
