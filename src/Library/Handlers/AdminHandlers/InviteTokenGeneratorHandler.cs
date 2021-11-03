@@ -26,14 +26,19 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)) )
             {
-                this.messageChannel.SendMessage("¿Para que empresa es el token?");
-                
-                //if IsRegistredCompany(this.messageChannel.ReceiveMessage());
+                this.messageChannel.SendMessage("Ingrese el nombre de la empresa a la que pertenece el token");
+                bool response;
+                string companyName = this.messageChannel.ReceiveMessage().Text;
+                CompanyRegisterServiceProvider.SearchCompany(companyName,out response);
+                if (response)
+                {
                     this.messageChannel.SendMessage("Se esta generando un nuevo Token");
+                    string token = TokenRegisterServiceProvider.GenerateToken(companyName);
                     this.messageChannel.SendMessage("El nuevo Token es este:");
-                    //this.messageChannel.SendMessage    GenerateToken()  FALTA CREAR???? (creado en TokenRegister??????)
-                //else
-                    //this.messageChannel.SendMessage("No hay ninguna empresa registrada con ese nombre")
+                    this.messageChannel.SendMessage(token); // creado en TokenRegister??????)
+                }
+                else
+                    this.messageChannel.SendMessage("No hay ninguna empresa registrada con ese nombre");
             }
             else
             {

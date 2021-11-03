@@ -36,8 +36,10 @@ namespace ClassLibrary
                 string materials =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string headings = this.messageChannel.ReceiveMessage().Text;
-                /*AddCompany(CreateCompany(input, nombre, ubi, headings, materials)); FALTA CREAR TIENE QUE AÑADIR LA EMPRESA A EL REGISTRO DE TOKENS*/
-                /**/
+                // Company nuevaCompany = CompanyServiceProvider.CreateCompany(nombre, ubi, headings, materials);
+                // CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);        //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
+                // TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
+                 
             }
             else
             {
