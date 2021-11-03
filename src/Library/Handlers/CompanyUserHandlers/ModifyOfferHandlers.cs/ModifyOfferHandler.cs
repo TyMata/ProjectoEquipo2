@@ -3,18 +3,13 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    public class ModifyOfferHandler: AbstractHandler, IHandler
+    public class ModifyOfferHandler: AbstractHandler
     {
-        private IHandler NextHandler;
-        private IHandler nextHandler2;
-        private IHandler nextHandler3;
-        private IHandler nextHandler4;
         private string Command;
-        public ModifyOfferHandler(IMessageChannel channel, IHandler next)
+        public ModifyOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
-            this.NextHandler =  next;
-            this.Command = "/modificar oferta";
+            this.Command = "/ModificarOferta";
             // this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
             // this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
             // this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
@@ -27,18 +22,16 @@ namespace ClassLibrary
         public override void Handle(IMessage input)
         {
             
-            if(this.CanHandle(input))
+            if(this.nextHandler != null && (CanHandle(input)))
             {
                  if("Company.ActualOffers" != null)
                 { 
                     StringBuilder commandsStringBuilder = new StringBuilder($"Que desea modificar?\n")
-                                                                                .Append("/Modificar cantidad\n")
-                                                                                .Append("/Modificar Precio\n")
-                                                                                .Append("/Modificar habilitaciones\n")
-                                                                                .Append("/Modificar tiempo\n");
+                                                                                .Append("/ModificarCantidad\n")
+                                                                                .Append("/ModificarPrecio\n")
+                                                                                .Append("/ModificarHabilitaciones\n");
                     this.messageChannel.SendMessage(commandsStringBuilder.ToString());                                                      
-                    input = this.messageChannel.ReceiveMessage();
-                    this.nextHandler2.Handle(input);
+                    this.nextHandler.Handle(input);
                 }
                 else 
                 {
@@ -46,9 +39,9 @@ namespace ClassLibrary
                 }
 
             }
-             else if (NextHandler != null)
+             else
             {
-                NextHandler.Handle(input);
+                this.nextHandler.Handle(input);
             }
 
            

@@ -5,28 +5,23 @@ namespace ClassLibrary
     /// <summary>
     /// Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
     /// </summary>
-    public class ModifyQuantityHandler : AbstractHandler, IHandler
+    public class ModifyQuantityHandler : AbstractHandler
     {
-        private IHandler NextHandler;
-        private string Command;
-        public ModifyQuantityHandler(IMessageChannel channel,IHandler next)
+        public ModifyQuantityHandler(IMessageChannel channel)
         {
+            this.Command = "/ModificarCantidad";
             this.messageChannel = channel;
-            this.NextHandler = next;
-            this.Command = "/Modificar cantidad";
         }
         public override void Handle(IMessage input)
         {
-            if(this.CanHandle(input))
+            if(this.nextHandler != null && (CanHandle(input)))
             {
-                this.messageChannel.SendMessage("Escriba la nueva cantidad de material:");
+                this.messageChannel.SendMessage("Escriba la nueva cantidad de material");
                 string quantity = this.messageChannel.ReceiveMessage().Text;
-
-               
             }
-             else if (NextHandler != null)
+             else
             {
-                NextHandler.Handle(input);
+                this.nextHandler.Handle(input);
             }
         }
         
