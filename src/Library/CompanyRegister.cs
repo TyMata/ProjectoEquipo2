@@ -32,7 +32,7 @@ namespace ClassLibrary
             {
                 foreach (Company x in CompanyList)
                 {
-                   if (x.Id.Equals(Id)) 
+                   if (x.id.Equals(Id)) 
                    {
                        this.CompanyList.Remove(x);
                    }

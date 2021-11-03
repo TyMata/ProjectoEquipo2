@@ -6,7 +6,7 @@ namespace ClassLibrary
     {   
         public RemoveOfferHandler(IMessageChannel channel)
         {
-            this.Command = "/RetirarOferta";            
+            this.Command = "/retiraroferta";            
             this.messageChannel = channel ;
         }
         public override void Handle(IMessage input)

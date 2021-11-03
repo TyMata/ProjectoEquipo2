@@ -40,7 +40,7 @@ namespace ClassLibrary
         {
             foreach(Company x in this.CompanyList)
             {
-                if(x.Id == id)
+                if(x.id == id)
                 {
                   return true;  
                 }
@@ -56,7 +56,7 @@ namespace ClassLibrary
         {
             foreach (Company x in this.CompanyList)
             {
-                if(x.Id==id)
+                if(x.id==id)
                 {
                     this.CompanyList.Remove(x);
                 }
@@ -86,7 +86,6 @@ namespace ClassLibrary
                 }
             }
             return false;
-
         }
         /// <summary>
         /// Verifica si el usuario es Admin

@@ -16,7 +16,6 @@ namespace Tests
     public class LocationApiAdapterTest
     {
         //public LocationApiClient client;
-
         public LocationApiAdapter adapter;
         [SetUp]
         public void Setup()
@@ -31,6 +30,5 @@ namespace Tests
             
 
         }
-
     }
 }

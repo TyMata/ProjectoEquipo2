@@ -8,12 +8,12 @@ namespace ClassLibrary
     /// </summary>
     public class Company
     {
-        private int id;
+        public int id;
         /// <summary>
         /// Id de la empresa
         /// </summary>
         /// <value></value>
-        public int Id{get; private set;}
+        public static int Id{get; private set;}
         private string name;
         /// <summary>
         /// Nombre de la empresa
@@ -50,6 +50,17 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Material> ProducedMaterials {get; private set;}
+        static Company()
+        {
+            Id = 0;
+        }
+        /// <summary>
+        /// Constructor de Company sin parámetros que aumenta Id cada vez que se le llama
+        /// </summary>
+        public Company()
+        {
+            Id++;
+        }
         /// <summary>
         /// Constructor de objetos Company
         /// </summary>
@@ -61,6 +72,7 @@ namespace ClassLibrary
         {
             this.name = name;
             this.Locations.Add(ubi);
+            id = Id;
         }
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa
@@ -73,5 +85,5 @@ namespace ClassLibrary
                 this.CompanyUsers.Add(userPar);
             }
         }
-       }
+    }
 }
