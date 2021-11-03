@@ -119,7 +119,6 @@
             y de no ser asi lo ayuda a registrarse
             </summary>
             <param name="input"></param>
-
         </member>
         <member name="T:ClassLibrary.Location">
             <summary>

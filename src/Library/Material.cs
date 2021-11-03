@@ -10,5 +10,12 @@ namespace ClassLibrary
         public string Type{get;set;}
         public string Classification{get;set;}
 
+
+        public Material (string type ,string classification )
+        {
+            this.Type=type;
+            this.Classification=classification;
+        }
+
     }
 }
