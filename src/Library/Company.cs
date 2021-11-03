@@ -57,7 +57,7 @@ namespace ClassLibrary
         /// <param name="ubi"></param>
         /// <param name="headings"></param>
         /// <param name="materials"></param>
-        public Company(string name, Location ubi, string headings, Material materials)
+        public Company(string name, Location ubi, string headings, string materials)
         {
             this.name = name;
             this.Locations.Add(ubi);

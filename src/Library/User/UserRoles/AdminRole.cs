@@ -1,5 +1,8 @@
 namespace ClassLibrary
-{
+{   
+    /// <summary>
+    /// Esta clase representa el rol de Admin
+    /// </summary>
     public class AdminRole : IRole
     {
         /// <summary>
@@ -7,10 +10,11 @@ namespace ClassLibrary
         /// </summary>
         public void InviteCompany(){}
 
-        /*IHandler CreateCoR(IMessageChannel channel)
-        {
-
-        }*/
+        
+        /// <summary>
+        /// Devuelve el tipo de Rol como string
+        /// </summary>
+        /// <returns></returns>
         public string TipoRol()
         {
             return "admin";

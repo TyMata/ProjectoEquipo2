@@ -6,8 +6,16 @@ namespace ClassLibrary
     /// Esta clase 
     /// </summary>
     public class Market
-    {
+    {   
+        /// <summary>
+        /// Lista de ofertas actuales
+        /// </summary>
+        /// <value></value>
         public List<Offer> ActualOfferList {get;set;}
+        /// <summary>
+        /// Añade una nueva oferta a la lista de ofertas actuales
+        /// </summary>
+        /// <param name="NewOffer"></param>
         public void AddOffer(Offer NewOffer)
         
         {
@@ -18,6 +26,10 @@ namespace ClassLibrary
             
             
         }
+        /// <summary>
+        /// Retira la oferta de la lista de ofertas actuales
+        /// </summary>
+        /// <param name="Id"></param>
         public void RemoveOffer(int Id)
         {
             foreach (Offer x in this.ActualOfferList)
@@ -29,6 +41,10 @@ namespace ClassLibrary
             }
         
         }
+        /// <summary>
+        /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda
+        /// </summary>
+        /// <returns></returns>
         public List<Offer> SearchOffer(/*param*/)
         {
             List<Offer> ValidOffer = new List<Offer>();

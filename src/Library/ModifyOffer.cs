@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase 
+    /// Esta clase es la encargada de modificar una oferta
     /// </summary>
     public class ModifyOffer
     {
@@ -47,7 +47,13 @@ namespace ClassLibrary
             NewOffer.Term=NewExtendTerm;
 
           }
-
+          /// <summary>
+          /// Modifica la Location de una oferta
+          /// </summary>
+          /// <param name="NewOffer"></param>
+          /// <param name="newAdress"></param>
+          /// <param name="newCity"></param>
+          /// <param name="newDepartment"></param>
           public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
           {
             /*NewOffer.Location = newAdress;
