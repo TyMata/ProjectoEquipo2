@@ -13,12 +13,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int Id{get;set;}
-        private Material material;
+        private string material;
         /// <summary>
         /// Material que se vende en la oferta
         /// </summary>
         /// <value></value>
-        public Material Material{get;set;}
+        public string Material{get;set;}
         private string habilitation;
         /// <summary>
         /// Habilitaciones necesarias para poder manejar el producto en venta
@@ -55,18 +55,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool Availability{get;set;}
-        private string publicationDate;
+        private DateTime publicationDate;
         /// <summary>
-        /// Fecha de publicacion de la oferta
+        /// Fecha de publicacion
         /// </summary>
         /// <value></value>
-        public string PublicationDate{get;set;}
-        private int term;
-        /// <summary>
-        /// Plazo de la oferta
-        /// </summary>
-        /// <value></value>
-        public int Term{get;set;}
+        public DateTime PublicationDate{get;set;}
 
         /// <summary>
         /// Constructor de Offer
@@ -80,8 +74,7 @@ namespace ClassLibrary
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        /// <param name="term"></param>
-        public Offer(int id,Material material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability,string publicationDate,int term)
+        public Offer(int id,string material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability, DateTime publicationDate)
     {
         this.Id = id;
         this.Material=material;
@@ -91,8 +84,6 @@ namespace ClassLibrary
         this.Company=company;
         this.Keywords=keywords;
         this.Availability=availability;
-        this.PublicationDate=publicationDate;
-        this.Term=term;
     }
   }
 }

@@ -4,26 +4,25 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Primer Handler de la CoR para los usuarios Admin.
     /// </summary>
     public class AdminStartHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de los objetos AdminStartHandler.
         /// </summary>
         public AdminStartHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Le otorga por pantalla los comandos que puede utilizar el admin.
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)) )
+            if (this.nextHandler != null)
             {
                 StringBuilder bienvenida = new StringBuilder("Bienvenido Admin!\n")
                                                 .Append("Que quieres hacer?\n")
