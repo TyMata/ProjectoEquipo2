@@ -32,12 +32,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<User> CompanyUsers {get;private set;}
-        private string rubro;
+        private string headings;
         /// <summary>
         /// Rubro al que pertenece la empresa
         /// </summary>
         /// <value></value>
-        public string Rubro {get; private set;}
+        public string Headings {get; private set;}
         private List<Offer> offerRegister = new List<Offer>();
         /// <summary>
         /// Ofertas realizadas por la empresa
@@ -50,11 +50,19 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Material> ProducedMaterials {get; private set;}
-
-        public Company(string name, Location ubi, string headings, string materials)
+        /// <summary>
+        /// Constructor de objetos Company
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="ubi"></param>
+        /// <param name="headings"></param>
+        /// <param name="materials"></param>
+        public Company(string name, Location ubi, string headings, Material materials)
         {
             this.name = name;
             this.Locations.Add(ubi);
+            this.Headings = headings;
+            this.ProducedMaterials.Add(materials);
         }
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa
