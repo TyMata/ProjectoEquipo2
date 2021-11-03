@@ -12,12 +12,13 @@ namespace ClassLibrary
         /// <summary>
         /// Genera un nuevo token de invitacion
         /// </summary>
-        /// <param name="company"></param>
+        /// <param name="nameCompany"></param>
         /// <returns></returns>
-        public string GenerateToken(string company)
+        public string GenerateToken(string nameCompany)
         {
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();
+            Company company = CompanyRegisterServiceProvider.SearchCompany(nameCompany);
             for (int i = 0; i < 3; i++)         //Creo un nuevo token
             {
                 int num = rnd.Next(10000, 100000);
@@ -41,9 +42,9 @@ namespace ClassLibrary
         /// <param name="codigo"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public bool IsValidToken(string codigo, out string response)
+        public bool IsValidToken(string codigo, out Company response)
         {
-            foreach (KeyValuePair<string,List<string>> x in TokenRegister.tokenList)
+            foreach (KeyValuePair<Company,List<string>> x in TokenRegister.tokenList)
             {
                 foreach (string token in x.Value)
                 {
@@ -54,7 +55,7 @@ namespace ClassLibrary
                     }
                 }
             }
-            response = "No es valido el codigo";
+            response = null;    //EXCEPCION?
             return false;
         }
     }
