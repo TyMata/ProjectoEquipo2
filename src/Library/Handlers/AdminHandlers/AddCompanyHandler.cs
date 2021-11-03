@@ -36,7 +36,8 @@ namespace ClassLibrary
                 string materials =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string headings = this.messageChannel.ReceiveMessage().Text;
-                /*CreateCompany(input, nombre, ubi, headings, materials); FALTA CREAR TIENE QUE AÑADIR LA EMPRESA A EL REGISTRO DE TOKENS*/
+                /*AddCompany(CreateCompany(input, nombre, ubi, headings, materials)); FALTA CREAR TIENE QUE AÑADIR LA EMPRESA A EL REGISTRO DE TOKENS*/
+                /**/
             }
             else
             {
