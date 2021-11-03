@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase
+    /// Esta clase representa una empresa
     /// </summary>
     public class Company
     {
@@ -44,12 +44,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Offer> OfferRegister {get; private set;}
-        private List<Material> producedMaterials = new List<Material>();
+        private List<string> producedMaterials = new List<string>();
         /// <summary>
         /// Materiales producidos por la empresa
         /// </summary>
         /// <value></value>
-        public List<Material> ProducedMaterials {get; private set;}
+        public List<string> ProducedMaterials {get; private set;}
         /// <summary>
         /// Constructor de objetos Company
         /// </summary>
@@ -75,5 +75,28 @@ namespace ClassLibrary
                 this.CompanyUsers.Add(userPar);
             }
         }
-       }
+        /// <summary>
+        /// Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="company"></param>
+        public void RemoveUser(int id, Company company)
+        {
+            bool exists = false;
+            User aEliminar = null;
+            foreach (User x in this.CompanyUsers)
+            {
+                if (x.Id == id)
+                {
+                    exists = true;
+                    aEliminar =x;
+                }
+            }
+            if (exists)
+            {
+                this.CompanyUsers.Remove(aEliminar);
+            }
+            //else     AGREGAR EXCEPCION
+        }
+    }
 }
