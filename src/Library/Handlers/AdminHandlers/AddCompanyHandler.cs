@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)) )
+            if (this.nextHandler != null && (CanHandle(input)))
             {
                 StringBuilder datos = new StringBuilder("Para poder registrar una empresa vamos a necesitar algunos datos de esta\n")
                                                 .Append("Ingrese el nombre de la empresa\n");

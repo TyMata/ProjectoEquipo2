@@ -234,14 +234,14 @@
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             </summary>
         </member>
+        <member name="T:ClassLibrary.ModifyPriceHandler">
+            <summary>
+            Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.ModifyUnitPriceHandler">
-            <summary>
-            Handler para qu eel usario empresa pueda modifcar el precio por unidad de un determinado material en una oferta
             </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
@@ -249,28 +249,26 @@
             Handler para publicar una nueva oferta
             </summary>
         </member>
-        <member name="M:ClassLibrary.PublishOfferHandler.Handle(ClassLibrary.IMessage)">
-            <summary>
-            
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
         <member name="T:ClassLibrary.SuspendOfferHandler">
             <summary>
             Handler para pausar una determinada oferta
             </summary>
         </member>
-        <member name="T:ClassLibrary.UnsuspendOfferHandler">
+        <member name="T:ClassLibrary.ResumeOfferHandler">
             <summary>
             h
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnsuspendOfferHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
+        <member name="M:ClassLibrary.ResumeOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Despausa una oferta determinada
+            Reanuda una oferta determinada
             </summary>
             <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.ActiveOfferHandler">
+            <summary>
+            Handler para las ofertas activas
+            </summary>
         </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
