@@ -38,7 +38,13 @@ namespace ClassLibrary
         public List<Offer> BoughtList{get;set;}
 
         Location location { get; set; }
-
+        /// <summary>
+        /// Constructor de objetos Entrepreneur
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="location"></param>
+        /// <param name="heading"></param>
+        /// <param name="habilitation"></param>
         public Entrepreneur(string name, Location location, string heading, string habilitation)
         {
             this.Name = name;

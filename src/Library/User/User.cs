@@ -18,9 +18,10 @@ namespace ClassLibrary
         /// <value></value>
         public int Id{get;private set;}
         /// <summary>
-        /// Constructor del usuario
+        /// Constructor de User
         /// </summary>
         /// <param name="idPar"></param>
+        /// <param name="role"></param>
         public User(int idPar, IRole role)
     {
         this.Id = idPar;

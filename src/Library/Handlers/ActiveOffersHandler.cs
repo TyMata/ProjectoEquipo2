@@ -2,6 +2,9 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler para las ofertas activas
+    /// </summary>
     public class ActiveOfferHandler : AbstractHandler, IHandler
     {
         private IHandler nextHandler1;
@@ -9,7 +12,7 @@ namespace ClassLibrary
         private IHandler nextHandler3;
         private IHandler nextHandler4;
         private IHandler nextHandler5;
-
+        
         public ActiveOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;

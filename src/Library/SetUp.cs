@@ -1,10 +1,17 @@
 using System;
 
 namespace ClassLibrary
-{
+{   
+    /// <summary>
+    /// Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
+    /// </summary>
     public class SetUp
     {
         private Register Registro;
+        /// <summary>
+        /// Constructor de objetos SetUp
+        /// </summary>
+        /// <param name="registro"></param>
         public SetUp(Register registro)
         {
             this.Registro = registro;
