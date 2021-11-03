@@ -81,6 +81,29 @@
             </summary>
             <param name="userPar"></param>
         </member>
+        <member name="T:ClassLibrary.CompanyRegister">
+            <summary>
+            Esta clase representa un registro de empresas
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyRegister.CompanyList">
+            <summary>
+            Lista de empresas registrados
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.AddCompany(ClassLibrary.Company)">
+            <summary>
+            Se añande  empresa a la lista de empresas
+            </summary>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.RemoveCompany(System.Int32)">
+            <summary>
+            Remueve una empresa de la lista de empresa registrados
+            </summary>
+            <param name="Id"></param>
+        </member>
         <member name="T:ClassLibrary.Creator">
             <summary>
             Esta clase 
@@ -126,11 +149,6 @@
             </summary>
             <param name="input"></param>
             <returns></returns>
-        </member>
-        <member name="T:ClassLibrary.ActiveOfferHandler">
-            <summary>
-            Handler para las ofertas activas
-            </summary>
         </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
             <summary>

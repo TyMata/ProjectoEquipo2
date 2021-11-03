@@ -27,16 +27,11 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("¿Que habilitaciones son necesarias para poder manipular este material?");
                 string habilitaciones = this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda:");
-
-                
             }
             else
             {
                 nextHandler.Handle(input);
             }
-
         }
-        
-        
     }
 }

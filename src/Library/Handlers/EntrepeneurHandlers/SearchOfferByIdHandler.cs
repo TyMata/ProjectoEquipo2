@@ -4,13 +4,11 @@ namespace ClassLibrary
 {
     class SearchOfferByIdHandler : AbstractHandler
     {   
-        
         public SearchOfferByIdHandler(IMessageChannel channel)
         {
             this.Command = "/BuscarOfertaPorId";
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))

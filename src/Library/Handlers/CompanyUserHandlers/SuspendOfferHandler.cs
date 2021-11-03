@@ -12,12 +12,11 @@ namespace ClassLibrary
             this.Command = "/SuspenderOferta";
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
-             if(this.CanHandle(input))
+            if(this.CanHandle(input))
             {
-                 if("Company.ActualOffers" != null)
+                if("Company.ActualOffers" != null)
                 {
                     this.messageChannel.SendMessage($"Estas son tus ofertas actuales: Company.ActualOffers./n ¿Cual es el Id de la que quiere pausar?");
                     string id = this.messageChannel.ReceiveMessage().Text;
@@ -27,15 +26,11 @@ namespace ClassLibrary
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa.");
                 }
-
             }
-             else
+            else
             {
                 nextHandler.Handle(input);
             }
-
         }
-        
-       
     }
 }
