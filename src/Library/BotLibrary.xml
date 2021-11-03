@@ -66,6 +66,15 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+            <summary>
+            Constructor de objetos Company
+            </summary>
+            <param name="name"></param>
+            <param name="ubi"></param>
+            <param name="headings"></param>
+            <param name="materials"></param>
+        </member>
         <member name="M:ClassLibrary.Company.AddUser(ClassLibrary.User)">
             <summary>
             Añade un usuario a la lista de usuarios pertenecientes a la empresa
@@ -87,7 +96,17 @@
             Canal por el cual se envian los mensajes
             </summary>
         </member>
+        <member name="F:ClassLibrary.AbstractHandler.nextHandler">
+            <summary>
+            Contiene al siguiente Handler
+            </summary>
+        </member>
         <member name="F:ClassLibrary.AbstractHandler.Command">
+            <summary>
+            Palabra clave de Handler(comando)
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AbstractHandler.SetNext(ClassLibrary.IHandler)">
             <summary>
             Se setea el próximo handler (nextHandler)
             </summary>
@@ -100,6 +119,18 @@
             </summary>
             <param name="input"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.AbstractHandler.CanHandle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el mensaje que recibe es igual al del comando
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.ActiveOfferHandler">
+            <summary>
+            Handler para las ofertas activas
+            </summary>
         </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
             <summary>
@@ -318,15 +349,162 @@
             </summary>
             <param name="input"></param>
         </member>
+        <member name="T:ClassLibrary.ILocationApiAdapter">
+            <summary>
+            Interface para el adapter de las api de ubicacion
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="ciudad"></param>
+            <param name="departamento"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetDistance(ClassLibrary.Location,ClassLibrary.Location)">
+            <summary>
+            Devuelve la distancia entre dos Locations de la Api
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetTravelTime(ClassLibrary.Location,ClassLibrary.Location)">
+            <summary>
+            Devuelve el tiempo que se tarda en llegar de una Location a otra
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.Location">
+            <summary>
+            Esta clase representa una ubicacion
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Location.Found">
+            <summary>
+            Devuelve si la ubicacion existe o no
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Location.Address">
+            <summary>
+            Devuelve la direccion completa
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Location.Latitude">
+            <summary>
+            Devuelve la latitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Location.Longitude">
+            <summary>
+            Devuelve la longitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Location.#ctor(System.Boolean,System.String,System.Double,System.Double)">
+            <summary>
+            Constructor de objeto Location
+            </summary>
+            <param name="found"></param>
+            <param name="address"></param>
+            <param name="latitude"></param>
+            <param name="longitude"></param>
+        </member>
+        <member name="T:ClassLibrary.LocationApiAdapter">
+            <summary>
+            Esta clase representa un adaptador de una Api de ubicaciones
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="ciudad"></param>
+            <param name="departamento"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(ClassLibrary.Location,ClassLibrary.Location)">
+            <summary>
+            Devuelve la distancia entre dos Locations 
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetTravelTime(ClassLibrary.Location,ClassLibrary.Location)">
+            <summary>
+            Devuelve el tiempo que se tarda en llegar de una Location a otra
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Market">
             <summary>
             Esta clase 
             </summary>
         </member>
+        <member name="P:ClassLibrary.Market.ActualOfferList">
+            <summary>
+            Lista de ofertas actuales
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Market.AddOffer(ClassLibrary.Offer)">
+            <summary>
+            Añade una nueva oferta a la lista de ofertas actuales
+            </summary>
+            <param name="NewOffer"></param>
+        </member>
+        <member name="M:ClassLibrary.Market.RemoveOffer(System.Int32)">
+            <summary>
+            Retira la oferta de la lista de ofertas actuales
+            </summary>
+            <param name="Id"></param>
+        </member>
+        <member name="M:ClassLibrary.Market.SearchOffer">
+            <summary>
+            Devuelve una lista de ofertas que cumplan con un parametro de busqueda
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Material">
             <summary>
-            Esta clase
+            Esta clase representa un material
             </summary>
+        </member>
+        <member name="P:ClassLibrary.Material.Name">
+            <summary>
+            Devuelve el tipo de objeto
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Material.Type">
+            <summary>
+            Devuelve el tipo de material
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Material.Classification">
+            <summary>
+            Devuelve la clasificacion del material
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Material.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de objetos Material
+            </summary>
+            <param name="type"></param>
+            <param name="classification"></param>
         </member>
         <member name="T:ClassLibrary.ConsoleMessage">
             <summary>
@@ -404,7 +582,7 @@
         </member>
         <member name="T:ClassLibrary.ModifyOffer">
             <summary>
-            Esta clase 
+            Esta clase es la encargada de modificar una oferta
             </summary>
         </member>
         <member name="M:ClassLibrary.ModifyOffer.Quantity(ClassLibrary.Offer,System.Int32)">
@@ -434,6 +612,15 @@
             </summary>
             <param name="NewOffer"></param>
             <param name="NewExtendTerm"></param>
+        </member>
+        <member name="M:ClassLibrary.ModifyOffer.Location(ClassLibrary.Offer,System.String,System.String,System.String)">
+            <summary>
+            Modifica la Location de una oferta
+            </summary>
+            <param name="NewOffer"></param>
+            <param name="newAdress"></param>
+            <param name="newCity"></param>
+            <param name="newDepartment"></param>
         </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
@@ -517,18 +704,18 @@
         </member>
         <member name="T:ClassLibrary.Register">
             <summary>
-            Esta clase 
+            Esta clase es la encargada de los registros de usuarios y empresas
             </summary>
         </member>
         <member name="P:ClassLibrary.Register.Users">
             <summary>
-            Lista de usuarios registrados
+            Devuelve el registro de usuarios UserRegister
             </summary>
             <value></value>        
         </member>
         <member name="P:ClassLibrary.Register.CompanyList">
             <summary>
-            Lista de companias registradas
+            Devuelve la lista de empresas registradas
             </summary>
             <value></value>
         </member>
@@ -538,16 +725,113 @@
             </summary>
             <param name="company"></param>
         </member>
+        <member name="M:ClassLibrary.Register.IsRegisteredCompany(System.Int32)">
+            <summary>
+            Verifica si una empresa ya esta registrada
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.Register.RemoveCompany(System.Int32)">
             <summary>
             Remueve una empresa de la lista de empresas registradas
             </summary>
             <param name="id"></param>
         </member>
+        <member name="M:ClassLibrary.Register.RemoveUser(System.Int32)">
+            <summary>
+            Remueve un usuario de la lista de usuarios registrados
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ClassLibrary.Register.IsRegistered(System.Int32)">
+            <summary>
+            Verifica si un usuario esta registrado
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Register.IsAdmin(System.Int32)">
+            <summary>
+            Verifica si el usuario es Admin
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Register.IsEntrepreneur(System.Int32)">
+            <summary>
+            Verifica si el usuario es emprendedor
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Register.IsCompany(System.Int32)">
+            <summary>
+            Verifica si el usuario es un usuario empresa
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.SetUp">
+            <summary>
+            Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.SetUp.#ctor(ClassLibrary.Register)">
+            <summary>
+            Constructor de objetos SetUp
+            </summary>
+            <param name="registro"></param>
+        </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
-            Esta clase 
+            Esta clase  representa un registro de tokens
             </summary>
+        </member>
+        <member name="F:ClassLibrary.TokenRegister.tokenList">
+            <summary>
+            Diccionario con nombre de empresas y sus respectivos tokens habilitados
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.GenerateToken(System.String)">
+            <summary>
+            Genera un nuevo token de invitacion
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.IsValidToken(System.String,System.String@)">
+            <summary>
+            Verifica si el token es valido
+            </summary>
+            <param name="codigo"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.UserRegister">
+            <summary>
+            Esta clase representa un registro de usuarios
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UserRegister.DataUsers">
+            <summary>
+            Lista de usuarios registrados
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.AddUser(System.Int32,ClassLibrary.IRole)">
+            <summary>
+            Añade un usuario a la lista de usuarios registrados
+            </summary>
+            <param name="Id"></param>
+            <param name="role"></param>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.RemoveUser(System.Int32)">
+            <summary>
+            Remueve un usuario de la lista de usuarios registrados
+            </summary>
+            <param name="Id"></param>
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>
@@ -584,6 +868,15 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+            <summary>
+            Constructor de objetos Entrepreneur
+            </summary>
+            <param name="name"></param>
+            <param name="location"></param>
+            <param name="heading"></param>
+            <param name="habilitation"></param>
+        </member>
         <member name="T:ClassLibrary.User">
             <summary>
             Esta clase 
@@ -602,14 +895,80 @@
         </member>
         <member name="M:ClassLibrary.User.#ctor(System.Int32,ClassLibrary.IRole)">
             <summary>
-            Constructor del usuario
+            Constructor de User
             </summary>
             <param name="idPar"></param>
+            <param name="role"></param>
+        </member>
+        <member name="T:ClassLibrary.AdminRole">
+            <summary>
+            Esta clase representa el rol de Admin
+            </summary>
         </member>
         <member name="M:ClassLibrary.AdminRole.InviteCompany">
             <summary>
             Envia un token para que una compania se pueda unir al bot
             </summary>
+        </member>
+        <member name="M:ClassLibrary.AdminRole.TipoRol">
+            <summary>
+            Devuelve el tipo de Rol como string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.CompanyRole">
+            <summary>
+            Esta clase representa el Rol de CompanyUser
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyRole.Company">
+            <summary>
+            Devuelve la company a la que pertenece el user
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.CompanyRole.#ctor(ClassLibrary.Company)">
+            <summary>
+            Constructor de CompanyRole
+            </summary>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRole.TipoRol">
+            <summary>
+            Devuelve el tipo de Rol como string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.EntrepreneurRole">
+            <summary>
+            Esta clase representa el Rol de EntrepreneurUser
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+            <summary>
+            Es el constructor de EntrepreneurRole
+            </summary>
+            <param name="name"></param>
+            <param name="location"></param>
+            <param name="headings"></param>
+            <param name="habilitation"></param>
+        </member>
+        <member name="M:ClassLibrary.EntrepreneurRole.TipoRol">
+            <summary>
+            Devuelve el tipo de Rol como string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.IRole">
+            <summary>
+            Interface para los roles
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IRole.TipoRol">
+            <summary>
+            Se devuelve TipoRol
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>
