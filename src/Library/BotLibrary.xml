@@ -30,7 +30,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Company.Nombre">
+        <member name="P:ClassLibrary.Company.Name">
             <summary>
             Nombre de la empresa
             </summary>
@@ -101,6 +101,91 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:ClassLibrary.AddCompanyHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.AdminStartHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AdminStartHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AdminStartHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.InviteTokenGeneratorHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.InviteTokenGeneratorHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.InviteTokenGeneratorHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.RemoveCompanyHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RemoveCompanyHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.RemoveUserHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RemoveUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RemoveUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
+        </member>
         <member name="T:ClassLibrary.CompanyUserHandler">
             <summary>
              HAndler
@@ -143,7 +228,7 @@
             h
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnsuspendOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.UnsuspendOfferHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
             Despausa una oferta determinada
             </summary>
@@ -164,6 +249,23 @@
             <summary>
             Ejecución del proceso de Handler
             </summary>
+        </member>
+        <member name="T:ClassLibrary.EndHandler">
+            <summary>
+            Marcamos el formato del resto de handlers
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
+            <summary>
+            Handler para los usuarios no registrados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.EndHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Verifica si el usuario que emite el mensaje esta registrado
+            y de no ser asi lo ayuda a registrarse
+            </summary>
+            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
@@ -215,11 +317,6 @@
             y de no ser asi lo ayuda a registrarse
             </summary>
             <param name="input"></param>
-        </member>
-        <member name="T:ClassLibrary.Location">
-            <summary>
-            Esta clase
-            </summary>
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
@@ -423,7 +520,7 @@
             Esta clase 
             </summary>
         </member>
-        <member name="P:ClassLibrary.Register.UserList">
+        <member name="P:ClassLibrary.Register.Users">
             <summary>
             Lista de usuarios registrados
             </summary>
@@ -435,96 +532,53 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Register.AddUser(ClassLibrary.User)">
-            <summary>
-            Añade un usuario a la lista de usuarios registrados
-            </summary>
-            <param name="user"></param>
-        </member>
         <member name="M:ClassLibrary.Register.AddCompany(ClassLibrary.Company)">
             <summary>
             Añade una empresa a la lista de empresas registradas
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.Register.RemoveUser(System.Int32)">
-            <summary>
-            Remueve un usuario de la lista de usuarios registrados
-            </summary>
-            <param name="Id"></param>
-        </member>
         <member name="M:ClassLibrary.Register.RemoveCompany(System.Int32)">
             <summary>
             Remueve una empresa de la lista de empresas registradas
             </summary>
-            <param name="Id"></param>
+            <param name="id"></param>
         </member>
-        <member name="T:ClassLibrary.Train">
-            <summary>
-            Esta clase representa un tren muy básico.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
-            <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
-            </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
-        </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
-            <summary>
-            Enciende las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
-        </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
-            <summary>
-            Detiene las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
-        </member>
-        <member name="T:ClassLibrary.AdminUser">
-            <summary>
-            Esta clase
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AdminUser.InviteCompany">
-            <summary>
-            Envia un token para que una compania se pueda unir al bot
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.CompanyUser">
-            <summary>
-            Esta clase
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.EntrepeneurUser">
+        <member name="T:ClassLibrary.TokenRegister">
             <summary>
             Esta clase 
             </summary>
         </member>
-        <member name="P:ClassLibrary.EntrepeneurUser.Heading">
+        <member name="T:ClassLibrary.Entrepreneur">
+            <summary>
+            Esta clase 
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Entrepreneur.Name">
+            <summary>
+            Nombre del emprendedor
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Entrepreneur.Heading">
             <summary>
             Rubro del emprendedor
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.EntrepeneurUser.Habilitation">
+        <member name="P:ClassLibrary.Entrepreneur.Habilitation">
             <summary>
             Habilitaciones del emprendedor
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.EntrepeneurUser.Location">
+        <member name="P:ClassLibrary.Entrepreneur.Location">
             <summary>
             Ubicacion del emprendedor
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.EntrepeneurUser.BoughtList">
+        <member name="P:ClassLibrary.Entrepreneur.BoughtList">
             <summary>
             Lista de compras pasadas del emprendedor
             </summary>
@@ -535,11 +589,10 @@
             Esta clase 
             </summary>
         </member>
-        <member name="P:ClassLibrary.User.Name">
+        <member name="F:ClassLibrary.User.Role">
             <summary>
-            Nombre del usuario
+            Rol del usuario
             </summary>
-            <value></value>
         </member>
         <member name="P:ClassLibrary.User.Id">
             <summary>
@@ -547,12 +600,16 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.User.#ctor(System.String,System.Int32)">
+        <member name="M:ClassLibrary.User.#ctor(System.Int32,ClassLibrary.IRole)">
             <summary>
             Constructor del usuario
             </summary>
-            <param name="namePar"></param>
             <param name="idPar"></param>
+        </member>
+        <member name="M:ClassLibrary.AdminRole.InviteCompany">
+            <summary>
+            Envia un token para que una compania se pueda unir al bot
+            </summary>
         </member>
     </members>
 </doc>

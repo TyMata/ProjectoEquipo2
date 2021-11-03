@@ -5,6 +5,7 @@ namespace ClassLibrary
     public interface ILocationApiAdapter
     {
         Location GetLocation(string addres,string ciudad, string departamento);
-        int GetDistance(Location ToLocation,Location FromLocation);
+        double GetDistance(Location from,Location to);
+        double GetTravelTime(Location from, Location to);
     }
 }
