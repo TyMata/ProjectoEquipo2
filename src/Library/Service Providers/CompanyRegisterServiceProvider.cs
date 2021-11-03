@@ -13,15 +13,16 @@ namespace ClassLibrary
        /// Se añande  empresa a la lista de empresas
        /// </summary>
        /// <param name="company"></param>
-        public static void AddCompany(Company company)
+        public static void AddCompanyToCompanyRegister(Company company)
         {
             CompanyRegister.CompanyList.Add(company);
+            TokenRegisterServiceProvider.AddCompanyToTokenRegister(company);
         }
         /// <summary>
         /// Remueve una empresa de la lista de empresa registrados
         /// </summary>
         /// <param name="Id"></param>
-        public void RemoveCompany(int Id)
+        public static void RemoveCompany(int Id)
         {
             if (CompanyRegister.CompanyList != null)
             {
@@ -35,22 +36,27 @@ namespace ClassLibrary
             }
         }
         /// <summary>
-        /// Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+        /// Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa y un bool
+        /// True si la encuentra, False si no la encuentra
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
-        public static Company SearchCompany(string name)
+        public static Company SearchCompany(string name, out bool response)
         {
+            
             if (CompanyRegister.CompanyList != null)
             {
                 foreach (Company x in CompanyRegister.CompanyList)
                 {
                    if (x.Name.Equals(name)) 
                    {
+                       response = true;
                        return x;
                    }
                 }
             }
+            response = false;
             return null; //CAMBIAR POR EXCEPCION
         }
     }

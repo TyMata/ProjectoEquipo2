@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// Remueve un usuario de la lista de usuarios registrados
         /// </summary>
         /// <param name="Id"></param>
-        public void RemoveUser(int Id)
+        public static void RemoveUser(int Id)
         {
             if (UserRegister.DataUsers != null)
             {
@@ -36,23 +36,24 @@ namespace ClassLibrary
             }
         }
         /// <summary>
-        /// Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+        /// Verifica si un usuario esta registrado
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public static Company SearchCompany(string name)
+        public static bool IsRegistredUser(int id)
         {
-            if (CompanyRegister.CompanyList != null)
+            if (UserRegister.DataUsers != null)
             {
-                foreach (Company x in CompanyRegister.CompanyList)
+                foreach (User x in UserRegister.DataUsers)
                 {
-                   if (x.Name.Equals(name)) 
+                   if (x.Id.Equals(id)) 
                    {
-                       return x;
+                        return true;
                    }
                 }
+                return false;
             }
-            return null; //CAMBIAR POR EXCEPCION
+            else return false;
         }
     }
 }
