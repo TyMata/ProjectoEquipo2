@@ -10,18 +10,13 @@ namespace ClassLibrary
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Handler para los usuarios empresa no registrados.
         /// </summary>
         public UnregisteredCompanyUserHandler(IMessageChannel channel)
         {
             this.Command = "empresa";
             this.messageChannel = channel;
         }
-        /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
-        /// </summary>
-        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)) )
@@ -30,14 +25,17 @@ namespace ClassLibrary
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion y algunos datos personales\n")
                                                 .Append("Ingrese el codigo de invitacion\n");
                 string codigo = this.messageChannel.ReceiveMessage().Text;
-                /*if (IsValidToken(codigo, out response)      FALTA CREAR (Creado en TokenRegister?????)   out response para que devuelva la empresa para crear el CompanyUser
-                {           
-                    /*CreateCompanyUser(input,response );       FALTA CREAR
-                }
-                else
-                {
-                   Excepcion?????? 
-                }*/
+                TokenRegisterServiceProvider trsp = new TokenRegisterServiceProvider();
+                Company response;
+
+                // if (trsp.IsValidToken(codigo, out response)      //FALTA CREAR out response para que devuelva la empresa para crear el CompanyUser
+                // {
+                //     CreateUserServiceProvider.CreateCompanyUser(input, response );       //FALTA CREAR
+                // }
+                // else
+                // {
+                //    Excepcion?????? 
+                // }
                
             }
             else

@@ -7,13 +7,8 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase  representa un registro de tokens
     /// </summary>
-    public class TokenRegister
-    {   
-        /// <summary>
-        /// Diccionario con nombre de empresas y sus respectivos tokens habilitados
-        /// </summary>
-        /// <returns></returns>
-        public static Dictionary<string , List<string>> tokenList = new Dictionary<string, List<string>>();
+    public class TokenRegisterServiceProvider
+    {
         /// <summary>
         /// Genera un nuevo token de invitacion
         /// </summary>
@@ -29,12 +24,12 @@ namespace ClassLibrary
                 token.Append(num.ToString());
                 if (i != 2) token.Append("-");
             }
-            if (this.tokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
+            if (TokenRegister.tokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
             {
                 List<string> listaActualizada;
-                tokenList.TryGetValue(company, out listaActualizada);
+                TokenRegister.tokenList.TryGetValue(company, out listaActualizada);
                 listaActualizada.Add(token.ToString());
-                this.tokenList[company]= listaActualizada;
+                TokenRegister.tokenList[company]= listaActualizada;
                 return token.ToString();
             }
             
@@ -48,7 +43,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public bool IsValidToken(string codigo, out string response)
         {
-            foreach (KeyValuePair<string,List<string>> x in tokenList)
+            foreach (KeyValuePair<string,List<string>> x in TokenRegister.tokenList)
             {
                 foreach (string token in x.Value)
                 {

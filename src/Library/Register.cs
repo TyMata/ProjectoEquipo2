@@ -23,7 +23,6 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="company"></param>
         public void AddCompany(Company company)
-        
         {
             if(CompanyList.Contains(company)==false)
             {
