@@ -50,7 +50,13 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Material> ProducedMaterials {get; private set;}
-
+        /// <summary>
+        /// Constructor de objetos Company
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="ubi"></param>
+        /// <param name="headings"></param>
+        /// <param name="materials"></param>
         public Company(string name, Location ubi, string headings, string materials)
         {
             this.name = name;

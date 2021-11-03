@@ -12,15 +12,20 @@ namespace ClassLibrary
         /// Canal por el cual se envian los mensajes
         /// </summary>
         protected IMessageChannel messageChannel;
-
+        /// <summary>
+        /// Contiene al siguiente Handler
+        /// </summary>
         protected IHandler nextHandler;
+        /// <summary>
+        /// Palabra clave de Handler(comando)
+        /// </summary>
+        protected string Command;
         /// <summary>
         /// Se setea el próximo handler (nextHandler)
         /// </summary>
         /// <param name="handler"></param>
         /// <returns></returns>
         
-        protected string Command;
         public IHandler SetNext(IHandler handler)
         {
             this.nextHandler = handler;
@@ -43,6 +48,11 @@ namespace ClassLibrary
                 messageChannel.SendMessage("Ni idea");
             }
         }
+        /// <summary>
+        /// Verifica si el mensaje que recibe es igual al del comando
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         protected virtual bool CanHandle(IMessage input)
         {
             if (this.Command == null || this.Command.Length == 0)
