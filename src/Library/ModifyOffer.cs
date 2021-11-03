@@ -45,7 +45,6 @@ namespace ClassLibrary
       public void Term(Offer NewOffer,int NewExtendTerm )
       {
         NewOffer.Term=NewExtendTerm;
-
       }
       /// <summary>
       /// Modifica la Location de una oferta
