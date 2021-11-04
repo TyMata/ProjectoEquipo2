@@ -46,7 +46,6 @@ namespace ClassLibrary
       {
         NewOffer.Term=NewExtendTerm;
 
-<<<<<<< HEAD
           }
           /// <summary>
           /// Modifica la Location de una oferta
@@ -61,7 +60,7 @@ namespace ClassLibrary
             NewOffer.Location = newCity;
             NewOffer.Location = newDepartment;*/         
           }
-=======
+
       }
       /// <summary>
       /// Modifica la Location de una oferta
@@ -76,7 +75,7 @@ namespace ClassLibrary
         NewOffer.Location = newCity;
         NewOffer.Location = newDepartment;*/         
       }
->>>>>>> origin
+
     }
 }
  
