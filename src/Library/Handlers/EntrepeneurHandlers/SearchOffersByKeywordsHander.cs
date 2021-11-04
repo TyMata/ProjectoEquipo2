@@ -2,7 +2,7 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    class SearchOfferByKeyWordsHandler : AbstractHandler
+    public class SearchOfferByKeyWordsHandler : AbstractHandler
     {   
         
         public SearchOfferByKeyWordsHandler(IMessageChannel channel)
