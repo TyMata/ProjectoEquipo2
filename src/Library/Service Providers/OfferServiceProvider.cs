@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -17,13 +18,14 @@ namespace ClassLibrary
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="quantityMaterial"></param>
+        /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public static Offer CreateOffer(int id,string material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability)
+        public static Offer CreateOffer(int id,string material,string habilitation,Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability)
         {
-            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, company, keywords, availability, DateTime.Now);
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, keywords, availability, DateTime.Now);
             return nuevaOferta;
         }
     }

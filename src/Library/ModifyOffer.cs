@@ -41,12 +41,12 @@ namespace ClassLibrary
       /// Modifica la Location de una oferta
       /// </summary>
       /// <param name="NewOffer"></param>
-      /// <param name="newAdress"></param>
+      /// <param name="newAddress"></param>
       /// <param name="newCity"></param>
       /// <param name="newDepartment"></param>
-      public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
+      public void Location(Offer NewOffer, string newAddress, string newCity, string newDepartment)
       {
-        /*NewOffer.Location = newAdress;
+        /*NewOffer.Location = newAddress;
         NewOffer.Location = newCity;
         NewOffer.Location = newDepartment;*/         
       }

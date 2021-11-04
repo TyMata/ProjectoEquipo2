@@ -4,13 +4,11 @@ namespace ClassLibrary
 {
     public class SearchOfferByMaterialsHandler : AbstractHandler
     {   
-        
         public SearchOfferByMaterialsHandler(IMessageChannel channel)
         {
             this.Command = "/BuscarOfertaPorMaterial";
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))

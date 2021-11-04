@@ -15,7 +15,6 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))

@@ -18,13 +18,10 @@ namespace ClassLibrary
             {
                 this.messageChannel.SendMessage("Pase por aquí el link que lleva a sus habilitaciones\n");
             }
-             else
+            else
             {
                 this.nextHandler.Handle(input);
             }
-
         }
-        
-      
     }
 }

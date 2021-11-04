@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
-             if(this.CanHandle(input))
+            if(this.CanHandle(input))
             {
                 if("Company.OfferRegister" != null)
                 {
@@ -48,15 +48,11 @@ namespace ClassLibrary
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                 }
-
             }
-             else
+            else
             {
                 nextHandler.Handle(input);
             }
-
         }
-        
-       
     }
 }

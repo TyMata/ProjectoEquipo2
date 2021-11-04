@@ -21,10 +21,9 @@ namespace ClassLibrary
         }
         public override void Handle(IMessage input)
         {
-            
             if(this.nextHandler != null && (CanHandle(input)))
             {
-                 if("Company.ActualOffers" != null)
+                if("Company.ActualOffers" != null)
                 { 
                     StringBuilder commandsStringBuilder = new StringBuilder($"Que desea modificar?\n")
                                                                                 .Append("/ModificarCantidad\n")
@@ -37,16 +36,11 @@ namespace ClassLibrary
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa.");
                 }
-
             }
-             else
+            else
             {
                 this.nextHandler.Handle(input);
             }
-
-           
-
         }
-        
     }
 }
