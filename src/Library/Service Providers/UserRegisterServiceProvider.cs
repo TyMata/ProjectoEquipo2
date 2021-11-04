@@ -5,7 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase  representa un registro de tokens
+    /// Esta clase se encarga de la modificacion y busquedas en UserRegister
     /// </summary>
     public class UserRegisterServiceProvider
     {
@@ -54,6 +54,27 @@ namespace ClassLibrary
                 return false;
             }
             else return false;
+        }
+        /// <summary>
+        /// Busca y devueve un usuario dentro de los usuarios registrados
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static User SearchUser(int id)
+        {
+            User usuario;
+            if (UserRegister.DataUsers != null)
+            {
+                foreach (User x in UserRegister.DataUsers)
+                {
+                   if (x.Id.Equals(id)) 
+                   {
+                       usuario = x;
+                       return usuario;
+                   }
+                }
+            }
+            return null;
         }
     }
 }

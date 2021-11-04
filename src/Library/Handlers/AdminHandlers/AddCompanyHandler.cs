@@ -5,13 +5,13 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de delegar la accion de añadir una empresa nueva al registro
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de los objetos AddCompanyHandler
         /// </summary>
         public AddCompanyHandler(IMessageChannel channel)
         {
@@ -19,8 +19,7 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pide algunos datos de la empresa que se quiere registrar la crea
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)

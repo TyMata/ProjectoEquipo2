@@ -14,12 +14,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int Id{get;set;}
-        private Material material;
+        private string material;
         /// <summary>
         /// Material que se vende en la oferta
         /// </summary>
         /// <value></value>
-        public Material Material{get;set;}
+        public string Material{get;set;}
         private string habilitation;
         /// <summary>
         /// Habilitaciones necesarias para poder manejar el producto en venta
@@ -64,7 +64,7 @@ namespace ClassLibrary
         public bool Availability{get;set;}
         private DateTime publicationDate;
         /// <summary>
-        /// Fecha de publicacion de la oferta
+        /// Fecha de publicacion
         /// </summary>
         /// <value></value>
         public DateTime PublicationDate{get;set;}
@@ -81,8 +81,8 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
-        /// <param name="dateTime"></param>
-        public Offer(int id,Material material,string habilitation,Location location,int quantityMaterial, double totalPrice,Company company,string keywords,bool availability,DateTime dateTime)
+        /// <param name="publicationDate"></param>
+        public Offer(int id,string material,string habilitation,Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability, DateTime publicationDate)
     {
         this.Id = id;
         this.Material=material;
@@ -92,7 +92,7 @@ namespace ClassLibrary
         this.Company=company;
         this.Keywords=keywords;
         this.Availability=availability;
-        this.PublicationDate=dateTime;
+        this.PublicationDate=publicationDate;
         this.TotalPrice = totalPrice;
     }
   }

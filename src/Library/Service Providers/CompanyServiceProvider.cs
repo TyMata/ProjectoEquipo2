@@ -6,7 +6,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase  representa un registro de tokens
+    /// Esta clase se encarga de crear y modificar objetos Company
     /// </summary>
     public class CompanyServiceProvider
     {
@@ -20,6 +20,8 @@ namespace ClassLibrary
         public static Company CreateCompany(string nombre, Location ubi, string headings, string materials)
         {
             Company nuevaCompany = new Company(nombre, ubi, headings, materials);
+            CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);
+            TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
             return nuevaCompany;
         }
         /// <summary>
@@ -36,9 +38,10 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="company"></param>
-        public void RemoveUserFromCompany(int Id, Company company)
+        public static void RemoveUserFromCompany(int Id, Company company)
         {
             company.RemoveUser(Id, company);
         }
+
     }
 }
