@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+
 namespace ClassLibrary
 {   
     /// <summary>
@@ -26,6 +29,19 @@ namespace ClassLibrary
         public string TipoRol()
         {
             return "company";
+        }
+        /// <summary>
+        /// Devuelve la data de un usuario empresa
+        /// </summary>
+        /// <returns></returns>
+        public string Data()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Nombre de la empresa que representa: {Company.Name}\n")
+                .Append($"Ubicacion de la empresa: {Company.Locations}\n")
+                .Append($"Rubro: {Company.Headings}\n")
+                .Append($"Materiales producidos por la empresa: {Company.ProducedMaterials}");
+            return sb.ToString();
         }
     }
 }
