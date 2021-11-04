@@ -3,10 +3,14 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler para las ofertas activas
+    /// HAndler encargado de 
     /// </summary>
     public class ActiveOfferHandler : AbstractHandler
     {
+        /// <summary>
+        /// Constructor de objetos ActiveOfferHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public ActiveOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
@@ -30,4 +34,4 @@ namespace ClassLibrary
             }
         }
     }
-}
+}   
