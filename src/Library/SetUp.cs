@@ -3,9 +3,11 @@ using System;
 namespace ClassLibrary
 {   
     /// <summary>
-    /// Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
+    /// Esta clase solo se encarga de crear la chain of responsability correspondiente para cada usuario
+    /// por lo tanto cumple con el patron SRP. Tambien comple con el patron Creator porque utiliza, necesariamente, ya que es la encargada
+    /// de construir los Handler para crear la CoR.
     /// </summary>
-    public class SetUp
+    public class Setup
     {
         
 
