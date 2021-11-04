@@ -11,7 +11,7 @@ namespace ClassLibrary
         /// Rol del usuario
         /// </summary>
         public IRole Role;
-        private string id;
+        private int id;
         /// <summary>
         /// Id del usuario
         /// </summary>

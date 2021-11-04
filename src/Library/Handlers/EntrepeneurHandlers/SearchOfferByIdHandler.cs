@@ -1,20 +1,21 @@
+using System.Text;
+
 namespace ClassLibrary
 {
-    class SearchOfferByIdHandler : AbstractHandler, IHandler
+    class SearchOfferByIdHandler : AbstractHandler
     {   
         
         public SearchOfferByIdHandler(IMessageChannel channel)
         {
+            this.Command = "/BuscarOfertaPorId";
             this.messageChannel = channel;
         }
 
         public override void Handle(IMessage input)
         {
-            if (input.Text.ToLower().Trim() == "/searchOfferByIdHandler")
+            if (this.nextHandler != null && (CanHandle(input)))
             {
-                this.messageChannel.SendMessage("Inserte Material a buscar");
-                string material = this.messageChannel.ReceiveMessage().Text;
-               
+                this.messageChannel.SendMessage("Escriba la Id de la oferta a buscar");
             }
             else
             {

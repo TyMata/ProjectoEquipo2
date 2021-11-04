@@ -26,17 +26,19 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)) )
             {
-                this.messageChannel.SendMessage("¿Cual es el Id del usuario que quieres eliminar?");
-                string id = this.messageChannel.ReceiveMessage().Text;
-                //if IsRegistredCompany(id)
-                // {
-                //     register.RemoveCompany(id);
-                //     this.messageChannel.SendMessage($"La empresa de Id: {id} ha sido eliminada");
-                // }
-                // else 
-                // {
-                //     this.messageChannel.SendMessage($"El usuario de Id: {id} no esta registrado");
-                // }
+                this.messageChannel.SendMessage("¿Cual es el nombre de la empresa que quieres eliminar?");
+                string companyName = this.messageChannel.ReceiveMessage().Text;
+                bool response;
+                Company company = CompanyRegisterServiceProvider.SearchCompany(companyName, out response);
+                if (response)
+                {
+                    CompanyRegisterServiceProvider.RemoveCompany(company.Id);
+                    this.messageChannel.SendMessage($"La empresa {companyName} ha sido eliminada");
+                }
+                else 
+                {
+                    this.messageChannel.SendMessage($"La empresa {companyName} no esta registrada");
+                }
             }
             else
             {

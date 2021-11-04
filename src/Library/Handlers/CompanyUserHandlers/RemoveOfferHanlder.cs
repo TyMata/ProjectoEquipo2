@@ -2,20 +2,16 @@ using System;
 
 namespace ClassLibrary
 {
-    public class RemoveOfferHandler: AbstractHandler, IHandler
-    {
-        private IHandler NextHandler;
-        private string Command;
-        
-        public RemoveOfferHandler(IMessageChannel channel, IHandler next)
+    public class RemoveOfferHandler: AbstractHandler
+    {   
+        public RemoveOfferHandler(IMessageChannel channel)
         {
+            this.Command = "/RetirarOferta";            
             this.messageChannel = channel ;
-            this.NextHandler = next ;
-            this.Command = "/Remover oferta";
         }
         public override void Handle(IMessage input)
         {
-            if(this.CanHandle(input))
+            if(this.nextHandler != null && (CanHandle(input)))
             {
                 if("Company.OfferRegister" != null)
                 {
@@ -29,9 +25,9 @@ namespace ClassLibrary
                 }
 
             }
-             else if (NextHandler != null)
+             else
             {
-                NextHandler.Handle(input);
+                this.nextHandler.Handle(input);
             }
         }
         
