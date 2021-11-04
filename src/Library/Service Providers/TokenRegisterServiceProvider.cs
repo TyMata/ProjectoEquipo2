@@ -45,7 +45,7 @@ namespace ClassLibrary
         /// <param name="codigo"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public bool IsValidToken(string codigo, out Company response)
+        public static bool IsValidToken(string codigo, out Company response)
         {
             foreach (KeyValuePair<Company,List<string>> x in TokenRegister.tokenList)
             {

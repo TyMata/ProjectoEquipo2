@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de crear un usuario emprendedor
     /// </summary>
     public class UnregisteredEntrepeneurUserHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de objetos UnregistredEntrepreneurUserHandler
         /// </summary>
         public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
         {
@@ -18,8 +18,7 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
