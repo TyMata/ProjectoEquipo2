@@ -49,14 +49,11 @@ namespace ClassLibrary
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                 }
-
             }
-             else
+            else
             {
                 this.nextHandler.Handle(input);
             }
         }
-        
-       
     }
 }

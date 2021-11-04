@@ -10,26 +10,32 @@ using NUnit.Framework;
 namespace Tests
 {
     /// <summary>
-    /// Prueba de la clase <see cref="GetLocation"/>.
+    /// Prueba de la clase <see cref="Material"/>.
     /// </summary>
     [TestFixture]
-    public class LocationApiAdapterTest
+    public class MaterialTest
     {
-        //public LocationApiClient client;
-
-        public LocationApiAdapter adapter;
-        [SetUp]
+       
+        private string type;
+        private string classification;
+        
+         [SetUp]
         public void Setup()
         {
         //this.client = new LocationApiClient();
-           this.adapter = new LocationApiAdapter();
+        this.type = "madera";
+        this.classification="organico";
+
+       
         }
         [Test]
 
-        public void GetLocationTest()
+        public void CreateMaterialTest()
         {
             
-
+            Material materialCreado =new Material(this.type,this.classification);
+            Assert.AreEqual(this.type,materialCreado.Type);
+            Assert.AreEqual(this.classification,materialCreado.Classification);
         }
 
     }

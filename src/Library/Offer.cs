@@ -1,4 +1,5 @@
 using System;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -37,7 +38,13 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int QuantityMaterial{get;set;}
-        private Company company1;
+        private double totalPrice;
+        /// <summary>
+        /// Precio total del producto
+        /// </summary>
+        /// <value></value>
+        public double TotalPrice{get;set;}
+        private Company company1;    
         /// <summary>
         /// Empresa que vende el producto
         /// </summary>
@@ -70,11 +77,12 @@ namespace ClassLibrary
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="quantityMaterial"></param>
+        /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer(int id,string material,string habilitation,Location location,int quantityMaterial,Company company,string keywords,bool availability, DateTime publicationDate)
+        public Offer(int id,string material,string habilitation,Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability, DateTime publicationDate)
     {
         this.Id = id;
         this.Material=material;
@@ -84,6 +92,8 @@ namespace ClassLibrary
         this.Company=company;
         this.Keywords=keywords;
         this.Availability=availability;
+        this.PublicationDate=publicationDate;
+        this.TotalPrice = totalPrice;
     }
   }
 }

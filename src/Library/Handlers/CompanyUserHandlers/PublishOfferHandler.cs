@@ -1,4 +1,5 @@
 using System;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -32,21 +33,18 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Cantidad de material:");
                 int quantity= Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Cuál va a ser el precio total?");
-                string precioTotal = this.messageChannel.ReceiveMessage().Text;
+                double totalPrice = Convert.ToDouble(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Que habilitaciones son necesarias para poder manipular este material?");
                 string habilitations = this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
                 string keywords = this.messageChannel.ReceiveMessage().Text;
                 User usuario = UserRegisterServiceProvider.SearchUser(input.Id);
-                MarketServiceProvider.PublishOffer(OfferServiceProvider.CreateOffer(input.Id, material, habilitations, company.Locations[0], quantity, company, keywords, response));
+                MarketServiceProvider.PublishOffer(OfferServiceProvider.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords, response));
             }
             else
             {
                 nextHandler.Handle(input);
             }
-
         }
-        
-        
     }
 }

@@ -19,11 +19,10 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Escriba la nueva cantidad de material");
                 string quantity = this.messageChannel.ReceiveMessage().Text;
             }
-             else
+            else
             {
                 this.nextHandler.Handle(input);
             }
-        }
-        
+        } 
     }
 }
