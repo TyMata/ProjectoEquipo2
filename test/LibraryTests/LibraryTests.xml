@@ -4,11 +4,6 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="T:Tests.LocationServiceProviderTest">
-            <summary>
-            Prueba de la clase <see cref="!:GetLocation"/>.
-            </summary>
-        </member>
         <member name="T:Tests.MaterialTest">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.Material"/>.
@@ -17,6 +12,11 @@
         <member name="T:Tests.OfferTest">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.Offer"/>.
+            </summary>
+        </member>
+        <member name="T:Tests.UserTest">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.Material"/>.
             </summary>
         </member>
     </members>
