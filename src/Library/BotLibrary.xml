@@ -60,13 +60,18 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Company.ProducedMaterials">
+        <member name="F:ClassLibrary.Company.ProducedMaterials">
             <summary>
             Materiales producidos por la empresa
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.Company.#ctor">
+            <summary>
+            Constructor de Company sin parámetros que aumenta Id cada vez que se le llama
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Constructor de objetos Company
             </summary>
@@ -80,29 +85,6 @@
             Añade un usuario a la lista de usuarios pertenecientes a la empresa
             </summary>
             <param name="userPar"></param>
-        </member>
-        <member name="T:ClassLibrary.CompanyRegister">
-            <summary>
-            Esta clase representa un registro de empresas
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyRegister.CompanyList">
-            <summary>
-            Lista de empresas registrados
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.AddCompany(ClassLibrary.Company)">
-            <summary>
-            Se añande  empresa a la lista de empresas
-            </summary>
-            <param name="company"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.RemoveCompany(System.Int32)">
-            <summary>
-            Remueve una empresa de la lista de empresa registrados
-            </summary>
-            <param name="Id"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32,ClassLibrary.Company)">
             <summary>
@@ -365,104 +347,6 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.ILocationApiAdapter">
-            <summary>
-            Interface para el adapter de las api de ubicacion
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ILocationApiAdapter.GetLocation(System.String,System.String,System.String)">
-            <summary>
-            Transforma la Location de la Api a una Location del Bot
-            </summary>
-            <param name="address"></param>
-            <param name="ciudad"></param>
-            <param name="departamento"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.ILocationApiAdapter.GetDistance(ClassLibrary.Location,ClassLibrary.Location)">
-            <summary>
-            Devuelve la distancia entre dos Locations de la Api
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.ILocationApiAdapter.GetTravelTime(ClassLibrary.Location,ClassLibrary.Location)">
-            <summary>
-            Devuelve el tiempo que se tarda en llegar de una Location a otra
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns></returns>
-        </member>
-        <member name="T:ClassLibrary.Location">
-            <summary>
-            Esta clase representa una ubicacion
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Location.Found">
-            <summary>
-            Devuelve si la ubicacion existe o no
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.Location.Address">
-            <summary>
-            Devuelve la direccion completa
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.Location.Latitude">
-            <summary>
-            Devuelve la latitud de la ubicacion
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.Location.Longitude">
-            <summary>
-            Devuelve la longitud de la ubicacion
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.Location.#ctor(System.Boolean,System.String,System.Double,System.Double)">
-            <summary>
-            Constructor de objeto Location
-            </summary>
-            <param name="found"></param>
-            <param name="address"></param>
-            <param name="latitude"></param>
-            <param name="longitude"></param>
-        </member>
-        <member name="T:ClassLibrary.LocationApiAdapter">
-            <summary>
-            Esta clase representa un adaptador de una Api de ubicaciones
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
-            <summary>
-            Transforma la Location de la Api a una Location del Bot
-            </summary>
-            <param name="address"></param>
-            <param name="ciudad"></param>
-            <param name="departamento"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(ClassLibrary.Location,ClassLibrary.Location)">
-            <summary>
-            Devuelve la distancia entre dos Locations 
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetTravelTime(ClassLibrary.Location,ClassLibrary.Location)">
-            <summary>
-            Devuelve el tiempo que se tarda en llegar de una Location a otra
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns></returns>
-        </member>
         <member name="T:ClassLibrary.Market">
             <summary>
             Esta clase 
@@ -622,19 +506,12 @@
             <param name="newOffer"></param>
             <param name="newAvailability"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyOffer.Term(ClassLibrary.Offer,System.Int32)">
-            <summary>
-            Modifica el plazo de una oferta
-            </summary>
-            <param name="NewOffer"></param>
-            <param name="NewExtendTerm"></param>
-        </member>
         <member name="M:ClassLibrary.ModifyOffer.Location(ClassLibrary.Offer,System.String,System.String,System.String)">
             <summary>
             Modifica la Location de una oferta
             </summary>
             <param name="NewOffer"></param>
-            <param name="newAdress"></param>
+            <param name="newAddress"></param>
             <param name="newCity"></param>
             <param name="newDepartment"></param>
         </member>
@@ -673,6 +550,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="F:ClassLibrary.Offer.totalPrice">
+            <summary>
+            Precio total del producto
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Offer.Company">
             <summary>
             Empresa que vende el producto
@@ -697,13 +580,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Offer.Term">
-            <summary>
-            Plazo de la oferta
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.Location,System.Int32,ClassLibrary.Company,System.String,System.Boolean,System.String,System.Int32)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.String,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer
             </summary>
@@ -712,11 +589,11 @@
             <param name="habilitation"></param>
             <param name="location"></param>
             <param name="quantityMaterial"></param>
+            <param name="totalPrice"></param>
             <param name="company"></param>
             <param name="keywords"></param>
             <param name="availability"></param>
-            <param name="publicationDate"></param>
-            <param name="term"></param>
+            <param name="dateTime"></param>
         </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
@@ -756,7 +633,7 @@
             Esta clase  representa un registro de tokens
             </summary>
         </member>
-        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.AddCompany(ClassLibrary.Company)">
+        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(ClassLibrary.Company)">
             <summary>
             Se añande  empresa a la lista de empresas
             </summary>
@@ -768,17 +645,28 @@
             </summary>
             <param name="Id"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.SearchCompany(System.String)">
+        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.SearchCompany(System.String,System.Boolean@)">
             <summary>
-            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa y un bool
+            True si la encuentra, False si no la encuentra
             </summary>
             <param name="name"></param>
+            <param name="response"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.CompanyServiceProvider">
             <summary>
             Esta clase  representa un registro de tokens
             </summary>
+        </member>
+        <member name="M:ClassLibrary.CompanyServiceProvider.CreateCompany(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+            <summary>
+            Crea un objeto Company
+            </summary>
+            <param name="nombre"></param>
+            <param name="ubi"></param>
+            <param name="headings"></param>
+            <param name="materials"></param>
         </member>
         <member name="M:ClassLibrary.CompanyServiceProvider.AddUserToCompany(ClassLibrary.User,ClassLibrary.Company)">
             <summary>
@@ -792,6 +680,7 @@
             Remueve un usuario de la lista de usuarios de la empresa registrados
             </summary>
             <param name="Id"></param>
+            <param name="company"></param>
         </member>
         <member name="T:ClassLibrary.CreateUserServiceProvider">
             <summary>
@@ -805,7 +694,7 @@
             <param name="input"></param>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CreateUserServiceProvider.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,ClassLibrary.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.CreateUserServiceProvider.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Crea un usuario emprendedor
             </summary>
@@ -835,6 +724,12 @@
             <param name="response"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.TokenRegisterServiceProvider.AddCompanyToTokenRegister(ClassLibrary.Company)">
+            <summary>
+            Añade una empresa y una lista de tokens vacia a el registro de Tokens
+            </summary>
+            <param name="company"></param>
+        </member>
         <member name="T:ClassLibrary.UserRegisterServiceProvider">
             <summary>
             Esta clase  representa un registro de tokens
@@ -853,11 +748,11 @@
             </summary>
             <param name="Id"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegisterServiceProvider.SearchCompany(System.String)">
+        <member name="M:ClassLibrary.UserRegisterServiceProvider.IsRegistredUser(System.Int32)">
             <summary>
-            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa    
+            Verifica si un usuario esta registrado
             </summary>
-            <param name="name"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.SetUp">
@@ -900,7 +795,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
             </summary>
@@ -976,7 +871,7 @@
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
         </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,ClassLibrary.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Es el constructor de EntrepreneurRole
             </summary>

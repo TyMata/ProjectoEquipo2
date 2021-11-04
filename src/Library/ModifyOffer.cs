@@ -37,25 +37,21 @@ namespace ClassLibrary
         newOffer.Availability=newAvailability;
 
       }
-      /// <summary>
-      /// Modifica el plazo de una oferta
-      /// </summary>
-      /// <param name="NewOffer"></param>
-      /// <param name="NewExtendTerm"></param>
-      public void Term(Offer NewOffer,int NewExtendTerm )
-      {
-        NewOffer.Term=NewExtendTerm;
-      }
+      
+      // public void Term(Offer NewOffer,int NewExtendTerm )
+      // {
+      //   NewOffer.Term=NewExtendTerm;
+      // }
       /// <summary>
       /// Modifica la Location de una oferta
       /// </summary>
       /// <param name="NewOffer"></param>
-      /// <param name="newAdress"></param>
+      /// <param name="newAddress"></param>
       /// <param name="newCity"></param>
       /// <param name="newDepartment"></param>
-      public void Location(Offer NewOffer, string newAdress, string newCity, string newDepartment)
+      public void Location(Offer NewOffer, string newAddress, string newCity, string newDepartment)
       {
-        /*NewOffer.Location = newAdress;
+        /*NewOffer.Location = newAddress;
         NewOffer.Location = newCity;
         NewOffer.Location = newDepartment;*/         
       }

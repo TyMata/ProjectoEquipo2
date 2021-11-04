@@ -21,12 +21,12 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public string Name{get;private set;}
-        private List<Location> locations =new List<Location>();
+        private Location locations;
         /// <summary>
         /// Ubicacion/es de la empresa
         /// </summary>
         /// <value></value>
-        public List<Location> Locations{get; private set;}
+        public Location Locations{get; private set;}
         private List<User> companyUsers = new List<User>();
         /// <summary>
         /// Lista de usuarios pertenecientes a la empresa
@@ -50,7 +50,7 @@ namespace ClassLibrary
         /// Materiales producidos por la empresa
         /// </summary>
         /// <value></value>
-        public List<string> ProducedMaterials {get; private set;}
+        public List<string> ProducedMaterials = new List<string>();
         static Company()
         {
             Id = 0;
@@ -72,7 +72,7 @@ namespace ClassLibrary
         public Company(string name, Location ubi, string headings, string materials)
         {
             this.name = name;
-            this.Locations.Add(ubi);
+            this.Locations = ubi;
             id = Id;
             this.Headings = headings;
             this.ProducedMaterials.Add(materials);

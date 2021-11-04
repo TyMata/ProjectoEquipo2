@@ -6,6 +6,8 @@
 
 using ClassLibrary;
 using NUnit.Framework;
+using Ucu.Poo.Locations.Client;
+using System;
 
 namespace Tests
 {
@@ -24,30 +26,37 @@ namespace Tests
         private Company company;
         private string keywords;
         private bool availability;
-        private string publicationDate;
         private int term;
+        private DateTime publicationDate;
+        private double totalPrice;
 
     
         [SetUp]
         public void Setup()
         {
         //this.client = new LocationApiClient();
+        
         this.id = 55234;
         this.material=new Material("quimico","inorganico");
         this.habilitation="ingeniero quimico";
-        this.location=new Location(true,"here",1, -1);
+        string pais = "Uruguay" ;
+        string departamento = "Montevideo" ;
+        string ciudad = "Montevideo";
+        string direccion = "Avenida 8 de Octubre";
+        Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
+        this.location=new Location();
         this.quantityMaterial=15;
-        this.company=new Company("farmashop",location,"farmacia","acido");
+        this.company=new Company("farmashop", ubi,"farmacia","acido");
         this.keywords="Acido";
         this.availability=true ;
-        this.publicationDate="22 de marzo";
-        this.term=22;
+        this.publicationDate= DateTime.Today;
+        this.totalPrice= 50000;
         }
         [Test]
 
         public void CreateOfferTest()
         {
-            Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.company,this.keywords,this.availability,this.publicationDate,this.term);
+            Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.totalPrice,this.company,this.keywords,this.availability,this.publicationDate);
             Assert.AreEqual(this.id,ofertaCreado.Id);
             Assert.AreEqual(this.material,ofertaCreado.Material);
             Assert.AreEqual(this.habilitation,ofertaCreado.Habilitation);
@@ -57,7 +66,9 @@ namespace Tests
             Assert.AreEqual(this.keywords,ofertaCreado.Keywords);
             Assert.AreEqual(this.availability,ofertaCreado.Availability);
             Assert.AreEqual(this.publicationDate,ofertaCreado.PublicationDate);
-            Assert.AreEqual(this.term,ofertaCreado.Term);
+            Assert.AreEqual(this.totalPrice,ofertaCreado.TotalPrice);
         }
+
+        
     }
 }
