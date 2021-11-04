@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de delegar la accion de eliminar una empresa del registro.
     /// </summary>
     public class RemoveCompanyHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de objetos RemoveCompanyHandler
         /// </summary>
         public RemoveCompanyHandler(IMessageChannel channel)
         {
@@ -18,8 +18,9 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pregunta por el nombre de la empresa la cual se quiere eliminar y luego de 
+        /// verificar que ya esta registrada, la elimina.
+        /// De no estar registrada le avisa al usuario de esto.
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)

@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de delegar la accion de eliminar un usario del registro
     /// </summary>
     public class RemoveUserHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de objetos RemoveUserHandler
         /// </summary>
         public RemoveUserHandler(IMessageChannel channel)
         {
@@ -18,8 +18,9 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pregunta por el id del usuario que se quiere eliminar y si el usuario que se quiere eliminar esta registrado
+        /// delega la accion de eliminarlo y lo informa por pantalla.
+        /// De no ser asi lo informa por pantalla al usuario.
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
@@ -27,7 +28,7 @@ namespace ClassLibrary
             if (this.nextHandler != null && (CanHandle(input)) )
             {
                 this.messageChannel.SendMessage("¿Cual es el Id del usuario que quieres eliminar?");
-                int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);                               //COMO PASAMOS DE STRING A INT
+                int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                 if (UserRegisterServiceProvider.IsRegistredUser(id))
                 {
                     UserRegisterServiceProvider.RemoveUser(id);

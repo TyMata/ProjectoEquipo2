@@ -3,7 +3,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    ///  HAndler
+    ///  
     /// </summary>
     public class CompanyUserHandler : AbstractHandler
     {
