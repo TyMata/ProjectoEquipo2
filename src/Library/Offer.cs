@@ -38,11 +38,11 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int QuantityMaterial{get;set;}
+        private double totalPrice;
         /// <summary>
         /// Precio total del producto
         /// </summary>
         /// <value></value>
-        private double totalPrice;
         public double TotalPrice{get;set;}
         private Company company1;    
         /// <summary>

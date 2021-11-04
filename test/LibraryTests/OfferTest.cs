@@ -19,7 +19,7 @@ namespace Tests
     {
         //public LocationApiClient client;
         private int id;
-        private Material material;
+        private string material;
         private string habilitation;
         private Location location;
         private int quantityMaterial;
@@ -37,7 +37,7 @@ namespace Tests
         //this.client = new LocationApiClient();
         
         this.id = 55234;
-        this.material=new Material("quimico","inorganico");
+        this.material= "quimico, inorganico";
         this.habilitation="ingeniero quimico";
         string pais = "Uruguay" ;
         string departamento = "Montevideo" ;
@@ -69,6 +69,6 @@ namespace Tests
             Assert.AreEqual(this.totalPrice,ofertaCreado.TotalPrice);
         }
 
-        
+
     }
 }
