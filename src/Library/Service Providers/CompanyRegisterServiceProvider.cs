@@ -10,7 +10,7 @@ namespace ClassLibrary
     public class CompanyRegisterServiceProvider
     {
         /// <summary>
-       /// Se añande  empresa a la lista de empresas
+       /// Se añade  empresa a la lista de empresas
        /// </summary>
        /// <param name="company"></param>
         public static void AddCompanyToCompanyRegister(Company company)

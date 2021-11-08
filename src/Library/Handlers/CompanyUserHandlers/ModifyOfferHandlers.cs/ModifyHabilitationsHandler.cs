@@ -7,6 +7,10 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyHabilitationsHandler : AbstractHandler
     {
+        /// <summary>
+        /// Constructor de objetos ModifyHabilitationsHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public ModifyHabilitationsHandler(IMessageChannel channel)
         {
             this.Command = "/modificarhabilitaciones";

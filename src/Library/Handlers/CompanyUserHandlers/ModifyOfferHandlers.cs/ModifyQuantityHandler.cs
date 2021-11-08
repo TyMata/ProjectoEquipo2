@@ -7,6 +7,10 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyQuantityHandler : AbstractHandler
     {
+        /// <summary>
+        /// Constructor de objetos ModifyQuantityHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public ModifyQuantityHandler(IMessageChannel channel)
         {
             this.Command = "/ModificarCantidad";

@@ -3,9 +3,15 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler encargado de delegar la accion de Modificar una oferta
+    /// </summary>
     public class ModifyOfferHandler: AbstractHandler
     {
-        private string Command;
+        /// <summary>
+        /// Constructor de objetos ModifyOfferHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public ModifyOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
