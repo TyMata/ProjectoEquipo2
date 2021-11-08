@@ -19,5 +19,13 @@ namespace ClassLibrary
         {
             return "admin";
         }
+        /// <summary>
+        /// Devuelve la data de un admin
+        /// </summary>
+        /// <returns></returns>
+        public string Data()
+        {
+            return "Uno de los creadores del bot";
+        }
     }
 }

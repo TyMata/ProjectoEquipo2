@@ -5,12 +5,15 @@ namespace ClassLibrary
     /// </summary>
     public interface IRole
     {
-        //IHandler CreateCoR(IMessageChannel channel);
         /// <summary>
         /// Se devuelve TipoRol
         /// </summary>
         /// <returns></returns>
         string TipoRol();
-        
+        /// <summary>
+        /// Nos devuelve la data del usuario en string
+        /// </summary>
+        /// <returns></returns>
+        string Data();
     }
 }

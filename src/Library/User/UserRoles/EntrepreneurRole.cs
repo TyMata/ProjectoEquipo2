@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
+using System.Text;
+
 
 namespace ClassLibrary
 {   
@@ -9,7 +11,8 @@ namespace ClassLibrary
     /// </summary>
     public class EntrepreneurRole : IRole
 	{
-		Entrepreneur Entrepreneur { get; set; }
+        
+		private Entrepreneur Entrepreneur { get; set; }
         /// <summary>
         /// Es el constructor de EntrepreneurRole
         /// </summary>
@@ -30,6 +33,19 @@ namespace ClassLibrary
         public string TipoRol()
         {
             return "entrepreneur";
+        }
+        /// <summary>
+        /// Devuelve la data de un usuario emprendedor
+        /// </summary>
+        /// <returns></returns>
+        public string Data()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Nombre: {Entrepreneur.Name}\n")
+                .Append($"Ubicacion: {Entrepreneur.Location}\n")
+                .Append($"Rubro: {Entrepreneur.Heading}\n")
+                .Append($"Link a habilitaciones: {Entrepreneur.Habilitation}");
+            return sb.ToString();
         }
 	}
 }

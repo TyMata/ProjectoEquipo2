@@ -4,22 +4,20 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// HAndler encargado de darle la bienvenida a un usuario no registrado.
     /// </summary>
     public class UnregisteredUserHandler : AbstractHandler
     {
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de objetos UnregistredUserHandler.
         /// </summary>
         public UnregisteredUserHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
-            // this.nextHandler2 = new UnregisteredEntrepeneurUserHandler(this.messageChannel);
-            // this.nextHandler2.SetNext(new UnregisteredCompanyUserHandler(this.messageChannel));
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Se encarga de darle la bienvenida al usuario no registrado y preguntarle
+        /// si es un emprendedor o ubn usuario empresa
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)

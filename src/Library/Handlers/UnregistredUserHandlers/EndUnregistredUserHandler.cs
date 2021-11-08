@@ -4,22 +4,21 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de darle final a la CoR
     /// </summary>
     public class EndHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de objetos EndHandler
         /// </summary>
         public EndHandler(IMessageChannel channel, IHandler handler)
         {
             this.messageChannel = channel;
         }
-        /*private IHandler nextHandler;*/
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Le avisa al usuario que el comando no se reconocio y 
+        /// va denuevo al primer handler de la cadena
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
