@@ -5,7 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase  representa un registro de tokens
+    /// Esta clase se encarga de añadir, eliminar, suspender y buscar empresas
     /// </summary>
     public class CompanyRegisterServiceProvider
     {
@@ -16,7 +16,6 @@ namespace ClassLibrary
         public static void AddCompanyToCompanyRegister(Company company)
         {
             CompanyRegister.CompanyList.Add(company);
-            TokenRegisterServiceProvider.AddCompanyToTokenRegister(company);
         }
         /// <summary>
         /// Remueve una empresa de la lista de empresa registrados
@@ -28,7 +27,7 @@ namespace ClassLibrary
             {
                 foreach (Company x in CompanyRegister.CompanyList)
                 {
-                   if (x.Id.Equals(Id)) 
+                   if (x.id.Equals(Id)) 
                    {
                        CompanyRegister.CompanyList.Remove(x);
                    }

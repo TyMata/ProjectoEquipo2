@@ -8,7 +8,6 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))
@@ -21,7 +20,6 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
                 this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
-
             else
             {
             this.nextHandler.Handle(input);

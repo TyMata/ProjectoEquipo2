@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de delegar la accion de añadir una empresa nueva al registro
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de los objetos AddCompanyHandler
         /// </summary>
         public AddCompanyHandler(IMessageChannel channel)
         {
@@ -18,8 +19,7 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pide algunos datos de la empresa que se quiere registrar la crea
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
@@ -30,15 +30,22 @@ namespace ClassLibrary
                                                 .Append("Ingrese el nombre de la empresa\n");
                 this.messageChannel.SendMessage(datos.ToString());
                 string nombre = this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Ingrese la ubicacion\n");
-                string ubi =  this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese el pais\n");
+                string pais =  this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese el departamento\n");
+                string departamento =  this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese la ciudad\n");
+                string ciudad =  this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese la dirección\n");
+                string direccion =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese los materiales producidos\n");
                 string materials =  this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string headings = this.messageChannel.ReceiveMessage().Text;
-                // Company nuevaCompany = CompanyServiceProvider.CreateCompany(nombre, ubi, headings, materials);
-                // CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);        //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
-                // TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
+                Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
+                Company nuevaCompany = CompanyServiceProvider.CreateCompany(nombre, ubi, headings, materials);
+                CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);        //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
+                TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
                  
             }
             else

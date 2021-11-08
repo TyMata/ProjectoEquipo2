@@ -2,15 +2,13 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    class SearchOfferByKeyWordsHandler : AbstractHandler
+    public class SearchOfferByKeyWordsHandler : AbstractHandler
     {   
-        
         public SearchOfferByKeyWordsHandler(IMessageChannel channel)
         {
             this.Command = "/BuscarOfertaPorKeyWords";
             this.messageChannel = channel;
         }
-
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))

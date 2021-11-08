@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Handler encargado de delegar la creacion de un nuevo token de invitacion para un usuario empresa.
     /// </summary>
     public class InviteTokenGeneratorHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Handler para los usuarios no registrados.
+        /// Constructor de los objetos InviteTokenGeneratorHandler.
         /// </summary>
         public InviteTokenGeneratorHandler(IMessageChannel channel)
         {
@@ -18,8 +18,9 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Verifica si el usuario que emite el mensaje esta registrado
-        /// y de no ser asi lo ayuda a registrarse
+        /// Pregunta por el nombre de la empresa a la que se le quiere añadir un usuario, delega la creacion de un token de invitacion
+        /// y lo muestra por pantalla para poder pasarselo al usuario por otro medio por fuera del bot.
+        /// De no haber una empresa registrada con ese nombre le avisa al usuario de esto.
         /// </summary>
         /// <param name="input"></param>
         public override void Handle(IMessage input)
@@ -35,7 +36,7 @@ namespace ClassLibrary
                     this.messageChannel.SendMessage("Se esta generando un nuevo Token");
                     string token = TokenRegisterServiceProvider.GenerateToken(companyName);
                     this.messageChannel.SendMessage("El nuevo Token es este:");
-                    this.messageChannel.SendMessage(token); // creado en TokenRegister??????)
+                    this.messageChannel.SendMessage(token);
                 }
                 else
                     this.messageChannel.SendMessage("No hay ninguna empresa registrada con ese nombre");

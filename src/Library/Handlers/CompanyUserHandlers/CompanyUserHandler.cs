@@ -3,7 +3,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    ///  HAndler
+    ///  
     /// </summary>
     public class CompanyUserHandler : AbstractHandler
     {
@@ -34,7 +34,6 @@ namespace ClassLibrary
         }
         public override void Handle(IMessage input)
         {
-            
             if (this.nextHandler != null && (CanHandle(input)))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido Company.Name.\n Que desea hacer?:\n")
@@ -52,9 +51,5 @@ namespace ClassLibrary
                 this.nextHandler.Handle(input);
             }
         }
-       
-        
-
-
     }
 }

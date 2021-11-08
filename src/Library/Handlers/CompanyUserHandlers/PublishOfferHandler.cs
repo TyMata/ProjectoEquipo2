@@ -1,42 +1,50 @@
 using System;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler para publicar una nueva oferta
+    /// Handler encargado de delegar la accion de crear y publicar una oferta en el registro
     /// </summary>
     public class PublishOfferHandler : AbstractHandler
     {
+        /// <summary>
+        /// Constructor de objetos PublishOfferHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public PublishOfferHandler(IMessageChannel channel)
         {
-            this.Command = "/PublicarOferta";
+            this.Command = "/publicaroferta";
             this.messageChannel = channel;
         }
+        /// <summary>
+        /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
+        /// </summary>
+        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))
             {
                 this.messageChannel.SendMessage("¿Qué material desea vender?");
                 string material = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("¿De parte de que empresa esta publicando los materiales?");
+                bool response;
+                Company company = CompanyRegisterServiceProvider.SearchCompany(this.messageChannel.ReceiveMessage().Text, out response);
                 this.messageChannel.SendMessage("Cantidad de material:");
-                string cantidad= this.messageChannel.ReceiveMessage().Text;
+                int quantity= Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Cuál va a ser el precio total?");
-                string precioTotal = this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("En que ubicación se encuentran los materiales?");
-                string ubicacion = this.messageChannel.ReceiveMessage().Text;
+                double totalPrice = Convert.ToDouble(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Que habilitaciones son necesarias para poder manipular este material?");
-                string habilitaciones = this.messageChannel.ReceiveMessage().Text;
-                this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda:");
-
-                
+                string habilitations = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
+                string keywords = this.messageChannel.ReceiveMessage().Text;
+                User usuario = UserRegisterServiceProvider.SearchUser(input.Id);
+                MarketServiceProvider.PublishOffer(OfferServiceProvider.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords, response));
             }
             else
             {
                 nextHandler.Handle(input);
             }
-
         }
-        
-        
     }
 }
