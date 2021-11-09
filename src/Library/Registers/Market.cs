@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase 
+    /// Esta clase representa el mercado con sus ofertas
     /// </summary>
     public class Market
     {   
