@@ -14,10 +14,13 @@ namespace ClassLibrary
         // private IHandler nextHandler5;
         // private IHandler nextHandler6;
         // private string  Command;
-
+        /// <summary>
+        /// Constructor de objetos CompanyUserHander
+        /// </summary>
+        /// <param name="channel"></param>
         public CompanyUserHandler(IMessageChannel channel)
         {
-            this.Command = "/Empresa";
+            this.Command = "/empresa";
             this.messageChannel = channel;
             // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
             // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);

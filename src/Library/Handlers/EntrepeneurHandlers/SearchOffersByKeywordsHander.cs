@@ -2,11 +2,18 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler encargado de delegar la accion de buscar ofertas por keywords
+    /// </summary>
     public class SearchOfferByKeyWordsHandler : AbstractHandler
     {   
+        /// <summary>
+        /// Constructor de objetos SearchOfferByKeyWordsHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public SearchOfferByKeyWordsHandler(IMessageChannel channel)
         {
-            this.Command = "/BuscarOfertaPorKeyWords";
+            this.Command = "/buscarofertaporkeyWords";
             this.messageChannel = channel;
         }
         public override void Handle(IMessage input)
