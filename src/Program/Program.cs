@@ -10,7 +10,7 @@ using ClassLibrary;
 namespace ConsoleApplication
 {
     /// <summary>
-    /// Programa de consola de demostración.
+    /// Clase encargada de iniciar el programa
     /// </summary>
     public static class Program
     {
@@ -19,16 +19,6 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            // var train = new Train();
-            // train.StartEngines();
-            // Console.WriteLine("Hello World!");
-            // IMessageChannel mc = new ConsoleMessageChannel();
-            // Register registro = new Register();
-            // //registro.CargarRegistro();
-            // SetUp inicio = new SetUp(registro);
-            // IMessage input = mc.ReceiveMessage();
-            // IHandler chainOfRes = inicio.Start(mc,input);
-            // chainOfRes.Handle(input);
         }
     }
 }
