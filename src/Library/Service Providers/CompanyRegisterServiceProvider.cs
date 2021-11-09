@@ -27,7 +27,7 @@ namespace ClassLibrary
             {
                 foreach (Company x in CompanyRegister.CompanyList)
                 {
-                   if (x.id.Equals(Id)) 
+                   if (x.Id.Equals(Id)) 
                    {
                        CompanyRegister.CompanyList.Remove(x);
                    }

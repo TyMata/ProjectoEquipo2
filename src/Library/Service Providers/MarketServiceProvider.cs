@@ -12,12 +12,12 @@ namespace ClassLibrary
         /// <summary>
         /// Añade una nueva oferta a la lista de ofertas actuales
         /// </summary>
-        /// <param name="NewOffer"></param>
-        public static void PublishOffer(Offer NewOffer)
+        /// <param name="newOffer"></param>
+        public static void PublishOffer(Offer newOffer)
         {
-            if(Market.ActualOfferList.Contains(NewOffer)==false)
+            if(!Market.ActualOfferList.Contains(newOffer))
             {
-                Market.ActualOfferList.Add(NewOffer);
+                Market.ActualOfferList.Add(newOffer);
             }
             //else EXCEPCIÓN 
         }
