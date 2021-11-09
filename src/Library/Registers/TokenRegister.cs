@@ -13,6 +13,6 @@ namespace ClassLibrary
         /// Diccionario con nombre de empresas y sus respectivos tokens habilitados
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<Company , List<string>> tokenList = new Dictionary<Company, List<string>>();
+        public static Dictionary<Company , List<string>> TokenList = new Dictionary<Company, List<string>>();
     }
 }
