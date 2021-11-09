@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// <param name="channel"></param>
         public ModifyQuantityHandler(IMessageChannel channel)
         {
-            this.Command = "/ModificarCantidad";
+            this.Command = "/modificarcantidad";
             this.messageChannel = channel;
         }
         public override void Handle(IMessage input)

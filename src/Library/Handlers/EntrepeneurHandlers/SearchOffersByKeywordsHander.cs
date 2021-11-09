@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// <param name="channel"></param>
         public SearchOfferByKeyWordsHandler(IMessageChannel channel)
         {
-            this.Command = "/BuscarOfertaPorKeyWords";
+            this.Command = "/buscarofertaporkeyWords";
             this.messageChannel = channel;
         }
         public override void Handle(IMessage input)

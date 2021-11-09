@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// <param name="channel"></param>
         public CompanyUserHandler(IMessageChannel channel)
         {
-            this.Command = "/Empresa";
+            this.Command = "/empresa";
             this.messageChannel = channel;
             // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
             // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);

@@ -19,7 +19,7 @@ namespace ClassLibrary
         {
             IRole rol = new CompanyRole(company);
             User usuario = new User(input.Id, rol);
-            CompanyServiceProvider.AddUserToCompany(usuario,  company);
+            company.AddUser(usuario);
         }
         /// <summary>
         /// Crea un usuario emprendedor

@@ -91,8 +91,7 @@ namespace ClassLibrary
         /// Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="company"></param>
-        public void RemoveUser(int id, Company company)
+        public void RemoveUser(int id)
         {
             bool exists = false;
             User aEliminar = null;

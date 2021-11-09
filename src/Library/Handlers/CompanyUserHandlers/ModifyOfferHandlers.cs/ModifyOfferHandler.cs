@@ -15,7 +15,7 @@ namespace ClassLibrary
         public ModifyOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
-            this.Command = "/ModificarOferta";
+            this.Command = "/modificaroferta";
             // this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
             // this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
             // this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
