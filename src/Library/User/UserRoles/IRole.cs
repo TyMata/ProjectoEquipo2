@@ -9,7 +9,7 @@ namespace ClassLibrary
         /// Se devuelve TipoRol
         /// </summary>
         /// <returns></returns>
-        string TipoRol();
+        string RoleType();
         /// <summary>
         /// Nos devuelve la data del usuario en string
         /// </summary>

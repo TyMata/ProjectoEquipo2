@@ -30,7 +30,7 @@ namespace ClassLibrary
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
-                    foreach (Offer item in MarketServiceProvider.GetActualOffers())
+                    foreach (Offer item in MarketServiceProvider.GetActualOffers()) //en vez de marketServiceProvider deberia ser company
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")

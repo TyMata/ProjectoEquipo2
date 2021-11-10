@@ -35,7 +35,7 @@ namespace ClassLibrary
             }
         }
         /// <summary>
-        /// Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa y un bool
+        /// Busca una empresa por el nombre y devuelve el objeto Company correspondiente a la empresa y un bool
         /// True si la encuentra, False si no la encuentra
         /// </summary>
         /// <param name="name"></param>

@@ -45,9 +45,9 @@ namespace ClassLibrary
         /// Devuelve el tipo de Rol como string
         /// </summary>
         /// <returns></returns>
-        public string TipoRol()
+        public string RoleType()
         {
-            return "entrepreneur";
+            return "emprendedor";
         }
         /// <summary>
         /// Devuelve la data de un usuario emprendedor
