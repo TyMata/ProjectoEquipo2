@@ -8,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyRegister
     {   
+        private List<Company> companyList= new List<Company>();
         /// <summary>
         /// Lista de empresas registrados
         /// </summary>

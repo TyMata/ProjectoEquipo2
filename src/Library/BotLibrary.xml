@@ -86,29 +86,6 @@
             </summary>
             <param name="userPar"></param>
         </member>
-        <member name="T:ClassLibrary.CompanyRegister">
-            <summary>
-            Esta clase representa un registro de empresas
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyRegister.CompanyList">
-            <summary>
-            Lista de empresas registrados
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.AddCompany(ClassLibrary.Company)">
-            <summary>
-            Se añande  empresa a la lista de empresas
-            </summary>
-            <param name="company"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.RemoveCompany(System.Int32)">
-            <summary>
-            Remueve una empresa de la lista de empresa registrados
-            </summary>
-            <param name="Id"></param>
-        </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32,ClassLibrary.Company)">
             <summary>
             Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
@@ -364,62 +341,69 @@
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
-            Marcamos el formato del resto de handlers
+            Handler encargado de darle final a la CoR
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
-            Handler para los usuarios no registrados.
+            Constructor de objetos EndHandler
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.Handle(ClassLibrary.IMessage)">
             <summary>
-            Verifica si el usuario que emite el mensaje esta registrado
-            y de no ser asi lo ayuda a registrarse
+            Le avisa al usuario que el comando no se reconocio y 
+            va denuevo al primer handler de la cadena
             </summary>
             <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
-            Marcamos el formato del resto de handlers
+            Handler encargado de delegar la accion de registrar un usuario empresa
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Handler para los usuarios empresa no registrados.
+            Constructor de objetos UnregistredCompanyUserHandler
             </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
+            y la creacion de el usuario empresa.
+            De no ser asi se le avisa al usuario.
+            </summary>
+            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
             <summary>
-            Marcamos el formato del resto de handlers
+            Handler encargado de crear un usuario emprendedor
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Handler para los usuarios no registrados.
+            Constructor de objetos UnregistredEntrepreneurUserHandler
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.Handle(ClassLibrary.IMessage)">
             <summary>
-            Verifica si el usuario que emite el mensaje esta registrado
-            y de no ser asi lo ayuda a registrarse
+            Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
             </summary>
             <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredUserHandler">
             <summary>
-            Marcamos el formato del resto de handlers
+            HAndler encargado de darle la bienvenida a un usuario no registrado.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Handler para los usuarios no registrados.
+            Constructor de objetos UnregistredUserHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredUserHandler.Handle(ClassLibrary.IMessage)">
             <summary>
-            Verifica si el usuario que emite el mensaje esta registrado
-            y de no ser asi lo ayuda a registrarse
+            Se encarga de darle la bienvenida al usuario no registrado y preguntarle
+            si es un emprendedor o ubn usuario empresa
             </summary>
             <param name="input"></param>
         </member>
@@ -882,14 +866,16 @@
         </member>
         <member name="M:ClassLibrary.UserRegisterServiceProvider.SearchUser(System.Int32)">
             <summary>
-            Busca y devueve un usuario dentro de los usuarios registrados
+            Busca y devuelve un usuario dentro de los usuarios registrados
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="T:ClassLibrary.SetUp">
+        <member name="T:ClassLibrary.Setup">
             <summary>
-            Esta clase se encarga de iniciar el registro y la chain of responsability correspondiente
+            Esta clase solo se encarga de crear la chain of responsability correspondiente para cada usuario
+            por lo tanto cumple con el patron SRP. Tambien comple con el patron Creator porque utiliza, necesariamente, ya que es la encargada
+            de construir los Handler para crear la CoR.
             </summary>
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
@@ -938,7 +924,11 @@
         </member>
         <member name="T:ClassLibrary.User">
             <summary>
-            Esta clase 
+            Esta clase representa un usuario.
+            Decidimos crearla de esta manera porque solo tiene la responsabilidad de conocer los datos
+            de un usuario asi cumple con el SRP, tambien decidimos que el Role sea un IRole por el LSP,
+            asi al momento de crear un usuario se le puede otorgar cualquiera de los 3 roles (AdminRole,
+            CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
             </summary>
         </member>
         <member name="F:ClassLibrary.User.Role">
@@ -975,6 +965,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.AdminRole.Data">
+            <summary>
+            Devuelve la data de un admin
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.CompanyRole">
             <summary>
             Esta clase representa el Rol de CompanyUser
@@ -998,6 +994,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.CompanyRole.Data">
+            <summary>
+            Devuelve la data de un usuario empresa
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.EntrepreneurRole">
             <summary>
             Esta clase representa el Rol de EntrepreneurUser
@@ -1018,6 +1020,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.EntrepreneurRole.Data">
+            <summary>
+            Devuelve la data de un usuario emprendedor
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.IRole">
             <summary>
             Interface para los roles
@@ -1026,6 +1034,12 @@
         <member name="M:ClassLibrary.IRole.TipoRol">
             <summary>
             Se devuelve TipoRol
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.IRole.Data">
+            <summary>
+            Nos devuelve la data del usuario en string
             </summary>
             <returns></returns>
         </member>

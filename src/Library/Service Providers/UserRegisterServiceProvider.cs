@@ -14,21 +14,21 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="role"></param>
-        public void AddUser(int Id, IRole role)
+        public void AddUser(int id, IRole role)
         {
-            UserRegister.DataUsers.Add(new User(Id, role));
+            UserRegister.DataUsers.Add(new User(id, role));
         }
         /// <summary>
         /// Remueve un usuario de la lista de usuarios registrados
         /// </summary>
         /// <param name="Id"></param>
-        public static void RemoveUser(int Id)
+        public static void RemoveUser(int id)
         {
             if (UserRegister.DataUsers != null)
             {
                 foreach (User x in UserRegister.DataUsers)
                 {
-                   if (x.Id.Equals(Id)) 
+                   if (x.Id.Equals(id)) 
                    {
                         UserRegister.DataUsers.Remove(x);
                    }
@@ -56,7 +56,7 @@ namespace ClassLibrary
             else return false;
         }
         /// <summary>
-        /// Busca y devueve un usuario dentro de los usuarios registrados
+        /// Busca y devuelve un usuario dentro de los usuarios registrados
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -13,11 +13,11 @@ namespace ClassLibrary
         /// Añade una nueva oferta a la lista de ofertas actuales
         /// </summary>
         /// <param name="NewOffer"></param>
-        public static void PublishOffer(Offer NewOffer)
+        public static void PublishOffer(Offer newOffer)
         {
-            if(Market.ActualOfferList.Contains(NewOffer)==false)
+            if(Market.ActualOfferList.Contains(newOffer)==false)
             {
-                Market.ActualOfferList.Add(NewOffer);
+                Market.ActualOfferList.Add(newOffer);
             }
             //else EXCEPCIÓN 
         }
@@ -25,11 +25,11 @@ namespace ClassLibrary
         /// Retira la oferta de la lista de ofertas actuales
         /// </summary>
         /// <param name="Id"></param>
-        public static void RemoveOffer(int Id)
+        public static void RemoveOffer(int id)
         {
             foreach (Offer x in Market.ActualOfferList)
             {
-                if(x.Id==Id)
+                if(x.Id==id)
                 {
                     Market.ActualOfferList.Remove(x);
                 }
@@ -86,12 +86,12 @@ namespace ClassLibrary
         /// A una oferta suspendida la vuelve a activar
         /// </summary>
         /// <param name="Id"></param>
-        public static void ResumeOffer(int Id)
+        public static void ResumeOffer(int id)
         {
             Offer offerToResume = null;
             foreach (Offer x in Market.SuspendedOfferList)
             {
-                if(x.Id==Id)
+                if(x.Id==id)
                 {
                     offerToResume = x;
                 }

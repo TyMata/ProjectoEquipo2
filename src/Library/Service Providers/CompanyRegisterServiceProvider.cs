@@ -21,13 +21,13 @@ namespace ClassLibrary
         /// Remueve una empresa de la lista de empresa registrados
         /// </summary>
         /// <param name="Id"></param>
-        public static void RemoveCompany(int Id)
+        public static void RemoveCompany(int id)
         {
             if (CompanyRegister.CompanyList != null)
             {
                 foreach (Company x in CompanyRegister.CompanyList)
                 {
-                   if (x.id.Equals(Id)) 
+                   if (x.id.Equals(id)) 
                    {
                        CompanyRegister.CompanyList.Remove(x);
                    }
