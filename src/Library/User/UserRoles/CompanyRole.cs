@@ -8,11 +8,30 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyRole : IRole
     {   
+        private Company company;
         /// <summary>
         /// Devuelve la company a la que pertenece el user
         /// </summary>
         /// <value></value>
-        public Company Company { get; set; }
+        public Company Company 
+        { 
+            get
+            {
+                return this.company;
+            } 
+            private set
+            {
+                if(value != null)
+                {
+                    this.Company = value;
+                }
+                else
+                {
+                    //Excepcion 
+                }
+            }
+            
+        }
         /// <summary>
         /// Constructor de CompanyRole
         /// </summary>
@@ -26,7 +45,7 @@ namespace ClassLibrary
         /// Devuelve el tipo de Rol como string
         /// </summary>
         /// <returns></returns>
-        public string TipoRol()
+        public string RoleType()
         {
             return "company";
         }

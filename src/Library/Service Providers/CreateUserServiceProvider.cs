@@ -17,9 +17,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public static void CreateCompanyUser(IMessage input,Company company)
         {
-            IRole rol = new CompanyRole(company);
-            User usuario = new User(input.Id, rol);
-            CompanyServiceProvider.AddUserToCompany(usuario,  company);
+            company.AddUser(input.Id);
         }
         /// <summary>
         /// Crea un usuario emprendedor

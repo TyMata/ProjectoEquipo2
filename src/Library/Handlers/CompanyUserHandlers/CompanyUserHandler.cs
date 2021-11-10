@@ -14,10 +14,13 @@ namespace ClassLibrary
         // private IHandler nextHandler5;
         // private IHandler nextHandler6;
         // private string  Command;
-
+        /// <summary>
+        /// Constructor de objetos CompanyUserHander
+        /// </summary>
+        /// <param name="channel"></param>
         public CompanyUserHandler(IMessageChannel channel)
         {
-            this.Command = "/Empresa";
+            this.Command = "/empresa";
             this.messageChannel = channel;
             // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
             // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);
@@ -36,14 +39,15 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)))
             {
-                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido Company.Name.\n Que desea hacer?:\n")
-                                                                            .Append("/PublicarOferta\n")
-                                                                            .Append("/RetirarOferta\n")
-                                                                            .Append("/SuspenderOferta\n")
-                                                                            .Append("/ReanudarOferta\n")
-                                                                            .Append("/ModificarOferta\n")
-                                                                            .Append("/BuscarOferta\n");
+                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido \n Que desea hacer?:\n")
+                                                                            .Append("/publicaroferta\n")
+                                                                            .Append("/retiraroferta\n")
+                                                                            .Append("/suspenderoferta\n")
+                                                                            .Append("/reanudaroferta\n")
+                                                                            .Append("/modificaroferta\n")
+                                                                            .Append("/buscaroferta\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+               
                 //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
             else

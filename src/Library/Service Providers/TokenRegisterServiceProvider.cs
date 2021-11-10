@@ -19,7 +19,7 @@ namespace ClassLibrary
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();
             bool response;
-            Company company = CompanyRegisterServiceProvider.SearchCompany(nameCompany, out response);
+            Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(int id);
             if(response)
             {    for (int i = 0; i < 3; i++)         //Creo un nuevo token
                 {
@@ -27,12 +27,12 @@ namespace ClassLibrary
                     token.Append(num.ToString());
                     if (i != 2) token.Append("-");
                 }
-                if (TokenRegister.tokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
+                if (TokenRegister.TokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
                 {
                     List<string> listaActualizada;
-                    TokenRegister.tokenList.TryGetValue(company, out listaActualizada);
+                    TokenRegister.TokenList.TryGetValue(company, out listaActualizada);
                     listaActualizada.Add(token.ToString());
-                    TokenRegister.tokenList[company]= listaActualizada;
+                    TokenRegister.TokenList[company]= listaActualizada;
                     return token.ToString();
                 }
             }
@@ -47,7 +47,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public static bool IsValidToken(string codigo, out Company response)
         {
-            foreach (KeyValuePair<Company,List<string>> x in TokenRegister.tokenList)
+            foreach (KeyValuePair<Company,List<string>> x in TokenRegister.TokenList)
             {
                 foreach (string token in x.Value)
                 {
@@ -67,7 +67,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public static void AddCompanyToTokenRegister(Company company)
         {
-            TokenRegister.tokenList.TryAdd(company,new List<string>());
+            TokenRegister.TokenList.TryAdd(company,new List<string>());
         }
     }
 }

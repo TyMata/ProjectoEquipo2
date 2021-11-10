@@ -14,7 +14,7 @@ namespace ClassLibrary
         /// </summary>
         public RemoveCompanyHandler(IMessageChannel channel)
         {
-            this.Command = "/eliminarusuario";
+            this.Command = "/eliminarempresa";
             this.messageChannel = channel;
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace ClassLibrary
                 Company company = CompanyRegisterServiceProvider.SearchCompany(companyName, out response);
                 if (response)
                 {
-                    CompanyRegisterServiceProvider.RemoveCompany(company.id);
+                    CompanyRegisterServiceProvider.RemoveCompany(company.Id);
                     this.messageChannel.SendMessage($"La empresa {companyName} ha sido eliminada");
                 }
                 else 

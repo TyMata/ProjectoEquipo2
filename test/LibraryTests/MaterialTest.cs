@@ -15,28 +15,26 @@ namespace Tests
     [TestFixture]
     public class MaterialTest
     {
-       
+       private string name;
         private string type;
         private string classification;
+        private string name;
         
          [SetUp]
         public void Setup()
         {
-        //this.client = new LocationApiClient();
-        this.type = "madera";
-        this.classification="organico";
-
-       
+            //this.client = new LocationApiClient();
+            this.type = "madera";
+            this.classification="organico";
+            this.name = "nombre";
         }
         [Test]
-
         public void CreateMaterialTest()
         {
-            
-            Material materialCreado =new Material(this.type,this.classification);
+            Material materialCreado =new Material(this.name,this.type,this.classification);
+            Assert.AreEqual(this.name,materialCreado.Name);
             Assert.AreEqual(this.type,materialCreado.Type);
             Assert.AreEqual(this.classification,materialCreado.Classification);
         }
-
     }
 }

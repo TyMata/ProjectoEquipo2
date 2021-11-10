@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 using System.Text;
@@ -11,8 +12,22 @@ namespace ClassLibrary
     /// </summary>
     public class EntrepreneurRole : IRole
 	{
-        
-		private Entrepreneur Entrepreneur { get; set; }
+        private Entrepreneur entrepreneur;
+		private Entrepreneur Entrepreneur 
+        {
+             get
+             {
+                 return this.entrepreneur;
+             } 
+            set 
+            {
+                if(value != null)
+                {
+                    this.Entrepreneur = value;
+                }
+
+            }
+        }
         /// <summary>
         /// Es el constructor de EntrepreneurRole
         /// </summary>
@@ -30,9 +45,9 @@ namespace ClassLibrary
         /// Devuelve el tipo de Rol como string
         /// </summary>
         /// <returns></returns>
-        public string TipoRol()
+        public string RoleType()
         {
-            return "entrepreneur";
+            return "emprendedor";
         }
         /// <summary>
         /// Devuelve la data de un usuario emprendedor

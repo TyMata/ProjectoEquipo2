@@ -28,7 +28,7 @@
             <summary>
             Id de la empresa
             </summary>
-            <value></value>
+            <value></value> 
         </member>
         <member name="P:ClassLibrary.Company.Name">
             <summary>
@@ -60,7 +60,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="F:ClassLibrary.Company.ProducedMaterials">
+        <member name="P:ClassLibrary.Company.ProducedMaterials">
             <summary>
             Materiales producidos por la empresa
             </summary>
@@ -86,12 +86,11 @@
             </summary>
             <param name="userPar"></param>
         </member>
-        <member name="M:ClassLibrary.Company.RemoveUser(System.Int32,ClassLibrary.Company)">
+        <member name="M:ClassLibrary.Company.RemoveUser(System.Int32)">
             <summary>
             Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
             </summary>
             <param name="id"></param>
-            <param name="company"></param>
         </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
@@ -225,20 +224,55 @@
              
             </summary>
         </member>
+        <member name="M:ClassLibrary.CompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos CompanyUserHander
+            </summary>
+            <param name="channel"></param>
+        </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             </summary>
+        </member>
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos ModifyHabilitationsHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.ModifyOfferHandler">
+            <summary>
+            Handler encargado de delegar la accion de Modificar una oferta
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ModifyOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos ModifyOfferHandler
+            </summary>
+            <param name="channel"></param>
         </member>
         <member name="T:ClassLibrary.ModifyPriceHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             </summary>
         </member>
+        <member name="M:ClassLibrary.ModifyPriceHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos ModifyPriceHanlder
+            </summary>
+            <param name="channel"></param>
+        </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
             </summary>
+        </member>
+        <member name="M:ClassLibrary.ModifyQuantityHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos ModifyQuantityHandler
+            </summary>
+            <param name="channel"></param>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
@@ -323,6 +357,61 @@
             </summary>
             <param name="channel"></param>
         </member>
+        <member name="T:ClassLibrary.SearchOfferByIdHandler">
+            <summary>
+            Handler encargado de delegar la accion de buscar ofertas por su Id
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferByIdHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos SearchOfferByIdHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferByLocationHandler">
+            <summary>
+            Handler encargado de delegar la accion de buscar ofertas por su ubicación
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferByLocationHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos SearchOfferByLocationHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferByMaterialsHandler">
+            <summary>
+            Handler encargado de delegar la accion de buscar ofertas por material
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferByMaterialsHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos SearchOfferByMaterialsHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferByKeyWordsHandler">
+            <summary>
+            Handler encargado de delegar la accion de buscar ofertas por keywords
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferByKeyWordsHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos SearchOfferByKeyWordsHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
+        <member name="T:ClassLibrary.ShowBoughtOffersHandler">
+            <summary>
+            Handler encargado de delegar la accion de mostrar las ofertas compradas por un emprendedor
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ShowBoughtOffersHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de objetos ShowBoughtOffersHandler
+            </summary>
+            <param name="channel"></param>
+        </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
             Esta clase
@@ -365,6 +454,14 @@
             <summary>
             Constructor de objetos UnregistredCompanyUserHandler
             </summary>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
+            y la creacion de el usuario empresa.
+            De no ser asi se le avisa al usuario.
+            </summary>
+            <param name="input"></param>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
             <summary>
@@ -430,10 +527,11 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Material.#ctor(System.String,System.String)">
+        <member name="M:ClassLibrary.Material.#ctor(System.String,System.String,System.String)">
             <summary>
             Constructor de objetos Material
             </summary>
+            <param name="name"></param>
             <param name="type"></param>
             <param name="classification"></param>
         </member>
@@ -511,41 +609,6 @@
             </summary>
             <param name="mensaje"></param>
         </member>
-        <member name="T:ClassLibrary.ModifyOffer">
-            <summary>
-            Esta clase es la encargada de modificar una oferta
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ModifyOffer.Quantity(ClassLibrary.Offer,System.Int32)">
-            <summary>
-            Modifica la cantidad de materiales en una oferta
-            </summary>
-            <param name="newOffer"></param>
-            <param name="newQuantity"></param>
-        </member>
-        <member name="M:ClassLibrary.ModifyOffer.Keywords(ClassLibrary.Offer,System.String)">
-            <summary>
-            Modifica las palabras claves de una oferta
-            </summary>
-            <param name="newOffer"></param>
-            <param name="newKeyword"></param>
-        </member>
-        <member name="M:ClassLibrary.ModifyOffer.Availability(ClassLibrary.Offer,System.Boolean)">
-            <summary>
-            Modifica la disponibilidad de una oferta
-            </summary>
-            <param name="newOffer"></param>
-            <param name="newAvailability"></param>
-        </member>
-        <member name="M:ClassLibrary.ModifyOffer.Location(ClassLibrary.Offer,System.String,System.String,System.String)">
-            <summary>
-            Modifica la Location de una oferta
-            </summary>
-            <param name="NewOffer"></param>
-            <param name="newAddress"></param>
-            <param name="newCity"></param>
-            <param name="newDepartment"></param>
-        </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
             Esta clase 
@@ -593,12 +656,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Offer.Keywords">
-            <summary>
-            Palabras claves asignadas
-            </summary>
-            <value></value>
-        </member>
         <member name="P:ClassLibrary.Offer.Availability">
             <summary>
             Disponibilidad de la oferta
@@ -611,7 +668,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.String,System.Boolean,System.DateTime)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer
             </summary>
@@ -639,7 +696,7 @@
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
-            Esta clase 
+            Esta clase representa el mercado con sus ofertas
             </summary>
         </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
@@ -659,7 +716,7 @@
             Esta clase  representa un registro de tokens
             </summary>
         </member>
-        <member name="F:ClassLibrary.TokenRegister.tokenList">
+        <member name="F:ClassLibrary.TokenRegister.TokenList">
             <summary>
             Diccionario con nombre de empresas y sus respectivos tokens habilitados
             </summary>
@@ -683,7 +740,7 @@
         </member>
         <member name="M:ClassLibrary.CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(ClassLibrary.Company)">
             <summary>
-            Se añande  empresa a la lista de empresas
+            Se añade  empresa a la lista de empresas
             </summary>
             <param name="company"></param>
         </member>
@@ -716,20 +773,6 @@
             <param name="headings"></param>
             <param name="materials"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyServiceProvider.AddUserToCompany(ClassLibrary.User,ClassLibrary.Company)">
-            <summary>
-            Añade un usuario a la lista de usuarios de la empresa de un objeto Company
-            </summary>
-            <param name="user"></param>
-            <param name="company"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyServiceProvider.RemoveUserFromCompany(System.Int32,ClassLibrary.Company)">
-            <summary>
-            Remueve un usuario de la lista de usuarios de la empresa registrados
-            </summary>
-            <param name="Id"></param>
-            <param name="company"></param>
-        </member>
         <member name="T:ClassLibrary.CreateUserServiceProvider">
             <summary>
             Esta clase se encarga de crear usuarios de empresas y usuarios emprendedores
@@ -761,7 +804,7 @@
             <summary>
             Añade una nueva oferta a la lista de ofertas actuales
             </summary>
-            <param name="NewOffer"></param>
+            <param name="newOffer"></param>
         </member>
         <member name="M:ClassLibrary.MarketServiceProvider.RemoveOffer(System.Int32)">
             <summary>
