@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -182,18 +184,23 @@ namespace ClassLibrary
             this.ProducedMaterials.Add(materials);
         }
         /// <summary>
-        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa
+        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
         /// </summary>
-        /// <param name="userPar"></param>
-        public void AddUser(User userPar)
+        /// <param name="id"></param>
+        public  void AddUser(int id)
         {
-            if (!this.CompanyUsers.Contains(userPar))
+            if (this.companyUsers.Exists(user => user.Id == id))
             {
-                this.CompanyUsers.Add(userPar);
+                throw new Exception();
             }
+
+            IRole rol = new CompanyRole(this);
+            User user = new User(id, rol);
+            Singleton<UserRegister>.Instance.Add(user);
+            this.CompanyUsers.Add(user);
         }
         /// <summary>
-        /// Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
+        /// Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
         /// </summary>
         /// <param name="id"></param>
         public void RemoveUser(int id)
@@ -205,7 +212,7 @@ namespace ClassLibrary
                 if (x.Id == id)
                 {
                     exists = true;
-                    aEliminar =x;
+                    aEliminar = x;
                 }
             }
             if (exists)

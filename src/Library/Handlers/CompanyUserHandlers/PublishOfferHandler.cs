@@ -29,7 +29,7 @@ namespace ClassLibrary
                 string material = this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("¿De parte de que empresa esta publicando los materiales?");
                 bool response;
-                Company company = CompanyRegisterServiceProvider.SearchCompany(this.messageChannel.ReceiveMessage().Text, out response);
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
                 this.messageChannel.SendMessage("Cantidad de material:");
                 int quantity= Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Cuál va a ser el precio total?");

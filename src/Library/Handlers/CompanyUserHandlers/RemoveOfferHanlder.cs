@@ -31,7 +31,7 @@ namespace ClassLibrary
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
-                    foreach (Offer item in MarketServiceProvider.GetActualOffers())
+                    foreach (Offer item in Singleton<Market>.Instance.ActualOfferList)
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
@@ -42,7 +42,7 @@ namespace ClassLibrary
                     sb.Append("¿Cual es el Id de la que quiere retirar?");
                     this.messageChannel.SendMessage(sb.ToString());
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    MarketServiceProvider.RemoveOffer(id);
+                    Singleton<Market>.Instance.RemoveOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se retiro del mercado");
                 }
                 else 

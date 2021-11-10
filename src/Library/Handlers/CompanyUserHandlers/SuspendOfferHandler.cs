@@ -30,7 +30,7 @@ namespace ClassLibrary
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
-                    foreach (Offer item in MarketServiceProvider.GetActualOffers())
+                    foreach (Offer item in Singleton<Market>.Instance.ActualOfferList) //en vez de marketServiceProvider deberia ser company
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
@@ -41,7 +41,7 @@ namespace ClassLibrary
                     sb.Append("¿Cual es el Id de la que quiere suspender?");
                     this.messageChannel.SendMessage(sb.ToString());
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    MarketServiceProvider.SuspendOffer(id);
+                    Singleton<Market>.Instance.SuspendOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se suspendio del mercado");
                 }
                 else 

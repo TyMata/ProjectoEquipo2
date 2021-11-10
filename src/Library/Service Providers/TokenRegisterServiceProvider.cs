@@ -19,7 +19,7 @@ namespace ClassLibrary
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();
             bool response;
-            Company company = CompanyRegisterServiceProvider.SearchCompany(nameCompany, out response);
+            Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(int id);
             if(response)
             {    for (int i = 0; i < 3; i++)         //Creo un nuevo token
                 {
