@@ -21,7 +21,7 @@ namespace ClassLibrary
         {
             Company nuevaCompany = new Company(nombre, ubi, headings, materials);
             Singleton<CompanyRegister>.Instance.Add(nuevaCompany);
-            TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
+            Singleton<TokenRegister>.Instance.TokenList.Add("nuevo token",nuevaCompany);
             return nuevaCompany;
         }
     }
