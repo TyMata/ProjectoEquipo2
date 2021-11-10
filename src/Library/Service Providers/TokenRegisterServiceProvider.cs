@@ -27,12 +27,12 @@ namespace ClassLibrary
                     token.Append(num.ToString());
                     if (i != 2) token.Append("-");
                 }
-                if (TokenRegister.tokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
+                if (TokenRegister.TokenList.ContainsKey(company))        //Me fijo si ya existe la empresa y de ser asi le añado el Token a la lista
                 {
                     List<string> listaActualizada;
-                    TokenRegister.tokenList.TryGetValue(company, out listaActualizada);
+                    TokenRegister.TokenList.TryGetValue(company, out listaActualizada);
                     listaActualizada.Add(token.ToString());
-                    TokenRegister.tokenList[company]= listaActualizada;
+                    TokenRegister.TokenList[company]= listaActualizada;
                     return token.ToString();
                 }
             }
@@ -67,7 +67,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public static void AddCompanyToTokenRegister(Company company)
         {
-            TokenRegister.tokenList.TryAdd(company,new List<string>());
+            TokenRegister.TokenList.TryAdd(company,new List<string>());
         }
     }
 }

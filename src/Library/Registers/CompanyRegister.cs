@@ -13,7 +13,21 @@ namespace ClassLibrary
         /// Lista de empresas registrados
         /// </summary>
         /// <value></value>
-        public static List<Company> CompanyList {get;}
+        public  List<Company> CompanyList {get;}
+        /// <summary>
+        /// Por la ley de demeter
+        /// </summary>
+        /// <param name="company"></param>
+        public void Add(Company company)
+        {
+            this.companyList.Add(company);
+        }
+
+        // public Company GetCompanyById(int id)
+        // {
+
+            
+        // }
         
        
     }

@@ -9,13 +9,15 @@ namespace ClassLibrary
     /// asi al momento de crear un usuario se le puede otorgar cualquiera de los 3 roles (AdminRole,
     /// CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
     /// </summary>
-    public class User 
+    public class User
     {
         /// <summary>
         /// Rol del usuario
         /// </summary>
         public IRole Role;
+
         private int id;
+
         /// <summary>
         /// Id del usuario
         /// </summary>
@@ -28,27 +30,28 @@ namespace ClassLibrary
             }
             private set
             {
-                if(value > 0)
+                if (value > 0)
                 {
                     this.Id = value;
                 }
 
             }
         }
+
         /// <summary>
         /// Constructor de User
         /// </summary>
-        /// <param name="idPar"></param>
+        /// <param name="id"></param>
         /// <param name="role"></param>
-        public User(int idPar, IRole role)
-    {
-        this.Id = idPar;
-        this.Role = role;
+        public User(int id, IRole role)
+        {
+            this.Id = id;
+            this.Role = role;
+        }
+
+        public bool IsCompanyUser()
+        {
+            return this.Role is CompanyRole;
+        }
     }
-  }
 }
-
-
-
-   
-    

@@ -27,6 +27,7 @@ namespace ClassLibrary
         {
             string[] keyWords= keywords.Split(",");
             Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, keywords, availability, DateTime.Now);
+            company.OfferRegister.Add(nuevaOferta);
             return nuevaOferta;
         }
     }

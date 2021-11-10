@@ -30,11 +30,26 @@ namespace ClassLibrary
             if(this.nextHandler != null && (CanHandle(input)))
             {
                 if("Company.ActualOffers" != null)
-                { 
+                {
+                    User user = Singleton<UserRegister>.Instance.GetUserById(input.Id);
+                    Company company = User.Company;
+
+                    StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
+                    foreach(Offer x in Company.OfferRegister)
+                    {
+                        offers.Append($"Id : {x.Id}\n")
+                            .Append($"Material : {x.Material}\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}\n")
+                            .Append($"Fecha de publicacion: {x.PublicationDate}\n")
+                            .Append($"Precio: {x.TotalPrice}\n")
+                            .Append($"\n-----------------------------------------------\n\n");
+                    }                       
+                    this.messageChannel.SendMessage(offers.ToString());
+                    string oferta = this.messageChannel.ReceiveMessage().Text;
                     StringBuilder commandsStringBuilder = new StringBuilder($"Que desea modificar?\n")
-                                                                                .Append("/ModificarCantidad\n")
-                                                                                .Append("/ModificarPrecio\n")
-                                                                                .Append("/ModificarHabilitaciones\n");
+                                                                                .Append("/modificarcantidad\n")
+                                                                                .Append("/modificarprecio\n")
+                                                                                .Append("/modificarhabilitaciones\n");
                     this.messageChannel.SendMessage(commandsStringBuilder.ToString());                                                      
                     this.nextHandler.Handle(input);
                 }
