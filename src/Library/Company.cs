@@ -38,7 +38,7 @@ namespace ClassLibrary
             }
             private set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     this.name = value;
                 }
@@ -59,7 +59,7 @@ namespace ClassLibrary
             {
                 if (value != null)
                 {
-                    this.name = value;
+                    this.locations = value;
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace ClassLibrary
             }
             private set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     this.headings = value;
                 }
