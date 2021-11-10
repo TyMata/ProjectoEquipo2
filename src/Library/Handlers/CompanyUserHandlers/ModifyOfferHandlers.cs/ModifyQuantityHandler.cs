@@ -20,10 +20,8 @@ namespace ClassLibrary
         {
             if(this.nextHandler != null && (CanHandle(input)))
             {
-               
-                this.messageChannel.SendMessage("Escriba la nueva cantidad de material");
-                string quantity = this.messageChannel.ReceiveMessage().Text;
-                //Company.OfferRegister.Quantity = quantity;
+               // this.messageChannel.SendMessage($"Cual oferta quiere modificar{Company.OfferRegister}");
+                string oferta = this.messageChannel.ReceiveMessage().Text;
             }
             else
             {

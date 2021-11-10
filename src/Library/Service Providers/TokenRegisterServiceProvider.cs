@@ -47,7 +47,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public static bool IsValidToken(string codigo, out Company response)
         {
-            foreach (KeyValuePair<Company,List<string>> x in TokenRegister.tokenList)
+            foreach (KeyValuePair<Company,List<string>> x in TokenRegister.TokenList)
             {
                 foreach (string token in x.Value)
                 {

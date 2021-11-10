@@ -56,14 +56,13 @@ namespace Tests
 
         public void CreateOfferTest()
         {
-            Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.totalPrice,this.company,this.keywords,this.availability,this.publicationDate);
+            Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.totalPrice,this.company,this.availability,this.publicationDate);
             Assert.AreEqual(this.id,ofertaCreado.Id);
             Assert.AreEqual(this.material,ofertaCreado.Material);
             Assert.AreEqual(this.habilitation,ofertaCreado.Habilitation);
             Assert.AreEqual(this.location,ofertaCreado.Location);
             Assert.AreEqual(this.quantityMaterial,ofertaCreado.QuantityMaterial);
             Assert.AreEqual(this.company,ofertaCreado.Company);
-            Assert.AreEqual(this.keywords,ofertaCreado.Keywords);
             Assert.AreEqual(this.availability,ofertaCreado.Availability);
             Assert.AreEqual(this.publicationDate,ofertaCreado.PublicationDate);
             Assert.AreEqual(this.totalPrice,ofertaCreado.TotalPrice);

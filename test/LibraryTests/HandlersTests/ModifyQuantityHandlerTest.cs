@@ -21,7 +21,7 @@ namespace Tests
             //Company company = new Company("compania",location, "rubro", "materiales");
             DateTime dateTime = new DateTime();
             //this.oferta = new Offer(1234567,"material", "habilitation", location,3,300.0,company,"keywords",true,dateTime);
-            this.material = new Material("material","clasificacion");
+            this.material = new Material("material","type","clasificacion");
             IMessageChannel messageChannel = new ConsoleMessageChannel();
             this.handler = new ModifyQuantityHandler(messageChannel);
         }
