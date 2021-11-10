@@ -215,7 +215,6 @@ namespace ClassLibrary
         /// <param name="quantityMaterial"></param>
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
-        /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
         public Offer(int id, string material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
