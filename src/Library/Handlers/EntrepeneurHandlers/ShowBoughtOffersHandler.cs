@@ -2,8 +2,15 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler encargado de delegar la accion de mostrar las ofertas compradas por un emprendedor
+    /// </summary>
     public class ShowBoughtOffersHandler : AbstractHandler
     {
+        /// <summary>
+        /// Constructor de objetos ShowBoughtOffersHandler
+        /// </summary>
+        /// <param name="channel"></param>
         public ShowBoughtOffersHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;

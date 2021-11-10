@@ -24,24 +24,5 @@ namespace ClassLibrary
             TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
             return nuevaCompany;
         }
-        /// <summary>
-        /// Añade un usuario a la lista de usuarios de la empresa de un objeto Company
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="company"></param>
-        public static void AddUserToCompany(User user , Company company)
-        {
-            company.AddUser(user);
-        }
-        /// <summary>
-        /// Remueve un usuario de la lista de usuarios de la empresa registrados
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="company"></param>
-        public static void RemoveUserFromCompany(int Id, Company company)
-        {
-            company.RemoveUser(Id, company);
-        }
-
     }
 }

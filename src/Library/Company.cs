@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 
@@ -39,7 +38,7 @@ namespace ClassLibrary
             }
             private set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     this.name = value;
                 }
@@ -60,7 +59,7 @@ namespace ClassLibrary
             {
                 if (value != null)
                 {
-                    this.name = value;
+                    this.locations = value;
                 }
             }
         }
@@ -99,7 +98,7 @@ namespace ClassLibrary
             }
             private set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     this.headings = value;
                 }
@@ -197,8 +196,7 @@ namespace ClassLibrary
         /// Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="company"></param>
-        public void RemoveUser(int id, Company company)
+        public void RemoveUser(int id)
         {
             bool exists = false;
             User aEliminar = null;

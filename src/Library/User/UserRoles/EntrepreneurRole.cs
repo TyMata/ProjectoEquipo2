@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
+using System.Text;
+
 
 namespace ClassLibrary
 {   
@@ -10,8 +12,22 @@ namespace ClassLibrary
     /// </summary>
     public class EntrepreneurRole : IRole
 	{
-        
-		private Entrepreneur Entrepreneur { get; set; }
+        private Entrepreneur entrepreneur;
+		private Entrepreneur Entrepreneur 
+        {
+             get
+             {
+                 return this.entrepreneur;
+             } 
+            set 
+            {
+                if(value != null)
+                {
+                    this.Entrepreneur = value;
+                }
+
+            }
+        }
         /// <summary>
         /// Es el constructor de EntrepreneurRole
         /// </summary>

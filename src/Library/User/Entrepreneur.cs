@@ -11,34 +11,106 @@ namespace ClassLibrary
     /// </summary>
     public class Entrepreneur
     {
+        private string name;
         /// <summary>
         /// Nombre del emprendedor
         /// </summary>
         /// <value></value>
-        public string Name { get; set; }
+        public string Name 
+        { 
+            get
+            {
+                return this.name;
+            } 
+            set
+            {
+                if(!String.IsNullOrEmpty(value))
+                {
+                    this.Name = value;
+                }
+            }
+        }
 
+        private string heading;
         /// <summary>
         /// Rubro del emprendedor
         /// </summary>
         /// <value></value>
-        public string Heading{get;set;}
+        public string Heading
+        {
+            get
+            {
+                return this.heading;
+            }
+            set
+            {
+                if(!String.IsNullOrEmpty(value))
+                {
+                    this.Heading = value;
+                }
+            }
+        }
+        
+        private  string habilitation;
         /// <summary>
         /// Habilitaciones del emprendedor
         /// </summary>
         /// <value></value>
-        public string Habilitation{get;set;}
+        public string Habilitation
+        {
+            get
+            {
+                return this.habilitation;
+            }
+            set
+            {
+                if(!String.IsNullOrEmpty(value))
+                {
+                    this.Habilitation = value;
+                }
+            }
+        }
+
+        private Location location;
         /// <summary>
         /// Ubicacion del emprendedor
         /// </summary>
         /// <value></value>
-        public Location Location{get;private set;}
+        public Location Location
+        {
+            get
+            {
+                return this.location;
+            }
+            private set
+            {
+                if(value != null)
+                {
+                    this.Location = value;
+                }
+            }
+        }
+
+        private List<Offer> boughtList;
         /// <summary>
         /// Lista de compras pasadas del emprendedor
         /// </summary>
         /// <value></value>
-        public List<Offer> BoughtList{get;set;}
+        public List<Offer> BoughtList
+        {
+            get
+            {
+                return this.boughtList;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    this.BoughtList = value;
+                }
+            }
+        }
 
-        Location location { get; set; }
         /// <summary>
         /// Constructor de objetos Entrepreneur
         /// </summary>

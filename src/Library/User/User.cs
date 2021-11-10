@@ -20,7 +20,21 @@ namespace ClassLibrary
         /// Id del usuario
         /// </summary>
         /// <value></value>
-        public int Id{get;private set;}
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+            private set
+            {
+                if(value > 0)
+                {
+                    this.Id = value;
+                }
+
+            }
+        }
         /// <summary>
         /// Constructor de User
         /// </summary>
