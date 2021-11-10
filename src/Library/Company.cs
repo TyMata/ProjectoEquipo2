@@ -187,7 +187,7 @@ namespace ClassLibrary
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
         /// </summary>
         /// <param name="id"></param>
-        public void AddUser(int id)
+        public  void AddUser(int id)
         {
             if (this.companyUsers.Exists(user => user.Id == id))
             {

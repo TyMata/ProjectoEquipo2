@@ -20,7 +20,7 @@ namespace ClassLibrary
         public static Company CreateCompany(string nombre, Location ubi, string headings, string materials)
         {
             Company nuevaCompany = new Company(nombre, ubi, headings, materials);
-            CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);
+            Singleton<CompanyRegister>.Instance.Add(nuevaCompany);
             TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
             return nuevaCompany;
         }
