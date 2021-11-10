@@ -145,28 +145,28 @@ namespace ClassLibrary
                 }
             }
         }
-        private List<string> keywords = new List<string>();
-        /// <summary>
-        /// Palabras claves asignadas
-        /// </summary>
-        /// <value></value>
-        public List<string> Keywords{
-            get
-            {
-                return this.keywords;
-            }
-            private set
-            {
-                if (value != null)
-                {
-                    this.keywords = value;
-                }
-                else
-                {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
-                }
-            }
-        }
+        // private List<string> keywords = new List<string>();
+        // /// <summary>
+        // /// Palabras claves asignadas
+        // /// </summary>
+        // /// <value></value>
+        // // public List<string> Keywords{
+        //     get
+        //     {
+        //         return this.keywords;
+        //     }
+        //     private set
+        //     {
+        //         if (value != null)
+        //         {
+        //             this.keywords = value;
+        //         }
+        //         else
+        //         {
+        //             //EXCEPCION DE NOMBRE VACIO O NULO
+        //         }
+        //     }
+        // }
         private bool availability;
         /// <summary>
         /// Disponibilidad de la oferta
@@ -218,7 +218,7 @@ namespace ClassLibrary
         /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer(int id, string material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, List<string> keywords,bool availability, DateTime publicationDate)
+        public Offer(int id, string material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
     {
         this.Id = id;
         this.Material=material;
@@ -226,7 +226,6 @@ namespace ClassLibrary
         this.Location=location;
         this.QuantityMaterial=quantityMaterial;
         this.Company=company;
-        this.Keywords = keywords;
         this.Availability=availability;
         this.PublicationDate=publicationDate;
         this.TotalPrice = totalPrice;
