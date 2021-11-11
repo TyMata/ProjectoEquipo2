@@ -15,7 +15,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <param name="company"></param>
-        public static void CreateCompanyUser(IMessage input,Company company)
+        public  void CreateCompanyUser(IMessage input,Company company)
         {
             company.AddUser(input.Id);
         }
@@ -27,7 +27,7 @@ namespace ClassLibrary
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitations"></param>
-        public static void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
+        public  void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
             User usuario = new User(input.Id, rol);
