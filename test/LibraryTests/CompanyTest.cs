@@ -19,6 +19,9 @@ namespace Tests
         private string headings;
         private string materials;
      
+        /// <summary>
+        /// Se crean variables con los parametros para crear una empresa
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -31,35 +34,38 @@ namespace Tests
 
         }
  
+        /// <summary>
+        /// Prueba que el nombre no sea nulo
+        /// </summary>
         public void CompanyNameTest()
         {
             Company company = new Company(null, this.locations, this.headings , this.materials);
             Assert.IsNotNull(company.Name);
         }
-        // /// <summary>
-        // /// Prueba que se añada el usuario a los usuarios de la empresa
-        // /// </summary>
-        // public void AddUserTest()
-        // {
-        //     Company company = new Company(null, this.locations, this.headings , this.materials);
-        //     IRole empresarole = new CompanyRole(company);
-        //     User user = new User( 1234567, empresarole);
-        //     company.AddUser(user);
-        //     Assert.IsNotEmpty(company.CompanyUsers);
+        /// <summary>
+        /// Prueba que se añada el usuario a los usuarios de la empresa
+        /// </summary>
+        public void AddUserTest()
+        {
+            Company company = new Company(null, this.locations, this.headings , this.materials);
+            IRole empresarole = new CompanyRole(company);
+            User user = new User( 1234567, empresarole);
+            company.AddUser(user.Id);
+            Assert.IsNotEmpty(company.CompanyUsers);
             
-        // }
-        // /// <summary>
-        // /// Prueba que se remueva un usuario determinado de los usuarios de la empresa
-        // /// </summary>
-        // public void RemoveUserTest()
-        // {
-        //     Company company = new Company(null, this.locations, this.headings , this.materials);
-        //     IRole empresarole = new CompanyRole(company);
-        //     User user = new User( 1234567,empresarole);
-        //     company.AddUser(user);
-        //     company.RemoveUser(user.Id);
-        //     Assert.IsNotEmpty(company.CompanyUsers);
-        // }
+        }
+        /// <summary>
+        /// Prueba que se remueva un usuario determinado de los usuarios de la empresa
+        /// </summary>
+        public void RemoveUserTest()
+        {
+            Company company = new Company(null, this.locations, this.headings , this.materials);
+            IRole empresarole = new CompanyRole(company);
+            User user = new User( 1234567,empresarole);
+            company.AddUser(user.Id);
+            company.RemoveUser(user.Id);
+            Assert.IsNotEmpty(company.CompanyUsers);
+        }
 
 
         /// <summary>
