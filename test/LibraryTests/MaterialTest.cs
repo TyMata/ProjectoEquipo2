@@ -15,10 +15,10 @@ namespace Tests
     [TestFixture]
     public class MaterialTest
     {
-       private string name;
+        private string name;
         private string type;
         private string classification;
-        private string name;
+        
         
          [SetUp]
         public void Setup()

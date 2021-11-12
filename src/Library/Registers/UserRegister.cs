@@ -23,6 +23,25 @@ namespace ClassLibrary
             this.DataUsers.Add(item);
         }
 
+
+        /// <summary>
+        /// Remueve un user de la lista. Por la ley de demeter
+        /// </summary>
+        /// <param name="item"></param>
+        public void Remove(User item)
+        {
+            if (!this.DataUsers.Contains(item))
+            {
+                throw new Exception(); //CAMBIAR
+            }
+            this.DataUsers.Remove(item);
+        }
+
+        /// <summary>
+        /// Devuelve  un objeto user segun la id dada
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public User GetUserById(int id)
         {
             User result = null;

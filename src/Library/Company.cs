@@ -157,6 +157,8 @@ namespace ClassLibrary
                 }
             }
         }
+       
+             
         static Company()
         {
             id = 0;
