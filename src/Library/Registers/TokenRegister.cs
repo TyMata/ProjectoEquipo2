@@ -30,6 +30,43 @@ namespace ClassLibrary
 
             
         }
+
+        /// <summary>
+        /// Metodo par añadir un token al diccionario de tokens
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="company"></param>
+        public void Add(string token,Company company)
+        {
+            this.TokenList.Add(token,company);
+        }
+
+        /// <summary>
+        /// Metodo para remover un token del diccionario de tokens
+        /// </summary>
+        /// <param name="token"></param>
+        public void Remove(string token)
+        {
+            this.TokenList.Remove(token);
+        }
+
+
+        /// <summary>
+        /// Por la ley de demeter se crea Contains
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public bool Contains(string codigo)
+        {
+            if(this.TokenList.ContainsKey(codigo))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         //  public static string GenerateToken(string nameCompany)
         // {
         //     Random rnd = new Random();

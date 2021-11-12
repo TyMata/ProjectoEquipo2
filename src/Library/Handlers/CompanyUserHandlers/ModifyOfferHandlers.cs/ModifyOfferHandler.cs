@@ -8,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyOfferHandler: AbstractHandler
     {
+
         /// <summary>
         /// Constructor de objetos ModifyOfferHandler
         /// </summary>
@@ -16,26 +17,22 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
             this.Command = "/modificaroferta";
-            // this.nextHandler2 = new ModifyQuantityHandler(this.messageChannel);
-            // this.nextHandler3 = new ModifyUnitPriceHandler(this.messageChannel);
-            // this.nextHandler4 = new ModifyHabilitationsHandler(this.messageChannel);
-
-            // this.nextHandler2.SetNext(nextHandler3);
-            // this.nextHandler3.SetNext(nextHandler4);
-
-
         }
+
+        /// <summary>
+        /// Metodo
+        /// </summary>
+        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if(this.nextHandler != null && (CanHandle(input)))
             {
-                if("Company.ActualOffers" != null)
-                {
-                    User user = Singleton<UserRegister>.Instance.GetUserById(input.Id);
-                    Company company = User.Company;
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
 
+                if(company.OfferRegister != null)
+                {
                     StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
-                    foreach(Offer x in Company.OfferRegister)
+                    foreach(Offer x in company.OfferRegister)
                     {
                         offers.Append($"Id : {x.Id}\n")
                             .Append($"Material : {x.Material}\n")
@@ -50,7 +47,8 @@ namespace ClassLibrary
                                                                                 .Append("/modificarcantidad\n")
                                                                                 .Append("/modificarprecio\n")
                                                                                 .Append("/modificarhabilitaciones\n");
-                    this.messageChannel.SendMessage(commandsStringBuilder.ToString());                                                      
+                    this.messageChannel.SendMessage(commandsStringBuilder.ToString()); 
+                    input = this.messageChannel.ReceiveMessage();                                                     
                     this.nextHandler.Handle(input);
                 }
                 else 

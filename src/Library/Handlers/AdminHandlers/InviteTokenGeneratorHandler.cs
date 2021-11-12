@@ -30,7 +30,7 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Ingrese el nombre de la empresa a la que pertenece el token");
                 bool response;
                 string companyName = this.messageChannel.ReceiveMessage().Text;
-                CompanyRegisterServiceProvider.SearchCompany(companyName,out response);
+                Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
                 if (response)
                 {
                     this.messageChannel.SendMessage("Se esta generando un nuevo Token");

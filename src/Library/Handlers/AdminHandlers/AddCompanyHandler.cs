@@ -44,8 +44,8 @@ namespace ClassLibrary
                 string headings = this.messageChannel.ReceiveMessage().Text;
                 Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
                 Company nuevaCompany = CompanyServiceProvider.CreateCompany(nombre, ubi, headings, materials);
-                CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(nuevaCompany);        //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
-                TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
+              //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
+                //TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
                  
             }
             else
