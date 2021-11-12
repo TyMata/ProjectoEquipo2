@@ -26,7 +26,8 @@ namespace ClassLibrary
         {
              if(this.CanHandle(input))
             {
-                if("Company.OfferRegister" != null)
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas suspendids actuales:\n");

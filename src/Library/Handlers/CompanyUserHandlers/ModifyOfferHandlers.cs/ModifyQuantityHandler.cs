@@ -20,8 +20,9 @@ namespace ClassLibrary
         {
             if(this.nextHandler != null && (CanHandle(input)))
             {
-               // this.messageChannel.SendMessage($"Cual oferta quiere modificar{Company.OfferRegister}");
-                string oferta = this.messageChannel.ReceiveMessage().Text;
+                this.messageChannel.SendMessage("Ingrese la nueva cantidad de la oferta:\n");
+                string quantity = this.messageChannel.ReceiveMessage().ToString(); 
+
             }
             else
             {
