@@ -12,12 +12,6 @@ namespace Tests
     public class CompanyRegisterTests
     {
         
-        [SetUp]
-        public void SetUp()
-        {
-            
-        }
-
         /// <summary>
         /// Prueba que se agregue una empresa al registro
         /// </summary>

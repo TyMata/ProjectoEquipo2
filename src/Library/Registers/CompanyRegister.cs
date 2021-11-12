@@ -8,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyRegister
     {   
+        
         private List<Company> companyList = new List<Company>();
         /// <summary>
         /// Lista de empresas registrados
@@ -36,23 +37,15 @@ namespace ClassLibrary
             this.CompanyList.Remove(company);
         }
 
+        /// <summary>
+        /// Devuelva una empresa segun el id del user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Company GetCompanyByUserId(int id)
         {
-            
             User x = Singleton<UserRegister>.Instance.GetUserById(id);
             return (x.Role as CompanyRole).Company;
-            // while (result == null && index < this.CompanyList.Count)
-            // {
-            //     if (this.CompanyList[index].CompanyUsers == id)
-            //     {
-            //         result = this.DataUsers[index];
-            //     }
-            // }
-
-            // return result;
-            
-        }
-        
-       
+        } 
     }
 }

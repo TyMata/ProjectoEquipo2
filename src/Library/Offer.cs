@@ -47,6 +47,7 @@ namespace ClassLibrary
                 }
             }
         }
+
         private string habilitation;
         /// <summary>
         /// Habilitaciones necesarias para poder manejar el producto en venta
@@ -123,6 +124,7 @@ namespace ClassLibrary
                 this.totalPrice = value;
             }
         }
+
         private Company company;    
         /// <summary>
         /// Empresa que vende el producto
@@ -145,28 +147,30 @@ namespace ClassLibrary
                 }
             }
         }
-        // private List<string> keywords = new List<string>();
-        // /// <summary>
-        // /// Palabras claves asignadas
-        // /// </summary>
-        // /// <value></value>
-        // // public List<string> Keywords{
-        //     get
-        //     {
-        //         return this.keywords;
-        //     }
-        //     private set
-        //     {
-        //         if (value != null)
-        //         {
-        //             this.keywords = value;
-        //         }
-        //         else
-        //         {
-        //             //EXCEPCION DE NOMBRE VACIO O NULO
-        //         }
-        //     }
-        // }
+
+        private List<string> keywords = new List<string>();
+        /// <summary>
+        /// Palabras claves asignadas
+        /// </summary>
+        /// <value></value>
+        public List<string> Keywords{
+            get
+            {
+                return this.keywords;
+            }
+            private set
+            {
+                if (value != null)
+                {
+                    this.keywords = value;
+                }
+                else
+                {
+                    //EXCEPCION DE NOMBRE VACIO O NULO
+                }
+            }
+        }
+
         private bool availability;
         /// <summary>
         /// Disponibilidad de la oferta
@@ -182,6 +186,7 @@ namespace ClassLibrary
                 this.availability = value;
             }
         }
+
         private DateTime publicationDate;
         /// <summary>
         /// Fecha de publicacion
@@ -218,7 +223,7 @@ namespace ClassLibrary
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
         public Offer(int id, string material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
-    {
+        {
         this.Id = id;
         this.Material=material;
         this.Habilitation=habilitation;
@@ -228,6 +233,6 @@ namespace ClassLibrary
         this.Availability=availability;
         this.PublicationDate=publicationDate;
         this.TotalPrice = totalPrice;
-    }
+        }
   }
 }

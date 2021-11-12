@@ -19,8 +19,10 @@ namespace Tests
         private string type;
         private string classification;
         
-        
-         [SetUp]
+        /// <summary>
+        /// Se crean variables con los parametro para crear un objeto  material
+        /// </summary>
+        [SetUp]
         public void Setup()
         {
             //this.client = new LocationApiClient();
@@ -28,6 +30,10 @@ namespace Tests
             this.classification="organico";
             this.name = "nombre";
         }
+
+        /// <summary>
+        /// Prueba para crear un material
+        /// </summary>
         [Test]
         public void CreateMaterialTest()
         {

@@ -31,6 +31,9 @@ namespace Tests
         private double totalPrice;
 
     
+        /// <summary>
+        ///  Set up ????
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -52,8 +55,11 @@ namespace Tests
         this.publicationDate= DateTime.Today;
         this.totalPrice= 50000;
         }
-        [Test]
 
+        /// <summary>
+        /// Prueba para crear una oferta
+        /// </summary>
+        [Test]
         public void CreateOfferTest()
         {
             Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.totalPrice,this.company,this.availability,this.publicationDate);
