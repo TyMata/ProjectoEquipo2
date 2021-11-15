@@ -7,6 +7,7 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyHabilitationsHandler : AbstractHandler
     {
+
         /// <summary>
         /// Constructor de objetos ModifyHabilitationsHandler
         /// </summary>
@@ -16,6 +17,11 @@ namespace ClassLibrary
             this.Command = "/modificarhabilitaciones";
             this.messageChannel = channel;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if(this.nextHandler != null && (CanHandle(input)))

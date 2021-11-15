@@ -23,7 +23,7 @@ namespace ClassLibrary
             {
                 if(value != null)
                 {
-                    this.Company = value;
+                    this.company = value;
                 }
                 else
                 {
@@ -38,14 +38,14 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public CompanyRole(Company company)
         {
-            this.Company = Company;
+            this.Company = company;
         }
 
         /// <summary>
         /// Devuelve el tipo de Rol como string
         /// </summary>
         /// <returns></returns>
-        public string TipoRol()
+        public string RoleType()
         {
             return "company";
         }

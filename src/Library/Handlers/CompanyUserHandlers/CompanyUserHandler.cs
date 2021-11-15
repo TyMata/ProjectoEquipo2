@@ -24,14 +24,15 @@ namespace ClassLibrary
         {
             if (this.nextHandler != null && (CanHandle(input)))
             {
-                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido Company.Name.\n Que desea hacer?:\n")
-                                                                            .Append("/PublicarOferta\n")
-                                                                            .Append("/RetirarOferta\n")
-                                                                            .Append("/SuspenderOferta\n")
-                                                                            .Append("/ReanudarOferta\n")
-                                                                            .Append("/ModificarOferta\n")
-                                                                            .Append("/BuscarOferta\n");
+                StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido \n Que desea hacer?:\n")
+                                                                            .Append("/publicaroferta\n")
+                                                                            .Append("/retiraroferta\n")
+                                                                            .Append("/suspenderoferta\n")
+                                                                            .Append("/reanudaroferta\n")
+                                                                            .Append("/modificaroferta\n")
+                                                                            .Append("/buscaroferta\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+               
                 //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
             else

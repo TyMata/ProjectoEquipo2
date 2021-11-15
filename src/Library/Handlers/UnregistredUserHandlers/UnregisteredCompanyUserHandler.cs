@@ -32,11 +32,11 @@ namespace ClassLibrary
                                                 .Append("Ingrese el codigo de invitacion\n");
                 this.messageChannel.SendMessage(datos.ToString());
                 string codigo = this.messageChannel.ReceiveMessage().Text;
-                Company response;
+                //Company response;
 
-                if (TokenRegisterServiceProvider.IsValidToken(codigo, out response))
+                if (Singleton<TokenRegister>.Instance.Contains(codigo))
                 {
-                    CreateUserServiceProvider.CreateCompanyUser(input, response );
+                    Singleton<CreateUserServiceProvider>.Instance.CreateCompanyUser(input, Singleton<TokenRegister>.Instance.TokenList[codigo] );
                 }
                 // else
                 // {

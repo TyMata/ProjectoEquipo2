@@ -30,10 +30,10 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("¿Cual es el nombre de la empresa que quieres eliminar?");
                 string companyName = this.messageChannel.ReceiveMessage().Text;
                 bool response;
-                Company company = CompanyRegisterServiceProvider.SearchCompany(companyName, out response);
-                if (response)
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                if (company != null)
                 {
-                    CompanyRegisterServiceProvider.RemoveCompany(company.Id);
+                    Singleton<CompanyRegister>.Instance.Remove(company);
                     this.messageChannel.SendMessage($"La empresa {companyName} ha sido eliminada");
                 }
                 else 

@@ -9,23 +9,28 @@ namespace Tests
     [TestFixture]
     public class UserTest
     {
-        public IRole Role;
-        public int id;
-        IRole role = new AdminRole();
+        private IRole role;
+        private int id;
+        
+        /// <summary>
+        /// Set up???
+        /// </summary>
         [SetUp]
         public void Setup()
         {
-            this.Role = role;
+            this.role = new AdminRole();
             this.id = 1;
         }
-        [Test]
 
+        /// <summary>
+        /// Prueba para crear un user
+        /// </summary>
+        [Test]
         public void CreateUserTest()
         {
-            User usuario = new User(this.id, this.Role);
+            User usuario = new User(this.id, this.role);
             Assert.AreEqual(this.role,usuario.Role);
             Assert.AreEqual(this.id,usuario.Id);
         }
-
     }
 }

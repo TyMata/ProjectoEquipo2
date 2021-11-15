@@ -25,7 +25,9 @@ namespace ClassLibrary
         /// <returns></returns>
         public static Offer CreateOffer(int id,string material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability)
         {
+            string[] keyWords= keywords.Split(",");
             Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            company.OfferRegister.Add(nuevaOferta);
             return nuevaOferta;
         }
     }

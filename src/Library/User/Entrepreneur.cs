@@ -26,7 +26,7 @@ namespace ClassLibrary
             {
                 if(!String.IsNullOrEmpty(value))
                 {
-                    this.Name = value;
+                    this.name = value;
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace ClassLibrary
             {
                 if(!String.IsNullOrEmpty(value))
                 {
-                    this.Heading = value;
+                    this.heading = value;
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace ClassLibrary
             {
                 if(!String.IsNullOrEmpty(value))
                 {
-                    this.Habilitation = value;
+                    this.habilitation = value;
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace ClassLibrary
             {
                 if(value != null)
                 {
-                    this.Location = value;
+                    this.location = value;
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace ClassLibrary
             {
                 if(value != null)
                 {
-                    this.BoughtList = value;
+                    this.boughtList = value;
                 }
             }
         }

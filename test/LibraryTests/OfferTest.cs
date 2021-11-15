@@ -31,43 +31,45 @@ namespace Tests
         private double totalPrice;
 
     
+        /// <summary>
+        ///  Set up ????
+        /// </summary>
         [SetUp]
         public void Setup()
         {
-        //this.client = new LocationApiClient();
-        
-        this.id = 55234;
-        this.material= "quimico, inorganico";
-        this.habilitation="ingeniero quimico";
-        string pais = "Uruguay" ;
-        string departamento = "Montevideo" ;
-        string ciudad = "Montevideo";
-        string direccion = "Avenida 8 de Octubre";
-        Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
-        this.location=new Location();
-        this.quantityMaterial=15;
-        this.company=new Company("farmashop", ubi,"farmacia","acido");
-        this.keywords="Acido";
-        this.availability=true ;
-        this.publicationDate= DateTime.Today;
-        this.totalPrice= 50000;
+            this.id = 55234;
+            this.material = "quimico, inorganico";
+            this.habilitation = "ingeniero quimico";
+            string pais = "Uruguay" ;
+            string departamento = "Montevideo" ;
+            string ciudad = "Montevideo";
+            string direccion = "Avenida 8 de Octubre";
+            Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
+            this.location = new Location();
+            this.quantityMaterial = 15;
+            this.company = new Company("farmashop", ubi,"farmacia","acido");
+            this.keywords = "Acido";
+            this.availability = true ;
+            this.publicationDate = DateTime.Today;
+            this.totalPrice = 50000;
         }
-        [Test]
 
+        /// <summary>
+        /// Prueba para crear una oferta
+        /// </summary>
+        [Test]
         public void CreateOfferTest()
         {
-            Offer ofertaCreado = new Offer(this.id,this.material,this.habilitation,this.location,this.quantityMaterial,this.totalPrice,this.company,this.availability,this.publicationDate);
-            Assert.AreEqual(this.id,ofertaCreado.Id);
-            Assert.AreEqual(this.material,ofertaCreado.Material);
-            Assert.AreEqual(this.habilitation,ofertaCreado.Habilitation);
-            Assert.AreEqual(this.location,ofertaCreado.Location);
-            Assert.AreEqual(this.quantityMaterial,ofertaCreado.QuantityMaterial);
-            Assert.AreEqual(this.company,ofertaCreado.Company);
-            Assert.AreEqual(this.availability,ofertaCreado.Availability);
-            Assert.AreEqual(this.publicationDate,ofertaCreado.PublicationDate);
-            Assert.AreEqual(this.totalPrice,ofertaCreado.TotalPrice);
+            Offer oferta = new Offer(this.id, this.material, this.habilitation, this.location, this.quantityMaterial,this.totalPrice,this.company,this.availability,this.publicationDate);
+            Assert.AreEqual(this.id, oferta.Id);
+            Assert.AreEqual(this.material, oferta.Material);
+            Assert.AreEqual(this.habilitation, oferta.Habilitation);
+            Assert.AreEqual(this.location, oferta.Location);
+            Assert.AreEqual(this.quantityMaterial, oferta.QuantityMaterial);
+            Assert.AreEqual(this.company,oferta.Company);
+            Assert.AreEqual(this.availability,oferta.Availability);
+            Assert.AreEqual(this.publicationDate,oferta.PublicationDate);
+            Assert.AreEqual(this.totalPrice,oferta.TotalPrice);
         }
-
-
     }
 }
