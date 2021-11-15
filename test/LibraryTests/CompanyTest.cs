@@ -1,17 +1,14 @@
-using System;
 using ClassLibrary;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
-
 
 namespace Tests
 {
     /// <summary>
-    /// Test de la clase <see cref="Company"/>
+    /// Test de la clase <see cref="Company"/>.
     /// </summary>
     [TestFixture]
-    public class CompanyTests
+    public class CompanyTest
     {
         private int id;
         private string name;
@@ -19,9 +16,9 @@ namespace Tests
         private string headings;
         private string materials;
         private Company company;
-     
+
         /// <summary>
-        /// Se crean variables con los parametros para crear una empresa
+        /// Se crean variables con los parametros para crear una empresa.
         /// </summary>
         [SetUp]
         public void SetUp()
@@ -31,55 +28,51 @@ namespace Tests
             this.headings = "rubro";
             this.materials = "material";
             this.locations = new Location();
-            this.company = new Company(this.name, this.locations, this.headings , this.materials);
-            
-
+            this.company = new Company(this.name, this.locations, this.headings, this.materials);
         }
- 
+
         /// <summary>
-        /// Prueba que el nombre no sea nulo
+        /// Prueba que el nombre no sea nulo.
         /// </summary>
         [Test]
         public void CompanyNameTest()
         {
             Assert.IsNotNull(company.Name);
         }
-        
+
         /// <summary>
-        /// Prueba que se añada el usuario a los usuarios de la empresa
+        /// Prueba que se añada el usuario a los usuarios de la empresa.
         /// </summary>
         [Test]
         public void AddUserTest()
         {
             IRole empresarole = new CompanyRole(this.company);
-            User user = new User( 1234567, empresarole);
+            User user = new User(1234567, empresarole);
             company.AddUser(user.Id);
             Assert.IsNotEmpty(company.CompanyUsers);
-            
         }
 
         /// <summary>
-        /// Prueba que se remueva un usuario determinado de los usuarios de la empresa
+        /// Prueba que se remueva un usuario determinado de los usuarios de la empresa.
         /// </summary>
         [Test]
         public void RemoveUserTest()
         {
             IRole empresarole = new CompanyRole(this.company);
-            User user = new User(223456,empresarole);
+            User user = new User(223456, empresarole);
             company.AddUser(user.Id);
             company.RemoveUser(user.Id);
             Assert.IsFalse(this.company.CompanyUsers.Contains(user));
         }
 
-
         /// <summary>
-        /// Prueba que se agreguen los materiales a la lista de materiales
+        /// Prueba que se agreguen los materiales a la lista de materiales.
         /// </summary>
         [Test]
         public void ProducedMaterialsTest()
         {
             this.materials = "madera";
-            Company company = new Company(this.name, this.locations, this.headings , this.materials);
+            Company company = new Company(this.name, this.locations, this.headings, this.materials);
             Assert.IsNotEmpty(company.ProducedMaterials);
         }
     }

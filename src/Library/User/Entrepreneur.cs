@@ -7,7 +7,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase 
+    /// Esta clase.
     /// </summary>
     public class Entrepreneur
     {
@@ -16,15 +16,15 @@ namespace ClassLibrary
         /// Nombre del emprendedor
         /// </summary>
         /// <value></value>
-        public string Name 
-        { 
+        public string Name
+        {
             get
             {
                 return this.name;
-            } 
+            }
             set
             {
-                if(!String.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
                     this.name = value;
                 }
@@ -44,13 +44,13 @@ namespace ClassLibrary
             }
             set
             {
-                if(!String.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
                     this.heading = value;
                 }
             }
         }
-        
+     
         private  string habilitation;
         /// <summary>
         /// Habilitaciones del emprendedor
@@ -64,7 +64,7 @@ namespace ClassLibrary
             }
             set
             {
-                if(!String.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))
                 {
                     this.habilitation = value;
                 }
@@ -84,7 +84,7 @@ namespace ClassLibrary
             }
             private set
             {
-                if(value != null)
+                if (value != null)
                 {
                     this.location = value;
                 }
@@ -104,7 +104,7 @@ namespace ClassLibrary
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     this.boughtList = value;
                 }

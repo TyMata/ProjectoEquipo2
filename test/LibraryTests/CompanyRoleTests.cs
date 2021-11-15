@@ -1,13 +1,12 @@
-using System;
 using System.Text;
-using NUnit.Framework;
 using ClassLibrary;
+using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
     /// <summary>
-    /// Prueba de la clase <see cref="CompanyRole"/>
+    /// Prueba de la clase <see cref="CompanyRole"/>.
     /// </summary>
     [TestFixture]
     public class CompanyRoleTests
@@ -17,17 +16,17 @@ namespace Tests
         private Location location = new Location();
 
         /// <summary>
-        /// Se crea una company y su role para las  pruebas
+        /// Se crea una company y su role para las  pruebas.
         /// </summary>
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("empresa", location ,"headings","material");
+            this.company = new Company("empresa", location, "headings", "material");
             this.role = new CompanyRole(this.company);
         }
 
         /// <summary>
-        /// Prueba que la empresa dentro de CompanyRole no sea nula
+        /// Prueba que la empresa dentro de CompanyRole no sea nula.
         /// </summary>
         [Test]
         public void CompanyTests()
@@ -36,7 +35,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba que TipoRole() devuelve la string "company"
+        /// Prueba que TipoRole() devuelve la string "company".
         /// </summary>
         [Test]
         public void RoleTypeTest()
@@ -46,8 +45,8 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba que la información del usuario no este vacía
-        /// /// </summary>
+        /// Prueba que la información del usuario no este vacía.
+        /// </summary>
         [Test]
         public void DataTest()
         {
