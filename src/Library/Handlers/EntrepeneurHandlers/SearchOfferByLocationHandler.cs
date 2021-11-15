@@ -8,7 +8,7 @@ namespace ClassLibrary
     public class SearchOfferByLocationHandler : AbstractHandler
     {   
         /// <summary>
-        /// Constructor de objetos SearchOfferByLocationHandler
+        /// Constructor de objetos SearchOfferByLocationHandler.
         /// </summary>
         /// <param name="channel"></param>
         public SearchOfferByLocationHandler(IMessageChannel channel)
@@ -17,16 +17,14 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if ((CanHandle(input)))
             {
-                this.messageChannel.SendMessage("Escriba la ubicación de la oferta a buscar");     
+                this.messageChannel.SendMessage("Escriba la ubicación de la oferta a buscar");
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

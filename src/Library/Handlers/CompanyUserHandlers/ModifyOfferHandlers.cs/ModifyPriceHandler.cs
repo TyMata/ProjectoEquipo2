@@ -15,17 +15,20 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         
-        public override void Handle(IMessage input)
+        /// <summary>
+        ///  Handle
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public override bool InternalHandle(IMessage input)
         {
-            if(this.nextHandler != null && (CanHandle(input)))
+            if(CanHandle(input))
             {
                 this.messageChannel.SendMessage("Inserte el nuevo precio de la oferta:\n");
                 string precio = this.messageChannel.ReceiveMessage().Text;
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

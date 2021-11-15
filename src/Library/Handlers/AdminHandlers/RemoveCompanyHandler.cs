@@ -23,9 +23,9 @@ namespace ClassLibrary
         /// De no estar registrada le avisa al usuario de esto.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)) )
+            if(CanHandle(input))
             {
                 this.messageChannel.SendMessage("¿Cual es el nombre de la empresa que quieres eliminar?");
                 string companyName = this.messageChannel.ReceiveMessage().Text;
@@ -40,11 +40,9 @@ namespace ClassLibrary
                 {
                     this.messageChannel.SendMessage($"La empresa {companyName} no esta registrada");
                 }
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
             
         }
         

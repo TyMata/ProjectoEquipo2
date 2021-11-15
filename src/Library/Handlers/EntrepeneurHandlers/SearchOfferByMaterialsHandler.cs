@@ -8,7 +8,7 @@ namespace ClassLibrary
     public class SearchOfferByMaterialsHandler : AbstractHandler
     {   
         /// <summary>
-        /// Constructor de objetos SearchOfferByMaterialsHandler
+        /// Constructor de objetos SearchOfferByMaterialsHandler.
         /// </summary>
         /// <param name="channel"></param>
         public SearchOfferByMaterialsHandler(IMessageChannel channel)
@@ -16,16 +16,14 @@ namespace ClassLibrary
             this.Command = "/buscarofertapormaterial";
             this.messageChannel = channel;
         }
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if ((CanHandle(input)))
             {
                 this.messageChannel.SendMessage("Escriba el material de la oferta a buscar");
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

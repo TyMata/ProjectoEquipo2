@@ -8,7 +8,7 @@ namespace ClassLibrary
     public class SearchOfferByKeyWordsHandler : AbstractHandler
     {   
         /// <summary>
-        /// Constructor de objetos SearchOfferByKeyWordsHandler
+        /// Constructor de objetos SearchOfferByKeyWordsHandler.
         /// </summary>
         /// <param name="channel"></param>
         public SearchOfferByKeyWordsHandler(IMessageChannel channel)
@@ -16,16 +16,14 @@ namespace ClassLibrary
             this.Command = "/buscarofertaporkeyWords";
             this.messageChannel = channel;
         }
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if ((CanHandle(input)))
             {
                 this.messageChannel.SendMessage("Escriba las palabras claves de la oferta a buscar");
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

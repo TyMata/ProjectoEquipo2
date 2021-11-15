@@ -188,9 +188,9 @@ namespace ClassLibrary
         
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
-        /// /// </summary>
+        /// /// /// </summary>
         /// <param name="id"></param>
-        public  void AddUser(int id)
+        public void AddUser(int id)
         {
             if (this.companyUsers.Exists(user => user.Id == id))
             {
@@ -209,21 +209,40 @@ namespace ClassLibrary
         /// <param name="id"></param>
         public void RemoveUser(int id)
         {
-            bool exists = false;
-            User aEliminar = null;
-            foreach (User x in this.CompanyUsers)
+            if (!this.CompanyUsers.Exists(x => x.Id == id))
             {
-                if (x.Id == id)
-                {
-                    exists = true;
-                    aEliminar = x;
-                }
-            }
-            if (exists)
+                throw new Exception();
+            } 
+            User x = this.CompanyUsers.Find(offer => offer.Id == id);
+            this.CompanyUsers.Remove(x);
+        } 
+
+        /// <summary>
+        /// Añade una oferta al registro de la empresa
+        /// /// </summary>
+        /// <param name="offer"></param>
+        public void AddOffer(Offer offer)
+        {
+            if (!this.OfferRegister.Exists(x => x == offer))
             {
-                this.CompanyUsers.Remove(aEliminar);
-            }
-            //else     AGREGAR EXCEPCION
+                throw new Exception();
+            }   
+            this.OfferRegister.Add(offer);
+        }
+        
+        /// <summary>
+        /// Remueve una oferta del registro de ofertas de la empresa
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveOffer(int id)
+        {
+            if (!this.OfferRegister.Exists(x => x.Id == id))
+            {
+                throw new Exception();
+            } 
+            Offer x = this.OfferRegister.Find(offer => offer.Id == id);
+            this.OfferRegister.Remove(x);
         }
     }
 }
+ 

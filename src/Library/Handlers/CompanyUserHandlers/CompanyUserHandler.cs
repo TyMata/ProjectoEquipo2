@@ -20,9 +20,9 @@ namespace ClassLibrary
         /// Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if(CanHandle(input))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido \n Que desea hacer?:\n")
                                                                             .Append("/publicaroferta\n")
@@ -32,13 +32,11 @@ namespace ClassLibrary
                                                                             .Append("/modificaroferta\n")
                                                                             .Append("/buscaroferta\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+                return true;
                
-                //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
+                
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }
