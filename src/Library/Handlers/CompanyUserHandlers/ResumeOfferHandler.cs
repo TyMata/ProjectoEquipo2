@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
-             if(this.CanHandle(input))
+            if(this.CanHandle(input))
             {
                 Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
                 if(company.OfferRegister != null)

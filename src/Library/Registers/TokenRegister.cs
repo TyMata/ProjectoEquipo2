@@ -84,7 +84,7 @@ namespace ClassLibrary
             }
             if (!this.TokenList.ContainsKey(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
             {
-                this.TokenList[token.ToString()]= company;
+                this.TokenList[token.ToString()] = company;
                 return token.ToString();
             }
             return "-1";

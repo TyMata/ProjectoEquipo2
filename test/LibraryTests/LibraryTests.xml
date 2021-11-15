@@ -46,8 +46,8 @@
         </member>
         <member name="M:Tests.CompanyRoleTests.DataTest">
             <summary>
-            Prueba qu ela información del usuario no este vacía
-            </summary>
+            Prueba que la información del usuario no este vacía
+            /// </summary>
         </member>
         <member name="T:Tests.CompanyTests">
             <summary>
@@ -119,6 +119,11 @@
             Prueba el handler para modificar la cantidad en una oferta 
             </summary>
         </member>
+        <member name="M:Tests.ModifyQuantityHandlerTest.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest
+            </summary>
+        </member>
         <member name="T:Tests.MarketTests">
             <summary>
             Prueba  la clase <see cref="T:ClassLibrary.Market"/>
@@ -177,6 +182,36 @@
         <member name="M:Tests.OfferTest.CreateOfferTest">
             <summary>
             Prueba para crear una oferta
+            </summary>
+        </member>
+        <member name="T:Tests.TokenRegisterTests">
+            <summary>
+            Prueba de la clase del registro de empresas
+            </summary>
+        </member>
+        <member name="M:Tests.TokenRegisterTests.AddTest">
+            <summary>
+            Prueba que se agregue un token  al registro
+            </summary>
+        </member>
+        <member name="M:Tests.TokenRegisterTests.RemoveTest">
+            <summary>
+            Prueba que se remueva un token  del registro de tokens
+            </summary>
+        </member>
+        <member name="M:Tests.TokenRegisterTests.IsValidTest">
+            <summary>
+            prueba que un token sea valido y devuelva la empresa correcta
+            </summary>
+        </member>
+        <member name="M:Tests.TokenRegisterTests.ContainsTest">
+            <summary>
+            Prueba de que el token este en la lista de tokens
+            </summary>
+        </member>
+        <member name="M:Tests.TokenRegisterTests.GenerateTokenTest">
+            <summary>
+            Prueba de que se genere un token nuevo y se agregue a la lista de tokens
             </summary>
         </member>
         <member name="T:Tests.UserRegisterTests">
