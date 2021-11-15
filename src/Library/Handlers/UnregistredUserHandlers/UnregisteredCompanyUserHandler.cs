@@ -23,9 +23,9 @@ namespace ClassLibrary
         /// De no ser asi se le avisa al usuario.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)) )
+            if (CanHandle(input))
             {
                 StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion\n")
@@ -37,6 +37,7 @@ namespace ClassLibrary
                 if (Singleton<TokenRegister>.Instance.Contains(codigo))
                 {
                     Singleton<CreateUserServiceProvider>.Instance.CreateCompanyUser(input, Singleton<TokenRegister>.Instance.TokenList[codigo] );
+                    return true;
                 }
                 // else
                 // {
@@ -45,12 +46,13 @@ namespace ClassLibrary
                 else
                 {
                     this.messageChannel.SendMessage("No se pudo verificar el Token ingresado, intente nuevamente");
+                    return true;
                 }
                
             }
             else
             {
-                this.nextHandler.Handle(input);
+                return false;
             }
         }
     }

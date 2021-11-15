@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace ClassLibrary
 {
@@ -16,17 +17,40 @@ namespace ClassLibrary
             this.Command = "/modificarcantidad";
             this.messageChannel = channel;
         }
-        public override void Handle(IMessage input)
+
+        /// <summary>
+        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public override bool InternalHandle(IMessage input)
         {
-            if(this.nextHandler != null && (CanHandle(input)))
+            if (CanHandle(input))
             {
-               // this.messageChannel.SendMessage($"Cual oferta quiere modificar{Company.OfferRegister}");
-                string oferta = this.messageChannel.ReceiveMessage().Text;
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                if(company.OfferRegister != null)
+                {
+                    StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
+                    foreach(Offer x in company.OfferRegister)
+                    {
+                        offers.Append($"Id : {x.Id}\n")
+                            .Append($"Material : {x.Material}\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}\n")
+                            .Append($"Fecha de publicacion: {x.PublicationDate}\n")
+                            .Append($"Precio: {x.TotalPrice}\n")
+                            .Append($"\n-----------------------------------------------\n\n");
+                    }                       
+                    this.messageChannel.SendMessage(offers.ToString());
+                    int oferta = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
+                    Offer offer = company.OfferRegister.Find(offer => offer.Id == oferta);
+                    this.messageChannel.SendMessage("Ingrese la nueva cantidad de la oferta:\n");
+                    int quantity = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
+                    offer.ChangeQuantity(quantity);
+                    return true; 
+                }
+
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
-        }    
+            return false;
+           }    
     } 
 }

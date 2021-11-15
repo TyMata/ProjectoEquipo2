@@ -21,9 +21,9 @@ namespace ClassLibrary
         /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if (CanHandle(input))
             {
                 this.messageChannel.SendMessage("¿Qué material desea vender?");
                 string material = this.messageChannel.ReceiveMessage().Text;
@@ -39,11 +39,10 @@ namespace ClassLibrary
                 string keywords = this.messageChannel.ReceiveMessage().Text;
                 User usuario = Singleton<UserRegister>.Instance.GetUserById(input.Id);
                Singleton<Market>.Instance.PublishOffer(OfferServiceProvider.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords,true));
+               return true;
             }
-            else
-            {
-                nextHandler.Handle(input);
-            }
+            return false;
+            
         }
     }
 }

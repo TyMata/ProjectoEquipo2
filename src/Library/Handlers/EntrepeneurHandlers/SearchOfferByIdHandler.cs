@@ -8,7 +8,7 @@ namespace ClassLibrary
     public class SearchOfferByIdHandler : AbstractHandler
     {   
         /// <summary>
-        /// Constructor de objetos SearchOfferByIdHandler
+        /// Constructor de objetos SearchOfferByIdHandler.
         /// </summary>
         /// <param name="channel"></param>
         public SearchOfferByIdHandler(IMessageChannel channel)
@@ -16,16 +16,14 @@ namespace ClassLibrary
             this.Command = "/buscarofertaporid";
             this.messageChannel = channel;
         }
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if ((CanHandle(input)))
             {
                 this.messageChannel.SendMessage("Escriba la Id de la oferta a buscar");
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

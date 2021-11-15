@@ -57,7 +57,7 @@ namespace ClassLibrary
 
         public bool Contains(Company company)
         {
-            if (this.companyList.Contains(company))
+            if(this.CompanyList.Contains(company))
             {
                 return true;
             }
