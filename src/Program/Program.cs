@@ -10,7 +10,7 @@ using ClassLibrary;
 namespace ConsoleApplication
 {
     /// <summary>
-    /// Clase encargada de iniciar el programa
+    /// Clase encargada de iniciar el programa.
     /// </summary>
     public static class Program
     {

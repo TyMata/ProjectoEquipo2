@@ -4,162 +4,159 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="T:Tests.CompanyRegisterTests">
+        <member name="T:Tests.CompanyRegisterTest">
             <summary>
-            Prueba de la clase del registro de empresas
+            Prueba de la clase del registro de empresas.
             </summary>
         </member>
-        <member name="M:Tests.CompanyRegisterTests.AddTest">
+        <member name="M:Tests.CompanyRegisterTest.SetUp">
             <summary>
-            Prueba que se agregue una empresa al registro
+            Set up del test de CompanyRegister.
             </summary>
         </member>
-        <member name="M:Tests.CompanyRegisterTests.RemoveTest">
+        <member name="M:Tests.CompanyRegisterTest.AddTest">
             <summary>
-            Prueba que se remueva una empresa del registro de empresas
+            Prueba que se agregue una empresa al registro.
             </summary>
         </member>
-        <member name="M:Tests.CompanyRegisterTests.GetCompanyByUserIdTest">
+        <member name="M:Tests.CompanyRegisterTest.RemoveTest">
             <summary>
-            Prueba que GetCompanyByUserId devuelva una empresa, y que sea la correcta
+            Prueba que se remueva una empresa del registro de empresas.
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRegisterTest.GetCompanyByUserIdTest">
+            <summary>
+            Prueba que GetCompanyByUserId devuelva una empresa, y que sea la correcta.
             </summary>
         </member>
         <member name="T:Tests.CompanyRoleTests">
             <summary>
-            Prueba de la clase <see cref="T:ClassLibrary.CompanyRole"/>
+            Prueba de la clase <see cref="T:ClassLibrary.CompanyRole"/>.
             </summary>
         </member>
         <member name="M:Tests.CompanyRoleTests.SetUp">
             <summary>
-            Se crea una company y su role para las  pruebas
+            Se crea una company y su role para las  pruebas.
             </summary>
         </member>
         <member name="M:Tests.CompanyRoleTests.CompanyTests">
             <summary>
-            Prueba que la empresa dentro de CompanyRole no sea nula
+            Prueba que la empresa dentro de CompanyRole no sea nula.
             </summary>
         </member>
         <member name="M:Tests.CompanyRoleTests.RoleTypeTest">
             <summary>
-            Prueba que TipoRole() devuelve la string "company"
+            Prueba que TipoRole() devuelve la string "company".
             </summary>
         </member>
         <member name="M:Tests.CompanyRoleTests.DataTest">
             <summary>
-<<<<<<< HEAD
-            Prueba qu ela información del usuario no este vacía
-            </summary>
-=======
-            Prueba que la información del usuario no este vacía
-            /// </summary>
->>>>>>> origin
-        </member>
-        <member name="T:Tests.CompanyTests">
-            <summary>
-            Test de la clase <see cref="T:ClassLibrary.Company"/>
+            Prueba que la información del usuario no este vacía.
             </summary>
         </member>
-        <member name="M:Tests.CompanyTests.SetUp">
+        <member name="T:Tests.CompanyTest">
             <summary>
-            Se crean variables con los parametros para crear una empresa
+            Test de la clase <see cref="T:ClassLibrary.Company"/>.
             </summary>
         </member>
-        <member name="M:Tests.CompanyTests.CompanyNameTest">
+        <member name="M:Tests.CompanyTest.SetUp">
             <summary>
-            Prueba que el nombre no sea nulo
+            Se crean variables con los parametros para crear una empresa.
             </summary>
         </member>
-        <member name="M:Tests.CompanyTests.AddUserTest">
+        <member name="M:Tests.CompanyTest.CompanyNameTest">
             <summary>
-            Prueba que se añada el usuario a los usuarios de la empresa
+            Prueba que el nombre no sea nulo.
             </summary>
         </member>
-        <member name="M:Tests.CompanyTests.RemoveUserTest">
+        <member name="M:Tests.CompanyTest.AddUserTest">
             <summary>
-            Prueba que se remueva un usuario determinado de los usuarios de la empresa
+            Prueba que se añada el usuario a los usuarios de la empresa.
             </summary>
         </member>
-        <member name="M:Tests.CompanyTests.ProducedMaterialsTest">
+        <member name="M:Tests.CompanyTest.RemoveUserTest">
             <summary>
-            Prueba que se agreguen los materiales a la lista de materiales
+            Prueba que se remueva un usuario determinado de los usuarios de la empresa.
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTest.ProducedMaterialsTest">
+            <summary>
+            Prueba que se agreguen los materiales a la lista de materiales.
             </summary>
         </member>
         <member name="T:Tests.EntrepreneurRoleTests">
             <summary>
-            Prueba de la clase <see cref="T:ClassLibrary.EntrepreneurRole"/>
+            Prueba de la clase <see cref="T:ClassLibrary.EntrepreneurRole"/>.
             </summary>
         </member>
         <member name="M:Tests.EntrepreneurRoleTests.SetUp">
             <summary>
-            Se crea un EntrepreneurRole para las pruebas
+            Se crea un EntrepreneurRole para las pruebas.
             </summary>
         </member>
         <member name="M:Tests.EntrepreneurRoleTests.RoletypeTest">
             <summary>
-            Prueba que RoleType() devuelve la string "emprendedor" 
+            Prueba que RoleType() devuelve la string "emprendedor".
             </summary>
         </member>
         <member name="M:Tests.EntrepreneurRoleTests.DataTest">
             <summary>
-            Prueba que la información del usuario no este vacía
+            Prueba que la información del usuario no este vacía.
             </summary>
         </member>
-        <member name="T:Tests.ModifyOfferHandlerTests">
+        <member name="T:Tests.ModifyOfferHandlerTest">
             <summary>
-            Prueba el handler para que la empresa pueda modificar la oferta
+            Prueba el handler para que la empresa pueda modificar la oferta.
             </summary>
         </member>
-        <member name="M:Tests.ModifyOfferHandlerTests.SetUp">
+        <member name="M:Tests.ModifyOfferHandlerTest.SetUp">
             <summary>
-            Se crean instancias de IMessageChannel, el handler a testear y una nueva oferta para lsd pruebas
+            Se crean instancias de IMessageChannel, el handler a testear y una nueva oferta para lsd pruebas.
             </summary>
         </member>
-        <member name="M:Tests.ModifyOfferHandlerTests.HandleTest">
+        <member name="M:Tests.ModifyOfferHandlerTest.HandleTest">
             <summary>
-            Prueba el Handle del handler
+            Prueba el Handle del handler.
             </summary>
         </member>
         <member name="T:Tests.ModifyQuantityHandlerTest">
             <summary>
-            Prueba el handler para modificar la cantidad en una oferta 
+            Prueba el handler para modificar la cantidad en una oferta.
             </summary>
         </member>
-<<<<<<< HEAD
-=======
         <member name="M:Tests.ModifyQuantityHandlerTest.Setup">
             <summary>
-            SetUp de la clase ModifyQuantityHandlerTest
+            SetUp de la clase ModifyQuantityHandlerTest.
             </summary>
         </member>
->>>>>>> origin
-        <member name="T:Tests.MarketTests">
+        <member name="T:Tests.MarketTest">
             <summary>
-            Prueba  la clase <see cref="T:ClassLibrary.Market"/>
+            Prueba  la clase <see cref="T:ClassLibrary.Market"/>.
             </summary>
         </member>
-        <member name="M:Tests.MarketTests.SetUp">
+        <member name="M:Tests.MarketTest.SetUp">
             <summary>
-            se crea una instancia de offer
+            Se crea una instancia de offer.
             </summary>
         </member>
-        <member name="M:Tests.MarketTests.PublishOfferTest">
+        <member name="M:Tests.MarketTest.PublishOfferTest">
             <summary>
-            Prueba que la Oferta se publique
+            Prueba que la Oferta se publique.
             </summary>
         </member>
-        <member name="M:Tests.MarketTests.RemoveOfferTest">
+        <member name="M:Tests.MarketTest.RemoveOfferTest">
             <summary>
-            Prueba que se remueva una oferta del registro de ofertas
+            Prueba que se remueva una oferta del registro de ofertas.
             </summary>
         </member>
-        <member name="M:Tests.MarketTests.SuspendOfferTest">
+        <member name="M:Tests.MarketTest.SuspendOfferTest">
             <summary>
-            Prueba que se suspenda o pause la oferta y se cambie de lista, de las actuales a las pausadas
+            Prueba que se suspenda o pause la oferta y se cambie de lista, de las actuales a las pausadas.
             </summary>
         </member>
-        <member name="M:Tests.MarketTests.ResumeOfferTest">
+        <member name="M:Tests.MarketTest.ResumeOfferTest">
             <summary>
-            Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales
+            Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
             </summary>
         </member>
         <member name="T:Tests.MaterialTest">
@@ -169,12 +166,12 @@
         </member>
         <member name="M:Tests.MaterialTest.Setup">
             <summary>
-            Se crean variables con los parametro para crear un objeto  material
+            Se crean variables con los parametro para crear un objeto material.
             </summary>
         </member>
         <member name="M:Tests.MaterialTest.CreateMaterialTest">
             <summary>
-            Prueba para crear un material
+            Prueba para crear un material.
             </summary>
         </member>
         <member name="T:Tests.OfferTest">
@@ -184,67 +181,67 @@
         </member>
         <member name="M:Tests.OfferTest.Setup">
             <summary>
-             Set up ????
+             Set up del test de Offer.
             </summary>
         </member>
         <member name="M:Tests.OfferTest.CreateOfferTest">
             <summary>
-            Prueba para crear una oferta
+            Prueba para crear una oferta.
             </summary>
         </member>
         <member name="T:Tests.TokenRegisterTests">
             <summary>
-            Prueba de la clase del registro de empresas
+            Prueba de la clase del registro de empresas.
             </summary>
         </member>
         <member name="M:Tests.TokenRegisterTests.AddTest">
             <summary>
-            Prueba que se agregue un token  al registro
+            Prueba que se agregue un token  al registro.
             </summary>
         </member>
         <member name="M:Tests.TokenRegisterTests.RemoveTest">
             <summary>
-            Prueba que se remueva un token  del registro de tokens
+            Prueba que se remueva un token  del registro de tokens.
             </summary>
         </member>
         <member name="M:Tests.TokenRegisterTests.IsValidTest">
             <summary>
-            prueba que un token sea valido y devuelva la empresa correcta
+            Prueba que un token sea valido y devuelva la empresa correcta.
             </summary>
         </member>
         <member name="M:Tests.TokenRegisterTests.ContainsTest">
             <summary>
-            Prueba de que el token este en la lista de tokens
+            Prueba de que el token este en la lista de tokens.
             </summary>
         </member>
         <member name="M:Tests.TokenRegisterTests.GenerateTokenTest">
             <summary>
-            Prueba de que se genere un token nuevo y se agregue a la lista de tokens
+            Prueba de que se genere un token nuevo y se agregue a la lista de tokens.
             </summary>
         </member>
         <member name="T:Tests.UserRegisterTests">
             <summary>
-            Prueba de la clase <see cref="T:ClassLibrary.UserRegister"/>
+            Prueba de la clase UserRegister.
             </summary>
         </member>
         <member name="M:Tests.UserRegisterTests.SetUp">
             <summary>
-            Se crea una instancia de User para los tests
+            Se crea una instancia de User para los tests.
             </summary>
         </member>
         <member name="M:Tests.UserRegisterTests.AddTest">
             <summary>
-            Prueba que se añada un user a la lista de users
+            Prueba que se añada un user a la lista de users.
             </summary>
         </member>
         <member name="M:Tests.UserRegisterTests.RemoveTest">
             <summary>
-            Prueba que se remueva un user de la lista de users, si esta en esta
+            Prueba que se remueva un user de la lista de users, si esta en esta.
             </summary>
         </member>
         <member name="M:Tests.UserRegisterTests.GetUserByIdTest">
             <summary>
-            Prueba que GetUserById devuelva un user y que sea el correcto
+            Prueba que GetUserById devuelva un user y que sea el correcto.
             </summary>
         </member>
         <member name="T:Tests.UserTest">
@@ -254,12 +251,12 @@
         </member>
         <member name="M:Tests.UserTest.Setup">
             <summary>
-            Set up???
+            Set up del test de User.
             </summary>
         </member>
         <member name="M:Tests.UserTest.CreateUserTest">
             <summary>
-            Prueba para crear un user
+            Prueba para crear un user.
             </summary>
         </member>
     </members>
