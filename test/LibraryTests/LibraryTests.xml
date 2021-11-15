@@ -4,9 +4,164 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:Tests.CompanyRegisterTests">
+            <summary>
+            Prueba de la clase del registro de empresas
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRegisterTests.AddTest">
+            <summary>
+            Prueba que se agregue una empresa al registro
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRegisterTests.RemoveTest">
+            <summary>
+            Prueba que se remueva una empresa del registro de empresas
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRegisterTests.GetCompanyByUserIdTest">
+            <summary>
+            Prueba que GetCompanyByUserId devuelva una empresa, y que sea la correcta
+            </summary>
+        </member>
+        <member name="T:Tests.CompanyRoleTests">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.CompanyRole"/>
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRoleTests.SetUp">
+            <summary>
+            Se crea una company y su role para las  pruebas
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRoleTests.CompanyTests">
+            <summary>
+            Prueba que la empresa dentro de CompanyRole no sea nula
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRoleTests.RoleTypeTest">
+            <summary>
+            Prueba que TipoRole() devuelve la string "company"
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRoleTests.DataTest">
+            <summary>
+            Prueba qu ela información del usuario no este vacía
+            </summary>
+        </member>
+        <member name="T:Tests.CompanyTests">
+            <summary>
+            Test de la clase <see cref="T:ClassLibrary.Company"/>
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTests.SetUp">
+            <summary>
+            Se crean variables con los parametros para crear una empresa
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTests.CompanyNameTest">
+            <summary>
+            Prueba que el nombre no sea nulo
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTests.AddUserTest">
+            <summary>
+            Prueba que se añada el usuario a los usuarios de la empresa
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTests.RemoveUserTest">
+            <summary>
+            Prueba que se remueva un usuario determinado de los usuarios de la empresa
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTests.ProducedMaterialsTest">
+            <summary>
+            Prueba que se agreguen los materiales a la lista de materiales
+            </summary>
+        </member>
+        <member name="T:Tests.EntrepreneurRoleTests">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.EntrepreneurRole"/>
+            </summary>
+        </member>
+        <member name="M:Tests.EntrepreneurRoleTests.SetUp">
+            <summary>
+            Se crea un EntrepreneurRole para las pruebas
+            </summary>
+        </member>
+        <member name="M:Tests.EntrepreneurRoleTests.RoletypeTest">
+            <summary>
+            Prueba que RoleType() devuelve la string "emprendedor" 
+            </summary>
+        </member>
+        <member name="M:Tests.EntrepreneurRoleTests.DataTest">
+            <summary>
+            Prueba que la información del usuario no este vacía
+            </summary>
+        </member>
+        <member name="T:Tests.ModifyOfferHandlerTests">
+            <summary>
+            Prueba el handler para que la empresa pueda modificar la oferta
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyOfferHandlerTests.SetUp">
+            <summary>
+            Se crean instancias de IMessageChannel, el handler a testear y una nueva oferta para lsd pruebas
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyOfferHandlerTests.HandleTest">
+            <summary>
+            Prueba el Handle del handler
+            </summary>
+        </member>
+        <member name="T:Tests.ModifyQuantityHandlerTest">
+            <summary>
+            Prueba el handler para modificar la cantidad en una oferta 
+            </summary>
+        </member>
+        <member name="T:Tests.MarketTests">
+            <summary>
+            Prueba  la clase <see cref="T:ClassLibrary.Market"/>
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTests.SetUp">
+            <summary>
+            se crea una instancia de offer
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTests.PublishOfferTest">
+            <summary>
+            Prueba que la Oferta se publique
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTests.RemoveOfferTest">
+            <summary>
+            Prueba que se remueva una oferta del registro de ofertas
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTests.SuspendOfferTest">
+            <summary>
+            Prueba que se suspenda o pause la oferta y se cambie de lista, de las actuales a las pausadas
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTests.ResumeOfferTest">
+            <summary>
+            Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales
+            </summary>
+        </member>
         <member name="T:Tests.MaterialTest">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.Material"/>.
+            </summary>
+        </member>
+        <member name="M:Tests.MaterialTest.Setup">
+            <summary>
+            Se crean variables con los parametro para crear un objeto  material
+            </summary>
+        </member>
+        <member name="M:Tests.MaterialTest.CreateMaterialTest">
+            <summary>
+            Prueba para crear un material
             </summary>
         </member>
         <member name="T:Tests.OfferTest">
@@ -14,9 +169,54 @@
             Prueba de la clase <see cref="T:ClassLibrary.Offer"/>.
             </summary>
         </member>
+        <member name="M:Tests.OfferTest.Setup">
+            <summary>
+             Set up ????
+            </summary>
+        </member>
+        <member name="M:Tests.OfferTest.CreateOfferTest">
+            <summary>
+            Prueba para crear una oferta
+            </summary>
+        </member>
+        <member name="T:Tests.UserRegisterTests">
+            <summary>
+            Prueba de la clase <see cref="T:ClassLibrary.UserRegister"/>
+            </summary>
+        </member>
+        <member name="M:Tests.UserRegisterTests.SetUp">
+            <summary>
+            Se crea una instancia de User para los tests
+            </summary>
+        </member>
+        <member name="M:Tests.UserRegisterTests.AddTest">
+            <summary>
+            Prueba que se añada un user a la lista de users
+            </summary>
+        </member>
+        <member name="M:Tests.UserRegisterTests.RemoveTest">
+            <summary>
+            Prueba que se remueva un user de la lista de users, si esta en esta
+            </summary>
+        </member>
+        <member name="M:Tests.UserRegisterTests.GetUserByIdTest">
+            <summary>
+            Prueba que GetUserById devuelva un user y que sea el correcto
+            </summary>
+        </member>
         <member name="T:Tests.UserTest">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.Material"/>.
+            </summary>
+        </member>
+        <member name="M:Tests.UserTest.Setup">
+            <summary>
+            Set up???
+            </summary>
+        </member>
+        <member name="M:Tests.UserTest.CreateUserTest">
+            <summary>
+            Prueba para crear un user
             </summary>
         </member>
     </members>
