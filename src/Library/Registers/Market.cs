@@ -9,12 +9,23 @@ namespace ClassLibrary
     /// </summary>
     public class Market
     {   
+        private List<Offer> actualOfferList = new List<Offer>();
         /// <summary>
         /// Lista de ofertas actuales
         /// </summary>
         /// <value></value>
-        public List<Offer> ActualOfferList {get;set;}
+        public List<Offer> ActualOfferList 
+        {
+            get
+            {
+                return this.actualOfferList;
+            }
+            private set
+            {
+            }
+        }
 
+        private List<Offer> suspendedOfferList = new List<Offer>();
         /// <summary>
         /// Lista de ofertas suspendidas
         /// </summary>
@@ -43,7 +54,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new Exception(); //CAMBIAR EXCEPTION
+                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Remove(x);
@@ -58,7 +69,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Keywords.Contains(keyword)))
             {
-                throw new Exception(); //CAMBIAR EXCEPTION
+                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             List<Offer> x = this.ActualOfferList.FindAll(offer => offer.Keywords.Contains(keyword));
             return x;
@@ -74,7 +85,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new Exception(); //CAMBIAR EXCEPTION
+                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Remove(x);
@@ -90,7 +101,7 @@ namespace ClassLibrary
         {
             if (!this.SuspendedOfferList.Exists(offer => offer.Id == id))
             {
-                throw new Exception(); //CAMBIAR EXCEPTION
+                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.SuspendedOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Add(x);

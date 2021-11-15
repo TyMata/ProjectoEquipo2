@@ -8,11 +8,19 @@ namespace ClassLibrary
     /// </summary>
     public class UserRegister
     {   
+        private List<User> dataUsers = new List<User>();
         /// <summary>
         /// Lista de usuarios registrados
         /// </summary>
         /// <value></value>
-        public List<User> DataUsers { get; private set; }
+        public List<User> DataUsers 
+        { 
+            get
+            {
+                return this.dataUsers;
+            } 
+            private set{} //CARGAR DE JSON LISTA DE USUARIOS REGISTRADOS
+        }
 
         /// <summary>
         /// ESto se hace por la ley de demeter

@@ -18,7 +18,7 @@ namespace ClassLibrary
             this.messageChannel = channel ;
         }
         /// <summary>
-        /// Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+        /// Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
         /// de una oferta delega la accion de eliminarla.
         /// De no existir la oferta le avisa por pantalla al usuario.
         /// </summary>
@@ -27,7 +27,9 @@ namespace ClassLibrary
         {
             if(this.nextHandler != null && (CanHandle(input)))
             {
-                if("Company.OfferRegister" != null)
+                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+
+                if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
