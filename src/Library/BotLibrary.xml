@@ -232,12 +232,12 @@
         </member>
         <member name="T:ClassLibrary.ModifyOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de Modificar una oferta
+            Handler encargado de delegar la accion de Modificar una oferta.
             </summary>
         </member>
         <member name="M:ClassLibrary.ModifyOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ModifyOfferHandler
+            Constructor de objetos ModifyOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -930,7 +930,7 @@
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>
-            Esta clase 
+            Esta clase.
             </summary>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Name">
