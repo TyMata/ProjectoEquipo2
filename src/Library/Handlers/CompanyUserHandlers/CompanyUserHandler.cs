@@ -3,38 +3,23 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    ///  
+    /// Handler encargado de dar a conocer los comandos disponibles para un usuario empresa
     /// </summary>
     public class CompanyUserHandler : AbstractHandler
     {
-        // private IHandler NextHandler;
-        // private IHandler nextHandler2;
-        // private IHandler nextHandler3;
-        // private IHandler nextHandler4;
-        // private IHandler nextHandler5;
-        // private IHandler nextHandler6;
-        // private string  Command;
         /// <summary>
-        /// Constructor de objetos CompanyUserHander
+        /// Constructor de objetos CompanyUserHandler
         /// </summary>
         /// <param name="channel"></param>
         public CompanyUserHandler(IMessageChannel channel)
         {
             this.Command = "/empresa";
             this.messageChannel = channel;
-            // this.nextHandler2 = new PublishOfferHandler(this.messageChannel);
-            // this.nextHandler3 = new RemoveOfferHandler(this.messageChannel);
-          
-            // this.nextHandler4 = new SuspendOfferHandler(this.messageChannel);
-            // this.nextHandler5 = new UnsuspendOfferHandler(this.messageChannel);
-            // this.nextHandler6 = new ModifyOfferHandler(this.messageChannel);
-            
-            // this.nextHandler2.SetNext(this.nextHandler3);
-            // this.nextHandler3.SetNext(this.nextHandler4);
-            // this.nextHandler4.SetNext(this.nextHandler5);
-            // this.nextHandler5.SetNext(this.nextHandler6);
-
         }
+        /// <summary>
+        /// Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
+        /// </summary>
+        /// <param name="input"></param>
         public override void Handle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))

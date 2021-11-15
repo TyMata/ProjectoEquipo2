@@ -11,9 +11,9 @@ namespace Tests
     {
         private IRole role;
         private int id;
-        
+
         /// <summary>
-        /// Set up???
+        /// Set up del test de User.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -23,14 +23,14 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba para crear un user
+        /// Prueba para crear un user.
         /// </summary>
         [Test]
         public void CreateUserTest()
         {
             User usuario = new User(this.id, this.role);
-            Assert.AreEqual(this.role,usuario.Role);
-            Assert.AreEqual(this.id,usuario.Id);
+            Assert.AreEqual(this.role, usuario.Role);
+            Assert.AreEqual(this.id, usuario.Id);
         }
     }
 }

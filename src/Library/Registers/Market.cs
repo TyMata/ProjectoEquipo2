@@ -30,7 +30,47 @@ namespace ClassLibrary
         /// Lista de ofertas suspendidas
         /// </summary>
         /// <value></value>
-        public List<Offer> SuspendedOfferList {get;set;}
+        public List<Offer> SuspendedOfferList 
+        {
+            get
+            {
+                return this.suspendedOfferList;
+            }
+        }
+
+         /// <summary>
+        /// Por la ley de demeter se crea ContainsActive
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <returns></returns>
+        public bool ContainsActive(Offer offer)
+        {
+            if(this.actualOfferList.Contains(offer))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+         /// <summary>
+        /// Por la ley de demeter se crea ContainsSuspended
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <returns></returns>
+        public bool ContainsSuspended(Offer offer)
+        {
+            if(this.SuspendedOfferList.Contains(offer))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Añade una nueva oferta a la lista de ofertas actuales
@@ -65,7 +105,7 @@ namespace ClassLibrary
         /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda , ARREGLAR KEYWORDS ANTES
         /// </summary>
         /// <returns></returns>
-        public  List<Offer> SearchOffers(string keyword)
+        public List<Offer> SearchOffers(string keyword)
         {
             if (!this.ActualOfferList.Exists(offer => offer.Keywords.Contains(keyword)))
             {
@@ -88,8 +128,8 @@ namespace ClassLibrary
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
-            this.ActualOfferList.Remove(x);
             this.SuspendedOfferList.Add(x);
+            this.ActualOfferList.Remove(x);
         }
 
 
@@ -97,7 +137,7 @@ namespace ClassLibrary
         /// A una oferta suspendida la vuelve a activar
         /// </summary>
         /// <param name="id"></param>
-        public  void ResumeOffer(int id)
+        public void ResumeOffer(int id)
         {
             if (!this.SuspendedOfferList.Exists(offer => offer.Id == id))
             {

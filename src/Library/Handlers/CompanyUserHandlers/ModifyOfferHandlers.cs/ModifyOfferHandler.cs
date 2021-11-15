@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de Modificar una oferta
+    /// Handler encargado de delegar la accion de Modificar una oferta.
     /// </summary>
     public class ModifyOfferHandler: AbstractHandler
     {
 
         /// <summary>
-        /// Constructor de objetos ModifyOfferHandler
+        /// Constructor de objetos ModifyOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public ModifyOfferHandler(IMessageChannel channel)

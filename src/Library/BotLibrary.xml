@@ -198,14 +198,20 @@
         </member>
         <member name="T:ClassLibrary.CompanyUserHandler">
             <summary>
-             
+            Handler encargado de dar a conocer los comandos disponibles para un usuario empresa
             </summary>
         </member>
         <member name="M:ClassLibrary.CompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos CompanyUserHander
+            Constructor de objetos CompanyUserHandler
             </summary>
             <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyUserHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
+            </summary>
+            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
@@ -226,12 +232,12 @@
         </member>
         <member name="T:ClassLibrary.ModifyOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de Modificar una oferta
+            Handler encargado de delegar la accion de Modificar una oferta.
             </summary>
         </member>
         <member name="M:ClassLibrary.ModifyOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ModifyOfferHandler
+            Constructor de objetos ModifyOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -422,7 +428,7 @@
             Handler encargado de darle final a la CoR
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
             Constructor de objetos EndHandler
             </summary>
@@ -699,6 +705,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
+            <summary>
+            Por la ley de demeter
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Market">
             <summary>
             Esta clase representa el mercado con sus ofertas
@@ -715,6 +728,20 @@
             Lista de ofertas suspendidas
             </summary>
             <value></value>
+        </member>
+        <member name="M:ClassLibrary.Market.ContainsActive(ClassLibrary.Offer)">
+            <summary>
+            Por la ley de demeter se crea ContainsActive
+            </summary>
+            <param name="offer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Market.ContainsSuspended(ClassLibrary.Offer)">
+            <summary>
+            Por la ley de demeter se crea ContainsSuspended
+            </summary>
+            <param name="offer"></param>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.PublishOffer(ClassLibrary.Offer)">
             <summary>
@@ -814,6 +841,13 @@
             </summary>
             <param name="item"></param>
         </member>
+        <member name="M:ClassLibrary.UserRegister.Contains(ClassLibrary.User)">
+            <summary>
+            Por la ley de demeter se crea Contains
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.UserRegister.GetUserById(System.Int32)">
             <summary>
             Devuelve  un objeto user segun la id dada
@@ -896,7 +930,7 @@
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>
-            Esta clase 
+            Esta clase.
             </summary>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Name">
