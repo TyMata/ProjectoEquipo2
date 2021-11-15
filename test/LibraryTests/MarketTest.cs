@@ -1,42 +1,41 @@
 using System;
-using NUnit.Framework;
 using ClassLibrary;
+using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
     /// <summary>
-    /// Prueba  la clase <see cref="Market"/>
+    /// Prueba  la clase <see cref="Market"/>.
     /// </summary>
     [TestFixture]
-    public class MarketTests
+    public class MarketTest
     {
         private Offer oferta;
         private Company company;
 
         /// <summary>
-        /// se crea una instancia de offer
+        /// Se crea una instancia de offer.
         /// </summary>
         [SetUp]
         public void SetUp()
         {
             this.company = new Company("empresa", new Location(), "rubro", "materiales");
-            this.oferta = new Offer(1234567,"material","habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
+            this.oferta = new Offer(1234567, "material", "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
         }
 
         /// <summary>
-        /// Prueba que la Oferta se publique
+        /// Prueba que la Oferta se publique.
         /// </summary>
         [Test]
         public void PublishOfferTest()
         {
             Singleton<Market>.Instance.PublishOffer(this.oferta);
             Assert.IsNotEmpty(Singleton<Market>.Instance.ActualOfferList);
-
         }
-        
+
         /// <summary>
-        /// Prueba que se remueva una oferta del registro de ofertas
+        /// Prueba que se remueva una oferta del registro de ofertas.
         /// </summary>
         [Test]
         public void RemoveOfferTest()
@@ -46,19 +45,19 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba que se suspenda o pause la oferta y se cambie de lista, de las actuales a las pausadas
+        /// Prueba que se suspenda o pause la oferta y se cambie de lista, de las actuales a las pausadas.
         /// </summary>
         [Test]
         public void SuspendOfferTest()
         {
             Singleton<Market>.Instance.ActualOfferList.Add(this.oferta);
             Singleton<Market>.Instance.SuspendOffer(1234567);
-            Assert.IsNotEmpty( Singleton<Market>.Instance.SuspendedOfferList);
-            Assert.IsEmpty( Singleton<Market>.Instance.ActualOfferList);
+            Assert.IsNotEmpty(Singleton<Market>.Instance.SuspendedOfferList);
+            Assert.IsEmpty(Singleton<Market>.Instance.ActualOfferList);
         }
 
         /// <summary>
-        /// Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales
+        /// Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
         /// </summary>
         [Test]
         public void ResumeOfferTest()
