@@ -34,8 +34,9 @@ namespace Tests
         [Test]
         public void RemoveTest()
         {
+            Singleton<CompanyRegister>.Instance.Add(this.company);
             Singleton<CompanyRegister>.Instance.Remove(this.company);
-            Assert.IsFalse(Singleton<CompanyRegister>.Instance.CompanyList.Contains(this.company));
+            Assert.IsFalse(Singleton<CompanyRegister>.Instance.Contains(this.company));
         }
 
         /// <summary>
