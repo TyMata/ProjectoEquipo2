@@ -46,8 +46,13 @@
         </member>
         <member name="M:Tests.CompanyRoleTests.DataTest">
             <summary>
+<<<<<<< HEAD
             Prueba qu ela información del usuario no este vacía
             </summary>
+=======
+            Prueba que la información del usuario no este vacía
+            /// </summary>
+>>>>>>> origin
         </member>
         <member name="T:Tests.CompanyTests">
             <summary>
@@ -119,6 +124,14 @@
             Prueba el handler para modificar la cantidad en una oferta 
             </summary>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="M:Tests.ModifyQuantityHandlerTest.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest
+            </summary>
+        </member>
+>>>>>>> origin
         <member name="T:Tests.MarketTests">
             <summary>
             Prueba  la clase <see cref="T:ClassLibrary.Market"/>

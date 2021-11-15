@@ -83,8 +83,8 @@ namespace ClassLibrary
         public Material (string name, string type ,string classification )
         {
             this.Name = name;
-            this.Type=type;
-            this.Classification=classification;
+            this.Type = type;
+            this.Classification = classification;
         }
     }
 }

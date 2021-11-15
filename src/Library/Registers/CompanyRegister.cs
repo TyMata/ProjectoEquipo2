@@ -8,20 +8,27 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyRegister
     {   
-        
         private List<Company> companyList = new List<Company>();
+
         /// <summary>
         /// Lista de empresas registrados
         /// </summary>
         /// <value></value>
-        public  List<Company> CompanyList {get;}
+        public  List<Company> CompanyList 
+        {
+            get
+            {
+                return companyList;
+            }
+        }
+
         /// <summary>
         /// Por la ley de demeter
         /// </summary>
         /// <param name="company"></param>
         public void Add(Company company)
         {
-            this.CompanyList.Add(company);
+            this.companyList.Add(company);
         }
         
         /// <summary>
@@ -47,5 +54,17 @@ namespace ClassLibrary
             User x = Singleton<UserRegister>.Instance.GetUserById(id);
             return (x.Role as CompanyRole).Company;
         } 
+
+        public bool Contains(Company company)
+        {
+            if(this.CompanyList(company))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

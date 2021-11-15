@@ -11,16 +11,21 @@ namespace Tests
     [TestFixture]
     public class CompanyRegisterTests
     {
-        
+        private Company company;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.company = new Company("nombre", new Location(), "rubro", "material");
+        }
         /// <summary>
         /// Prueba que se agregue una empresa al registro
         /// </summary>
         [Test]
         public void AddTest()
         {   
-            Company company = new Company();
-            Singleton<CompanyRegister>.Instance.Add(company);
-            Assert.IsNotNull(Singleton<CompanyRegister>.Instance.CompanyList);
+            Singleton<CompanyRegister>.Instance.Add(this.company);
+            Assert.IsTrue(Singleton<CompanyRegister>.Instance.CompanyList.Contains(this.company));
         }
 
         /// <summary>
@@ -29,10 +34,8 @@ namespace Tests
         [Test]
         public void RemoveTest()
         {
-            Company company = new Company();
-            Singleton<CompanyRegister>.Instance.Add(company);
-            Singleton<CompanyRegister>.Instance.Remove(company);
-            Assert.IsEmpty(Singleton<CompanyRegister>.Instance.CompanyList);
+            Singleton<CompanyRegister>.Instance.Remove(this.company);
+            Assert.IsFalse(Singleton<CompanyRegister>.Instance.CompanyList.Contains(this.company));
         }
 
         /// <summary>
@@ -40,11 +43,11 @@ namespace Tests
         /// </summary>
         public void GetCompanyByUserIdTest()
         {
-            Company company = new Company("empresa",new Location(), "rubro", "materiales");
-            User user = new User(1234567, new CompanyRole(company));
+            
+            User user = new User(1234567, new CompanyRole(this.company));
             company.CompanyUsers.Add(user);
             Company result = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(1234567);
-            Assert.AreEqual(company,result);
+            Assert.AreEqual(this.company,result);
         }
     }
 }

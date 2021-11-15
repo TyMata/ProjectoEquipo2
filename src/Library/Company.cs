@@ -11,7 +11,8 @@ namespace ClassLibrary
     public class Company
     {
         
-        private static int id;
+        private int id;
+
         /// <summary>
         /// Id de la empresa
         /// </summary>
@@ -24,10 +25,12 @@ namespace ClassLibrary
             }
             private set
             { 
-                this.Id = id;
+                this.id = Singleton<CompanyRegister>.Instance.CompanyList.Count + 1;
             }
         }
+
         private string name;
+
         /// <summary>
         /// Nombre de la empresa
         /// </summary>
@@ -46,7 +49,9 @@ namespace ClassLibrary
                 }
             }
         }
+
         private Location locations;
+
         /// <summary>
         /// Ubicacion/es de la empresa
         /// </summary>
@@ -65,7 +70,9 @@ namespace ClassLibrary
                 }
             }
         }
+
         private List<User> companyUsers = new List<User>();
+
         /// <summary>
         /// Lista de usuarios pertenecientes a la empresa
         /// </summary>
@@ -88,7 +95,9 @@ namespace ClassLibrary
                 }
             }
         }
+
         private string headings;
+
         /// <summary>
         /// Rubro al que pertenece la empresa
         /// </summary>
@@ -110,7 +119,9 @@ namespace ClassLibrary
                 }
             }
         }
+
         private List<Offer> offerRegister = new List<Offer>();
+
         /// <summary>
         /// Ofertas realizadas por la empresa
         /// </summary>
@@ -135,6 +146,7 @@ namespace ClassLibrary
         }
         
         private List<string> producedMaterials = new List<string>();
+
         /// <summary>
         /// Materiales producidos por la empresa
         /// </summary>
@@ -157,19 +169,7 @@ namespace ClassLibrary
                 }
             }
         }
-       
-             
-        static Company()
-        {
-            id = 0;
-        }
-        /// <summary>
-        /// Constructor de Company sin parámetros que aumenta Id cada vez que se le llama
-        /// </summary>
-        public Company()
-        {
-            id++;
-        }
+
         /// <summary>
         /// Constructor de objetos Company
         /// </summary>
@@ -181,13 +181,14 @@ namespace ClassLibrary
         {
             this.name = name;
             this.Locations = ubi;
-            id = Id;
+            this.id = 0;
             this.Headings = headings;
             this.ProducedMaterials.Add(materials);
         }
+        
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
-        /// </summary>
+        /// /// </summary>
         /// <param name="id"></param>
         public  void AddUser(int id)
         {
@@ -201,6 +202,7 @@ namespace ClassLibrary
             Singleton<UserRegister>.Instance.Add(user);
             this.CompanyUsers.Add(user);
         }
+        
         /// <summary>
         /// Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
         /// </summary>
