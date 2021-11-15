@@ -50,12 +50,13 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Singleton<Market>.Instance.ActualOfferList.Add(this.oferta);
-            Singleton<Market>.Instance.SuspendOffer(1234567);
-            Assert.IsNotEmpty(Singleton<Market>.Instance.SuspendedOfferList);
-            Assert.IsEmpty(Singleton<Market>.Instance.ActualOfferList);
+            Offer nuevaOferta = new Offer(7654321,"material","habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
+            Singleton<Market>.Instance.PublishOffer(nuevaOferta);
+            Singleton<Market>.Instance.SuspendOffer(7654321);
+            Assert.IsTrue( Singleton<Market>.Instance.ContainsSuspended(nuevaOferta));
+            Assert.IsFalse( Singleton<Market>.Instance.ContainsActive(nuevaOferta));
         }
-
+        
         /// <summary>
         /// Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
         /// </summary>
@@ -64,8 +65,8 @@ namespace Tests
         {
             Singleton<Market>.Instance.SuspendedOfferList.Add(this.oferta);
             Singleton<Market>.Instance.ResumeOffer(1234567);
-            Assert.IsNotEmpty(Singleton<Market>.Instance.ActualOfferList);
-            Assert.IsEmpty(Singleton<Market>.Instance.SuspendedOfferList);
+            Assert.IsTrue(Singleton<Market>.Instance.ContainsActive(this.oferta));
+            Assert.IsFalse(Singleton<Market>.Instance.ContainsSuspended(this.oferta));
         }
     }
 }

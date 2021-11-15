@@ -46,6 +46,23 @@ namespace ClassLibrary
         }
 
         /// <summary>
+        /// Por la ley de demeter se crea Contains
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public bool Contains(User user)
+        {
+            if(this.DataUsers.Contains(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Devuelve  un objeto user segun la id dada
         /// </summary>
         /// <param name="id"></param>
