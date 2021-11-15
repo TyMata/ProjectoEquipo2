@@ -18,6 +18,7 @@ namespace Tests
         private Location locations;
         private string headings;
         private string materials;
+        private Company company;
      
         /// <summary>
         /// Se crean variables con los parametros para crear una empresa
@@ -30,6 +31,7 @@ namespace Tests
             this.headings = "rubro";
             this.materials = "material";
             this.locations = new Location();
+            this.company = new Company(this.name, this.locations, this.headings , this.materials);
             
 
         }
@@ -37,40 +39,43 @@ namespace Tests
         /// <summary>
         /// Prueba que el nombre no sea nulo
         /// </summary>
+        [Test]
         public void CompanyNameTest()
         {
-            Company company = new Company(null, this.locations, this.headings , this.materials);
             Assert.IsNotNull(company.Name);
         }
+        
         /// <summary>
         /// Prueba que se añada el usuario a los usuarios de la empresa
         /// </summary>
+        [Test]
         public void AddUserTest()
         {
-            Company company = new Company(null, this.locations, this.headings , this.materials);
-            IRole empresarole = new CompanyRole(company);
+            IRole empresarole = new CompanyRole(this.company);
             User user = new User( 1234567, empresarole);
             company.AddUser(user.Id);
             Assert.IsNotEmpty(company.CompanyUsers);
             
         }
+
         /// <summary>
         /// Prueba que se remueva un usuario determinado de los usuarios de la empresa
         /// </summary>
+        [Test]
         public void RemoveUserTest()
         {
-            Company company = new Company(null, this.locations, this.headings , this.materials);
-            IRole empresarole = new CompanyRole(company);
-            User user = new User( 1234567,empresarole);
+            IRole empresarole = new CompanyRole(this.company);
+            User user = new User(223456,empresarole);
             company.AddUser(user.Id);
             company.RemoveUser(user.Id);
-            Assert.IsNotEmpty(company.CompanyUsers);
+            Assert.IsFalse(this.company.CompanyUsers.Contains(user));
         }
 
 
         /// <summary>
         /// Prueba que se agreguen los materiales a la lista de materiales
         /// </summary>
+        [Test]
         public void ProducedMaterialsTest()
         {
             this.materials = "madera";

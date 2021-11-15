@@ -6,7 +6,7 @@
     <members>
         <member name="T:ConsoleApplication.Program">
             <summary>
-            Programa de consola de demostración.
+            Clase encargada de iniciar el programa
             </summary>
         </member>
         <member name="M:ConsoleApplication.Program.Main">

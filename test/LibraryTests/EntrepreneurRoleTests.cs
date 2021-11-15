@@ -26,15 +26,17 @@ namespace Tests
         /// <summary>
         /// Prueba que RoleType() devuelve la string "emprendedor" 
         /// </summary>
+        [Test]
         public void RoletypeTest()
         {
             string expected = this.role.RoleType(); 
             Assert.AreEqual(expected, "emprendedor");
-
         }
+
         /// <summary>
         /// Prueba que la información del usuario no este vacía
         /// </summary>
+        [Test]
         public void DataTest()
         {
             string expected = this.role.Data();

@@ -22,7 +22,7 @@ namespace ClassLibrary
             {
                 if(value != null)
                 {
-                    this.Entrepreneur = value;
+                    this.entrepreneur = value;
                 }
 
             }

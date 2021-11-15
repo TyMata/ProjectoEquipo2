@@ -5,7 +5,6 @@ using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
-
     /// <summary>
     /// Prueba  la clase <see cref="Market"/>
     /// </summary>
@@ -13,6 +12,7 @@ namespace Tests
     public class MarketTests
     {
         private Offer oferta;
+        private Company company;
 
         /// <summary>
         /// se crea una instancia de offer
@@ -20,7 +20,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.oferta = new Offer(1234567,"material","habilitaciones", new Location(),30,3000, new Company(),true, new DateTime());
+            this.company = new Company("empresa", new Location(), "rubro", "materiales");
+            this.oferta = new Offer(1234567,"material","habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
         }
 
         /// <summary>
@@ -66,7 +67,6 @@ namespace Tests
             Singleton<Market>.Instance.ResumeOffer(1234567);
             Assert.IsNotEmpty(Singleton<Market>.Instance.ActualOfferList);
             Assert.IsEmpty(Singleton<Market>.Instance.SuspendedOfferList);
-
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Tests
         {
             this.channel = new ConsoleMessageChannel();
             this.handler = new ModifyOfferHandler(this.channel);
-            this.oferta = new Offer(1234567,"material","habilitaciones", location, 100,1000, new Company(),true, new DateTime());
+            this.oferta = new Offer(1234567,"material","habilitaciones", location, 100,1000, new Company("nombre", new Location(), "rubro", "material"),true, new DateTime());
         }
 
         /// <summary>

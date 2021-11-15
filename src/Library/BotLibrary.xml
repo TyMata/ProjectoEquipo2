@@ -66,11 +66,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor">
-            <summary>
-            Constructor de Company sin parámetros que aumenta Id cada vez que se le llama
-            </summary>
-        </member>
         <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Constructor de objetos Company
@@ -80,15 +75,15 @@
             <param name="headings"></param>
             <param name="materials"></param>
         </member>
-        <member name="M:ClassLibrary.Company.AddUser(ClassLibrary.User)">
+        <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
-            Añade un usuario a la lista de usuarios pertenecientes a la empresa
-            </summary>
-            <param name="userPar"></param>
+            Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
+            /// </summary>
+            <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32)">
             <summary>
-            Remueve a un usuario de la lista de usuarios pertenecientes a la empresa
+            Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
             </summary>
             <param name="id"></param>
         </member>
@@ -165,24 +160,6 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.InviteTokenGeneratorHandler">
-            <summary>
-            Handler encargado de delegar la creacion de un nuevo token de invitacion para un usuario empresa.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.InviteTokenGeneratorHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de los objetos InviteTokenGeneratorHandler.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.InviteTokenGeneratorHandler.Handle(ClassLibrary.IMessage)">
-            <summary>
-            Pregunta por el nombre de la empresa a la que se le quiere añadir un usuario, delega la creacion de un token de invitacion
-            y lo muestra por pantalla para poder pasarselo al usuario por otro medio por fuera del bot.
-            De no haber una empresa registrada con ese nombre le avisa al usuario de esto.
-            </summary>
-            <param name="input"></param>
-        </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de eliminar una empresa del registro.
@@ -241,6 +218,12 @@
             </summary>
             <param name="channel"></param>
         </member>
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            
+            </summary>
+            <param name="input"></param>
+        </member>
         <member name="T:ClassLibrary.ModifyOfferHandler">
             <summary>
             Handler encargado de delegar la accion de Modificar una oferta
@@ -252,14 +235,20 @@
             </summary>
             <param name="channel"></param>
         </member>
+        <member name="M:ClassLibrary.ModifyOfferHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Metodo
+            </summary>
+            <param name="input"></param>
+        </member>
         <member name="T:ClassLibrary.ModifyPriceHandler">
             <summary>
-            Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
+            Handler para que el usuario empresa pueda modificar el precio de una determinada oferta.
             </summary>
         </member>
         <member name="M:ClassLibrary.ModifyPriceHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ModifyPriceHanlder
+            Constructor de objetos ModifyPriceHandler
             </summary>
             <param name="channel"></param>
         </member>
@@ -304,7 +293,7 @@
         </member>
         <member name="M:ClassLibrary.RemoveOfferHandler.Handle(ClassLibrary.IMessage)">
             <summary>
-            Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+            Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de eliminarla.
             De no existir la oferta le avisa por pantalla al usuario.
             </summary>
@@ -454,14 +443,6 @@
             <summary>
             Constructor de objetos UnregistredCompanyUserHandler
             </summary>
-        </member>
-        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
-            <summary>
-            Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
-            y la creacion de el usuario empresa.
-            De no ser asi se le avisa al usuario.
-            </summary>
-            <param name="input"></param>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
             <summary>
@@ -656,6 +637,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Offer.Keywords">
+            <summary>
+            Palabras claves asignadas
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Offer.Availability">
             <summary>
             Disponibilidad de la oferta
@@ -679,7 +666,6 @@
             <param name="quantityMaterial"></param>
             <param name="totalPrice"></param>
             <param name="company"></param>
-            <param name="keywords"></param>
             <param name="availability"></param>
             <param name="publicationDate"></param>
         </member>
@@ -693,6 +679,25 @@
             Lista de empresas registrados
             </summary>
             <value></value>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.Add(ClassLibrary.Company)">
+            <summary>
+            Por la ley de demeter
+            </summary>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.Remove(ClassLibrary.Company)">
+            <summary>
+            Método para remover empresas de la lista de empresas
+            </summary>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.GetCompanyByUserId(System.Int32)">
+            <summary>
+            Devuelva una empresa segun el id del user
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
@@ -711,6 +716,36 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Market.PublishOffer(ClassLibrary.Offer)">
+            <summary>
+            Añade una nueva oferta a la lista de ofertas actuales
+            </summary>
+            <param name="newOffer"></param>
+        </member>
+        <member name="M:ClassLibrary.Market.RemoveOffer(System.Int32)">
+            <summary>
+            Retira la oferta de la lista de ofertas actuales
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ClassLibrary.Market.SearchOffers(System.String)">
+            <summary>
+            Devuelve una lista de ofertas que cumplan con un parametro de busqueda , ARREGLAR KEYWORDS ANTES
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Market.SuspendOffer(System.Int32)">
+            <summary>
+            Suspende una oferta actual
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ClassLibrary.Market.ResumeOffer(System.Int32)">
+            <summary>
+            A una oferta suspendida la vuelve a activar
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
             Esta clase  representa un registro de tokens
@@ -720,6 +755,40 @@
             <summary>
             Diccionario con nombre de empresas y sus respectivos tokens habilitados
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.IsValidToken(System.String)">
+            <summary>
+            Verifica si el token es valido
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.Add(System.String,ClassLibrary.Company)">
+            <summary>
+            Metodo par añadir un token al diccionario de tokens
+            </summary>
+            <param name="token"></param>
+            <param name="company"></param>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.Remove(System.String)">
+            <summary>
+            Metodo para remover un token del diccionario de tokens
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.Contains(System.String)">
+            <summary>
+            Por la ley de demeter se crea Contains
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.GenerateToken(ClassLibrary.Company)">
+            <summary>
+            Se genera un  token para una nueva empresa y se lo añade al diccionario
+            </summary>
+            <param name="company"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
@@ -733,30 +802,23 @@
             </summary>
             <value></value>
         </member>
-        <member name="T:ClassLibrary.CompanyRegisterServiceProvider">
+        <member name="M:ClassLibrary.UserRegister.Add(ClassLibrary.User)">
             <summary>
-            Esta clase se encarga de añadir, eliminar, suspender y buscar empresas
+            ESto se hace por la ley de demeter
             </summary>
+            <param name="item"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.AddCompanyToCompanyRegister(ClassLibrary.Company)">
+        <member name="M:ClassLibrary.UserRegister.Remove(ClassLibrary.User)">
             <summary>
-            Se añade  empresa a la lista de empresas
+            Remueve un user de la lista. Por la ley de demeter
             </summary>
-            <param name="company"></param>
+            <param name="item"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.RemoveCompany(System.Int32)">
+        <member name="M:ClassLibrary.UserRegister.GetUserById(System.Int32)">
             <summary>
-            Remueve una empresa de la lista de empresa registrados
+            Devuelve  un objeto user segun la id dada
             </summary>
-            <param name="Id"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegisterServiceProvider.SearchCompany(System.String,System.Boolean@)">
-            <summary>
-            Busca una oferta por el nombre y devuelve el objeto Company correspondiente a la empresa y un bool
-            True si la encuentra, False si no la encuentra
-            </summary>
-            <param name="name"></param>
-            <param name="response"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.CompanyServiceProvider">
@@ -795,47 +857,6 @@
             <param name="headings"></param>
             <param name="habilitations"></param>
         </member>
-        <member name="T:ClassLibrary.MarketServiceProvider">
-            <summary>
-            Esta clase se encarga de modificar los objetos Market
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.PublishOffer(ClassLibrary.Offer)">
-            <summary>
-            Añade una nueva oferta a la lista de ofertas actuales
-            </summary>
-            <param name="newOffer"></param>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.RemoveOffer(System.Int32)">
-            <summary>
-            Retira la oferta de la lista de ofertas actuales
-            </summary>
-            <param name="Id"></param>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.SearchOffers">
-            <summary>
-            Devuelve una lista de ofertas que cumplan con un parametro de busqueda
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.GetActualOffers">
-            <summary>
-            Devuelve una lista con las ofertas actuales que hay en Market
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.SuspendOffer(System.Int32)">
-            <summary>
-            Suspende una oferta actual
-            </summary>
-            <param name="Id"></param>
-        </member>
-        <member name="M:ClassLibrary.MarketServiceProvider.ResumeOffer(System.Int32)">
-            <summary>
-            A una oferta suspendida la vuelve a activar
-            </summary>
-            <param name="Id"></param>
-        </member>
         <member name="T:ClassLibrary.OfferServiceProvider">
             <summary>
             Esta clase se encarga de crear y modificar objetos Offer
@@ -861,58 +882,10 @@
             Esta clase se encarga de generar validar y añadir empresas a TokenRegister
             </summary>
         </member>
-        <member name="M:ClassLibrary.TokenRegisterServiceProvider.GenerateToken(System.String)">
-            <summary>
-            Genera un nuevo token de invitacion
-            </summary>
-            <param name="nameCompany"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TokenRegisterServiceProvider.IsValidToken(System.String,ClassLibrary.Company@)">
-            <summary>
-            Verifica si el token es valido
-            </summary>
-            <param name="codigo"></param>
-            <param name="response"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TokenRegisterServiceProvider.AddCompanyToTokenRegister(ClassLibrary.Company)">
-            <summary>
-            Añade una empresa y una lista de tokens vacia a el registro de Tokens
-            </summary>
-            <param name="company"></param>
-        </member>
         <member name="T:ClassLibrary.UserRegisterServiceProvider">
             <summary>
             Esta clase se encarga de la modificacion y busquedas en UserRegister
             </summary>
-        </member>
-        <member name="M:ClassLibrary.UserRegisterServiceProvider.AddUser(System.Int32,ClassLibrary.IRole)">
-            <summary>
-            Añade un usuario a la lista de usuarios registrados
-            </summary>
-            <param name="Id"></param>
-            <param name="role"></param>
-        </member>
-        <member name="M:ClassLibrary.UserRegisterServiceProvider.RemoveUser(System.Int32)">
-            <summary>
-            Remueve un usuario de la lista de usuarios registrados
-            </summary>
-            <param name="Id"></param>
-        </member>
-        <member name="M:ClassLibrary.UserRegisterServiceProvider.IsRegistredUser(System.Int32)">
-            <summary>
-            Verifica si un usuario esta registrado
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.UserRegisterServiceProvider.SearchUser(System.Int32)">
-            <summary>
-            Busca y devuelve un usuario dentro de los usuarios registrados
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Setup">
             <summary>
@@ -989,8 +962,14 @@
             <summary>
             Constructor de User
             </summary>
-            <param name="idPar"></param>
+            <param name="id"></param>
             <param name="role"></param>
+        </member>
+        <member name="M:ClassLibrary.User.IsCompanyUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario empresa.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.AdminRole">
             <summary>
@@ -1002,7 +981,7 @@
             Envia un token para que una compania se pueda unir al bot
             </summary>
         </member>
-        <member name="M:ClassLibrary.AdminRole.TipoRol">
+        <member name="M:ClassLibrary.AdminRole.RoleType">
             <summary>
             Devuelve el tipo de Rol como string
             </summary>
@@ -1031,7 +1010,7 @@
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRole.TipoRol">
+        <member name="M:ClassLibrary.CompanyRole.RoleType">
             <summary>
             Devuelve el tipo de Rol como string
             </summary>
@@ -1057,7 +1036,7 @@
             <param name="headings"></param>
             <param name="habilitation"></param>
         </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.TipoRol">
+        <member name="M:ClassLibrary.EntrepreneurRole.RoleType">
             <summary>
             Devuelve el tipo de Rol como string
             </summary>
@@ -1074,7 +1053,7 @@
             Interface para los roles
             </summary>
         </member>
-        <member name="M:ClassLibrary.IRole.TipoRol">
+        <member name="M:ClassLibrary.IRole.RoleType">
             <summary>
             Se devuelve TipoRol
             </summary>
@@ -1085,6 +1064,18 @@
             Nos devuelve la data del usuario en string
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Singleton`1">
+            <summary>
+            Se crea la clase singleton para usar
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Singleton`1.Instance">
+            <summary>
+            metodo
+            </summary>
+            <value></value>
         </member>
     </members>
 </doc>

@@ -9,12 +9,23 @@ namespace ClassLibrary
     /// </summary>
     public class Market
     {   
+        private List<Offer> actualOfferList = new List<Offer>();
         /// <summary>
         /// Lista de ofertas actuales
         /// </summary>
         /// <value></value>
-        public List<Offer> ActualOfferList {get;set;}
+        public List<Offer> ActualOfferList 
+        {
+            get
+            {
+                return this.actualOfferList;
+            }
+            private set
+            {
+            }
+        }
 
+        private List<Offer> suspendedOfferList = new List<Offer>();
         /// <summary>
         /// Lista de ofertas suspendidas
         /// </summary>

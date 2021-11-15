@@ -32,7 +32,7 @@ namespace ClassLibrary
             {
                 if (value > 0)
                 {
-                    this.Id = value;
+                    this.id = value;
                 }
 
             }
@@ -49,6 +49,10 @@ namespace ClassLibrary
             this.Role = role;
         }
 
+        /// <summary>
+        /// Booleano para comprobar que un usuario es un usuario empresa.
+        /// </summary>
+        /// <returns></returns>
         public bool IsCompanyUser()
         {
             return this.Role is CompanyRole;

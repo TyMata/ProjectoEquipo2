@@ -18,7 +18,7 @@ namespace ClassLibrary
             this.messageChannel = channel ;
         }
         /// <summary>
-        /// Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+        /// Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
         /// de una oferta delega la accion de eliminarla.
         /// De no existir la oferta le avisa por pantalla al usuario.
         /// </summary>
