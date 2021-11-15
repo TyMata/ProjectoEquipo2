@@ -38,8 +38,9 @@ namespace Tests
         [Test]
         public void RemoveTest()
         {
+            Singleton<UserRegister>.Instance.Add(this.user);
             Singleton<UserRegister>.Instance.Remove(this.user);
-            Assert.IsEmpty(Singleton<UserRegister>.Instance.DataUsers);
+            Assert.IsFalse(Singleton<UserRegister>.Instance.Contains(this.user));
             
         }
 
