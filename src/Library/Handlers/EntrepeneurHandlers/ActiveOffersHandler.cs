@@ -8,16 +8,16 @@ namespace ClassLibrary
     public class ActiveOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de objetos ActiveOfferHandler
+        /// Constructor de objetos ActiveOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public ActiveOfferHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
         }
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if ((CanHandle(input)))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Elige el parámetro a utilizar para buscar una oferta:\n")
                                                                             .Append("/BuscarOfertaPorId\n")
@@ -25,12 +25,10 @@ namespace ClassLibrary
                                                                             .Append("/BuscarOfertaPorUbicación\n")
                                                                             .Append("/BuscarOfertaPorMaterial\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+                return true;
                 //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
-            else
-            {
-            this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }   

@@ -22,12 +22,11 @@ namespace ClassLibrary
         /// de una oferta delega la accion de volver a activarla.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-             if(this.CanHandle(input))
+            if(this.CanHandle(input))
             {
                 Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
-
                 if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
@@ -45,12 +44,16 @@ namespace ClassLibrary
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                     Singleton<Market>.Instance.SuspendOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se volvio a activar");
+                    return true;
                 }
                 else 
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
+                    return true;
                 }
-            }     
+               
+            }
+            return false;     
         }
     }
 }

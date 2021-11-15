@@ -30,9 +30,9 @@ namespace Tests
         }
 
         [Test]
-        public void HandleTest()
+        public void InternalHandleTest()
         {
-            handler.Handle(new ConsoleMessage("/modificarcantidad"));
+            handler.InternalHandle(new ConsoleMessage("/modificarcantidad"));
             int cantidad = 4;
             Assert.AreEqual(cantidad, this.oferta.QuantityMaterial);
         }

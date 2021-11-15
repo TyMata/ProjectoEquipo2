@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// Le otorga por pantalla los comandos que puede utilizar el admin.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
             if (this.nextHandler != null)
             {
@@ -32,12 +32,9 @@ namespace ClassLibrary
                                                 .Append("/EliminarEmpresa\n");
                 this.messageChannel.SendMessage(bienvenida.ToString());
                 this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
-            
+            return false;
         }
         
     }

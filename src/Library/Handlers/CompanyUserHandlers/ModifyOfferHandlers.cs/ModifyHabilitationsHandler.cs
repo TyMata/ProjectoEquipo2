@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     /// <summary>
     /// Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
-    /// </summary>
+    /// /// </summary>
     public class ModifyHabilitationsHandler : AbstractHandler
     {
 
@@ -22,16 +22,15 @@ namespace ClassLibrary
         /// 
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override  bool InternalHandle(IMessage input)
         {
-            if(this.nextHandler != null && (CanHandle(input)))
+            if(CanHandle(input))
             {
                 this.messageChannel.SendMessage("Pase por aquí el link que lleva a sus habilitaciones\n");
+                return true;
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
+            
         }
     }
 }

@@ -23,9 +23,9 @@ namespace ClassLibrary
         /// De no existir la oferta le avisa por pantalla al usuario.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if(this.nextHandler != null && (CanHandle(input)))
+            if(CanHandle(input))
             {
                 Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
 
@@ -46,16 +46,14 @@ namespace ClassLibrary
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                     Singleton<Market>.Instance.RemoveOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se retiro del mercado");
+                    return true;
                 }
                 else 
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                 }
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

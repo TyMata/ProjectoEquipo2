@@ -78,12 +78,24 @@
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
             Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
-            /// </summary>
+            /// /// </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32)">
             <summary>
             Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ClassLibrary.Company.AddOffer(ClassLibrary.Offer)">
+            <summary>
+            Añade una oferta al registro de la empresa
+            /// </summary>
+            <param name="offer"></param>
+        </member>
+        <member name="M:ClassLibrary.Company.RemoveOffer(System.Int32)">
+            <summary>
+            Remueve una oferta del registro de ofertas de la empresa
             </summary>
             <param name="id"></param>
         </member>
@@ -114,7 +126,7 @@
             <param name="handler"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AbstractHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
             </summary>
@@ -138,7 +150,7 @@
             Constructor de los objetos AddCompanyHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pide algunos datos de la empresa que se quiere registrar la crea
             </summary>
@@ -154,7 +166,7 @@
             Constructor de los objetos AdminStartHandler.
             </summary>
         </member>
-        <member name="M:ClassLibrary.AdminStartHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AdminStartHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Le otorga por pantalla los comandos que puede utilizar el admin.
             </summary>
@@ -170,7 +182,7 @@
             Constructor de objetos RemoveCompanyHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveCompanyHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveCompanyHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pregunta por el nombre de la empresa la cual se quiere eliminar y luego de 
             verificar que ya esta registrada, la elimina.
@@ -188,7 +200,7 @@
             Constructor de objetos RemoveUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveUserHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveUserHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pregunta por el id del usuario que se quiere eliminar y si el usuario que se quiere eliminar esta registrado
             delega la accion de eliminarlo y lo informa por pantalla.
@@ -207,7 +219,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.CompanyUserHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
             </summary>
@@ -216,7 +228,7 @@
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
-            </summary>
+            /// </summary>
         </member>
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -224,7 +236,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyHabilitationsHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             
             </summary>
@@ -241,7 +253,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyOfferHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ModifyOfferHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Metodo
             </summary>
@@ -258,6 +270,13 @@
             </summary>
             <param name="channel"></param>
         </member>
+        <member name="M:ClassLibrary.ModifyPriceHandler.InternalHandle(ClassLibrary.IMessage)">
+            <summary>
+             Handle
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
@@ -268,6 +287,13 @@
             Constructor de objetos ModifyQuantityHandler
             </summary>
             <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.ModifyQuantityHandler.InternalHandle(ClassLibrary.IMessage)">
+            <summary>
+            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
@@ -280,7 +306,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.PublishOfferHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
             </summary>
@@ -297,7 +323,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.RemoveOfferHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveOfferHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de eliminarla.
@@ -316,7 +342,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ResumeOfferHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ResumeOfferHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de volver a activarla.
@@ -334,7 +360,7 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.SuspendOfferHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.SuspendOfferHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de suspenderla.
@@ -348,7 +374,7 @@
         </member>
         <member name="M:ClassLibrary.ActiveOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ActiveOfferHandler
+            Constructor de objetos ActiveOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -359,7 +385,7 @@
         </member>
         <member name="M:ClassLibrary.SearchOfferByIdHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos SearchOfferByIdHandler
+            Constructor de objetos SearchOfferByIdHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -370,7 +396,7 @@
         </member>
         <member name="M:ClassLibrary.SearchOfferByLocationHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos SearchOfferByLocationHandler
+            Constructor de objetos SearchOfferByLocationHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -381,7 +407,7 @@
         </member>
         <member name="M:ClassLibrary.SearchOfferByMaterialsHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos SearchOfferByMaterialsHandler
+            Constructor de objetos SearchOfferByMaterialsHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -392,7 +418,7 @@
         </member>
         <member name="M:ClassLibrary.SearchOfferByKeyWordsHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos SearchOfferByKeyWordsHandler
+            Constructor de objetos SearchOfferByKeyWordsHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -403,7 +429,7 @@
         </member>
         <member name="M:ClassLibrary.ShowBoughtOffersHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ShowBoughtOffersHandler
+            Constructor de objetos ShowBoughtOffersHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -420,20 +446,27 @@
         </member>
         <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage)">
             <summary>
+            Verifica si se realiza el proceso o se lo manda al next handler
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage)">
+            <summary>
             Ejecución del proceso de Handler
             </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
             Handler encargado de darle final a la CoR
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
             Constructor de objetos EndHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Le avisa al usuario que el comando no se reconocio y 
             va denuevo al primer handler de la cadena
@@ -450,7 +483,7 @@
             Constructor de objetos UnregistredCompanyUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
             y la creacion de el usuario empresa.
@@ -468,7 +501,7 @@
             Constructor de objetos UnregistredEntrepreneurUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
             </summary>
@@ -484,7 +517,7 @@
             Constructor de objetos UnregistredUserHandler.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredUserHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredUserHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             Se encarga de darle la bienvenida al usuario no registrado y preguntarle
             si es un emprendedor o ubn usuario empresa
@@ -675,6 +708,30 @@
             <param name="availability"></param>
             <param name="publicationDate"></param>
         </member>
+        <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
+            <summary>
+            Modifica la cantidad del material
+            </summary>
+            <param name="quantity"></param>
+        </member>
+        <member name="M:ClassLibrary.Offer.ChangeMaterial(System.String)">
+            <summary>
+            Modifica el material
+            </summary>
+            <param name="material"></param>
+        </member>
+        <member name="M:ClassLibrary.Offer.ChangeHabilitation(System.String)">
+            <summary>
+            Modifica las habilitaciones
+            </summary>
+            <param name="habilitation"></param>
+        </member>
+        <member name="M:ClassLibrary.Offer.ChangePrice(System.Int32)">
+            <summary>
+            Modifica el precio
+            </summary>
+            <param name="price"></param>
+        </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
             Esta clase representa un registro de empresas
@@ -703,13 +760,6 @@
             Devuelva una empresa segun el id del user
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
-            <summary>
-            Por la ley de demeter
-            </summary>
-            <param name="company"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.Market">
