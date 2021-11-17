@@ -17,7 +17,7 @@ namespace ClassLibrary
         /// <param name="ubi"></param>
         /// <param name="headings"></param>
         /// <param name="materials"></param>
-        public static Company CreateCompany(string nombre, Location ubi, string headings, string materials)
+        public  Company CreateCompany(string nombre, Location ubi, string headings, string materials)
         {
             Company nuevaCompany = new Company(nombre, ubi, headings, materials);
             Singleton<CompanyRegister>.Instance.Add(nuevaCompany);

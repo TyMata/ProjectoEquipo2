@@ -20,12 +20,12 @@ namespace ClassLibrary
         /// Palabra clave de Handler(comando)
         /// </summary>
         protected string Command;
+        
         /// <summary>
         /// Se setea el próximo handler (nextHandler)
         /// </summary>
         /// <param name="handler"></param>
         /// <returns></returns>
-        
         public IHandler SetNext(IHandler handler)
         {
             this.nextHandler = handler;
@@ -64,6 +64,11 @@ namespace ClassLibrary
             return this.Command.Equals(input.Text.ToLower().Trim());
         }
 
+        /// <summary>
+        /// Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+        /// </summary>
+        /// <param name="message">El mensaje a procesar</param>
+        /// <returns></returns>
         public IHandler Handle(IMessage message)
         {
             if (this.InternalHandle(message))

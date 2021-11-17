@@ -60,15 +60,15 @@ namespace Tests
             Assert.False(Singleton<TokenRegister>.Instance.Contains("54854456"));
         }
 
-        /// <summary>
-        /// Prueba de que se genere un token nuevo y se agregue a la lista de tokens.
-        /// </summary>
-        [Test]
-        public void GenerateTokenTest()
-        {
-            Company company2 = new Company("empresa2", new Location(), "rubro", "materiales");
-            string token = Singleton<TokenRegister>.Instance.GenerateToken(company2);
-            Assert.AreEqual(company2, Singleton<TokenRegister>.Instance.IsValidToken(token));
-        }
+        // /// <summary>
+        // /// Prueba de que se genere un token nuevo y se agregue a la lista de tokens.
+        // /// </summary>
+        // [Test]
+        // public void GenerateTokenTest()
+        // {
+        //     Company company2 = new Company("empresa2", new Location(), "rubro", "materiales");
+        //     string token = Singleton<TokenRegister>.Instance.GenerateToken(company2);
+        //     Assert.AreEqual(company2, Singleton<TokenRegister>.Instance.IsValidToken(token));
+        // }
     }
 }

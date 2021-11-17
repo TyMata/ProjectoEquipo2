@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// Diccionario con nombre de empresas y sus respectivos tokens habilitados
         /// </summary>
         /// <returns></returns>
-        public  Dictionary<string , Company> TokenList = new Dictionary<string,Company>();
+        public Dictionary<string , Company> TokenList = new Dictionary<string,Company>();
 
         /// <summary>
         /// Verifica si el token es valido
@@ -64,30 +64,6 @@ namespace ClassLibrary
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Se genera un  token para una nueva empresa y se lo añade al diccionario
-        /// </summary>
-        /// <param name="company"></param>
-        /// <returns></returns>
-         public string GenerateToken(Company company)
-        {
-            Random rnd = new Random();
-            StringBuilder token = new StringBuilder();
-
-            for (int i = 0; i < 3; i++)         //Creo un nuevo token
-            {
-                int num = rnd.Next(10000, 100000);
-                token.Append(num.ToString());
-                if (i != 2) token.Append("-");
-            }
-            if (!this.TokenList.ContainsKey(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
-            {
-                this.TokenList[token.ToString()] = company;
-                return token.ToString();
-            }
-            return "-1";
-        }
+        }   
     }
 }

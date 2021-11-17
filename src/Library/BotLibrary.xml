@@ -48,6 +48,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Company.InvitationToken">
+            <summary>
+            Token para que un ususario empresa pueda registrarse.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Company.Headings">
             <summary>
             Rubro al que pertenece la empresa
@@ -99,6 +105,13 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="M:ClassLibrary.Company.GenerateToken(ClassLibrary.Company)">
+            <summary>
+            Se genera un  token para una nueva empresa y se lo añade al diccionario
+            </summary>
+            <param name="company"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
             Marcamos el formato del resto de handlers
@@ -138,6 +151,13 @@
             Verifica si el mensaje que recibe es igual al del comando
             </summary>
             <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+            </summary>
+            <param name="message">El mensaje a procesar</param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
@@ -239,23 +259,6 @@
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="T:ClassLibrary.ModifyOfferHandler">
-            <summary>
-            Handler encargado de delegar la accion de Modificar una oferta.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ModifyOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos ModifyOfferHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="M:ClassLibrary.ModifyOfferHandler.InternalHandle(ClassLibrary.IMessage)">
-            <summary>
-            Metodo
             </summary>
             <param name="input"></param>
         </member>
@@ -631,7 +634,7 @@
         </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
-            Esta clase 
+            Esta clase representa una oferta
             </summary>
         </member>
         <member name="P:ClassLibrary.Offer.Id">
@@ -751,16 +754,22 @@
         </member>
         <member name="M:ClassLibrary.CompanyRegister.Remove(ClassLibrary.Company)">
             <summary>
-            Método para remover empresas de la lista de empresas
+            Método para remover empresas de la lista de empresas. Se crea por la ley de Demeter.
             </summary>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.GetCompanyByUserId(System.Int32)">
             <summary>
-            Devuelva una empresa segun el id del user
+            Devuelva una empresa segun el id del user.
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
+            <summary>
+            Por la ley de demeter
+            </summary>
+            <param name="company"></param>
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
@@ -859,13 +868,6 @@
             Por la ley de demeter se crea Contains
             </summary>
             <param name="codigo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TokenRegister.GenerateToken(ClassLibrary.Company)">
-            <summary>
-            Se genera un  token para una nueva empresa y se lo añade al diccionario
-            </summary>
-            <param name="company"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">

@@ -32,6 +32,7 @@ namespace ClassLibrary
                                                                             .Append("/modificaroferta\n")
                                                                             .Append("/buscaroferta\n");
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+                input = this.messageChannel.ReceiveMessage();
                 return true;
                
                 

@@ -31,7 +31,6 @@ namespace ClassLibrary
             this.DataUsers.Add(item);
         }
 
-
         /// <summary>
         /// Remueve un user de la lista. Por la ley de demeter
         /// </summary>
