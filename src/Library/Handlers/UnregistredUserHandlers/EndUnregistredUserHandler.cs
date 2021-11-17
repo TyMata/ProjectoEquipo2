@@ -25,8 +25,8 @@ namespace ClassLibrary
         public override bool InternalHandle(IMessage input)
         {
             this.messageChannel.SendMessage("No se reconocio el comando, intente denuevo");
-            this.nextHandler.Handle(input); //Setear primer Handler de la cadena
-            return true;
+            //Setear primer Handler de la cadena
+            return false;
         }
     }
 }
