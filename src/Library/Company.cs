@@ -96,9 +96,30 @@ namespace ClassLibrary
                 }
             }
         }
+        
+        private string invitationToken;
+        
+        /// <summary>
+        /// Token para que un ususario empresa pueda registrarse.
+        /// </summary>
+        /// <value></value>
+        public string InvitationToken
+        {
+            get
+            {
+                return this.invitationToken;
+            }
+            set
+            {
+                if(value == "-1")
+                {
+                    throw new Exception();
+                }
+                this.invitationToken = value;
+            }
+        }
 
         private string headings;
-
         /// <summary>
         /// Rubro al que pertenece la empresa
         /// </summary>
@@ -122,7 +143,6 @@ namespace ClassLibrary
         }
 
         private List<Offer> offerRegister = new List<Offer>();
-
         /// <summary>
         /// Ofertas realizadas por la empresa
         /// </summary>
@@ -185,6 +205,7 @@ namespace ClassLibrary
             this.id = 0;
             this.Headings = headings;
             this.ProducedMaterials.Add(materials);
+            this.InvitationToken = this.GenerateToken(this);
         }
         
         /// <summary>
@@ -253,7 +274,6 @@ namespace ClassLibrary
         {
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();
-
             for (int i = 0; i < 3; i++)         //Creo un nuevo token
             {
                 int num = rnd.Next(10000, 100000);
