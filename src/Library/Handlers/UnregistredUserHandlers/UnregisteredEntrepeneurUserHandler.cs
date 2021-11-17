@@ -21,9 +21,9 @@ namespace ClassLibrary
         /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)) )
+            if (CanHandle(input))
             {
                 StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
                                                 .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
@@ -37,14 +37,13 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string rubro = this.messageChannel.ReceiveMessage().Text;
                 /*CreateEntrepeneurUser(input, nombre, ubi, habilitaciones,rubro); FALTA CREAR */
+                return true;
                
             }
             else
             {
-                this.nextHandler.Handle(input);
-            }
-            
-        }
-        
+                return false;
+            } 
+        } 
     }
 }

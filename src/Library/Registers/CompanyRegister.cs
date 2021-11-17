@@ -61,7 +61,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public bool Contains(Company company)
         {
-            if (this.companyList.Contains(company))
+            if(this.CompanyList.Contains(company))
             {
                 return true;
             }

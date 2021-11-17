@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// Pide algunos datos de la empresa que se quiere registrar la crea
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
             if (this.nextHandler != null && (CanHandle(input)))
             {
@@ -44,16 +44,11 @@ namespace ClassLibrary
                 string headings = this.messageChannel.ReceiveMessage().Text;
                 Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
                 Company nuevaCompany = CompanyServiceProvider.CreateCompany(nombre, ubi, headings, materials);
-              //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
-                //TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);
-                 
+                return true;
+                //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
+                //TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);         
             }
-            else
-            {
-                this.nextHandler.Handle(input);
-            }
-            
-        }
-        
+            return false;
+        }  
     }
 }

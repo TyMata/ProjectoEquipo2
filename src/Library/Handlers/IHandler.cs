@@ -12,9 +12,17 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="handler"></param>
         IHandler SetNext(IHandler handler);
+
+        /// <summary>
+        /// Verifica si se realiza el proceso o se lo manda al next handler
+        /// </summary>
+        IHandler Handle(IMessage input);
+        
         /// <summary>
         /// Ejecución del proceso de Handler
         /// </summary>
-        void Handle(IMessage input);
+        /// <param name="input"></param>
+        /// <returns></returns>
+        bool InternalHandle(IMessage input);
     }
 }

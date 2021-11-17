@@ -36,18 +36,19 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual void Handle(IMessage input)
+        public virtual bool InternalHandle(IMessage input)
         {
-
-            if (this.nextHandler != null)
-            {
-                this.nextHandler.Handle(input);
-            }
-            else
-            {
-                messageChannel.SendMessage("Ni idea");
-            }
+            throw new Exception();
+            // if (this.nextHandler != null)
+            // {
+            //     this.nextHandler.Handle(input);
+            // }
+            // else
+            // {
+            //     messageChannel.SendMessage("Ni idea");
+            // }
         }
+
         /// <summary>
         /// Verifica si el mensaje que recibe es igual al del comando
         /// </summary>
@@ -61,6 +62,22 @@ namespace ClassLibrary
             }
 
             return this.Command.Equals(input.Text.ToLower().Trim());
+        }
+
+        public IHandler Handle(IMessage message)
+        {
+            if (this.InternalHandle(message))
+            {
+                return this;
+            }
+            else if (this.nextHandler != null)
+            {
+                return this.nextHandler.Handle(message);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// de una oferta delega la accion de suspenderla.
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
             if(this.CanHandle(input))
             {
@@ -45,16 +45,14 @@ namespace ClassLibrary
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                     Singleton<Market>.Instance.SuspendOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se suspendio del mercado");
+                    return true;
                 }
                 else 
                 {
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                 }
             }
-            else
-            {
-                nextHandler.Handle(input);
-            }
+            return false;
         }
     }
 }

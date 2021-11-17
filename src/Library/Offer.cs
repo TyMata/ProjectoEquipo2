@@ -249,5 +249,41 @@ namespace ClassLibrary
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
         }
+
+        /// <summary>
+        /// Modifica la cantidad del material
+        /// </summary>
+        /// <param name="quantity"></param>
+        public void ChangeQuantity(int quantity)
+        {
+            this.QuantityMaterial = quantity;
+        }
+
+        /// <summary>
+        /// Modifica el material
+        /// </summary>
+        /// <param name="material"></param>
+        public void ChangeMaterial(string material)
+        {
+            this.Material = material;
+        }
+
+        /// <summary>
+        /// Modifica las habilitaciones
+        /// </summary>
+        /// <param name="habilitation"></param>
+        public void ChangeHabilitation(string habilitation)
+        {
+            this.Habilitation = habilitation;
+        }
+
+        /// <summary>
+        /// Modifica el precio
+        /// </summary>
+        /// <param name="price"></param>
+        public void ChangePrice(int price)
+        {
+            this.TotalPrice = price;
+        }
     }
 }

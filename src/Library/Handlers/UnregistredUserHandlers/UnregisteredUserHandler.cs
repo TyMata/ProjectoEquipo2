@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// si es un emprendedor o ubn usuario empresa
         /// </summary>
         /// <param name="input"></param>
-        public override void Handle(IMessage input)
+        public override bool InternalHandle(IMessage input)
         {
             if (this.nextHandler != null)
             {
@@ -29,11 +29,13 @@ namespace ClassLibrary
                                                     .Append("¿Eres usuario de una empresa o eres emprendedor?\n");
                 this.messageChannel.SendMessage(bienvenida.ToString());
                 this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
+                return true;
             }
             else
             {
-                this.nextHandler.Handle(input); // ?????????????
+                return false;
             }
         }
+
     }
 }
