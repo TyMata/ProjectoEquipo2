@@ -428,7 +428,7 @@
             Handler encargado de darle final a la CoR
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
             Constructor de objetos EndHandler
             </summary>
@@ -703,13 +703,6 @@
             Devuelva una empresa segun el id del user
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
-            <summary>
-            Por la ley de demeter
-            </summary>
-            <param name="company"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.Market">

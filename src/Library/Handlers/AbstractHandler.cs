@@ -20,12 +20,12 @@ namespace ClassLibrary
         /// Palabra clave de Handler(comando)
         /// </summary>
         protected string Command;
+        
         /// <summary>
         /// Se setea el próximo handler (nextHandler)
         /// </summary>
         /// <param name="handler"></param>
         /// <returns></returns>
-        
         public IHandler SetNext(IHandler handler)
         {
             this.nextHandler = handler;

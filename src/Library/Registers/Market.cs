@@ -20,9 +20,6 @@ namespace ClassLibrary
             {
                 return this.actualOfferList;
             }
-            private set
-            {
-            }
         }
 
         private List<Offer> suspendedOfferList = new List<Offer>();
@@ -38,7 +35,7 @@ namespace ClassLibrary
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Por la ley de demeter se crea ContainsActive
         /// </summary>
         /// <param name="offer"></param>
@@ -55,7 +52,7 @@ namespace ClassLibrary
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Por la ley de demeter se crea ContainsSuspended
         /// </summary>
         /// <param name="offer"></param>
@@ -113,9 +110,7 @@ namespace ClassLibrary
             }
             List<Offer> x = this.ActualOfferList.FindAll(offer => offer.Keywords.Contains(keyword));
             return x;
-        }
-      
-      
+        }      
 
         /// <summary>
         /// Suspende una oferta actual
@@ -132,7 +127,6 @@ namespace ClassLibrary
             this.ActualOfferList.Remove(x);
         }
 
-
         /// <summary>
         /// A una oferta suspendida la vuelve a activar
         /// </summary>
@@ -147,7 +141,5 @@ namespace ClassLibrary
             this.ActualOfferList.Add(x);
             this.SuspendedOfferList.Remove(x);
         }
-
-
     }
 }

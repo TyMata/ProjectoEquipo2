@@ -71,7 +71,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
-         public string GenerateToken(Company company)
+        public string GenerateToken(Company company)
         {
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();

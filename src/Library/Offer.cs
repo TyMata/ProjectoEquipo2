@@ -5,7 +5,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase 
+    /// Esta clase representa una oferta
     /// </summary>
     public class Offer
     {
@@ -51,7 +51,6 @@ namespace ClassLibrary
         }
 
         private string habilitation;
-
         /// <summary>
         /// Habilitaciones necesarias para poder manejar el producto en venta
         /// </summary>
@@ -221,7 +220,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
+                    //EXCEPCION DE OBJETO VACIO O NULO
                 }
             }
         }
