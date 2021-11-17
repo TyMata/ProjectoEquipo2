@@ -29,7 +29,6 @@ namespace ClassLibrary
             {
                 this.messageChannel.SendMessage("¿Cual es el nombre de la empresa que quieres eliminar?");
                 string companyName = this.messageChannel.ReceiveMessage().Text;
-                bool response;
                 Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
                 if (company != null)
                 {

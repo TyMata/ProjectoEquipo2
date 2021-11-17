@@ -214,11 +214,6 @@
             Prueba de que el token este en la lista de tokens.
             </summary>
         </member>
-        <member name="M:Tests.TokenRegisterTests.GenerateTokenTest">
-            <summary>
-            Prueba de que se genere un token nuevo y se agregue a la lista de tokens.
-            </summary>
-        </member>
         <member name="T:Tests.UserRegisterTests">
             <summary>
             Prueba de la clase UserRegister.
