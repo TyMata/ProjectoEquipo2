@@ -280,7 +280,7 @@ namespace ClassLibrary
                 token.Append(num.ToString());
                 if (i != 2) token.Append("-");
             }
-            if (Singleton<TokenRegister>.Instance.Contains(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
+            if (Singleton<TokenRegister>.Instance.IsValid(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
             {
                 throw new Exception(); //EL TOKEN YA EXISTE
             }

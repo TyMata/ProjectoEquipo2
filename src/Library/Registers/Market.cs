@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -33,6 +34,28 @@ namespace ClassLibrary
             {
                 return this.suspendedOfferList;
             }
+        }
+
+        /// <summary>
+        /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="material"></param>
+        /// <param name="habilitation"></param>
+        /// <param name="location"></param>
+        /// <param name="quantityMaterial"></param>
+        /// <param name="totalPrice"></param>
+        /// <param name="company"></param>
+        /// <param name="keywords"></param>
+        /// <param name="availability"></param>
+        /// <returns></returns>
+        public Offer CreateOffer(int id,string material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability)
+        {
+            string[] keyWords= keywords.Split(",");
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            company.AddOffer(nuevaOferta);
+            this.PublishOffer(nuevaOferta);
+            return nuevaOferta;
         }
 
         /// <summary>

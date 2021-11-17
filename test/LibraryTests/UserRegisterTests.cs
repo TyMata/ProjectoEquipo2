@@ -39,7 +39,7 @@ namespace Tests
         {
             Singleton<UserRegister>.Instance.Add(this.user);
             Singleton<UserRegister>.Instance.Remove(this.user);
-            Assert.IsFalse(Singleton<UserRegister>.Instance.Contains(this.user));   
+            Assert.IsFalse(Singleton<UserRegister>.Instance.ContainsUser(this.user));   
         }
 
         /// <summary>
@@ -48,9 +48,7 @@ namespace Tests
         [Test]
         public void GetUserByIdTest()
         {
-            Singleton<UserRegister>.Instance.Add(this.user);
-            
-            // User result = Singleton<UserRegister>.Instance.GetUserById(1234567);
+            Singleton<UserRegister>.Instance.Add(this.user);           
             Assert.IsNotNull(Singleton<UserRegister>.Instance.GetUserById(1234567));
         }
     }

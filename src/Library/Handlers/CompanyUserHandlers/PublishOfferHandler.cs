@@ -38,8 +38,8 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
                 string keywords = this.messageChannel.ReceiveMessage().Text;
                 User usuario = Singleton<UserRegister>.Instance.GetUserById(input.Id);
-               Singleton<Market>.Instance.PublishOffer(OfferServiceProvider.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords,true));
-               return true;
+                Singleton<Market>.Instance.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords,true);
+                return true;
             }
             return false;
             
