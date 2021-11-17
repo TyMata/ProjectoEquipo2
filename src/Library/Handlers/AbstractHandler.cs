@@ -64,6 +64,11 @@ namespace ClassLibrary
             return this.Command.Equals(input.Text.ToLower().Trim());
         }
 
+        /// <summary>
+        /// Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+        /// </summary>
+        /// <param name="message">El mensaje a procesar</param>
+        /// <returns></returns>
         public IHandler Handle(IMessage message)
         {
             if (this.InternalHandle(message))
