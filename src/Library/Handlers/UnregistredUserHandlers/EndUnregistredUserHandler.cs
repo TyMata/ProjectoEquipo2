@@ -15,6 +15,7 @@ namespace ClassLibrary
         public EndHandler(IMessageChannel channel, IHandler handler)
         {
             this.messageChannel = channel;
+            this.nextHandler = handler;
         }
         /// <summary>
         /// Le avisa al usuario que el comando no se reconocio y 

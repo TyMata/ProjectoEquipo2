@@ -32,7 +32,7 @@ namespace Tests
             string token = "123459";
             Singleton<TokenRegister>.Instance.Add(token, company);
             Singleton<TokenRegister>.Instance.Remove(token);
-            Assert.IsFalse(Singleton<TokenRegister>.Instance.Contains(token));
+            Assert.IsFalse(Singleton<TokenRegister>.Instance.IsValid(token));
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Tests
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "245789";
             Singleton<TokenRegister>.Instance.Add(token, company);
-            Assert.AreEqual(Singleton<TokenRegister>.Instance.IsValidToken(token), company);
+            Assert.AreEqual(Singleton<TokenRegister>.Instance.GetCompany(token), company);
         }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace Tests
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "548796";
             Singleton<TokenRegister>.Instance.Add(token, company);
-            Assert.True(Singleton<TokenRegister>.Instance.Contains(token));
-            Assert.False(Singleton<TokenRegister>.Instance.Contains("54854456"));
+            Assert.True(Singleton<TokenRegister>.Instance.IsValid(token));
+            Assert.False(Singleton<TokenRegister>.Instance.IsValid("54854456"));
         }
 
         // /// <summary>
