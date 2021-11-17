@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -95,9 +96,30 @@ namespace ClassLibrary
                 }
             }
         }
+        
+        private string invitationToken;
+        
+        /// <summary>
+        /// Token para que un ususario empresa pueda registrarse.
+        /// </summary>
+        /// <value></value>
+        public string InvitationToken
+        {
+            get
+            {
+                return this.invitationToken;
+            }
+            set
+            {
+                if(value == "-1")
+                {
+                    throw new Exception();
+                }
+                this.invitationToken = value;
+            }
+        }
 
         private string headings;
-
         /// <summary>
         /// Rubro al que pertenece la empresa
         /// </summary>
@@ -121,7 +143,6 @@ namespace ClassLibrary
         }
 
         private List<Offer> offerRegister = new List<Offer>();
-
         /// <summary>
         /// Ofertas realizadas por la empresa
         /// </summary>
@@ -184,6 +205,7 @@ namespace ClassLibrary
             this.id = 0;
             this.Headings = headings;
             this.ProducedMaterials.Add(materials);
+            this.InvitationToken = this.GenerateToken(this);
         }
         
         /// <summary>
@@ -242,6 +264,28 @@ namespace ClassLibrary
             } 
             Offer x = this.OfferRegister.Find(offer => offer.Id == id);
             this.OfferRegister.Remove(x);
+        }
+        /// <summary>
+        /// Se genera un  token para una nueva empresa y se lo añade al diccionario
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns></returns>
+        public string GenerateToken(Company company)
+        {
+            Random rnd = new Random();
+            StringBuilder token = new StringBuilder();
+            for (int i = 0; i < 3; i++)         //Creo un nuevo token
+            {
+                int num = rnd.Next(10000, 100000);
+                token.Append(num.ToString());
+                if (i != 2) token.Append("-");
+            }
+            if (Singleton<TokenRegister>.Instance.Contains(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
+            {
+                throw new Exception(); //EL TOKEN YA EXISTE
+            }
+            Singleton<TokenRegister>.Instance.Add(token.ToString(), this);
+            return token.ToString();
         }
     }
 }

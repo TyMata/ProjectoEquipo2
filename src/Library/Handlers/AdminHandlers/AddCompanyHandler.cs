@@ -24,11 +24,10 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override bool InternalHandle(IMessage input)
         {
-            if (this.nextHandler != null && (CanHandle(input)))
+            if (CanHandle(input))
             {
-                StringBuilder datos = new StringBuilder("Para poder registrar una empresa vamos a necesitar algunos datos de esta\n")
-                                                .Append("Ingrese el nombre de la empresa\n");
-                this.messageChannel.SendMessage(datos.ToString());
+                this.messageChannel.SendMessage("Para poder registrar una empresa vamos a necesitar algunos datos de esta\n");
+                this.messageChannel.SendMessage("Ingrese el nombre de la empresa\n");
                 string nombre = this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Ingrese el pais\n");
                 string pais =  this.messageChannel.ReceiveMessage().Text;
@@ -50,5 +49,12 @@ namespace ClassLibrary
             }
             return false;
         }  
+
+        // private string AskForCompanyName()
+        // {
+        //     this.messageChannel.SendMessage("Ingrese el nombre de la empresa\n");
+        //     string nombre;
+        //     nombre = this.messageChannel.ReceiveMessage().Text;
+        // }
     }
 }

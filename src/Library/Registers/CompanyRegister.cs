@@ -32,7 +32,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Método para remover empresas de la lista de empresas
+        /// Método para remover empresas de la lista de empresas. Se crea por la ley de Demeter.
         /// </summary>
         /// <param name="company"></param>
         public void Remove(Company company)
@@ -45,7 +45,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelva una empresa segun el id del user
+        /// Devuelva una empresa segun el id del user.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -55,6 +55,10 @@ namespace ClassLibrary
             return (x.Role as CompanyRole).Company;
         } 
 
+        /// <summary>
+        /// Por la ley de demeter
+        /// </summary>
+        /// <param name="company"></param>
         public bool Contains(Company company)
         {
             if(this.CompanyList.Contains(company))
