@@ -140,6 +140,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage)">
+            <summary>
+            Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+            </summary>
+            <param name="message">El mensaje a procesar</param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
@@ -239,23 +246,6 @@
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage)">
             <summary>
             
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="T:ClassLibrary.ModifyOfferHandler">
-            <summary>
-            Handler encargado de delegar la accion de Modificar una oferta.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ModifyOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos ModifyOfferHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="M:ClassLibrary.ModifyOfferHandler.InternalHandle(ClassLibrary.IMessage)">
-            <summary>
-            Metodo
             </summary>
             <param name="input"></param>
         </member>

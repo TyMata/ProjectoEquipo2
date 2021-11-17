@@ -16,6 +16,8 @@ namespace ClassLibrary
             this.Command = "/buscarofertaporkeyWords";
             this.messageChannel = channel;
         }
+
+        
         public override bool InternalHandle(IMessage input)
         {
             if ((CanHandle(input)))
