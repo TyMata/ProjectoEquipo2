@@ -29,12 +29,22 @@ namespace Tests
             this.handler = new ModifyQuantityHandler(messageChannel);
         }
 
+        /// <summary>
+        /// Prueba que se realice el handle
+        /// </summary>
         [Test]
         public void InternalHandleTest()
         {
-            handler.InternalHandle(new ConsoleMessage("/modificarcantidad"));
-            int cantidad = 4;
-            Assert.AreEqual(cantidad, this.oferta.QuantityMaterial);
+            Assert.IsTrue(handler.InternalHandle(new ConsoleMessage("/modificarcantidad")));
+        }
+
+        /// <summary>
+        /// Prueba que no se realice el handler
+        /// </summary>
+        [Test]
+        public void InternalNotHandleTest()
+        {
+            Assert.IsFalse(handler.InternalHandle(new ConsoleMessage("/modificarprecio")));
         }
     }
 }

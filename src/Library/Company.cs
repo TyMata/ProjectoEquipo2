@@ -245,7 +245,7 @@ namespace ClassLibrary
         /// <param name="offer"></param>
         public void AddOffer(Offer offer)
         {
-            if (!this.OfferRegister.Exists(x => x == offer))
+            if (this.OfferRegister.Exists(x => x == offer))
             {
                 throw new Exception();
             }   

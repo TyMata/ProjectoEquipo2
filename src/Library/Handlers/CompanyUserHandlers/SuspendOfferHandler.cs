@@ -27,12 +27,11 @@ namespace ClassLibrary
             if(this.CanHandle(input))
             {
                 Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
-
                 if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
-                    foreach (Offer item in Singleton<Market>.Instance.ActualOfferList) //en vez de marketServiceProvider deberia ser company
+                    foreach (Offer item in company.OfferRegister) 
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")

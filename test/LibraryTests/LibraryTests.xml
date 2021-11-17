@@ -104,21 +104,6 @@
             Prueba que la información del usuario no este vacía.
             </summary>
         </member>
-        <member name="T:Tests.ModifyOfferHandlerTest">
-            <summary>
-            Prueba el handler para que la empresa pueda modificar la oferta.
-            </summary>
-        </member>
-        <member name="M:Tests.ModifyOfferHandlerTest.SetUp">
-            <summary>
-            Se crean instancias de IMessageChannel, el handler a testear y una nueva oferta para lsd pruebas.
-            </summary>
-        </member>
-        <member name="M:Tests.ModifyOfferHandlerTest.HandleTest">
-            <summary>
-            Prueba el Handle del handler.
-            </summary>
-        </member>
         <member name="T:Tests.ModifyQuantityHandlerTest">
             <summary>
             Prueba el handler para modificar la cantidad en una oferta.
@@ -127,6 +112,16 @@
         <member name="M:Tests.ModifyQuantityHandlerTest.Setup">
             <summary>
             SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyQuantityHandlerTest.InternalHandleTest">
+            <summary>
+            Prueba que se realice el handle
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyQuantityHandlerTest.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler
             </summary>
         </member>
         <member name="T:Tests.MarketTest">

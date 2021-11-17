@@ -5,6 +5,7 @@
 //--------------------------------------------------------------------------------
 
 using System;
+using Ucu.Poo.Locations.Client;
 using ClassLibrary;
 
 namespace ConsoleApplication
@@ -19,6 +20,10 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
+        
+        
+                        
+            
         }
     }
 }
