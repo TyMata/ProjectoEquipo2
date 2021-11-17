@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {   
@@ -23,7 +24,30 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// ESto se hace por la ley de demeter
+        /// Crea un usuario empresa
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="company"></param>
+        public  void CreateCompanyUser(IMessage input,Company company)
+        {
+            company.AddUser(input.Id);
+        }
+        /// <summary>
+        /// Crea un usuario emprendedor
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="name"></param>
+        /// <param name="location"></param>
+        /// <param name="headings"></param>
+        /// <param name="habilitations"></param>
+        public void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
+        {
+            IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
+            User usuario = new User(input.Id, rol);
+        }
+
+        /// <summary>
+        /// Esto se hace por la ley de demeter
         /// </summary>
         /// <param name="item"></param>
         public void Add(User item)
@@ -49,7 +73,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool Contains(User user)
+        public bool ContainsUser(User user)
         {
             if(this.DataUsers.Contains(user))
             {
