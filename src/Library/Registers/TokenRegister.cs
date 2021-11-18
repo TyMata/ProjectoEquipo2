@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
-        public Company IsValidToken(string codigo)
+        public Company GetCompany(string codigo)
         {
             if (!TokenList.ContainsKey(codigo))
             {
@@ -54,7 +54,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
-        public bool Contains(string codigo)
+        public bool IsValid(string codigo)
         {
             if(this.TokenList.ContainsKey(codigo))
             {

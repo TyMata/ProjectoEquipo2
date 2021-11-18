@@ -26,15 +26,15 @@ namespace ClassLibrary
             {
                 StringBuilder bienvenida = new StringBuilder("Bienvenido Admin!\n")
                                                 .Append("Que quieres hacer?\n")
-                                                .Append("/UnirEmpresa\n")
-                                                .Append("/GenerarTokenDeInvitacion\n")
+                                                .Append("/RegistrarEmpresa\n")
                                                 .Append("/EliminarUsuario\n")
                                                 .Append("/EliminarEmpresa\n");
                 this.messageChannel.SendMessage(bienvenida.ToString());
-                this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
-                return true;
+                IMessage input2 = this.messageChannel.ReceiveMessage();
+                this.nextHandler.Handle(input2);
+                return false;
             }
-            return false;
+            return true;
         }
         
     }

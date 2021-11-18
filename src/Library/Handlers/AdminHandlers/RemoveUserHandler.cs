@@ -14,7 +14,7 @@ namespace ClassLibrary
         /// </summary>
         public RemoveUserHandler(IMessageChannel channel)
         {
-            this.Command = "/eliminarusuario";
+            this.Command = "eliminarusuario";
             this.messageChannel = channel;
         }
         /// <summary>
