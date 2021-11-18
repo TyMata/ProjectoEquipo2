@@ -8,7 +8,7 @@ namespace ClassLibrary
     public interface IMessageChannel
     {
         /// <summary>
-        /// Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido
+        /// Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido.
         /// </summary>
         /// <returns></returns>
         IMessage ReceiveMessage();

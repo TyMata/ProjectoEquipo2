@@ -10,7 +10,7 @@ namespace ClassLibrary
     {
         
         /// <summary>
-        /// Constructor de objetos UnregistredEntrepreneurUserHandler
+        /// Constructor de objetos UnregistredEntrepreneurUserHandler.
         /// </summary>
         public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
         {
@@ -38,7 +38,6 @@ namespace ClassLibrary
                 string rubro = this.messageChannel.ReceiveMessage().Text;
                 /*CreateEntrepeneurUser(input, nombre, ubi, habilitaciones,rubro); FALTA CREAR */
                 return true;
-               
             }
             else
             {

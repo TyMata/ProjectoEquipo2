@@ -226,7 +226,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Constructor de Offer
+        /// Constructor de Offer.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="material"></param>
@@ -251,7 +251,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica la cantidad del material
+        /// Modifica la cantidad del material.
         /// </summary>
         /// <param name="quantity"></param>
         public void ChangeQuantity(int quantity)

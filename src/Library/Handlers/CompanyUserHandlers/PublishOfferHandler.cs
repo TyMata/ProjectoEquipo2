@@ -9,7 +9,7 @@ namespace ClassLibrary
     public class PublishOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de objetos PublishOfferHandler
+        /// Constructor de objetos PublishOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public PublishOfferHandler(IMessageChannel channel)

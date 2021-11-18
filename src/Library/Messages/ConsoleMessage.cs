@@ -25,7 +25,7 @@ namespace ClassLibrary
             }
             }
         /// <summary>
-        /// Constructor de ConsoleMessage
+        /// Constructor de ConsoleMessage.
         /// </summary>
         /// <param name="mensaje"></param>
         public ConsoleMessage(string mensaje)

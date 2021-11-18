@@ -75,7 +75,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Constructor de objetos Material
+        /// Constructor de objetos Material.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type"></param>

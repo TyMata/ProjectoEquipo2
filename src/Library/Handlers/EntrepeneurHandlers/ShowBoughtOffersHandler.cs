@@ -17,7 +17,7 @@ namespace ClassLibrary
         }
         public override bool InternalHandle(IMessage input)
         {
-            if ((CanHandle(input)))
+            if (CanHandle(input))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Elige el parámetro a utilizar para buscar el recibo de una oferta:\n")
                                                                             .Append("/BuscarOfertaPorId\n")

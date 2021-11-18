@@ -36,7 +36,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea ContainsActive
+        /// Por la ley de demeter se crea ContainsActive.
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Añade una nueva oferta a la lista de ofertas actuales
+        /// Añade una nueva oferta a la lista de ofertas actuales.
         /// </summary>
         /// <param name="newOffer"></param>
         public void PublishOffer(Offer newOffer)
@@ -80,11 +80,10 @@ namespace ClassLibrary
                 throw new Exception(); //CAMBIAR EXCEPTION
             }
             this.ActualOfferList.Add(newOffer);
-             
         }
 
         /// <summary>
-        /// Retira la oferta de la lista de ofertas actuales
+        /// Retira la oferta de la lista de ofertas actuales.
         /// </summary>
         /// <param name="id"></param>
         public void RemoveOffer(int id)
@@ -95,7 +94,6 @@ namespace ClassLibrary
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Remove(x);
-    
         }
 
         /// <summary>
@@ -128,7 +126,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// A una oferta suspendida la vuelve a activar
+        /// A una oferta suspendida la vuelve a activar.
         /// </summary>
         /// <param name="id"></param>
         public void ResumeOffer(int id)

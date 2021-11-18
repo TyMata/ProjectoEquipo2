@@ -20,7 +20,7 @@ namespace ClassLibrary
         
         public override bool InternalHandle(IMessage input)
         {
-            if ((CanHandle(input)))
+            if (CanHandle(input))
             {
                 this.messageChannel.SendMessage("Escriba las palabras claves de la oferta a buscar");
                 return true;

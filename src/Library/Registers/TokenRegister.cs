@@ -30,7 +30,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo par añadir un token al diccionario de tokens
+        /// Metodo par añadir un token al diccionario de tokens.
         /// </summary>
         /// <param name="token"></param>
         /// <param name="company"></param>
@@ -40,7 +40,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo para remover un token del diccionario de tokens
+        /// Metodo para remover un token del diccionario de tokens.
         /// </summary>
         /// <param name="token"></param>
         public void Remove(string token)
@@ -50,7 +50,7 @@ namespace ClassLibrary
 
 
         /// <summary>
-        /// Por la ley de demeter se crea Contains
+        /// Por la ley de demeter se crea Contains.
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
