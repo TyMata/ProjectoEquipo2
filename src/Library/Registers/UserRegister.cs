@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -7,7 +9,7 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase representa un registro de usuarios
     /// </summary>
-    public class UserRegister
+    public class UserRegister : IJsonConvertible
     {   
         private List<User> dataUsers = new List<User>();
         /// <summary>
@@ -23,6 +25,36 @@ namespace ClassLibrary
             private set{} //CARGAR DE JSON LISTA DE USUARIOS REGISTRADOS
         }
 
+        
+        private UserRegister()
+        {
+            Initialize();
+        }
+
+        private static UserRegister instance;
+
+        /// <summary>
+        /// Instancia de UserRegister (COMENTAR SINGLETON)
+        /// </summary>
+        /// <value></value>
+        public static UserRegister Instance
+        {
+            get{
+                if (instance == null)
+                {
+                    instance = new UserRegister();
+                }
+
+                return instance;
+            }
+        }
+
+        public void Initialize()
+        {
+           this.DataUsers = new List<User>();
+        }
+
+
         /// <summary>
         /// Crea un usuario empresa
         /// </summary>
@@ -32,6 +64,7 @@ namespace ClassLibrary
         {
             company.AddUser(input.Id);
         }
+        
         /// <summary>
         /// Crea un usuario emprendedor
         /// </summary>
@@ -103,6 +136,43 @@ namespace ClassLibrary
             }
 
             return result;
+        }
+
+        public string ConvertToJson()
+        {
+            string result = "{\"Items\":[";
+
+            foreach (var item in this.DataUsers)
+            {
+                result = result + item.ConvertToJson() + ",";
+            }
+
+            result = result.Remove(result.Length - 1);
+            result = result + "]}";
+
+            string temp = JsonSerializer.Serialize(this.DataUsers);
+            return result;
+            
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this.DataUsers, options);            
+        }
+
+        public void LoadFromJson(string json)
+        {
+            this.Initialize();
+            User user = JsonSerializer.Deserialize<User>(json);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            user = JsonSerializer.Deserialize<User>(json, options);
         }
     }
 }

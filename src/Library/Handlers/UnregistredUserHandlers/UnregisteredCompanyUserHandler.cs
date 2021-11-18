@@ -34,9 +34,9 @@ namespace ClassLibrary
                 string codigo = this.messageChannel.ReceiveMessage().Text;
                 //Company response;
 
-                if (Singleton<TokenRegister>.Instance.IsValid(codigo))
+                if (TokenRegister.Instance.IsValid(codigo))
                 {
-                    Company temp = Singleton<TokenRegister>.Instance.GetCompany(codigo);
+                    Company temp = TokenRegister.Instance.GetCompany(codigo);
                     temp.AddUser(input.Id);
                     return true;
                 }

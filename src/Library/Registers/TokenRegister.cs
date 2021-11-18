@@ -1,22 +1,48 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace ClassLibrary
+namespace ClassLibrary 
 {
     /// <summary>
     /// Esta clase  representa un registro de tokens
     /// </summary>
-    public class TokenRegister
+    public class TokenRegister : IJsonConvertible
     {   
         /// <summary>
         /// Diccionario con nombre de empresas y sus respectivos tokens habilitados
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string , Company> TokenList = new Dictionary<string,Company>();
+        [JsonInclude]
+        public Dictionary<string , Company> TokenList;
+
+        private static TokenRegister instance;
+
+        private TokenRegister()
+        {
+            Initialize();
+        }
+
+        public static TokenRegister Instance
+        {
+            get{
+                if (instance == null)
+                {
+                    instance = new TokenRegister();
+                }
+
+                return instance;
+            }
+        }
+
+        public void Initialize()
+        {
+            this.TokenList = new Dictionary<string, Company>();
+        }
 
         /// <summary>
-        /// Verifica si el token es valido
+        /// Devuelve la empresa a la cual le pertenece un codigo
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
@@ -64,6 +90,29 @@ namespace ClassLibrary
             {
                 return false;
             }
-        }   
+        }
+
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+            return JsonSerializer.Serialize(this, options);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            this.Initialize();
+            string token = JsonSerializer.Deserialize<string>(json);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            token = JsonSerializer.Deserialize<string>(json, options);
+        }
     }
 }

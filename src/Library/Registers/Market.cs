@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -8,13 +10,34 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase representa el mercado con sus ofertas
     /// </summary>
-    public class Market
+    public class Market : IJsonConvertible
     {   
-        private List<Offer> actualOfferList = new List<Offer>();
+        private static Market instance;
+        
+        private Market()
+        {
+            Initialize();
+        } 
+
+        public static Market Instance
+        {
+            get{
+                if (instance == null)
+                {
+                    instance = new Market();
+                }
+
+                return instance;
+            }
+        }   
+
+        private List<Offer> actualOfferList;
+
         /// <summary>
         /// Lista de ofertas actuales
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<Offer> ActualOfferList 
         {
             get
@@ -23,11 +46,17 @@ namespace ClassLibrary
             }
         }
 
+        public void Initialize()
+        {
+            this.actualOfferList = new List<Offer>();
+        }
+
         private List<Offer> suspendedOfferList = new List<Offer>();
         /// <summary>
         /// Lista de ofertas suspendidas
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<Offer> SuspendedOfferList 
         {
             get
@@ -46,12 +75,10 @@ namespace ClassLibrary
         /// <param name="quantityMaterial"></param>
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
-        /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(int id,string material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability)
+        public Offer CreateOffer(int id, Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
-            string[] keyWords= keywords.Split(",");
             Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
@@ -161,6 +188,34 @@ namespace ClassLibrary
             Offer x = this.SuspendedOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Add(x);
             this.SuspendedOfferList.Remove(x);
+        }
+
+        /// <summary>
+        /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns>El objeto convertido a texto en formato Json.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+            return JsonSerializer.Serialize(this, options);
+        }
+        
+        public void LoadFromJson(string json)
+        {
+            this.Initialize();
+            Offer offer = JsonSerializer.Deserialize<Offer>(json);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            offer = JsonSerializer.Deserialize<Offer>(json, options);
         }
     }
 }

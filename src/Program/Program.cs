@@ -5,9 +5,13 @@
 //--------------------------------------------------------------------------------
 
 using System;
-using Ucu.Poo.Locations.Client;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using ClassLibrary;
+using Ucu.Poo.Locations.Client;
 
 namespace ConsoleApplication
 {
@@ -40,6 +44,34 @@ namespace ConsoleApplication
                 return;
             }
 
+            }
+
+            if (!File.Exists(@"data.json"))
+            {
+                CompanyRegister.Instance.CreateCompany("empresa", new Location(), "rubro");
+                Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
+                Offer offer = new Offer();
+                Market.Instance.CreateOffer(1234567, new Material(), "habilitación", company.Locations, 25, 10000, company, true);
+
+                string json = offer.ConvertToJson();
+                Console.WriteLine(json);
+                File.WriteAllText(@"data.json", json);
+            }
+            else
+            {
+                Market.Instance.Initialize();
+
+                string json = File.ReadAllText(@"data.json");
+
+
+                JsonSerializerOptions options = new()
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true
+                };
+
+                Offer offer = JsonSerializer.Deserialize<Offer>(json, options);
+                Console.WriteLine(offer.ConvertToJson());
             }
         }
     }

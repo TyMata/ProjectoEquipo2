@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -7,14 +9,39 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase representa un registro de empresas
     /// </summary>
-    public class CompanyRegister
+    public class CompanyRegister : IJsonConvertible
     {   
-        private List<Company> companyList = new List<Company>();
+        private static CompanyRegister instance;
+
+        private CompanyRegister()
+        {
+            Initialize();
+        }
+
+        public static CompanyRegister Instance
+        {
+            get{
+                if (instance == null)
+                {
+                    instance = new CompanyRegister ();
+                }
+
+                return instance;
+            }
+        }
+
+        private List<Company> companyList;
+
+        public void Initialize()
+        {
+            this.companyList = new List<Company>();
+        }
 
         /// <summary>
         /// Lista de empresas registrados
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public  List<Company> CompanyList 
         {
             get
@@ -22,7 +49,7 @@ namespace ClassLibrary
                 return companyList;
             }
         }
-
+        
         /// <summary>
         /// Por la ley de demeter
         /// </summary>
@@ -52,7 +79,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public Company GetCompanyByUserId(int id)
         {
-            User x = Singleton<UserRegister>.Instance.GetUserById(id);
+            User x = UserRegister.Instance.GetUserById(id);
             return (x.Role as CompanyRole).Company;
         } 
 
@@ -78,13 +105,27 @@ namespace ClassLibrary
         /// <param name="nombre"></param>
         /// <param name="ubi"></param>
         /// <param name="headings"></param>
-        /// <param name="materials"></param>
-        public Company CreateCompany(string nombre, Location ubi, string headings, string materials)
+        public Company CreateCompany(string nombre, Location ubi, string headings)
         {
-            Company nuevaCompany = new Company(nombre, ubi, headings, materials);
-            Singleton<CompanyRegister>.Instance.Add(nuevaCompany);
-            Singleton<TokenRegister>.Instance.TokenList.Add("nuevo token",nuevaCompany);
+            Company nuevaCompany = new Company(nombre, ubi, headings);
+            CompanyRegister.Instance.Add(nuevaCompany);
+            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany);
             return nuevaCompany;
+        }
+
+        /// <summary>
+        /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns>El objeto convertido a texto en formato Json.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

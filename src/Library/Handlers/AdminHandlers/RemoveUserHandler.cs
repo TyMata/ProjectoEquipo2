@@ -29,10 +29,10 @@ namespace ClassLibrary
             {
                 this.messageChannel.SendMessage("¿Cual es el Id del usuario que quieres eliminar?");
                 int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                User user = Singleton<UserRegister>.Instance.GetUserById(id);
+                User user = UserRegister.Instance.GetUserById(id);
                 if (user != null)
                 {
-                    Singleton<UserRegister>.Instance.Remove(user);
+                    UserRegister.Instance.Remove(user);
                     this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");
                     
                 }

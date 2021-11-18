@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
@@ -7,7 +9,7 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase representa una oferta
     /// </summary>
-    public class Offer
+    public class Offer : IJsonConvertible
     {
         private int id;
 
@@ -25,13 +27,13 @@ namespace ClassLibrary
                 this.id = value;
             }
         }
-        private string material;
+        private Material material;
 
         /// <summary>
         /// Material que se vende en la oferta
         /// </summary>
         /// <value></value>
-        public string Material
+        public Material Material
         {
             get
             {
@@ -159,10 +161,12 @@ namespace ClassLibrary
 
         private List<string> keywords = new List<string>();
 
+        
         /// <summary>
         /// Palabras claves asignadas
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<string> Keywords
         {
             get
@@ -237,7 +241,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer(int id, string material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
+        public Offer(int id, Material material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
         {
             this.Id = id;
             this.Material = material;
@@ -249,6 +253,12 @@ namespace ClassLibrary
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
         }
+        /// <summary>
+        /// JsonConstructor para objetos Offer.
+        /// </summary>
+        [JsonConstructor]
+        public Offer()
+        {}
 
         /// <summary>
         /// Modifica la cantidad del material.
@@ -263,7 +273,7 @@ namespace ClassLibrary
         /// Modifica el material
         /// </summary>
         /// <param name="material"></param>
-        public void ChangeMaterial(string material)
+        public void ChangeMaterial(Material material)
         {
             this.Material = material;
         }
@@ -284,6 +294,22 @@ namespace ClassLibrary
         public void ChangePrice(int price)
         {
             this.TotalPrice = price;
+        }
+
+        /// <summary>
+        /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns>El objeto convertido a texto en formato Json.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }
