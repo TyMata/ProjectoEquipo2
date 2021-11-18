@@ -27,13 +27,13 @@ namespace ClassLibrary
         {
             if(CanHandle(input))
             {
-                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                Company company =CompanyRegister.Instance.GetCompanyByUserId(input.Id);
 
                 if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas actuales:\n");
-                    foreach (Offer item in Singleton<Market>.Instance.ActualOfferList)
+                    foreach (Offer item in Market.Instance.ActualOfferList)
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
@@ -44,7 +44,7 @@ namespace ClassLibrary
                     sb.Append("¿Cual es el Id de la que quiere retirar?");
                     this.messageChannel.SendMessage(sb.ToString());
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    Singleton<Market>.Instance.RemoveOffer(id);
+                    Market.Instance.RemoveOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se retiro del mercado");
                     return true;
                 }

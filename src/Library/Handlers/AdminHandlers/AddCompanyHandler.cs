@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override bool InternalHandle(IMessage input)
         {
-            if (this.CanHandle(input))
+            if (CanHandle(input))
             {
                 this.messageChannel.SendMessage("Para poder registrar una empresa vamos a necesitar algunos datos de esta\n");
                 this.messageChannel.SendMessage("Ingrese el nombre de la empresa\n");
@@ -42,7 +42,7 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string headings = this.messageChannel.ReceiveMessage().Text;
                 Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
-                Company nuevaCompany = Singleton<CompanyRegister>.Instance.CreateCompany(nombre, ubi, headings, materials);
+                Company nuevaCompany = CompanyRegister.Instance.CreateCompany(nombre, ubi, headings, materials);
                 return true;
                 //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
                 //TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);         
