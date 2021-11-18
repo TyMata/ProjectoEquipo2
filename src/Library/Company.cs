@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 
@@ -9,7 +11,7 @@ namespace ClassLibrary
     /// <summary>
     /// Esta clase representa una empresa
     /// </summary>
-    public class Company
+    public class Company : IJsonConvertible
     {
         
         private int id;
@@ -26,7 +28,7 @@ namespace ClassLibrary
             }
             private set
             { 
-                this.id = Singleton<CompanyRegister>.Instance.CompanyList.Count + 1;
+                this.id = CompanyRegister.Instance.CompanyList.Count + 1;
             }
         }
 
@@ -78,6 +80,7 @@ namespace ClassLibrary
         /// Lista de usuarios pertenecientes a la empresa
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<User> CompanyUsers 
         {
             get
@@ -147,6 +150,7 @@ namespace ClassLibrary
         /// Ofertas realizadas por la empresa
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<Offer> OfferRegister 
         {
             get
@@ -172,6 +176,7 @@ namespace ClassLibrary
         /// Materiales producidos por la empresa
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<string> ProducedMaterials
         {
             get
@@ -190,6 +195,16 @@ namespace ClassLibrary
                 }
             }
         }
+
+        /// <summary>
+        /// JsonConstructor de objetos Company.
+        /// </summary>
+        [JsonConstructor]
+        public Company()
+        {
+
+        }
+
 
         /// <summary>
         /// Constructor de objetos Company
@@ -221,7 +236,7 @@ namespace ClassLibrary
 
             IRole rol = new CompanyRole(this);
             User user = new User(id, rol);
-            Singleton<UserRegister>.Instance.Add(user);
+            UserRegister.Instance.Add(user);
             this.CompanyUsers.Add(user);
         }
         
@@ -280,12 +295,27 @@ namespace ClassLibrary
                 token.Append(num.ToString());
                 if (i != 2) token.Append("-");
             }
-            if (Singleton<TokenRegister>.Instance.IsValid(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
+            if (TokenRegister.Instance.IsValid(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
             {
                 throw new Exception(); //EL TOKEN YA EXISTE
             }
-            Singleton<TokenRegister>.Instance.Add(token.ToString(), this);
+            TokenRegister.Instance.Add(token.ToString(), this);
             return token.ToString();
+        }
+        
+        /// <summary>
+        /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns>El objeto convertido a texto en formato Json.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }
