@@ -18,8 +18,8 @@ namespace Tests
         {
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "145789";
-            Singleton<TokenRegister>.Instance.Add(token, company);
-            Assert.IsNotNull(Singleton<TokenRegister>.Instance.TokenList);
+            TokenRegister.Instance.Add(token, company);
+            Assert.IsNotNull(TokenRegister.Instance.TokenList);
         }
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace Tests
         {
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "123459";
-            Singleton<TokenRegister>.Instance.Add(token, company);
-            Singleton<TokenRegister>.Instance.Remove(token);
-            Assert.IsFalse(Singleton<TokenRegister>.Instance.IsValid(token));
+            TokenRegister.Instance.Add(token, company);
+            TokenRegister.Instance.Remove(token);
+            Assert.IsFalse(TokenRegister.Instance.IsValid(token));
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace Tests
         {
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "245789";
-            Singleton<TokenRegister>.Instance.Add(token, company);
-            Assert.AreEqual(Singleton<TokenRegister>.Instance.GetCompany(token), company);
+            TokenRegister.Instance.Add(token, company);
+            Assert.AreEqual(TokenRegister.Instance.GetCompany(token), company);
         }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace Tests
         {
             Company company = new Company("empresa", new Location(), "rubro", "materiales");
             string token = "548796";
-            Singleton<TokenRegister>.Instance.Add(token, company);
-            Assert.True(Singleton<TokenRegister>.Instance.IsValid(token));
-            Assert.False(Singleton<TokenRegister>.Instance.IsValid("54854456"));
+            TokenRegister.Instance.Add(token, company);
+            Assert.True(TokenRegister.Instance.IsValid(token));
+            Assert.False(TokenRegister.Instance.IsValid("54854456"));
         }
 
         // /// <summary>

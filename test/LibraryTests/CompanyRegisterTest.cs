@@ -27,8 +27,8 @@ namespace Tests
         [Test]
         public void AddTest()
         {
-            Singleton<CompanyRegister>.Instance.Add(this.company);
-            Assert.IsTrue(Singleton<CompanyRegister>.Instance.CompanyList.Contains(this.company));
+            CompanyRegister.Instance.Add(this.company);
+            Assert.IsTrue(CompanyRegister.Instance.CompanyList.Contains(this.company));
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace Tests
         [Test]
         public void RemoveTest()
         {
-            Singleton<CompanyRegister>.Instance.Add(this.company);
-            Singleton<CompanyRegister>.Instance.Remove(this.company);
-            Assert.IsFalse(Singleton<CompanyRegister>.Instance.Contains(this.company));
+            CompanyRegister.Instance.Add(this.company);
+            CompanyRegister.Instance.Remove(this.company);
+            Assert.IsFalse(CompanyRegister.Instance.Contains(this.company));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tests
         {
             User user = new User(1234567, new CompanyRole(this.company));
             company.CompanyUsers.Add(user);
-            Company result = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(1234567);
+            Company result = CompanyRegister.Instance.GetCompanyByUserId(1234567);
             Assert.AreEqual(this.company, result);
         }
     }
