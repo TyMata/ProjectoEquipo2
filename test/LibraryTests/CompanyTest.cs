@@ -14,7 +14,6 @@ namespace Tests
         private string name;
         private Location locations;
         private string headings;
-        private string materials;
         private Company company;
 
         /// <summary>
@@ -26,9 +25,8 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
-            this.materials = "material";
             this.locations = new Location();
-            this.company = new Company(this.name, this.locations, this.headings, this.materials);
+            this.company = new Company(this.name, this.locations, this.headings);
         }
 
         /// <summary>
@@ -71,8 +69,7 @@ namespace Tests
         [Test]
         public void ProducedMaterialsTest()
         {
-            this.materials = "madera";
-            Company company = new Company(this.name, this.locations, this.headings, this.materials);
+            Company company = new Company(this.name, this.locations, this.headings);
             Assert.IsNotEmpty(company.ProducedMaterials);
         }
     }

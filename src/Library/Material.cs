@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ClassLibrary
 {
@@ -73,6 +75,14 @@ namespace ClassLibrary
                 }
             }
         }
+        /// <summary>
+        /// JsonConstructor para objetos Material.
+        /// </summary>
+        [JsonConstructor]
+        public Material()
+        {
+            
+        }
 
         /// <summary>
         /// Constructor de objetos Material
@@ -86,5 +96,21 @@ namespace ClassLibrary
             this.Type = type;
             this.Classification = classification;
         }
+
+        /// <summary>
+        /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns>El objeto convertido a texto en formato Json.</returns>
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
+        }  
     }
 }

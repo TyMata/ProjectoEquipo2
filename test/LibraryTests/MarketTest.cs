@@ -20,8 +20,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("empresa", new Location(), "rubro", "materiales");
-            this.oferta = new Offer(1234567, "material", "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
+            this.company = new Company("empresa", new Location(), "rubro");
+            this.oferta = new Offer(1234567, new Material(), "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Tests
         [Test]
         public void PublishOfferTest()
         {
-            Singleton<Market>.Instance.PublishOffer(this.oferta);
-            Assert.IsNotEmpty(Singleton<Market>.Instance.ActualOfferList);
+            Market.Instance.PublishOffer(this.oferta);
+            Assert.IsNotEmpty(Market.Instance.ActualOfferList);
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace Tests
         [Test]
         public void RemoveOfferTest()
         {
-            Singleton<Market>.Instance.RemoveOffer(1234567);
-            Assert.IsEmpty(Singleton<Market>.Instance.ActualOfferList);
+            Market.Instance.RemoveOffer(1234567);
+            Assert.IsEmpty(Market.Instance.ActualOfferList);
         }
 
         /// <summary>
@@ -50,11 +50,11 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321,"material","habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
-            Singleton<Market>.Instance.PublishOffer(nuevaOferta);
-            Singleton<Market>.Instance.SuspendOffer(7654321);
-            Assert.IsTrue( Singleton<Market>.Instance.ContainsSuspended(nuevaOferta));
-            Assert.IsFalse( Singleton<Market>.Instance.ContainsActive(nuevaOferta));
+            Offer nuevaOferta = new Offer(7654321, new Material(),"habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
+            Market.Instance.PublishOffer(nuevaOferta);
+            Market.Instance.SuspendOffer(7654321);
+            Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));
+            Assert.IsFalse(Market.Instance.ContainsActive(nuevaOferta));
         }
         
         /// <summary>
@@ -63,10 +63,10 @@ namespace Tests
         [Test]
         public void ResumeOfferTest()
         {
-            Singleton<Market>.Instance.SuspendedOfferList.Add(this.oferta);
-            Singleton<Market>.Instance.ResumeOffer(1234567);
-            Assert.IsTrue(Singleton<Market>.Instance.ContainsActive(this.oferta));
-            Assert.IsFalse(Singleton<Market>.Instance.ContainsSuspended(this.oferta));
+            Market.Instance.SuspendedOfferList.Add(this.oferta);
+            Market.Instance.ResumeOffer(1234567);
+            Assert.IsTrue(Market.Instance.ContainsActive(this.oferta));
+            Assert.IsFalse(Market.Instance.ContainsSuspended(this.oferta));
         }
     }
 }

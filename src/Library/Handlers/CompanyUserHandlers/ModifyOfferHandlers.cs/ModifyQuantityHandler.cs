@@ -27,7 +27,7 @@ namespace ClassLibrary
         {
             if (CanHandle(input))
             {
-                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 if(company.OfferRegister != null)
                 {
                     StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");

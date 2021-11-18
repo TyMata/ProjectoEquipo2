@@ -13,7 +13,7 @@ namespace Tests
     {
         // public LocationApiClient client;
         private int id;
-        private string material;
+        private Material material;
         private string habilitation;
         private Location location;
         private int quantityMaterial;
@@ -30,7 +30,7 @@ namespace Tests
         public void Setup()
         {
             this.id = 55234;
-            this.material = "quimico, inorganico";
+            this.material = new Material();
             this.habilitation = "ingeniero quimico";
             string pais = "Uruguay";
             string departamento = "Montevideo";
@@ -39,7 +39,7 @@ namespace Tests
             Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
             this.location = new Location();
             this.quantityMaterial = 15;
-            this.company = new Company("farmashop", ubi, "farmacia", "acido");
+            this.company = new Company("farmashop", ubi, "farmacia");
             this.keywords = "Acido";
             this.availability = true;
             this.publicationDate = DateTime.Today;
