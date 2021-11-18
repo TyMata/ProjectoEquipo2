@@ -6,6 +6,7 @@
 
 using System;
 using Ucu.Poo.Locations.Client;
+using System.Text;
 using ClassLibrary;
 
 namespace ConsoleApplication
@@ -20,10 +21,26 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-        
-        
-                        
-            
+            IMessageChannel mc = new ConsoleMessageChannel();
+            IHandler handler = new AddCompanyHandler(mc);
+            handler.SetNext(new RemoveUserHandler(mc)
+                    .SetNext(new RemoveCompanyHandler(mc)
+                    .SetNext(/*new RemoveCompanyHandler(mc)
+                    .SetNext(*/new EndHandler(mc, null))))/*)*/;
+            mc.SendMessage("Bienvenido Admin!\n");
+            while(true)
+            {
+            StringBuilder bienvenida = new StringBuilder("Que quieres hacer?\n")
+                                                .Append("/RegistrarEmpresa\n")
+                                                .Append("/EliminarUsuario\n")
+                                                .Append("/EliminarEmpresa\n");
+            mc.SendMessage(bienvenida.ToString());
+            if (handler.Handle(mc.ReceiveMessage()) != null)
+            {
+                return;
+            }
+
+            }
         }
     }
 }
