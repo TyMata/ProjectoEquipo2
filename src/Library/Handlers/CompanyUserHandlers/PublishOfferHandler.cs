@@ -38,7 +38,7 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
                 string keywords = this.messageChannel.ReceiveMessage().Text;
                 User usuario = UserRegister.Instance.GetUserById(input.Id);
-                Market.Instance.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice, company, true);
+                Market.Instance.CreateOffer(input.Id, new Material(), habilitations, company.Locations, quantity, totalPrice, company, true);
                 return true;
             }
             return false;
