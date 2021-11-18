@@ -23,7 +23,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            this.oferta = new Offer(1234567, "material", "habilitation", location, 3, 3000, new Company("nombre", new Location(), "rubro", "material"), true, dateTime);
+            this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", new Location(), "rubro"), true, dateTime);
             this.material = new Material("material", "type", "clasificacion");
             IMessageChannel messageChannel = new ConsoleMessageChannel();
             this.handler = new ModifyQuantityHandler(messageChannel);

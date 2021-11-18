@@ -26,12 +26,12 @@ namespace ClassLibrary
         {
             if(this.CanHandle(input))
             {
-                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append($"Estas son tus ofertas suspendids actuales:\n");
-                    foreach (Offer item in Singleton<Market>.Instance.ActualOfferList)
+                    foreach (Offer item in Market.Instance.ActualOfferList)
                     {
                         sb.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
@@ -42,7 +42,7 @@ namespace ClassLibrary
                     sb.Append("¿Cual es el Id de la que quiere activar?");
                     this.messageChannel.SendMessage(sb.ToString());
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    Singleton<Market>.Instance.SuspendOffer(id);
+                    Market.Instance.SuspendOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se volvio a activar");
                     return true;
                 }

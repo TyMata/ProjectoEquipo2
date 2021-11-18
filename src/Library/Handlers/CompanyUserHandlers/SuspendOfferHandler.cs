@@ -26,7 +26,7 @@ namespace ClassLibrary
         {
             if(this.CanHandle(input))
             {
-                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                Company company =CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 if(company.OfferRegister != null)
                 {
                     StringBuilder sb = new StringBuilder();
@@ -42,7 +42,7 @@ namespace ClassLibrary
                     sb.Append("¿Cual es el Id de la que quiere suspender?");
                     this.messageChannel.SendMessage(sb.ToString());
                     int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    Singleton<Market>.Instance.SuspendOffer(id);
+                    Market.Instance.SuspendOffer(id);
                     this.messageChannel.SendMessage($"La oferta Oferta se suspendio del mercado");
                     return true;
                 }

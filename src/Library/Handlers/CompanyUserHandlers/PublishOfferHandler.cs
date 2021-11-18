@@ -26,9 +26,9 @@ namespace ClassLibrary
             if (CanHandle(input))
             {
                 this.messageChannel.SendMessage("¿Qué material desea vender?");
-                string material = this.messageChannel.ReceiveMessage().Text;
+                //Material material = new Material(this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("¿De parte de que empresa esta publicando los materiales?");
-                Company company = Singleton<CompanyRegister>.Instance.GetCompanyByUserId(input.Id);
+                Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 this.messageChannel.SendMessage("Cantidad de material:");
                 int quantity= Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
                 this.messageChannel.SendMessage("¿Cuál va a ser el precio total?");
@@ -37,8 +37,8 @@ namespace ClassLibrary
                 string habilitations = this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
                 string keywords = this.messageChannel.ReceiveMessage().Text;
-                User usuario = Singleton<UserRegister>.Instance.GetUserById(input.Id);
-                Singleton<Market>.Instance.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords,true);
+                User usuario = UserRegister.Instance.GetUserById(input.Id);
+                Market.Instance.CreateOffer(input.Id, new Material(), habilitations, company.Locations, quantity, totalPrice, company, true);
                 return true;
             }
             return false;

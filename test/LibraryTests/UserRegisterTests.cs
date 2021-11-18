@@ -10,6 +10,7 @@ namespace Tests
     [TestFixture]
     public class UserRegisterTests
     {
+        private static UserRegisterTests instance;
         private User user;
 
         /// <summary>
@@ -18,7 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.user = new User(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro", "materiales")));
+            this.user = new User(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro")));
         }
 
         /// <summary>
@@ -27,8 +28,8 @@ namespace Tests
         [Test]
         public void AddTest()
         {
-            Singleton<UserRegister>.Instance.Add(this.user);
-            Assert.IsNotNull(Singleton<UserRegister>.Instance.DataUsers);
+            UserRegister.Instance.Add(this.user);
+            Assert.IsNotNull(UserRegister.Instance.DataUsers);
         }
 
         /// <summary>
@@ -37,9 +38,9 @@ namespace Tests
         [Test]
         public void RemoveTest()
         {
-            Singleton<UserRegister>.Instance.Add(this.user);
-            Singleton<UserRegister>.Instance.Remove(this.user);
-            Assert.IsFalse(Singleton<UserRegister>.Instance.ContainsUser(this.user));   
+            UserRegister.Instance.Add(this.user);
+            UserRegister.Instance.Remove(this.user);
+            Assert.IsFalse(UserRegister.Instance.ContainsUser(this.user));   
         }
 
         /// <summary>
@@ -48,8 +49,8 @@ namespace Tests
         [Test]
         public void GetUserByIdTest()
         {
-            Singleton<UserRegister>.Instance.Add(this.user);           
-            Assert.IsNotNull(Singleton<UserRegister>.Instance.GetUserById(1234567));
+            UserRegister.Instance.Add(this.user);           
+            Assert.IsNotNull(UserRegister.Instance.GetUserById(1234567));
         }
     }
 }
