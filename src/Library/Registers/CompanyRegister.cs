@@ -105,10 +105,9 @@ namespace ClassLibrary
         /// <param name="nombre"></param>
         /// <param name="ubi"></param>
         /// <param name="headings"></param>
-        /// <param name="materials"></param>
-        public Company CreateCompany(string nombre, Location ubi, string headings, string materials)
+        public Company CreateCompany(string nombre, Location ubi, string headings)
         {
-            Company nuevaCompany = new Company(nombre, ubi, headings, materials);
+            Company nuevaCompany = new Company(nombre, ubi, headings);
             CompanyRegister.Instance.Add(nuevaCompany);
             TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany);
             return nuevaCompany;

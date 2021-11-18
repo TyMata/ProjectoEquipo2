@@ -170,14 +170,14 @@ namespace ClassLibrary
             }
         }
         
-        private List<string> producedMaterials = new List<string>();
+        private List<Material> producedMaterials = new List<Material>();
 
         /// <summary>
         /// Materiales producidos por la empresa
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public List<string> ProducedMaterials
+        public List<Material> ProducedMaterials
         {
             get
             {
@@ -212,14 +212,12 @@ namespace ClassLibrary
         /// <param name="name"></param>
         /// <param name="ubi"></param>
         /// <param name="headings"></param>
-        /// <param name="materials"></param>
-        public Company(string name, Location ubi, string headings, string materials)
+        public Company(string name, Location ubi, string headings)
         {
             this.name = name;
             this.Locations = ubi;
             this.id = 0;
             this.Headings = headings;
-            this.ProducedMaterials.Add(materials);
             this.InvitationToken = this.GenerateToken(this);
         }
         

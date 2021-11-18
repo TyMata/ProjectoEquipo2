@@ -75,12 +75,10 @@ namespace ClassLibrary
         /// <param name="quantityMaterial"></param>
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
-        /// <param name="keywords"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(int id,string material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,string keywords,bool availability)
+        public Offer CreateOffer(int id, Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
-            string[] keyWords= keywords.Split(",");
             Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);

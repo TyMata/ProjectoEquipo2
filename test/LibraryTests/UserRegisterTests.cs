@@ -19,7 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.user = new User(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro", "materiales")));
+            this.user = new User(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro")));
         }
 
         /// <summary>

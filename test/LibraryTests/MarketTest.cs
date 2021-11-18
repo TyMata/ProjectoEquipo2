@@ -20,8 +20,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("empresa", new Location(), "rubro", "materiales");
-            this.oferta = new Offer(1234567, "material", "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
+            this.company = new Company("empresa", new Location(), "rubro");
+            this.oferta = new Offer(1234567, new Material(), "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321,"material","habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
+            Offer nuevaOferta = new Offer(7654321, new Material(),"habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
             Market.Instance.PublishOffer(nuevaOferta);
             Market.Instance.SuspendOffer(7654321);
             Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));

@@ -42,7 +42,7 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Ingrese su rubro\n");
                 string headings = this.messageChannel.ReceiveMessage().Text;
                 Location ubi = LocationServiceProvider.client.GetLocationAsync(pais, departamento, ciudad, direccion).Result;
-                Company nuevaCompany = CompanyRegister.Instance.CreateCompany(nombre, ubi, headings, materials);
+                Company nuevaCompany = CompanyRegister.Instance.CreateCompany(nombre, ubi, headings);
                 return true;
                 //Comantado porque ubi es string y tiene que ser Location pero despues esta pronto
                 //TokenRegisterServiceProvider.AddCompanyToTokenRegister(nuevaCompany);         

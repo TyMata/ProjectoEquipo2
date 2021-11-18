@@ -26,7 +26,7 @@ namespace ClassLibrary
             if (CanHandle(input))
             {
                 this.messageChannel.SendMessage("¿Qué material desea vender?");
-                string material = this.messageChannel.ReceiveMessage().Text;
+                //Material material = new Material(this.messageChannel.ReceiveMessage().Text;
                 this.messageChannel.SendMessage("¿De parte de que empresa esta publicando los materiales?");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 this.messageChannel.SendMessage("Cantidad de material:");
@@ -38,7 +38,7 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage("Insertar palabras claves para facilitar la  búsqueda, separadas por una coma ( , ):");
                 string keywords = this.messageChannel.ReceiveMessage().Text;
                 User usuario = UserRegister.Instance.GetUserById(input.Id);
-                Market.Instance.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice,  company, keywords,true);
+                Market.Instance.CreateOffer(input.Id, material, habilitations, company.Locations, quantity, totalPrice, company, true);
                 return true;
             }
             return false;

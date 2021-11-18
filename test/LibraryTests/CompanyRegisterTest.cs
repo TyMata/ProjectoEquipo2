@@ -18,7 +18,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("nombre", new Location(), "rubro", "material");
+            this.company = new Company("nombre", new Location(), "rubro");
         }
 
         /// <summary>
