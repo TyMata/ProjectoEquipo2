@@ -1,5 +1,5 @@
 /// <summary>
-/// Se crea la clase singleton para usar
+/// Se crea la clase singleton para usar.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class Singleton<T> where T : new()

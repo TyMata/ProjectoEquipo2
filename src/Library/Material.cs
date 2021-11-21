@@ -5,13 +5,13 @@ using System.Text.Json.Serialization;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase representa un material
+    /// Esta clase representa un material.
     /// </summary>
     public class Material
     {   
         private string name;
         /// <summary>
-        /// Devuelve el tipo de objeto
+        /// Devuelve el tipo de objeto.
         /// </summary>
         /// <value></value>
         public string Name{
@@ -33,7 +33,7 @@ namespace ClassLibrary
         }
         private string type;
         /// <summary>
-        /// Devuelve el tipo de material
+        /// Devuelve el tipo de material.
         /// </summary>
         /// <value></value>
         public string Type{
@@ -55,7 +55,7 @@ namespace ClassLibrary
         }
         private string classification;
         /// <summary>
-        /// Devuelve la clasificacion del material
+        /// Devuelve la clasificacion del material.
         /// </summary>
         /// <value></value>
         public string Classification{
@@ -85,7 +85,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Constructor de objetos Material
+        /// Constructor de objetos Material.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type"></param>

@@ -16,7 +16,7 @@
         </member>
         <member name="T:ClassLibrary.Company">
             <summary>
-            Esta clase representa una empresa
+            Esta clase representa una empresa.
             </summary>
         </member>
         <member name="P:ClassLibrary.Company.Id">
@@ -33,13 +33,13 @@
         </member>
         <member name="P:ClassLibrary.Company.Locations">
             <summary>
-            Ubicacion/es de la empresa
+            Ubicacion/es de la empresa.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Company.CompanyUsers">
             <summary>
-            Lista de usuarios pertenecientes a la empresa
+            Lista de usuarios pertenecientes a la empresa.
             </summary>
             <value></value>
         </member>
@@ -51,19 +51,19 @@
         </member>
         <member name="P:ClassLibrary.Company.Headings">
             <summary>
-            Rubro al que pertenece la empresa
+            Rubro al que pertenece la empresa.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Company.OfferRegister">
             <summary>
-            Ofertas realizadas por la empresa
+            Ofertas realizadas por la empresa.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Company.ProducedMaterials">
             <summary>
-            Materiales producidos por la empresa
+            Materiales producidos por la empresa.
             </summary>
             <value></value>
         </member>
@@ -74,7 +74,12 @@
         </member>
         <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
             <summary>
-            Constructor de objetos Company
+            JsonConstructor de objetos Company.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
+            <summary>
+            Constructor de objetos Company.
             </summary>
             <param name="name"></param>
             <param name="ubi"></param>
@@ -82,13 +87,13 @@
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
-            Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
-            /// /// </summary>
+            Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users.
+            </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32)">
             <summary>
-            Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
+            Remueve  un usuario de la lista de usuarios pertenecientes a la empresa.
             </summary>
             <param name="id"></param>
         </member>
@@ -119,48 +124,48 @@
         </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
-            Marcamos el formato del resto de handlers
+            Marcamos el formato del resto de handlers.
             </summary>
         </member>
         <member name="F:ClassLibrary.AbstractHandler.messageChannel">
             <summary>
-            Canal por el cual se envian los mensajes
+            Canal por el cual se envian los mensajes.
             </summary>
         </member>
         <member name="F:ClassLibrary.AbstractHandler.nextHandler">
             <summary>
-            Contiene al siguiente Handler
+            Contiene al siguiente Handler.
             </summary>
         </member>
         <member name="F:ClassLibrary.AbstractHandler.Command">
             <summary>
-            Palabra clave de Handler(comando)
+            Palabra clave de Handler(comando).
             </summary>
         </member>
         <member name="M:ClassLibrary.AbstractHandler.SetNext(ClassLibrary.IHandler)">
             <summary>
-            Se setea el próximo handler (nextHandler)
+            Se setea el próximo handler (nextHandler).
             </summary>
             <param name="handler"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.AbstractHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
+            Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.AbstractHandler.CanHandle(ClassLibrary.IMessage)">
             <summary>
-            Verifica si el mensaje que recibe es igual al del comando
+            Verifica si el mensaje que recibe es igual al del comando.
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+            Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar.
             </summary>
             <param name="message">El mensaje a procesar</param>
             <returns></returns>
@@ -280,7 +285,7 @@
         </member>
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ModifyHabilitationsHandler
+            Constructor de objetos ModifyHabilitationsHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -332,18 +337,18 @@
         </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
-            Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
+            Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
             </summary>
         </member>
         <member name="M:ClassLibrary.ModifyQuantityHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ModifyQuantityHandler
+            Constructor de objetos ModifyQuantityHandler.
             </summary>
             <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.ModifyQuantityHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada
+            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada.
             </summary>
             <param name="input"></param>
             <returns></returns>
@@ -360,18 +365,18 @@
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de crear y publicar una oferta en el registro
+            Handler encargado de delegar la accion de crear y publicar una oferta en el registro.
             </summary>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos PublishOfferHandler
+            Constructor de objetos PublishOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
+            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
             </summary>
             <param name="input"></param>
         </member>
@@ -462,7 +467,7 @@
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de buscar ofertas por keywords
+            Handler encargado de delegar la accion de buscar ofertas por keywords.
             </summary>
         </member>
         <member name="M:ClassLibrary.SearchOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
@@ -478,30 +483,31 @@
         </member>
         <member name="M:ClassLibrary.IHandler.SetNext(ClassLibrary.IHandler)">
             <summary>
-            Pasa el mensaje al proximo Handler
+            Pasa el mensaje al proximo Handler.
             </summary>
             <param name="handler"></param>
         </member>
         <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Verifica si se realiza el proceso o se lo manda al next handler
+            Verifica si se realiza el proceso o se lo manda al next handler.
             </summary>
+            <param name="input"></param>
         </member>
         <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Ejecución del proceso de Handler
+            Ejecución del proceso de Handler.
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
-            Handler encargado de delegar la accion de registrar un usuario empresa
+            Handler encargado de delegar la accion de registrar un usuario empresa.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos UnregistredCompanyUserHandler
+            Constructor de objetos UnregistredCompanyUserHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
@@ -520,17 +526,17 @@
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
             <summary>
-            Handler encargado de crear un usuario emprendedor
+            Handler encargado de crear un usuario emprendedor.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos UnregistredEntrepreneurUserHandler
+            Constructor de objetos UnregistredEntrepreneurUserHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
+            Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -580,24 +586,24 @@
         </member>
         <member name="T:ClassLibrary.Material">
             <summary>
-            Esta clase representa un material
+            Esta clase representa un material.
             </summary>
         </member>
         <member name="P:ClassLibrary.Material.Name">
             <summary>
-            Devuelve el tipo de objeto
+            Devuelve el tipo de objeto.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Material.Type">
             <summary>
-            Devuelve el tipo de material
+            Devuelve el tipo de material.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Material.Classification">
             <summary>
-            Devuelve la clasificacion del material
+            Devuelve la clasificacion del material.
             </summary>
             <value></value>
         </member>
@@ -608,7 +614,7 @@
         </member>
         <member name="M:ClassLibrary.Material.#ctor(System.String,System.String,System.String)">
             <summary>
-            Constructor de objetos Material
+            Constructor de objetos Material.
             </summary>
             <param name="name"></param>
             <param name="type"></param>
@@ -628,19 +634,19 @@
         </member>
         <member name="P:ClassLibrary.ConsoleMessage.Id">
             <summary>
-            Devuelve el Id
+            Devuelve el Id.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.ConsoleMessage.Text">
             <summary>
-            Devuelve el Message
+            Devuelve el Message.
             </summary>
             <value></value>
         </member>
         <member name="M:ClassLibrary.ConsoleMessage.#ctor(System.String)">
             <summary>
-            Constructor de ConsoleMessage
+            Constructor de ConsoleMessage.
             </summary>
             <param name="mensaje"></param>
         </member>
@@ -651,15 +657,9 @@
         </member>
         <member name="M:ClassLibrary.ConsoleMessageChannel.ReceiveMessage">
             <summary>
-            Recibe un mensaje por consola y lo devuelve en un objeto IMessage
+            Recibe un mensaje por consola y lo devuelve en un objeto IMessage.
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.ConsoleMessageChannel.SendMessage(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="mensaje"></param>
         </member>
         <member name="T:ClassLibrary.IMessage">
             <summary>
@@ -668,13 +668,13 @@
         </member>
         <member name="P:ClassLibrary.IMessage.Id">
             <summary>
-            Devuelve el Id
+            Devuelve el .
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.IMessage.Text">
             <summary>
-            Devuelve el Message
+            Devuelve el Message.
             </summary>
             <value></value>
         </member>
@@ -685,7 +685,7 @@
         </member>
         <member name="M:ClassLibrary.IMessageChannel.ReceiveMessage">
             <summary>
-            Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido
+            Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido.
             </summary>
             <returns></returns>
         </member>
@@ -731,7 +731,7 @@
         </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
-            Esta clase representa una oferta
+            Esta clase representa una oferta.
             </summary>
         </member>
         <member name="P:ClassLibrary.Offer.Id">
@@ -748,55 +748,55 @@
         </member>
         <member name="P:ClassLibrary.Offer.Habilitation">
             <summary>
-            Habilitaciones necesarias para poder manejar el producto en venta
+            Habilitaciones necesarias para poder manejar el producto en venta.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.Location">
             <summary>
-            Ubicacion en donde se encuentran el producto a vender
+            Ubicacion en donde se encuentran el producto a vender.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.QuantityMaterial">
             <summary>
-            Cantidad de material a vender
+            Cantidad de material a vender.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.TotalPrice">
             <summary>
-            Precio total del producto
+            Precio total del producto.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.Company">
             <summary>
-            Empresa que vende el producto
+            Empresa que vende el producto.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.Keywords">
             <summary>
-            Palabras claves asignadas
+            Palabras claves asignadas.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.Availability">
             <summary>
-            Disponibilidad de la oferta
+            Disponibilidad de la oferta.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.PublicationDate">
             <summary>
-            Fecha de publicacion
+            Fecha de publicacion.
             </summary>
             <value></value>
         </member>
         <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
-            Constructor de Offer
+            Constructor de Offer.
             </summary>
             <param name="id"></param>
             <param name="material"></param>
@@ -815,7 +815,7 @@
         </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
-            Modifica la cantidad del material
+            Modifica la cantidad del material.
             </summary>
             <param name="quantity"></param>
         </member>
@@ -846,7 +846,7 @@
         </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
-            Esta clase representa un registro de empresas
+            Esta clase representa un registro de empresas.
             </summary>
         </member>
         <member name="P:ClassLibrary.CompanyRegister.CompanyList">
@@ -897,24 +897,28 @@
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
-            Esta clase representa el mercado con sus ofertas
+            Esta clase representa el mercado con sus ofertas.
             </summary>
         </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
             <summary>
-            Lista de ofertas actuales
+            Lista de ofertas actuales.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Market.SuspendedOfferList">
             <summary>
-            Lista de ofertas suspendidas
+            Lista de ofertas suspendidas.
             </summary>
             <value></value>
         </member>
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+=======
         <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+>>>>>>> origin
             <summary>
-            Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
+            Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
             /// <param name="material"></param>
             <param name="habilitation"></param>
@@ -927,27 +931,27 @@
         </member>
         <member name="M:ClassLibrary.Market.ContainsActive(ClassLibrary.Offer)">
             <summary>
-            Por la ley de demeter se crea ContainsActive
+            Por la ley de demeter se crea ContainsActive.
             </summary>
             <param name="offer"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.ContainsSuspended(ClassLibrary.Offer)">
             <summary>
-            Por la ley de demeter se crea ContainsSuspended
+            Por la ley de demeter se crea ContainsSuspended.
             </summary>
             <param name="offer"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.PublishOffer(ClassLibrary.Offer)">
             <summary>
-            Añade una nueva oferta a la lista de ofertas actuales
+            Añade una nueva oferta a la lista de ofertas actuales.
             </summary>
             <param name="newOffer"></param>
         </member>
         <member name="M:ClassLibrary.Market.RemoveOffer(System.Int32)">
             <summary>
-            Retira la oferta de la lista de ofertas actuales
+            Retira la oferta de la lista de ofertas actuales.
             </summary>
             <param name="id"></param>
         </member>
@@ -959,13 +963,13 @@
         </member>
         <member name="M:ClassLibrary.Market.SuspendOffer(System.Int32)">
             <summary>
-            Suspende una oferta actual
+            Suspende una oferta actual.
             </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Market.ResumeOffer(System.Int32)">
             <summary>
-            A una oferta suspendida la vuelve a activar
+            A una oferta suspendida la vuelve a activar.
             </summary>
             <param name="id"></param>
         </member>
@@ -978,12 +982,12 @@
         </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
-            Esta clase  representa un registro de tokens
+            Esta clase  representa un registro de tokens.
             </summary>
         </member>
         <member name="F:ClassLibrary.TokenRegister.TokenList">
             <summary>
-            Diccionario con nombre de empresas y sus respectivos tokens habilitados
+            Diccionario con nombre de empresas y sus respectivos tokens habilitados.
             </summary>
             <returns></returns>
         </member>
@@ -996,32 +1000,38 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.Add(System.String,ClassLibrary.Company)">
             <summary>
-            Metodo par añadir un token al diccionario de tokens
+            Metodo par añadir un token al diccionario de tokens.
             </summary>
             <param name="token"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.TokenRegister.Remove(System.String)">
             <summary>
-            Metodo para remover un token del diccionario de tokens
+            Metodo para remover un token del diccionario de tokens.
             </summary>
             <param name="token"></param>
         </member>
         <member name="M:ClassLibrary.TokenRegister.IsValid(System.String)">
             <summary>
-            Por la ley de demeter se crea Contains
+            Por la ley de demeter se crea Contains.
             </summary>
             <param name="codigo"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>
-            Esta clase representa un registro de usuarios
+            Esta clase representa un registro de usuarios.
             </summary>
         </member>
         <member name="P:ClassLibrary.UserRegister.DataUsers">
             <summary>
-            Lista de usuarios registrados
+            Lista de usuarios registrados.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.UserRegister.Instance">
+            <summary>
+            Instancia de UserRegister (COMENTAR SINGLETON)
             </summary>
             <value></value>
         </member>
@@ -1033,14 +1043,14 @@
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
             <summary>
-            Crea un usuario empresa
+            Crea un usuario empresa.
             </summary>
             <param name="input"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
-            Crea un usuario emprendedor
+            Crea un usuario emprendedor.
             </summary>
             <param name="input"></param>
             <param name="name"></param>
@@ -1050,26 +1060,26 @@
         </member>
         <member name="M:ClassLibrary.UserRegister.Add(ClassLibrary.Users)">
             <summary>
-            Esto se hace por la ley de demeter
+            Esto se hace por la ley de demeter.
             </summary>
             <param name="item"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.Remove(ClassLibrary.Users)">
             <summary>
-            Remueve un user de la lista. Por la ley de demeter
+            Remueve un user de la lista. Por la ley de demeter.
             </summary>
             <param name="item"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.ContainsUser(ClassLibrary.Users)">
             <summary>
-            Por la ley de demeter se crea Contains
+            Por la ley de demeter se crea Contains.
             </summary>
             <param name="user"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.UserRegister.GetUserById(System.Int32)">
             <summary>
-            Devuelve  un objeto user segun la id dada
+            Devuelve  un objeto user segun la id dada.
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -1101,7 +1111,7 @@
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Name">
             <summary>
-            Nombre del emprendedor
+            Nombre del emprendedor.
             </summary>
             <value></value>
         </member>
@@ -1113,7 +1123,7 @@
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Habilitation">
             <summary>
-            Habilitaciones del emprendedor
+            Habilitaciones del emprendedor.
             </summary>
             <value></value>
         </member>
@@ -1125,7 +1135,7 @@
         </member>
         <member name="P:ClassLibrary.Entrepreneur.BoughtList">
             <summary>
-            Lista de compras pasadas del emprendedor
+            Lista de compras pasadas del emprendedor.
             </summary>
             <value></value>
         </member>
@@ -1155,7 +1165,7 @@
         </member>
         <member name="F:ClassLibrary.Users.Role">
             <summary>
-            Rol del usuario
+            Rol del usuario.
             </summary>
         </member>
         <member name="P:ClassLibrary.Users.Id">
@@ -1177,6 +1187,9 @@
             </summary>
             <returns></returns>
         </member>
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.User.ConvertToJson">
+=======
         <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
             <summary>
             Booleano para comprobar que un usuario es un usuario emprendedor.
@@ -1190,6 +1203,7 @@
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Users.ConvertToJson">
+>>>>>>> origin
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1292,7 +1306,7 @@
         </member>
         <member name="T:Singleton`1">
             <summary>
-            Se crea la clase singleton para usar
+            Se crea la clase singleton para usar.
             </summary>
             <typeparam name="T"></typeparam>
         </member>

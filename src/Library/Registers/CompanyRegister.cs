@@ -7,7 +7,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {   
     /// <summary>
-    /// Esta clase representa un registro de empresas
+    /// Esta clase representa un registro de empresas.
     /// </summary>
     public class CompanyRegister : IJsonConvertible
     {   
@@ -17,7 +17,10 @@ namespace ClassLibrary
         {
             Initialize();
         }
-
+        /// <summary>
+        /// Se crea un Singelton de la clase CompanyRegister.
+        /// </summary>
+        /// <value></value>
         public static CompanyRegister Instance
         {
             get{
@@ -25,13 +28,15 @@ namespace ClassLibrary
                 {
                     instance = new CompanyRegister ();
                 }
-
+                
                 return instance;
             }
         }
 
         private List<Company> companyList;
-
+        /// <summary>
+        /// Se crea la lista de empresas.
+        /// </summary>
         public void Initialize()
         {
             this.companyList = new List<Company>();

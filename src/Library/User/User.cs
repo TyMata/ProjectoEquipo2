@@ -14,7 +14,7 @@ namespace ClassLibrary
     public class Users : IJsonConvertible
     {
         /// <summary>
-        /// Rol del usuario
+        /// Rol del usuario.
         /// </summary>
         public IRole Role;
 
@@ -36,7 +36,6 @@ namespace ClassLibrary
                 {
                     this.id = value;
                 }
-
             }
         }
 

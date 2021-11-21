@@ -6,7 +6,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de crear un usuario emprendedor
+    /// Handler encargado de crear un usuario emprendedor.
     /// </summary>
     public class UnregisteredEntrepeneurUserHandler : AbstractHandler
     {
@@ -15,7 +15,7 @@ namespace ClassLibrary
         public UnregisteredEntrepeneurUserData Data{ get; set; }
 
         /// <summary>
-        /// Constructor de objetos UnregistredEntrepreneurUserHandler
+        /// Constructor de objetos UnregistredEntrepreneurUserHandler.
         /// </summary>
         public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
         {
@@ -25,7 +25,7 @@ namespace ClassLibrary
             this.Data = new UnregisteredEntrepeneurUserData();
         }
         /// <summary>
-        /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
+        /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -74,7 +74,6 @@ namespace ClassLibrary
                 string habilitaciones =  this.messageChannel.ReceiveMessage().Text;
                 response = "Ingrese su rubro\n";
                 return true;
-               
             }
             else if (this.State == UnregisteredEntrepeneurUserState.Headings)
             {
