@@ -2,7 +2,15 @@ using System;
 
 namespace ClassLibrary
 {
-    public class State
+    public enum State
     {
+        Start,
+        state2,
+        state3,
+        
+
+        SearchByKeywords,
+        S
+
     }
 }

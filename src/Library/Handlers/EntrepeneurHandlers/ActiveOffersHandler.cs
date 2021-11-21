@@ -15,19 +15,17 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
         }
-        public override bool InternalHandle(IMessage input)
+        public override bool InternalHandle(IMessage input, out string response)
         {
             if ((CanHandle(input)))
             {
-                StringBuilder commandsStringBuilder = new StringBuilder($"Elige el parámetro a utilizar para buscar una oferta:\n")
-                                                                            .Append("/BuscarOfertaPorId\n")
-                                                                            .Append("/BuscarOfertaPorPalabrasClave\n")
-                                                                            .Append("/BuscarOfertaPorUbicación\n")
-                                                                            .Append("/BuscarOfertaPorMaterial\n");
-                this.messageChannel.SendMessage(commandsStringBuilder.ToString());
+                StringBuilder commandsStringBuilder = new StringBuilder($"Elige las palabras claves para buscar una oferta:\n")
+                                                                            .Append("/BuscarOfertaPorPalabrasClave\n");
+                response = commandsStringBuilder.ToString();
                 return true;
                 //this.nextHandler.Handle(this.messageChannel.ReceiveMessage());
             }
+            response = string.Empty;
             return false;
         }
     }

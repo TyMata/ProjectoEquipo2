@@ -11,7 +11,7 @@ namespace Tests
     public class UserRegisterTests
     {
         private static UserRegisterTests instance;
-        private User user;
+        private Users user;
 
         /// <summary>
         /// Se crea una instancia de User para los tests.
@@ -19,7 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.user = new User(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro")));
+            this.user = new Users(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro")));
         }
 
         /// <summary>
