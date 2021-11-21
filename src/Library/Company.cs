@@ -9,7 +9,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase representa una empresa
+    /// Esta clase representa una empresa.
     /// </summary>
     public class Company : IJsonConvertible
     {
@@ -56,7 +56,7 @@ namespace ClassLibrary
         private Location locations;
 
         /// <summary>
-        /// Ubicacion/es de la empresa
+        /// Ubicacion/es de la empresa.
         /// </summary>
         /// <value></value>
         public Location Locations
@@ -77,7 +77,7 @@ namespace ClassLibrary
         private List<User> companyUsers = new List<User>();
 
         /// <summary>
-        /// Lista de usuarios pertenecientes a la empresa
+        /// Lista de usuarios pertenecientes a la empresa.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -124,7 +124,7 @@ namespace ClassLibrary
 
         private string headings;
         /// <summary>
-        /// Rubro al que pertenece la empresa
+        /// Rubro al que pertenece la empresa.
         /// </summary>
         /// <value></value>
         public string Headings {
@@ -147,7 +147,7 @@ namespace ClassLibrary
 
         private List<Offer> offerRegister = new List<Offer>();
         /// <summary>
-        /// Ofertas realizadas por la empresa
+        /// Ofertas realizadas por la empresa.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -173,7 +173,7 @@ namespace ClassLibrary
         private List<Material> producedMaterials = new List<Material>();
 
         /// <summary>
-        /// Materiales producidos por la empresa
+        /// Materiales producidos por la empresa.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -205,9 +205,8 @@ namespace ClassLibrary
 
         }
 
-
         /// <summary>
-        /// Constructor de objetos Company
+        /// Constructor de objetos Company.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="ubi"></param>
@@ -222,8 +221,8 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users
-        /// /// /// </summary>
+        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users.
+        /// </summary>
         /// <param name="id"></param>
         public void AddUser(int id)
         {
@@ -239,7 +238,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Remueve  un usuario de la lista de usuarios pertenecientes a la empresa
+        /// Remueve  un usuario de la lista de usuarios pertenecientes a la empresa.
         /// </summary>
         /// <param name="id"></param>
         public void RemoveUser(int id)

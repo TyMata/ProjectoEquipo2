@@ -3,7 +3,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de mostrar las ofertas compradas por un emprendedor
+    /// Handler encargado de delegar la accion de mostrar las ofertas compradas por un emprendedor.
     /// </summary>
     public class ShowBoughtOffersHandler : AbstractHandler
     {
@@ -15,6 +15,7 @@ namespace ClassLibrary
         {
             this.messageChannel = channel;
         }
+        
         public override bool InternalHandle(IMessage input)
         {
             if (CanHandle(input))

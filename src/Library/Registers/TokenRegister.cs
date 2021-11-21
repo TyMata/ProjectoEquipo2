@@ -6,12 +6,12 @@ using System.Text.Json.Serialization;
 namespace ClassLibrary 
 {
     /// <summary>
-    /// Esta clase  representa un registro de tokens
+    /// Esta clase  representa un registro de tokens.
     /// </summary>
     public class TokenRegister : IJsonConvertible
     {   
         /// <summary>
-        /// Diccionario con nombre de empresas y sus respectivos tokens habilitados
+        /// Diccionario con nombre de empresas y sus respectivos tokens habilitados.
         /// </summary>
         /// <returns></returns>
         [JsonInclude]
@@ -42,7 +42,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelve la empresa a la cual le pertenece un codigo
+        /// Devuelve la empresa a la cual le pertenece un codigo.
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
@@ -73,7 +73,6 @@ namespace ClassLibrary
         {
             this.TokenList.Remove(token);
         }
-
 
         /// <summary>
         /// Por la ley de demeter se crea Contains.

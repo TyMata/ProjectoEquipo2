@@ -8,12 +8,12 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase representa el mercado con sus ofertas
+    /// Esta clase representa el mercado con sus ofertas.
     /// </summary>
     public class Market : IJsonConvertible
     {   
         private static Market instance;
-        
+
         private Market()
         {
             Initialize();
@@ -34,7 +34,7 @@ namespace ClassLibrary
         private List<Offer> actualOfferList;
 
         /// <summary>
-        /// Lista de ofertas actuales
+        /// Lista de ofertas actuales.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -53,7 +53,7 @@ namespace ClassLibrary
 
         private List<Offer> suspendedOfferList = new List<Offer>();
         /// <summary>
-        /// Lista de ofertas suspendidas
+        /// Lista de ofertas suspendidas.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -66,7 +66,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
+        /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="material"></param>
@@ -86,7 +86,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea ContainsActive
+        /// Por la ley de demeter se crea ContainsActive.
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
@@ -103,7 +103,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea ContainsSuspended
+        /// Por la ley de demeter se crea ContainsSuspended.
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
@@ -161,7 +161,7 @@ namespace ClassLibrary
         }      
 
         /// <summary>
-        /// Suspende una oferta actual
+        /// Suspende una oferta actual.
         /// </summary>
         /// <param name="id"></param>
         public void SuspendOffer(int id)
@@ -197,6 +197,18 @@ namespace ClassLibrary
         /// <returns>El objeto convertido a texto en formato Json.</returns>
         public string ConvertToJson()
         {
+            string result = "{\"Items\":[";
+
+            foreach (var item in this.actualOfferList)
+            {
+                result = result + item.ConvertToJson() + ",";
+            }
+
+            result = result.Remove(result.Length - 1);
+            result = result + "]}";
+
+            string temp = JsonSerializer.Serialize(this.actualOfferList);
+
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,

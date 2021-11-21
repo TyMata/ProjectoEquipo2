@@ -18,10 +18,6 @@ namespace ClassLibrary
             return mensajeConsola;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mensaje"></param>
         public void SendMessage(string mensaje)
         {
             Console.WriteLine(mensaje);

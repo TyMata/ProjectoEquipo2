@@ -4,11 +4,10 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de darle final a la CoR
+    /// Handler encargado de darle final a la CoR.
     /// </summary>
     public class EndHandler : AbstractHandler
     {
-        
         /// <summary>
         /// Constructor de objetos EndHandler.
         /// </summary>

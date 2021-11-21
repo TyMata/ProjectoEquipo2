@@ -1,9 +1,7 @@
-using System.Text;
-
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de buscar ofertas por material
+    /// Handler encargado de delegar la accion de buscar ofertas por material.
     /// </summary>
     public class SearchOfferByMaterialsHandler : AbstractHandler
     {   

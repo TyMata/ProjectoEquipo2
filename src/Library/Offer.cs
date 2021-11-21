@@ -7,14 +7,14 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase representa una oferta
+    /// Esta clase representa una oferta.
     /// </summary>
     public class Offer : IJsonConvertible
     {
         private int id;
 
         /// <summary>
-        /// Id de la Oferta
+        /// Id de la Oferta.
         /// </summary>
         /// <value></value>
         public int Id{
@@ -30,7 +30,7 @@ namespace ClassLibrary
         private Material material;
 
         /// <summary>
-        /// Material que se vende en la oferta
+        /// Material que se vende en la oferta.
         /// </summary>
         /// <value></value>
         public Material Material
@@ -54,7 +54,7 @@ namespace ClassLibrary
 
         private string habilitation;
         /// <summary>
-        /// Habilitaciones necesarias para poder manejar el producto en venta
+        /// Habilitaciones necesarias para poder manejar el producto en venta.
         /// </summary>
         /// <value></value>
         public string Habilitation
@@ -78,7 +78,7 @@ namespace ClassLibrary
         private Location location;
 
         /// <summary>
-        /// Ubicacion en donde se encuentran el producto a vender
+        /// Ubicacion en donde se encuentran el producto a vender.
         /// </summary>
         /// <value></value>
         public Location Location
@@ -102,7 +102,7 @@ namespace ClassLibrary
         private int quantityMaterial;
 
         /// <summary>
-        /// Cantidad de material a vender
+        /// Cantidad de material a vender.
         /// </summary>
         /// <value></value>
         public int QuantityMaterial
@@ -119,7 +119,7 @@ namespace ClassLibrary
         private double totalPrice;
 
         /// <summary>
-        /// Precio total del producto
+        /// Precio total del producto.
         /// </summary>
         /// <value></value>
         public double TotalPrice
@@ -137,7 +137,7 @@ namespace ClassLibrary
         private Company company;  
 
         /// <summary>
-        /// Empresa que vende el producto
+        /// Empresa que vende el producto.
         /// </summary>
         /// <value></value>
         public Company Company
@@ -163,7 +163,7 @@ namespace ClassLibrary
 
         
         /// <summary>
-        /// Palabras claves asignadas
+        /// Palabras claves asignadas.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -189,7 +189,7 @@ namespace ClassLibrary
         private bool availability;
         
         /// <summary>
-        /// Disponibilidad de la oferta
+        /// Disponibilidad de la oferta.
         /// </summary>
         /// <value></value>
         public bool Availability
@@ -207,7 +207,7 @@ namespace ClassLibrary
         private DateTime publicationDate;
         
         /// <summary>
-        /// Fecha de publicacion
+        /// Fecha de publicacion.
         /// </summary>
         /// <value></value>
         public DateTime PublicationDate
@@ -227,6 +227,15 @@ namespace ClassLibrary
                     //EXCEPCION DE OBJETO VACIO O NULO
                 }
             }
+        }
+
+        /// <summary>
+        /// JsonConstructor para objetos Offer.
+        /// </summary>
+        [JsonConstructor]
+        public Offer()
+        {
+            
         }
 
         /// <summary>
@@ -253,12 +262,6 @@ namespace ClassLibrary
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
         }
-        /// <summary>
-        /// JsonConstructor para objetos Offer.
-        /// </summary>
-        [JsonConstructor]
-        public Offer()
-        {}
 
         /// <summary>
         /// Modifica la cantidad del material.

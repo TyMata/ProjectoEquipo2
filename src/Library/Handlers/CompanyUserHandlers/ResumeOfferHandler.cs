@@ -4,12 +4,12 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de volver a activar una oferta suspendida
+    /// Handler encargado de delegar la accion de volver a activar una oferta suspendida.
     /// </summary>
     public class ResumeOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de objetos ResumeOfferHandler
+        /// Constructor de objetos ResumeOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public ResumeOfferHandler(IMessageChannel channel)
@@ -51,7 +51,6 @@ namespace ClassLibrary
                     this.messageChannel.SendMessage("No hay ninguna oferta publicada bajo el nombre de esta empresa");
                     return true;
                 }
-               
             }
             return false;     
         }

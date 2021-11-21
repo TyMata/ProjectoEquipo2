@@ -4,12 +4,12 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de retirar una oferta
+    /// Handler encargado de delegar la accion de retirar una oferta.
     /// </summary>
     public class RemoveOfferHandler: AbstractHandler
     {   
         /// <summary>
-        /// Constructor de objetos RemoveOfferHandler
+        /// Constructor de objetos RemoveOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public RemoveOfferHandler(IMessageChannel channel)

@@ -33,8 +33,7 @@ namespace ClassLibrary
                 if (user != null)
                 {
                     UserRegister.Instance.Remove(user);
-                    this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");
-                    
+                    this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");   
                 }
                 else
                 {
@@ -42,9 +41,7 @@ namespace ClassLibrary
                 }
                 return true;
             }
-            return false;
-            
+            return false;   
         }
-        
     }
 }

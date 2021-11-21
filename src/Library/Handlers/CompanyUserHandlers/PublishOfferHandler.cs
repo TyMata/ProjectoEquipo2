@@ -4,7 +4,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de crear y publicar una oferta en el registro
+    /// Handler encargado de delegar la accion de crear y publicar una oferta en el registro.
     /// </summary>
     public class PublishOfferHandler : AbstractHandler
     {
@@ -18,7 +18,7 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
+        /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
         /// </summary>
         /// <param name="input"></param>
         public override bool InternalHandle(IMessage input)
@@ -42,7 +42,6 @@ namespace ClassLibrary
                 return true;
             }
             return false;
-            
         }
     }
 }

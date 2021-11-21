@@ -8,7 +8,6 @@ namespace ClassLibrary
     /// </summary>
     public class AdminStartHandler : AbstractHandler
     {
-        
         /// <summary>
         /// Constructor de los objetos AdminStartHandler.
         /// </summary>
@@ -36,6 +35,5 @@ namespace ClassLibrary
             }
             return true;
         }
-        
     }
 }

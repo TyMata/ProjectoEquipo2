@@ -3,12 +3,12 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de dar a conocer los comandos disponibles para un usuario empresa
+    /// Handler encargado de dar a conocer los comandos disponibles para un usuario empresa.
     /// </summary>
     public class CompanyUserHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de objetos CompanyUserHandler
+        /// Constructor de objetos CompanyUserHandler.
         /// </summary>
         /// <param name="channel"></param>
         public CompanyUserHandler(IMessageChannel channel)
@@ -34,8 +34,6 @@ namespace ClassLibrary
                 this.messageChannel.SendMessage(commandsStringBuilder.ToString());
                 input = this.messageChannel.ReceiveMessage();
                 return true;
-               
-                
             }
             return false;
         }

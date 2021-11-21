@@ -10,7 +10,7 @@ namespace ClassLibrary
     {
 
         /// <summary>
-        /// Constructor de objetos ModifyHabilitationsHandler
+        /// Constructor de objetos ModifyHabilitationsHandler.
         /// </summary>
         /// <param name="channel"></param>
         public ModifyHabilitationsHandler(IMessageChannel channel)
@@ -50,7 +50,6 @@ namespace ClassLibrary
                 }
             }
             return false;
-            
         }
     }
 }

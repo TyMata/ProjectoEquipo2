@@ -4,12 +4,12 @@ using System.Text;
 namespace ClassLibrary
 {   
     /// <summary>
-    /// Handler encargado de delegar la accion de suspender una oferta
+    /// Handler encargado de delegar la accion de suspender una oferta.
     /// </summary>
     public class SuspendOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Constructor de objetos SuspendOfferHandler
+        /// Constructor de objetos SuspendOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
         public SuspendOfferHandler(IMessageChannel channel)

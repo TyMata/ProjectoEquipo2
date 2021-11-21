@@ -4,11 +4,10 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de crear un usuario emprendedor
+    /// Handler encargado de crear un usuario emprendedor.
     /// </summary>
     public class UnregisteredEntrepeneurUserHandler : AbstractHandler
-    {
-        
+    {   
         /// <summary>
         /// Constructor de objetos UnregistredEntrepreneurUserHandler.
         /// </summary>
@@ -18,7 +17,7 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
         /// <summary>
-        /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
+        /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor.
         /// </summary>
         /// <param name="input"></param>
         public override bool InternalHandle(IMessage input)
@@ -42,7 +41,7 @@ namespace ClassLibrary
             else
             {
                 return false;
-            } 
-        } 
+            }
+        }
     }
 }

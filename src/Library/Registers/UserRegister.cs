@@ -7,13 +7,13 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {   
     /// <summary>
-    /// Esta clase representa un registro de usuarios
+    /// Esta clase representa un registro de usuarios.
     /// </summary>
     public class UserRegister : IJsonConvertible
     {   
         private List<User> dataUsers = new List<User>();
         /// <summary>
-        /// Lista de usuarios registrados
+        /// Lista de usuarios registrados.
         /// </summary>
         /// <value></value>
         public List<User> DataUsers 
@@ -54,9 +54,8 @@ namespace ClassLibrary
            this.DataUsers = new List<User>();
         }
 
-
         /// <summary>
-        /// Crea un usuario empresa
+        /// Crea un usuario empresa.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="company"></param>
@@ -66,7 +65,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Crea un usuario emprendedor
+        /// Crea un usuario emprendedor.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="name"></param>
@@ -80,7 +79,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Esto se hace por la ley de demeter
+        /// Esto se hace por la ley de demeter.
         /// </summary>
         /// <param name="item"></param>
         public void Add(User item)
@@ -89,7 +88,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Remueve un user de la lista. Por la ley de demeter
+        /// Remueve un user de la lista. Por la ley de demeter.
         /// </summary>
         /// <param name="item"></param>
         public void Remove(User item)
@@ -102,7 +101,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea Contains
+        /// Por la ley de demeter se crea Contains.
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -119,7 +118,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelve  un objeto user segun la id dada
+        /// Devuelve  un objeto user segun la id dada.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

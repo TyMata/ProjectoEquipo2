@@ -4,13 +4,13 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de registrar un usuario empresa
+    /// Handler encargado de delegar la accion de registrar un usuario empresa.
     /// </summary>
     public class UnregisteredCompanyUserHandler : AbstractHandler
     {
         
         /// <summary>
-        /// Constructor de objetos UnregistredCompanyUserHandler
+        /// Constructor de objetos UnregistredCompanyUserHandler.
         /// </summary>
         public UnregisteredCompanyUserHandler(IMessageChannel channel)
         {
@@ -49,7 +49,6 @@ namespace ClassLibrary
                     this.messageChannel.SendMessage("No se pudo verificar el Token ingresado, intente nuevamente");
                     return true;
                 }
-               
             }
             else
             {

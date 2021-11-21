@@ -3,7 +3,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de buscar ofertas por su Id
+    /// Handler encargado de delegar la accion de buscar ofertas por su Id.
     /// </summary>
     public class SearchOfferByIdHandler : AbstractHandler
     {   

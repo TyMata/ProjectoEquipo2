@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using Ucu.Poo.Locations.Client;
 
-
-
 namespace ClassLibrary
 {
     /// <summary>
@@ -13,7 +11,7 @@ namespace ClassLibrary
     {
         private string name;
         /// <summary>
-        /// Nombre del emprendedor
+        /// Nombre del emprendedor.
         /// </summary>
         /// <value></value>
         public string Name
@@ -53,7 +51,7 @@ namespace ClassLibrary
      
         private  string habilitation;
         /// <summary>
-        /// Habilitaciones del emprendedor
+        /// Habilitaciones del emprendedor.
         /// </summary>
         /// <value></value>
         public string Habilitation
@@ -93,7 +91,7 @@ namespace ClassLibrary
 
         private List<Offer> boughtList;
         /// <summary>
-        /// Lista de compras pasadas del emprendedor
+        /// Lista de compras pasadas del emprendedor.
         /// </summary>
         /// <value></value>
         public List<Offer> BoughtList

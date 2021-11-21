@@ -9,7 +9,6 @@ namespace ClassLibrary
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
-        
         /// <summary>
         /// Constructor de los objetos AddCompanyHandler
         /// </summary>

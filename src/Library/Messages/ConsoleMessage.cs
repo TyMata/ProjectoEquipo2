@@ -9,13 +9,13 @@ namespace ClassLibrary
     {
         private int id;
         /// <summary>
-        /// Devuelve el Id
+        /// Devuelve el Id.
         /// </summary>
         /// <value></value>
         public int Id{get;}
         private string text;
         /// <summary>
-        /// Devuelve el Message
+        /// Devuelve el Message.
         /// </summary>
         /// <value></value>
         public string Text{
@@ -24,6 +24,7 @@ namespace ClassLibrary
                 return this.text;
             }
             }
+            
         /// <summary>
         /// Constructor de ConsoleMessage.
         /// </summary>

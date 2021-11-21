@@ -25,35 +25,34 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            IMessageChannel mc = new ConsoleMessageChannel();
-            IHandler handler = new AddCompanyHandler(mc);
-            handler.SetNext(new RemoveUserHandler(mc)
-                    .SetNext(new RemoveCompanyHandler(mc)
-                    .SetNext(/*new RemoveCompanyHandler(mc)
-                    .SetNext(*/new EndHandler(mc, null))))/*)*/;
-            mc.SendMessage("Bienvenido Admin!\n");
-            while(true)
-            {
-            StringBuilder bienvenida = new StringBuilder("Que quieres hacer?\n")
-                                                .Append("/RegistrarEmpresa\n")
-                                                .Append("/EliminarUsuario\n")
-                                                .Append("/EliminarEmpresa\n");
-            mc.SendMessage(bienvenida.ToString());
-            if (handler.Handle(mc.ReceiveMessage()) != null)
-            {
-                return;
-            }
+            // IMessageChannel mc = new ConsoleMessageChannel();
+            // IHandler handler = new AddCompanyHandler(mc);
+            // handler.SetNext(new RemoveUserHandler(mc)
+            //         .SetNext(new RemoveCompanyHandler(mc)
+            //         .SetNext(/*new RemoveCompanyHandler(mc)
+            //         .SetNext(*/new EndHandler(mc, null))))/*)*/;
+            // mc.SendMessage("Bienvenido Admin!\n");
+            // while(true)
+            // {
+            // StringBuilder bienvenida = new StringBuilder("Que quieres hacer?\n")
+            //                                     .Append("/RegistrarEmpresa\n")
+            //                                     .Append("/EliminarUsuario\n")
+            //                                     .Append("/EliminarEmpresa\n");
+            // mc.SendMessage(bienvenida.ToString());
+            // if (handler.Handle(mc.ReceiveMessage()) != null)
+            // {
+            //     return;
+            // }
 
-            }
+            // }
 
             if (!File.Exists(@"data.json"))
             {
                 CompanyRegister.Instance.CreateCompany("empresa", new Location(), "rubro");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
-                Offer offer = new Offer();
-                Market.Instance.CreateOffer(1234567, new Material(), "habilitación", company.Locations, 25, 10000, company, true);
+                Offer createOffer = Market.Instance.CreateOffer(1234567, new Material(), "habilitación", company.Locations, 25, 10000, company, true);
 
-                string json = offer.ConvertToJson();
+                string json = createOffer.ConvertToJson();
                 Console.WriteLine(json);
                 File.WriteAllText(@"data.json", json);
             }
@@ -63,15 +62,13 @@ namespace ConsoleApplication
 
                 string json = File.ReadAllText(@"data.json");
 
-
                 JsonSerializerOptions options = new()
                 {
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true
                 };
 
-                Offer offer = JsonSerializer.Deserialize<Offer>(json, options);
-                Console.WriteLine(offer.ConvertToJson());
+                Console.WriteLine(Market.Instance.ConvertToJson());
             }
         }
     }

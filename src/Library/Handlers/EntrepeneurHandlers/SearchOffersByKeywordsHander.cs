@@ -1,9 +1,7 @@
-using System.Text;
-
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de buscar ofertas por keywords
+    /// Handler encargado de delegar la accion de buscar ofertas por keywords.
     /// </summary>
     public class SearchOfferByKeyWordsHandler : AbstractHandler
     {   
@@ -17,7 +15,6 @@ namespace ClassLibrary
             this.messageChannel = channel;
         }
 
-        
         public override bool InternalHandle(IMessage input)
         {
             if (CanHandle(input))
