@@ -47,9 +47,10 @@ namespace ConsoleApplication
 
             if (!File.Exists(@"data.json"))
             {
-                CompanyRegister.Instance.CreateCompany("empresa", new Location(), "rubro");
+                LocationAdapter location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+                CompanyRegister.Instance.CreateCompany("empresa",location , "rubro");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
-                Offer oferta = new Offer(123,new Material(), "habilitación", new Location(), 25, 10000, company, true, new DateTime());
+                Offer oferta = new Offer(123,new Material(), "habilitación",location, 25, 10000, company, true, new DateTime());
                 
 
                 string json = oferta.ConvertToJson();

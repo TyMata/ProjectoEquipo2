@@ -53,14 +53,14 @@ namespace ClassLibrary
             }
         }
 
-        private List<Location> locations = new List<Location>();
+        private List<LocationAdapter> locations = new List<LocationAdapter>();
 
         /// <summary>
         /// Ubicacion/es de la empresa.
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public List<Location> Locations
+        public List<LocationAdapter> Locations
         {
             get
             {
@@ -210,12 +210,12 @@ namespace ClassLibrary
         /// Constructor de objetos Company.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="ubi"></param>
+        /// <param name="location"></param>
         /// <param name="headings"></param>
-        public Company(string name, Location ubi, string headings)
+        public Company(string name, LocationAdapter location, string headings)
         {
             this.name = name;
-            this.Locations.Add(ubi);
+            this.Locations.Add(location);
             this.id = 0;
             this.Headings = headings;
             this.InvitationToken = this.GenerateToken();
@@ -305,7 +305,7 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson() // TODO hacer el load ffrom json
+        public string ConvertToJson() 
         {
             JsonSerializerOptions options = new()
             {
@@ -313,6 +313,60 @@ namespace ClassLibrary
                 WriteIndented = true
             };
             return JsonSerializer.Serialize(this, options);
+        }
+        
+        /// <summary>
+        /// Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
+        /// </summary>
+        /// <param name="json"></param>
+        public void LoadFromJson(string json)
+        {
+            Company company = JsonSerializer.Deserialize<Company>(json);
+            this.Name = company.Name;
+            this.OfferRegister = company.OfferRegister;
+            this.ProducedMaterials = company.ProducedMaterials;
+            this.Locations = company.Locations;
+            this.CompanyUsers = company.CompanyUsers;
+            this.Headings = company.Headings;
+            this.Id = company.Id;
+            this.InvitationToken = company.InvitationToken;
+            
+        }
+
+        /// <summary>
+        /// Retorna un material segun el nombre de estes
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Material GetMaterial(string name)
+        {
+            Material material = this.ProducedMaterials.Find(material => material.Name == name);
+            if(material != null)
+            {
+            return material;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public LocationAdapter GetLocation(string address)
+        {
+            LocationAdapter location = this.Locations.Find(location => location.Address == address);
+            if(location != null)
+            {
+                return location;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

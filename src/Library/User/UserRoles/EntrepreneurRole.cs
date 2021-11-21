@@ -35,7 +35,7 @@ namespace ClassLibrary
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitation"></param>
-        public EntrepreneurRole(string name, Location location, string headings, string habilitation)
+        public EntrepreneurRole(string name, LocationAdapter location, string headings, string habilitation)
         {
             this.Entrepreneur = new Entrepreneur(name, location, headings, habilitation);
         }

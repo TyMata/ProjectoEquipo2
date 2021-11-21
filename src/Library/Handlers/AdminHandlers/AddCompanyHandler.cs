@@ -16,7 +16,7 @@ namespace ClassLibrary
         /// Estado para el handler de AddCompany.
         /// </summary>
         /// <value></value>
-        public AddCompanyState State { get; set; }
+        public CompanyState State { get; set; }
         
         /// <summary>
         /// Guarda la información que pasa el usuario por el chat.
@@ -32,71 +32,64 @@ namespace ClassLibrary
             this.Command ="registrarempresa";
             this.messageChannel = channel;
             this.nextHandler = null;
-            this.State = AddCompanyState.Start;
+            this.State = CompanyState.Start;
             this.Data = new CompanyData();
 
         }
         /// <summary>
-        /// Pide algunos datos de la empresa que se quiere registrar la crea.
+        /// Pide algunos datos de la empresa que se quiere registrar la crea
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
             Users user = UserRegister.Instance.GetUserById(input.Id);
-            if (this.State == AddCompanyState.Start && this.CanHandle(input))
+            if (this.State == CompanyState.Start && this.CanHandle(input))
             {
-                this.State = AddCompanyState.Name;
+                this.State = CompanyState.Name;
                 response = "Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n";
                 return true;
             }
-            else if(this.State == AddCompanyState.Name)
+            else if(this.State == CompanyState.Name)
             {
                 this.Data.Name = input.Text;
-                this.State = AddCompanyState.Country;
+                this.State = CompanyState.Country;
                 response = "Ingrese el pais:\n";
                 return true;
             }
-             else if(this.State == AddCompanyState.State)
+             else if(this.State == CompanyState.Country)
             {
                 this.Data.Country = input.Text;
-                this.State = AddCompanyState.State;
+                this.State = CompanyState.Estate;
                 response = "Ingrese el departamento:\n";
                 return true;
             }
-             else if(this.State == AddCompanyState.State)
+             else if(this.State == CompanyState.Estate)
             {
-                this.Data.State = input.Text;
-                this.State = AddCompanyState.City;
+                this.Data.Estate = input.Text;
+                this.State = CompanyState.City;
                 response = "Ingrese la ciudad:\n";
                 return true;
             } 
-           else if(this.State == AddCompanyState.City)
+           else if(this.State == CompanyState.City)
             {
                 this.Data.City = input.Text;
-                if (this.Data.City == "Cancel")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Ha cancelado el comando";
-                    return true;
-                }
-                this.State = AddCompanyState.Address;
+                this.State = CompanyState.Address;
                 response = "Ingrese la direccion:\n";
                 return true;
             } 
-            else if(this.State == AddCompanyState.Address)
+            else if(this.State == CompanyState.City)
             {
                 this.Data.Address= input.Text;
-                this.State = AddCompanyState.Headings;
+                this.State = CompanyState.Headings;
                 response = "Ingrese su rubro:\n";
                 return true;
             } 
-             else if(this.State == AddCompanyState.Headings)
+             else if(this.State == CompanyState.City)
             {
                 this.Data.Headings = input.Text;
-                this.State = AddCompanyState.Start;
-                this.Data.ubi = LocationServiceProvider.client.GetLocationAsync(this.Data.Country,this.Data.State,this.Data.City,this.Data.Address).Result;
-                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.ubi,this.Data.Headings);
+                this.State = CompanyState.Start;
+                this.Data.Location = LocationApiAdapter.Instance.GetLocation(this.Data.Address, this.Data.City,this.Data.Estate);
+                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
                 response = "Ya se creo la empresa.";
                 return true;
                
@@ -108,7 +101,7 @@ namespace ClassLibrary
         /// <summary>
         /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
         /// </summary>
-        public enum AddCompanyState
+        public enum CompanyState
         {
             /// <summary>
             /// El estado inicial del comando. Aquí pide el nombre de la empresa a registrar y pasa al siguiente estado.
@@ -128,7 +121,7 @@ namespace ClassLibrary
             /// <summary>
             /// Luego de pedir el departamento de la empresa. En este estado el comando pide la ciudad de la empresa y pasa al siguiente estado.
             /// </summary>
-            State,
+            Estate,
 
             /// <summary>
             /// Luego de pedir la ciudad de la empresa. En este estado el comando pide la dirección de la empresa y pasa al siguiente estado.
@@ -165,7 +158,7 @@ namespace ClassLibrary
             /// El departamento de la companía que se ingresó en el estado CompanyState.State.
             /// </summary>
             /// <value></value>
-            public string State { get; set; }
+            public string Estate { get; set; }
 
             /// <summary>
             /// La ciudad de la companía que se ingresó en el estado CompanyState.City.
@@ -189,7 +182,7 @@ namespace ClassLibrary
             /// La ubicación completa de la empresa, creada a partir de los datos de ubiación recolectados anteriormente.
             /// </summary>
             /// <value></value>
-            public Location ubi { get; set; }
+            public LocationAdapter Location { get; set; }
             
             /// <summary>
             /// La empresa creada a partir de todos los datos recolectados anteriormente.

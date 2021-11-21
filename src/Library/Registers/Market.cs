@@ -86,7 +86,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
             this.Count ++;
             int id = this.Count;
@@ -228,17 +228,6 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         }
         
-        // public void LoadFromJson(string json)
-        // {
-        //     this.Initialize();
-        //     Offer offer = JsonSerializer.Deserialize<Offer>(json);
-        //     JsonSerializerOptions options = new()
-        //     {                                                        //TODO: Cambiar LoadFromJson a Offer (lo mismo con otras clases)
-        //         ReferenceHandler = MyReferenceHandler.Instance,
-        //         WriteIndented = true
-        //     };
-
-        //     offer = JsonSerializer.Deserialize<Offer>(json, options);
-        // }
+       
     }
 }

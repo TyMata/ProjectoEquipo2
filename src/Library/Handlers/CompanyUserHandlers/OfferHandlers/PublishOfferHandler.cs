@@ -44,12 +44,12 @@ namespace ClassLibrary
                             .Append($"Clasificacion: {item.Classification}\n")
                             .Append($"\n-----------------------------------------------\n\n");
                 }
-                response = "Que material desea vender?:\n";
+                response = "Que material desea vender?:\nIngrese el nombre\n";
                 return true;
             }
             else if(this.State == OfferState.Material)
             {
-                //this.Data.Material = this,company.GetMaterialByName (input.Text) //TODO crear un metodo Get material en company
+                this.Data.Material = this.company.GetMaterial(input.Text); 
                 this.State = OfferState.Quantity;
                 response = "Cantidad de material:\n";
                 return true;
@@ -66,9 +66,10 @@ namespace ClassLibrary
                 this.Data.Price = Convert.ToDouble(input.Text);
                 this.State = OfferState.Location;
                 StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
-                foreach (Location item in this.company.Locations) 
+                foreach (LocationAdapter item in this.company.Locations) 
                 {
-                    location.Append($"Ubicacion: {item.FormattedAddress}\n")     // TODO ver que metodo devuelve la direccion en location api
+                    location.Append($"Ubicacion:\n")   
+                            .Append($"Direccion: {item.Address}\n")   
                             .Append($"\n-----------------------------------------------\n\n");
                 }
                 response = location.ToString();
@@ -76,7 +77,8 @@ namespace ClassLibrary
             }
             else if(this.State == OfferState.Location)
             {
-                //this.Data.Location = GetLocation  //
+                string address = input.Text;
+                this.Data.Location = this.company.GetLocation(address);
                 this.State = OfferState.Habilitations;
                 response = "¿Que habilitaciones son necesarias para poder manipular este material?:\n";
                 return true;
@@ -121,7 +123,7 @@ namespace ClassLibrary
             public string Habilitations {get;set;}
 
             public Offer Offer {get;set;}
-            public Location Location {get;set;}
+            public LocationAdapter Location {get;set;}
         }
     }
 }
