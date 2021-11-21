@@ -13,14 +13,20 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
-        
+        /// <summary>
+        /// Genera un numero mayor que el anterior para el Id.
+        /// </summary>
+        /// <value></value>
         public int Count {get;set;}
 
         private Market()
         {
             Initialize();
         }
-        
+        /// <summary>
+        /// Se crea un Singelton de la clase Market.
+        /// </summary>
+        /// <value></value>
         public static Market Instance
         {
             get{
@@ -47,7 +53,9 @@ namespace ClassLibrary
                 return this.actualOfferList;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de ofertas.
+        /// </summary>
         public void Initialize()
         {
             this.actualOfferList = new List<Offer>();
@@ -78,7 +86,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
             this.Count ++;
             int id = this.Count;
@@ -220,17 +228,6 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         }
         
-        // public void LoadFromJson(string json)
-        // {
-        //     this.Initialize();
-        //     Offer offer = JsonSerializer.Deserialize<Offer>(json);
-        //     JsonSerializerOptions options = new()
-        //     {                                                        //TODO: Cambiar LoadFromJson a Offer (lo mismo con otras clases)
-        //         ReferenceHandler = MyReferenceHandler.Instance,
-        //         WriteIndented = true
-        //     };
-
-        //     offer = JsonSerializer.Deserialize<Offer>(json, options);
-        // }
+       
     }
 }

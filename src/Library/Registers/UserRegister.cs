@@ -48,7 +48,9 @@ namespace ClassLibrary
                 return instance;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de usuarios y se la guarda en la DataUsers.
+        /// </summary>
         public void Initialize()
         {
            this.DataUsers = new List<Users>();
@@ -72,10 +74,10 @@ namespace ClassLibrary
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitations"></param>
-        public void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
+        public void CreateEntrepreneurUser(int Id,string name , LocationAdapter location, string headings, string habilitations)
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
-            Users usuario = new Users(input.Id, rol);
+            Users usuario = new Users(Id, rol);
         }
 
         /// <summary>
@@ -136,7 +138,11 @@ namespace ClassLibrary
 
             return result;
         }
-
+        /// <summary>
+        /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             string result = "{\"Items\":[";
@@ -151,7 +157,7 @@ namespace ClassLibrary
 
             string temp = JsonSerializer.Serialize(this.DataUsers);
             return result;
-            
+           
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
@@ -160,7 +166,10 @@ namespace ClassLibrary
 
             return JsonSerializer.Serialize(this.DataUsers, options);            
         }
-
+        /// <summary>
+        /// Convierte el texto en formato Json a obejto.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             this.Initialize();

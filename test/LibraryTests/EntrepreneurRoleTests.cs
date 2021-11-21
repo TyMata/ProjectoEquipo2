@@ -11,7 +11,7 @@ namespace Tests
     public class EntrepreneurRoleTests
     {
         private EntrepreneurRole role;
-        private Location location = new Location();
+        private LocationAdapter location ;
 
         /// <summary>
         /// Se crea un EntrepreneurRole para las pruebas.
@@ -19,6 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
+            this.location = LocationApiAdapter.Instance.GetLocation("address","city","department");
             this.role = new EntrepreneurRole("emprendedor", location, "headings", "habilitaciones");
         }
 
