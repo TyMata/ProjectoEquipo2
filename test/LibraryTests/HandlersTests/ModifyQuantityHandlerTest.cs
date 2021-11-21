@@ -15,7 +15,7 @@ namespace Tests
         private Material material;
         private DateTime dateTime;
         private ModifyQuantityHandler handler;
-        private Location location;
+        private LocationAdapter location;
 
         /// <summary>
         /// SetUp de la clase ModifyQuantityHandlerTest.
@@ -23,7 +23,8 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", new Location(), "rubro"), true, dateTime);
+            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
             this.material = new Material("material", "type", "clasificacion");
             IMessageChannel messageChannel = new ConsoleMessageChannel();
             this.handler = new ModifyQuantityHandler(messageChannel);

@@ -12,7 +12,7 @@ namespace Tests
     {
         private int id;
         private string name;
-        private Location locations;
+        private LocationAdapter location;
         private string headings;
         private Company company;
 
@@ -25,8 +25,8 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
-            this.locations = new Location();
-            this.company = new Company(this.name, this.locations, this.headings);
+            this.location = LocationApiAdapter.Instance.GetLocation("address","city","department");;
+            this.company = new Company(this.name, this.location, this.headings);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tests
         [Test]
         public void ProducedMaterialsTest()
         {
-            Company company = new Company(this.name, this.locations, this.headings);
+            Company company = new Company(this.name, this.location, this.headings);
             Assert.IsNotEmpty(company.ProducedMaterials);
         }
     }

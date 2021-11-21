@@ -13,7 +13,7 @@ namespace Tests
     {
         private Company company;
         private CompanyRole role;
-        private Location location = new Location();
+        private LocationAdapter location;
 
         /// <summary>
         /// Se crea una company y su role para las  pruebas.
@@ -21,6 +21,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
+            this.location = LocationApiAdapter.Instance.GetLocation("address","city","department");
             this.company = new Company("empresa", location, "headings");
             this.role = new CompanyRole(this.company);
         }

@@ -13,6 +13,7 @@ namespace Tests
     {
         private Offer oferta;
         private Company company;
+        private LocationAdapter location;
 
         /// <summary>
         /// Se crea una instancia de offer.
@@ -20,8 +21,9 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("empresa", new Location(), "rubro");
-            this.oferta = new Offer(1234567, new Material(), "habilitaciones", new Location(), 30, 3000, this.company, true, new DateTime());
+            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            this.company = new Company("empresa",location, "rubro");
+            this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321, new Material(),"habilitaciones", new Location(),30,3000, this.company,true, new DateTime());
+            Offer nuevaOferta = new Offer(7654321, new Material(),"habilitaciones", location,30,3000, this.company,true, new DateTime());
             Market.Instance.PublishOffer(nuevaOferta);
             Market.Instance.SuspendOffer(7654321);
             Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));

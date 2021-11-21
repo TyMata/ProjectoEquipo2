@@ -76,13 +76,13 @@ namespace ClassLibrary
                 }
             }
         }
-        private Location location;
+        private LocationAdapter location;
 
         /// <summary>
         /// Ubicacion en donde se encuentran el producto a vender
         /// </summary>
         /// <value></value>
-        public Location Location
+        public LocationAdapter Location
         {
             get
             {
@@ -242,7 +242,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer( int id, Material material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
+        public Offer( int id, Material material, string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
         {
             this.Id = id;
             this.Material = material;
@@ -304,7 +304,7 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()  // TODO : hacer el Load from json
+        public string ConvertToJson()  
         {
             JsonSerializerOptions options = new()
             {

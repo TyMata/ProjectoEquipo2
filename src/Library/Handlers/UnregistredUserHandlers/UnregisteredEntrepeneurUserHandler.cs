@@ -42,16 +42,30 @@ namespace ClassLibrary
             }
             else if(this.State == UnregisteredEntrepeneurUserState.Name)
             {
-                this.Data.Name =  this.messageChannel.ReceiveMessage().Text;
-                this.State = UnregisteredEntrepeneurUserState.Location;
-                response = "Ingrese su ubicacion\n";
+                this.Data.Name =  input.Text;
+                this.State = UnregisteredEntrepeneurUserState.Address;
+                response = "Ingrese su dirección:\n";
                 return true;
             }
-            else if (this.State == UnregisteredEntrepeneurUserState.Location)
+            else if (this.State == UnregisteredEntrepeneurUserState.Address)
             {
-                this.Data.Location =  this.messageChannel.ReceiveMessage().Text;
-                this.Data.LocationResult = null; //TODO Buscar la dirreccion en la api para que devuelva location
+                this.Data.Address =  input.Text;
+                this.State = UnregisteredEntrepeneurUserState.City;
+                response = "Ingrese la ciudad:\n";
+                return true;
+            }
+            else if(this.State == UnregisteredEntrepeneurUserState.City)
+            {
+                this.Data.City = input.Text;
+                this.State = UnregisteredEntrepeneurUserState.Department;
+                response = "Ingrese el departamento:\n";
+                return true;
+            }
+            else if (this.State == UnregisteredEntrepeneurUserState.Department)
+            {
+                this.Data.Department = input.Text;
                 this.State = UnregisteredEntrepeneurUserState.Habilitations;
+                this.Data.LocationResult = LocationApiAdapter.Instance.GetLocation(this.Data.Address,this.Data.City,this.Data.Department);
                 response = "Ingrese sus habilitaciones\n";
                 return true;
             }
@@ -66,8 +80,8 @@ namespace ClassLibrary
             {
                 string rubro = this.messageChannel.ReceiveMessage().Text;
                 this.State = UnregisteredEntrepeneurUserState.Start;
+                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
                 response = "Gracias por sus datos, se esta creando su usuario\n";
-                //TODO se tiene que crear el usuario
                 return true;
 
             }
@@ -78,15 +92,23 @@ namespace ClassLibrary
             } 
         }
 
+        /// <summary>
+        /// Estados para el handler de un emprendedor no registrado
+        /// </summary>
         public enum UnregisteredEntrepeneurUserState
         {
             Start,
             Name,
-            Location,
+            Address,
+            City,
+            Department,
             Habilitations,
-            Headings
+            Headings,
         }
 
+        /// <summary>
+        /// Se guardan los datos que el usuario pasa por el chat.
+        /// </summary>
         public class UnregisteredEntrepeneurUserData
         {
             /// <summary>
@@ -95,14 +117,26 @@ namespace ClassLibrary
             public string Name { get; set; }
 
             /// <summary>
-            /// El nombre que se ingresó en el estado UnregisteredCompanyUserState.Location.
+            /// se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .
             /// </summary>
-            public string Location { get; set; }
+            public string Address { get; set; }
+
+            /// <summary>
+            /// Se guarda la ciudad que se ingresó en el estado UnregisteredEntrepreneurUserState.City .
+            /// </summary>
+            /// <value></value>
+            public string City{get;set;}
+
+            /// <summary>
+            /// Se guarda eL departamento que se ingresó en el estado UnregisteredEntrepreneurUserState.Department .
+            /// </summary>
+            /// <value></value>
+            public string Department {get;set;}
 
             /// <summary>
             /// El resultado de la búsqueda de la dirección ingresada.
             /// </summary>
-            public Location LocationResult { get; set; }
+            public LocationAdapter LocationResult { get; set; }
             
             /// <summary>
             /// El link a las habilitaciones que se ingresó en el estado UnregisteredCompanyUserState.Habilitations.

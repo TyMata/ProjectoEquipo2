@@ -48,7 +48,7 @@ namespace ClassLibrary
                 response = "Ingrese el pais:\n";
                 return true;
             }
-             else if(this.State == CompanyState.Estate)
+             else if(this.State == CompanyState.Country)
             {
                 this.Data.Country = input.Text;
                 this.State = CompanyState.Estate;
@@ -65,13 +65,13 @@ namespace ClassLibrary
            else if(this.State == CompanyState.City)
             {
                 this.Data.City = input.Text;
-                this.State = CompanyState.Adress;
+                this.State = CompanyState.Address;
                 response = "Ingrese la direccion:\n";
                 return true;
             } 
             else if(this.State == CompanyState.City)
             {
-                this.Data.Adress= input.Text;
+                this.Data.Address= input.Text;
                 this.State = CompanyState.Headings;
                 response = "Ingrese su rubro:\n";
                 return true;
@@ -80,8 +80,8 @@ namespace ClassLibrary
             {
                 this.Data.Headings = input.Text;
                 this.State = CompanyState.Start;
-                 this.Data.ubi = LocationServiceProvider.client.GetLocationAsync(this.Data.Country,this.Data.Estate,this.Data.City,this.Data.Adress).Result;
-                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.ubi,this.Data.Headings);
+                this.Data.Location = LocationApiAdapter.Instance.GetLocation(this.Data.Address, this.Data.City,this.Data.Estate);
+                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
                 response = "Ya se creo la empresa.";
                 return true;
                
@@ -105,9 +105,9 @@ namespace ClassLibrary
         Country,
         Estate,
         City,
-        Adress,
+        Address,
         Headings,
-        Ubi,
+        Location,
     }
 
     public class CompanyData
@@ -123,13 +123,13 @@ namespace ClassLibrary
             public string Country { get; set; }
 
             public string Estate { get; set; }
-             public string City { get; set; }
+            public string City { get; set; }
 
-            public string Adress { get; set; }
+            public string Address { get; set; }
             
             public string Headings { get; set; }
 
-             public Location ubi { get; set; }
+             public LocationAdapter Location { get; set; }
             public Company company {get;set;}
           
 
