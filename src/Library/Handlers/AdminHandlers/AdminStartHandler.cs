@@ -8,6 +8,10 @@ namespace ClassLibrary
     /// </summary>
     public class AdminStartHandler : AbstractHandler
     {
+        /// <summary>
+        /// Estado para el handler de AdminStart.
+        /// </summary>
+        /// <value></value>
         public AdminStartState State { get; set; }
 
         /// <summary>
@@ -45,8 +49,14 @@ namespace ClassLibrary
             return false;
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que puede tener el comando AdminStartHandler.
+        /// </summary>
         public enum AdminStartState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            /// </summary>
             Start,
             NotFirstTime,
             Command

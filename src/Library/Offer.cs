@@ -263,14 +263,6 @@ namespace ClassLibrary
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
         }
-        /// <summary>
-        /// JsonConstructor para objetos Offer.
-        /// </summary>
-        [JsonConstructor]
-        public Offer()
-        {
-
-        }
 
         /// <summary>
         /// Modifica la cantidad del material.
