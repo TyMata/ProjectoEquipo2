@@ -912,7 +912,11 @@
             </summary>
             <value></value>
         </member>
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+=======
         <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+>>>>>>> origin
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
             </summary>
@@ -1177,6 +1181,9 @@
             </summary>
             <returns></returns>
         </member>
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.User.ConvertToJson">
+=======
         <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
             <summary>
             Booleano para comprobar que un usuario es un usuario emprendedor.
@@ -1190,6 +1197,7 @@
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Users.ConvertToJson">
+>>>>>>> origin
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
