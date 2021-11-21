@@ -34,6 +34,13 @@ namespace ClassLibrary
             this.company = null;
         }
 
+        /// <summary>
+        /// Pregunta por la oferta que se quiere modificar, el nuevo link a las habilitaciones del usuario
+        /// y delega la accion de modificar la oferta.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if(this.State == ModifyState.Start && this.CanHandle(input))
@@ -46,7 +53,7 @@ namespace ClassLibrary
                     {
                         offers.Append($"ID : {x.Id}\n")
                             .Append($"Material : {x.Material}\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}\n")                            //TODO preguntar por id de la oferta a modificar
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
@@ -105,7 +112,7 @@ namespace ClassLibrary
         public class ModifyOfferData
         {
             /// <summary>
-            /// La dirección que se ingresó en el estado ModifyStateOfferList.
+            /// La dirección que se ingresó en el estado ModifyState.OfferList.
             /// </summary>
             public int OfferId { get; set; }
 

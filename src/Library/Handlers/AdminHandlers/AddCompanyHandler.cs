@@ -37,7 +37,7 @@ namespace ClassLibrary
 
         }
         /// <summary>
-        /// Pide algunos datos de la empresa que se quiere registrar la crea
+        /// Pide algunos datos de la empresa que se quiere registrar y delega la accion de crearla.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
