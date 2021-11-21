@@ -28,7 +28,7 @@ namespace Tests
         [Test]
         public void CreateUserTest()
         {
-            User usuario = new User(this.id, this.role);
+            Users usuario = new Users(this.id, this.role);
             Assert.AreEqual(this.role, usuario.Role);
             Assert.AreEqual(this.id, usuario.Id);
         }

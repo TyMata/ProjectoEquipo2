@@ -16,13 +16,13 @@ namespace ClassLibrary
         /// <summary>
         /// Verifica si se realiza el proceso o se lo manda al next handler
         /// </summary>
-        IHandler Handle(IMessage input);
+        IHandler Handle(IMessage input, out string response);
         
         /// <summary>
         /// Ejecución del proceso de Handler
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        bool InternalHandle(IMessage input);
+        bool InternalHandle(IMessage input, out string response);
     }
 }

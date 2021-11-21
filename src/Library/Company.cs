@@ -53,13 +53,14 @@ namespace ClassLibrary
             }
         }
 
-        private Location locations;
+        private List<Location> locations = new List<Location>();
 
         /// <summary>
         /// Ubicacion/es de la empresa
         /// </summary>
         /// <value></value>
-        public Location Locations
+        [JsonInclude]
+        public List<Location> Locations
         {
             get
             {
@@ -74,14 +75,14 @@ namespace ClassLibrary
             }
         }
 
-        private List<User> companyUsers = new List<User>();
+        private List<Users> companyUsers = new List<Users>();
 
         /// <summary>
         /// Lista de usuarios pertenecientes a la empresa
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public List<User> CompanyUsers 
+        public List<Users> CompanyUsers 
         {
             get
             {
@@ -215,10 +216,10 @@ namespace ClassLibrary
         public Company(string name, Location ubi, string headings)
         {
             this.name = name;
-            this.Locations = ubi;
+            this.Locations.Add(ubi);
             this.id = 0;
             this.Headings = headings;
-            this.InvitationToken = this.GenerateToken(this);
+            this.InvitationToken = this.GenerateToken();
         }
         
         /// <summary>
@@ -233,7 +234,7 @@ namespace ClassLibrary
             }
 
             IRole rol = new CompanyRole(this);
-            User user = new User(id, rol);
+            Users user = new Users(id, rol);
             UserRegister.Instance.Add(user);
             this.CompanyUsers.Add(user);
         }
@@ -248,7 +249,7 @@ namespace ClassLibrary
             {
                 throw new Exception();
             } 
-            User x = this.CompanyUsers.Find(offer => offer.Id == id);
+            Users x = this.CompanyUsers.Find(offer => offer.Id == id);
             this.CompanyUsers.Remove(x);
         } 
 
@@ -281,9 +282,8 @@ namespace ClassLibrary
         /// <summary>
         /// Se genera un  token para una nueva empresa y se lo añade al diccionario
         /// </summary>
-        /// <param name="company"></param>
         /// <returns></returns>
-        public string GenerateToken(Company company)
+        public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa 
         {
             Random rnd = new Random();
             StringBuilder token = new StringBuilder();
@@ -306,7 +306,7 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson() // TODO hacer el load ffrom json
         {
             JsonSerializerOptions options = new()
             {
