@@ -67,14 +67,18 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.Company.#ctor">
+            <summary>
+            JsonConstructor de objetos Company.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
             <summary>
             Constructor de objetos Company
             </summary>
             <param name="name"></param>
             <param name="ubi"></param>
             <param name="headings"></param>
-            <param name="materials"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
@@ -106,6 +110,13 @@
             </summary>
             <param name="company"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Company.ConvertToJson">
+            <summary>
+            Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
@@ -545,6 +556,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Material.#ctor">
+            <summary>
+            JsonConstructor para objetos Material.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.Material.#ctor(System.String,System.String,System.String)">
             <summary>
             Constructor de objetos Material
@@ -552,6 +568,13 @@
             <param name="name"></param>
             <param name="type"></param>
             <param name="classification"></param>
+        </member>
+        <member name="M:ClassLibrary.Material.ConvertToJson">
+            <summary>
+            Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.ConsoleMessage">
             <summary>
@@ -692,7 +715,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer
             </summary>
@@ -706,13 +729,18 @@
             <param name="availability"></param>
             <param name="publicationDate"></param>
         </member>
+        <member name="M:ClassLibrary.Offer.#ctor">
+            <summary>
+            JsonConstructor para objetos Offer.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
             Modifica la cantidad del material
             </summary>
             <param name="quantity"></param>
         </member>
-        <member name="M:ClassLibrary.Offer.ChangeMaterial(System.String)">
+        <member name="M:ClassLibrary.Offer.ChangeMaterial(ClassLibrary.Material)">
             <summary>
             Modifica el material
             </summary>
@@ -729,6 +757,13 @@
             Modifica el precio
             </summary>
             <param name="price"></param>
+        </member>
+        <member name="M:ClassLibrary.Offer.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
@@ -766,14 +801,20 @@
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
             <summary>
             Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
             </summary>
             <param name="nombre"></param>
             <param name="ubi"></param>
             <param name="headings"></param>
-            <param name="materials"></param>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
@@ -792,7 +833,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,System.String,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.String,System.Boolean)">
+        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
             </summary>
@@ -803,7 +844,6 @@
             <param name="quantityMaterial"></param>
             <param name="totalPrice"></param>
             <param name="company"></param>
-            <param name="keywords"></param>
             <param name="availability"></param>
             <returns></returns>
         </member>
@@ -851,6 +891,13 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="M:ClassLibrary.Market.ConvertToJson">
+            <summary>
+            Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
             Esta clase  representa un registro de tokens
@@ -864,7 +911,7 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.GetCompany(System.String)">
             <summary>
-            Verifica si el token es valido
+            Devuelve la empresa a la cual le pertenece un codigo
             </summary>
             <param name="codigo"></param>
             <returns></returns>
@@ -897,6 +944,12 @@
         <member name="P:ClassLibrary.UserRegister.DataUsers">
             <summary>
             Lista de usuarios registrados
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.UserRegister.Instance">
+            <summary>
+            Instancia de UserRegister (COMENTAR SINGLETON)
             </summary>
             <value></value>
         </member>
@@ -942,6 +995,19 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.IJsonConvertible">
+            <summary>
+            Define el tipo que tienen los objetos que pueden ser serializados en texto en formato
+            Json.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IJsonConvertible.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.Setup">
             <summary>
@@ -1026,6 +1092,13 @@
             Booleano para comprobar que un usuario es un usuario empresa.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.User.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.AdminRole">
             <summary>
