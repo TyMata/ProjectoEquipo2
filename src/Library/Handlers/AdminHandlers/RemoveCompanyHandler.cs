@@ -8,8 +8,15 @@ namespace ClassLibrary
     /// </summary>
     public class RemoveCompanyHandler : AbstractHandler
     {
+        /// <summary>
+        /// Estado para el handler de RemoveCompany.
+        /// </summary>
+        /// <value></value>
         public RemoveCompanyState State {get;set;}
-
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveCompany.
+        /// </summary>
+        /// <value></value>
         public RemoveCompanyData Data {get; set;}
 
         /// <summary>
@@ -39,8 +46,9 @@ namespace ClassLibrary
             }
             else if(this.State == RemoveCompanyState.Company)
             {
-                this.Data.Company = Convert.ToInt32(input.Text);
-                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.Company);
+                this.State = RemoveCompanyState.Start;
+                this.Data.CompanyId = Convert.ToInt32(input.Text);
+                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.CompanyId);
                 if (this.Data.Result != null)
                 {
                     CompanyRegister.Instance.Remove(this.Data.Result);
@@ -49,32 +57,44 @@ namespace ClassLibrary
                 }
                 else 
                 {
-                    response = $"La empresa com el Id {this.Data.Company} no esta registrada";
+                    response = $"La empresa con el Id {this.Data.CompanyId} no esta registrada";
                     return true;
-                }
-                
+                } 
             }
             response = string.Empty;   
             return false;
         }
-    }
 
-    /// <summary>
-    /// Guarda los estados de el handler para remover una empresa
-    /// </summary>
-    public enum RemoveCompanyState
-    {
-        Start,
-        Company,
-    }
+        /// <summary>
+        /// Indica los diferentes estados que tiene AddCompanyHandler.
+        /// </summary>
+        public enum RemoveCompanyState
+        {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pide el Id de la empresa a eliminar y pasa al siguiente estado.
+            /// </summary>
+            Start,
+            /// <summary>
+            /// Luego de pedir el Id de la empresa. En este estado el comando elimina la empresa si existe y vuelve al estado Start.
+            /// </summary>
+            Company
+        }
 
-    /// <summary>
-    /// Guarda la informacion que envia el usuario
-    /// </summary>
-    public class RemoveCompanyData
-    {
-        public int Company {get; set;}
-
-        public Company Result {get;set;}
+        /// <summary>
+        /// Representa los datos que va obteniendo el comando RemoveCompanyHandler en los diferentes estados.
+        /// </summary>
+        public class RemoveCompanyData
+        {
+            /// <summary>
+            /// El Id de la empresa que se ingresó en el estado RemoveCompanyState.Company.
+            /// </summary>
+            /// <value></value>
+            public int CompanyId {get; set;}
+            /// <summary>
+            /// El resultado de la búsqueda de la empresa por medio del Id.
+            /// </summary>
+            /// <value></value>
+            public Company Result {get;set;}
+        }
     }
 }

@@ -8,12 +8,19 @@ namespace ClassLibrary
     /// </summary>
     public class RemoveUserHandler : AbstractHandler
     {
+        /// <summary>
+        /// Estado para el handler de RemoveUser.
+        /// </summary>
+        /// <value></value>
         public RemoveUserState State {get; set;}
-
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveUserHandler.
+        /// </summary>
+        /// <value></value>
         public RemoveUserData Data {get; set;}
         
         /// <summary>
-        /// Constructor de objetos RemoveUserHandler
+        /// Constructor de objetos RemoveUserHandler.
         /// </summary>
         public RemoveUserHandler(IMessageChannel channel)
         {
@@ -39,34 +46,54 @@ namespace ClassLibrary
             }
             else if(this.State == RemoveUserState.User)
             {
-                this.Data.User = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                this.Data.Result = UserRegister.Instance.GetUserById(this.Data.User);
+                this.State = RemoveUserState.Start;
+                this.Data.UserId = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
+                this.Data.Result = UserRegister.Instance.GetUserById(this.Data.UserId);
                 if (this.Data.Result != null)
                 {
                     UserRegister.Instance.Remove(this.Data.Result);
                     this.State = RemoveUserState.Start;
-                    response = $"El usuario de Id: {this.Data.User} ha sido eliminado";                    
+                    response = $"El usuario de Id: {this.Data.UserId} ha sido eliminado";                    
                 }
                 else
                 {
-                    response = $"No se encontro ningun usuario con el {this.Data.User}.";
+                    response = $"No se encontro ningun usuario con el {this.Data.UserId}.";
                 }
                 return true;
             }
             response = "";
-            return false;
-            
+            return false;   
         }
+
+        /// <summary>
+        /// Indica los diferentes estados que tiene RemoveUserHandler.
+        /// </summary>
         public enum RemoveUserState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pide el Id del usuario a eliminar y pasa al siguiente estado.
+            /// </summary>
             Start,
+            /// <summary>
+            /// Luego de pedir el Id del usuario. En este estado el comando elimina el usuario si existe y vuelve al estado Start.
+            /// </summary>
             User,
         }
 
+        /// <summary>
+        /// Representa los datos que va obteniendo el comando RemoveUserHandler en los diferentes estados.
+        /// </summary>
         public class RemoveUserData
         {
-            public int User {get;set;}
-
+            /// <summary>
+            /// El Id del usuario que se ingresó en el estado RemoveUserState.User.
+            /// </summary>
+            /// <value></value>
+            public int UserId {get;set;}
+            /// <summary>
+            /// El resultado de la búsqueda del usuario por medio del Id.
+            /// </summary>
+            /// <value></value>
             public Users Result {get; set;}
         }
     }
