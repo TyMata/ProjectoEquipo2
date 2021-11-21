@@ -74,11 +74,6 @@
         </member>
         <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
             <summary>
-            JsonConstructor de objetos Company.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
-            <summary>
             Constructor de objetos Company.
             </summary>
             <param name="name"></param>
@@ -170,36 +165,16 @@
             <param name="message">El mensaje a procesar</param>
             <returns></returns>
         </member>
-        <member name="T:ClassLibrary.AddCompanyHandler">
-            <summary>
-            Handler encargado de delegar la accion de añadir una empresa nueva al registro
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de los objetos AddCompanyHandler
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Pide algunos datos de la empresa que se quiere registrar la crea
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Name">
-            <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Country">
-            <summary>
-            El resultado de la búsqueda de la dirección ingresada.
-            </summary>
-        </member>
         <member name="T:ClassLibrary.AdminStartHandler">
             <summary>
             Primer Handler de la CoR para los usuarios Admin.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.AdminStartHandler.State">
+            <summary>
+            Estado para el handler de AdminStart.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.AdminStartHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -212,6 +187,16 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AdminStartHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -365,18 +350,18 @@
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de crear y publicar una oferta en el registro.
+            Handler encargado de delegar la accion de crear y publicar una oferta en el registro
             </summary>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos PublishOfferHandler.
+            Constructor de objetos PublishOfferHandler
             </summary>
             <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
+            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
             </summary>
             <param name="input"></param>
         </member>
@@ -438,18 +423,18 @@
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
-            Handler encargado de darle final a la CoR
+            Handler encargado de darle final a la CoR.
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
-            Constructor de objetos EndHandler
+            Constructor de objetos EndHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Le avisa al usuario que el comando no se reconocio y 
-            va denuevo al primer handler de la cadena
+            va denuevo al primer handler de la cadena.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -467,7 +452,7 @@
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de buscar ofertas por keywords.
+            Handler encargado de delegar la accion de buscar ofertas por keywords
             </summary>
         </member>
         <member name="M:ClassLibrary.SearchOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
@@ -491,7 +476,6 @@
             <summary>
             Verifica si se realiza el proceso o se lo manda al next handler.
             </summary>
-            <param name="input"></param>
         </member>
         <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
@@ -794,6 +778,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Offer.#ctor">
+            <summary>
+            JsonConstructor para objetos Offer.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer.
@@ -807,11 +796,6 @@
             <param name="company"></param>
             <param name="availability"></param>
             <param name="publicationDate"></param>
-        </member>
-        <member name="M:ClassLibrary.Offer.#ctor">
-            <summary>
-            JsonConstructor para objetos Offer.
-            </summary>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
@@ -847,6 +831,17 @@
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
             Esta clase representa un registro de empresas.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyRegister.Instance">
+            <summary>
+            Se crea un Singelton de la clase CompanyRegister.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.Initialize">
+            <summary>
+            Se crea la lista de empresas.
             </summary>
         </member>
         <member name="P:ClassLibrary.CompanyRegister.CompanyList">
@@ -900,11 +895,28 @@
             Esta clase representa el mercado con sus ofertas.
             </summary>
         </member>
+        <member name="P:ClassLibrary.Market.Count">
+            <summary>
+            Genera un numero mayor que el anterior para el Id.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Market.Instance">
+            <summary>
+            Se crea un Singelton de la clase Market.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
             <summary>
             Lista de ofertas actuales.
             </summary>
             <value></value>
+        </member>
+        <member name="M:ClassLibrary.Market.Initialize">
+            <summary>
+            Se crea la lista de ofertas.
+            </summary>
         </member>
         <member name="P:ClassLibrary.Market.SuspendedOfferList">
             <summary>
@@ -912,15 +924,7 @@
             </summary>
             <value></value>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
-=======
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
-=======
         <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
->>>>>>> origin
->>>>>>> master
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
@@ -995,16 +999,27 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:ClassLibrary.TokenRegister.Instance">
+            <summary>
+            Se crea un Singelton de la clase TokenRegister.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.Initialize">
+            <summary>
+            Se crea diccionario para asociar un token con su respectiva empresa.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.TokenRegister.GetCompany(System.String)">
             <summary>
-            Devuelve la empresa a la cual le pertenece un codigo
+            Devuelve la empresa a la cual le pertenece un codigo.
             </summary>
             <param name="codigo"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.TokenRegister.Add(System.String,ClassLibrary.Company)">
             <summary>
-            Metodo par añadir un token al diccionario de tokens.
+            Metodo para añadir un token al diccionario de tokens.
             </summary>
             <param name="token"></param>
             <param name="company"></param>
@@ -1021,6 +1036,19 @@
             </summary>
             <param name="codigo"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.LoadFromJson(System.String)">
+            <summary>
+            Convierte el texto en formato Json a objeto.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>
@@ -1039,11 +1067,10 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.UserRegister.Instance">
+        <member name="M:ClassLibrary.UserRegister.Initialize">
             <summary>
-            Instancia de UserRegister (COMENTAR SINGLETON)
+            Se crea la lista de usuarios y se la guarda en la DataUsers.
             </summary>
-            <value></value>
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
             <summary>
@@ -1087,6 +1114,19 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.LoadFromJson(System.String)">
+            <summary>
+            Convierte el texto en formato Json a obejto.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.IJsonConvertible">
             <summary>
@@ -1191,12 +1231,6 @@
             </summary>
             <returns></returns>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.User.ConvertToJson">
-=======
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.User.ConvertToJson">
-=======
         <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
             <summary>
             Booleano para comprobar que un usuario es un usuario emprendedor.
@@ -1210,8 +1244,6 @@
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Users.ConvertToJson">
->>>>>>> origin
->>>>>>> master
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.

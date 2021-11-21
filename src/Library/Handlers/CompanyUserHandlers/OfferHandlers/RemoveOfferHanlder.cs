@@ -91,6 +91,9 @@ namespace ClassLibrary
             this.Data = new RemoveOfferData();
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+        /// </summary>
         public enum RemoveOfferState
         {
             Start,

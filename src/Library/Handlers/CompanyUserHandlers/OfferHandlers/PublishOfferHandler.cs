@@ -94,6 +94,10 @@ namespace ClassLibrary
         
     
         }
+ 
+        /// <summary>
+        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+        /// </summary>
         public enum OfferState
         {
             Start,

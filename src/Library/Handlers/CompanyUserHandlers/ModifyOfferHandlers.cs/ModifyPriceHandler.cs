@@ -8,6 +8,11 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyPriceHandler : AbstractHandler
     {
+
+        /// <summary>
+        /// Estado para el handler de AddCompany.
+        /// </summary>
+        /// <value></value>
         public ModifyState State { get; set; }
         public ModifyOfferData Data {get;set;}
         private Company company;
@@ -35,7 +40,7 @@ namespace ClassLibrary
             if(this.State == ModifyState.Start && this.CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("Estas son todas sus ofertas:\n");
+                StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
                 if(this.company.OfferRegister != null)
                 {
                     foreach(Offer x in this.company.OfferRegister)
@@ -55,7 +60,7 @@ namespace ClassLibrary
             }
             else if(this.State == ModifyState.OfferList)
             {
-                this.Data.Offer = Convert.ToInt32(input.Text);
+                this.Data.OfferId = Convert.ToInt32(input.Text);
                 this.State = ModifyState.Modification;
                 response = "Ingrese el nuevo precio de la oferta:\n";
                 return true;
@@ -63,7 +68,7 @@ namespace ClassLibrary
             else if(this.State == ModifyState.Modification)
             {
                 int price = Convert.ToInt32(input.Text);
-                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.Offer);
+                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
                 this.Data.Result.ChangePrice(price);
                 this.State = ModifyState.Start;
                 response = "El precio se ha modificado";
@@ -73,9 +78,20 @@ namespace ClassLibrary
             return false;
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que tiene ModifyPriceHandler.
+        /// </summary>
         public enum ModifyState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            /// modificar y le muestra una lista de las ofertas actuales de la empresa.
+            /// </summary>
             Start,
+
+            /// <summary>
+            /// En este estado se obtiene el id y pregunta por el link de las habilitaciones.
+            /// </summary>
             OfferList,
             Modification,
 
@@ -85,12 +101,12 @@ namespace ClassLibrary
         public class ModifyOfferData
         {
             /// <summary>
-            /// La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            /// La dirección que se ingresó en el estado ModifyState.OfferList.
             /// </summary>
-            public int Offer { get; set; }
+            public int OfferId { get; set; }
 
             /// <summary>
-            /// El resultado de la búsqueda de la dirección ingresada.
+            /// El resultado de la búsqueda de la oferta ingresada.
             /// </summary>
             public Offer Result { get; set; }
         }

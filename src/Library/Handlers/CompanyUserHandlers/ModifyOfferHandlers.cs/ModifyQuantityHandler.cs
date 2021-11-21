@@ -8,6 +8,11 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyQuantityHandler : AbstractHandler
     {
+
+        /// <summary>
+        /// Estado para el handler de AddCompany.
+        /// </summary>
+        /// <value></value>
          public ModifyState State { get; set; }
         public ModifyOfferData Data {get;set;}
         private Company company;
@@ -29,13 +34,14 @@ namespace ClassLibrary
         /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada.
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if (this.State == ModifyState.Start && CanHandle(input))
             {
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
+                StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
                 if(company.OfferRegister != null)
                 {
                     foreach(Offer x in company.OfferRegister)
@@ -70,9 +76,14 @@ namespace ClassLibrary
             }
             response = string.Empty;
             return false;
-        } 
+        }
+        
+        /// <summary>
+        /// Indica los diferentes estados tiene ModifyQuantityHandler.
+        /// </summary>
         public enum ModifyState
         {
+            
             Start,
             OfferList,
             Modification,
@@ -83,12 +94,12 @@ namespace ClassLibrary
         public class ModifyOfferData
         {
             /// <summary>
-            /// La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            /// La dirección que se ingresó en el estado ModifyState.OfferList.
             /// </summary>
             public int Offer { get; set; }
 
             /// <summary>
-            /// El resultado de la búsqueda de la dirección ingresada.
+            /// El resultado de la búsqueda de la oferta ingresada.
             /// </summary>
             public Offer Result { get; set; }
         }  

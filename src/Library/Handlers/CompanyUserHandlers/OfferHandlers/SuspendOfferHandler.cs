@@ -89,6 +89,9 @@ namespace ClassLibrary
             this.Data = new SuspendOfferData();
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+        /// </summary>
         public enum SuspendOfferState
         {
             Start,

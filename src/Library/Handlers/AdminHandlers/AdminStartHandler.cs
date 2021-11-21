@@ -36,12 +36,22 @@ namespace ClassLibrary
                                                 .Append("/RegistrarEmpresa\n")
                                                 .Append("/EliminarUsuario\n")
                                                 .Append("/EliminarEmpresa\n");
-                this.State = AdminStartState.NotFirstTime;
+                this.State = AdminStartState.Command;
                 response = bienvenida.ToString();
+            }
+            else if(this.State == AdminStartState.NotFirstTime)
+            {
+                StringBuilder menu = new StringBuilder("Que quieres hacer?\n")
+                                                .Append("/RegistrarEmpresa\n")
+                                                .Append("/EliminarUsuario\n")
+                                                .Append("/EliminarEmpresa\n");
+                this.State = AdminStartState.NotFirstTime;
+                response = menu.ToString();
+                return true;
             }
             else if(this.State == AdminStartState.Command)
             {
-                IMessage input2 = this.messageChannel.ReceiveMessage();
+                this.State = AdminStartState.NotFirstTime;
                 response = "";
                 return true;
             }
