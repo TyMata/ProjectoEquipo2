@@ -45,7 +45,7 @@ namespace Tests
         public void AddUserTest()
         {
             IRole empresarole = new CompanyRole(this.company);
-            User user = new User(1234567, empresarole);
+            Users user = new Users(1234567, empresarole);
             company.AddUser(user.Id);
             Assert.IsNotEmpty(company.CompanyUsers);
         }
@@ -57,7 +57,7 @@ namespace Tests
         public void RemoveUserTest()
         {
             IRole empresarole = new CompanyRole(this.company);
-            User user = new User(223456, empresarole);
+            Users user = new Users(223456, empresarole);
             company.AddUser(user.Id);
             company.RemoveUser(user.Id);
             Assert.IsFalse(this.company.CompanyUsers.Contains(user));

@@ -11,12 +11,12 @@ namespace ClassLibrary
     /// </summary>
     public class UserRegister : IJsonConvertible
     {   
-        private List<User> dataUsers = new List<User>();
+        private List<Users> dataUsers = new List<Users>();
         /// <summary>
         /// Lista de usuarios registrados
         /// </summary>
         /// <value></value>
-        public List<User> DataUsers 
+        public List<Users> DataUsers 
         { 
             get
             {
@@ -48,10 +48,12 @@ namespace ClassLibrary
                 return instance;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de usuarios y se la guarda en la DataUsers.
+        /// </summary>
         public void Initialize()
         {
-           this.DataUsers = new List<User>();
+           this.DataUsers = new List<Users>();
         }
 
 
@@ -76,14 +78,14 @@ namespace ClassLibrary
         public void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
-            User usuario = new User(input.Id, rol);
+            Users usuario = new Users(input.Id, rol);
         }
 
         /// <summary>
         /// Esto se hace por la ley de demeter
         /// </summary>
         /// <param name="item"></param>
-        public void Add(User item)
+        public void Add(Users item)
         {
             this.DataUsers.Add(item);
         }
@@ -92,7 +94,7 @@ namespace ClassLibrary
         /// Remueve un user de la lista. Por la ley de demeter
         /// </summary>
         /// <param name="item"></param>
-        public void Remove(User item)
+        public void Remove(Users item)
         {
             if (!this.DataUsers.Contains(item))
             {
@@ -106,7 +108,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool ContainsUser(User user)
+        public bool ContainsUser(Users user)
         {
             if(this.DataUsers.Contains(user))
             {
@@ -123,9 +125,9 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public User GetUserById(int id)
+        public Users GetUserById(int id)
         {
-            User result = null;
+            Users result = null;
             int index = 0;
             while (result == null && index < this.DataUsers.Count)
             {
@@ -137,7 +139,11 @@ namespace ClassLibrary
 
             return result;
         }
-
+        /// <summary>
+        /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             string result = "{\"Items\":[";
@@ -152,7 +158,7 @@ namespace ClassLibrary
 
             string temp = JsonSerializer.Serialize(this.DataUsers);
             return result;
-            
+           
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
@@ -161,18 +167,21 @@ namespace ClassLibrary
 
             return JsonSerializer.Serialize(this.DataUsers, options);            
         }
-
+        /// <summary>
+        /// Convierte el texto en formato Json a obejto.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             this.Initialize();
-            User user = JsonSerializer.Deserialize<User>(json);
+            Users user = JsonSerializer.Deserialize<Users>(json);
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true
             };
 
-            user = JsonSerializer.Deserialize<User>(json, options);
+            user = JsonSerializer.Deserialize<Users>(json, options);
         }
     }
 }

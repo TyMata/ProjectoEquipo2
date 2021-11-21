@@ -11,7 +11,7 @@ namespace ClassLibrary
     /// asi al momento de crear un usuario se le puede otorgar cualquiera de los 3 roles (AdminRole,
     /// CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
     /// </summary>
-    public class User : IJsonConvertible
+    public class Users : IJsonConvertible
     {
         /// <summary>
         /// Rol del usuario
@@ -45,7 +45,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="id"></param>
         /// <param name="role"></param>
-        public User(int id, IRole role)
+        public Users(int id, IRole role)
         {
             this.Id = id;
             this.Role = role;
@@ -57,7 +57,25 @@ namespace ClassLibrary
         /// <returns></returns>
         public bool IsCompanyUser()
         {
-            return this.Role is CompanyRole;
+            return this.Role is CompanyRole;   //TODO 
+        }
+
+        /// <summary>
+        /// Booleano para comprobar que un usuario es un usuario emprendedor.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEntrepreneurUser()
+        {
+            return this.Role is EntrepreneurRole;   //TODO 
+        }
+
+        /// <summary>
+        /// Booleano para comprobar que un usuario es un usuario admin.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAdminUser()
+        {
+            return this.Role is AdminRole;   //TODO 
         }
 
         /// <summary>

@@ -17,7 +17,10 @@ namespace ClassLibrary
         {
             Initialize();
         }
-
+        /// <summary>
+        /// Se crea un Singelton de la clase CompanyRegister.
+        /// </summary>
+        /// <value></value>
         public static CompanyRegister Instance
         {
             get{
@@ -31,7 +34,9 @@ namespace ClassLibrary
         }
 
         private List<Company> companyList;
-
+        /// <summary>
+        /// Se crea la lista de empresas.
+        /// </summary>
         public void Initialize()
         {
             this.companyList = new List<Company>();
@@ -79,8 +84,16 @@ namespace ClassLibrary
         /// <returns></returns>
         public Company GetCompanyByUserId(int id)
         {
-            User x = UserRegister.Instance.GetUserById(id);
-            return (x.Role as CompanyRole).Company;
+            Users x = UserRegister.Instance.GetUserById(id);
+            if(x != null)
+            {
+                return (x.Role as CompanyRole).Company;
+            }
+            else
+            {
+                return null;
+            }
+            
         } 
 
         /// <summary>
@@ -109,7 +122,7 @@ namespace ClassLibrary
         {
             Company nuevaCompany = new Company(nombre, ubi, headings);
             CompanyRegister.Instance.Add(nuevaCompany);
-            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany);
+            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
         }
 

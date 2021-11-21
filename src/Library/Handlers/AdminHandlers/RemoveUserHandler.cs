@@ -8,6 +8,9 @@ namespace ClassLibrary
     /// </summary>
     public class RemoveUserHandler : AbstractHandler
     {
+        public RemoveUserState State {get; set;}
+
+        public RemoveUserData Data {get; set;}
         
         /// <summary>
         /// Constructor de objetos RemoveUserHandler
@@ -16,6 +19,8 @@ namespace ClassLibrary
         {
             this.Command = "eliminarusuario";
             this.messageChannel = channel;
+            this.State = RemoveUserState.Start;
+            this.Data = new RemoveUserData();
         }
         /// <summary>
         /// Pregunta por el id del usuario que se quiere eliminar y si el usuario que se quiere eliminar esta registrado
@@ -23,28 +28,46 @@ namespace ClassLibrary
         /// De no ser asi lo informa por pantalla al usuario.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        /// <param name="response"></param>
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            if(CanHandle(input))
+            if(this.State == RemoveUserState.Start && this.CanHandle(input))
             {
-                this.messageChannel.SendMessage("¿Cual es el Id del usuario que quieres eliminar?");
-                int id = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                User user = UserRegister.Instance.GetUserById(id);
-                if (user != null)
+                this.State = RemoveUserState.User;
+                response = "¿Cual es el Id del usuario que quieres eliminar?";
+                return true;
+            }
+            else if(this.State == RemoveUserState.User)
+            {
+                this.Data.User = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
+                this.Data.Result = UserRegister.Instance.GetUserById(this.Data.User);
+                if (this.Data.Result != null)
                 {
-                    UserRegister.Instance.Remove(user);
-                    this.messageChannel.SendMessage($"El usuario de Id: {id} ha sido eliminado");
-                    
+                    UserRegister.Instance.Remove(this.Data.Result);
+                    this.State = RemoveUserState.Start;
+                    response = $"El usuario de Id: {this.Data.User} ha sido eliminado";                    
                 }
                 else
                 {
-                    this.messageChannel.SendMessage($"El usuario de Id: {id} no esta registrado");
+                    response = $"No se encontro ningun usuario con el {this.Data.User}.";
                 }
                 return true;
             }
+            response = "";
             return false;
             
         }
-        
+        public enum RemoveUserState
+        {
+            Start,
+            User,
+        }
+
+        public class RemoveUserData
+        {
+            public int User {get;set;}
+
+            public Users Result {get; set;}
+        }
     }
 }

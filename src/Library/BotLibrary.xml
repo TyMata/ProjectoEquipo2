@@ -104,11 +104,10 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.GenerateToken(ClassLibrary.Company)">
+        <member name="M:ClassLibrary.Company.GenerateToken">
             <summary>
             Se genera un  token para una nueva empresa y se lo añade al diccionario
             </summary>
-            <param name="company"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Company.ConvertToJson">
@@ -145,7 +144,7 @@
             <param name="handler"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.AbstractHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AbstractHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
             </summary>
@@ -159,7 +158,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AbstractHandler.Handle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
             </summary>
@@ -176,11 +175,21 @@
             Constructor de los objetos AddCompanyHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pide algunos datos de la empresa que se quiere registrar la crea
             </summary>
             <param name="input"></param>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Name">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Country">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
         </member>
         <member name="T:ClassLibrary.AdminStartHandler">
             <summary>
@@ -192,11 +201,12 @@
             Constructor de los objetos AdminStartHandler.
             </summary>
         </member>
-        <member name="M:ClassLibrary.AdminStartHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.AdminStartHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Le otorga por pantalla los comandos que puede utilizar el admin.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -208,13 +218,24 @@
             Constructor de objetos RemoveCompanyHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveCompanyHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por el nombre de la empresa la cual se quiere eliminar y luego de 
             verificar que ya esta registrada, la elimina.
             De no estar registrada le avisa al usuario de esto.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.RemoveCompanyState">
+            <summary>
+            Guarda los estados de el handler para remover una empresa
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.RemoveCompanyData">
+            <summary>
+            Guarda la informacion que envia el usuario
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
@@ -226,26 +247,27 @@
             Constructor de objetos RemoveUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveUserHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por el id del usuario que se quiere eliminar y si el usuario que se quiere eliminar esta registrado
             delega la accion de eliminarlo y lo informa por pantalla.
             De no ser asi lo informa por pantalla al usuario.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.CompanyUserHandler">
             <summary>
-            Handler encargado de dar a conocer los comandos disponibles para un usuario empresa
+            Handler encargado de dar a conocer los comandos disponibles para un usuario empresa.
             </summary>
         </member>
         <member name="M:ClassLibrary.CompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos CompanyUserHandler
+            Constructor de objetos CompanyUserHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.CompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
             </summary>
@@ -262,11 +284,23 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData.Offer">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData.Result">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ModifyPriceHandler">
             <summary>
@@ -279,12 +313,22 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyPriceHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ModifyPriceHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
              Handle
             </summary>
             <param name="input"></param>
             <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Offer">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Result">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
@@ -297,12 +341,22 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ModifyQuantityHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ModifyQuantityHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada
             </summary>
             <param name="input"></param>
             <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.ModifyQuantityHandler.ModifyOfferData.Offer">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyQuantityHandler.ModifyOfferData.Result">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
@@ -315,66 +369,85 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.RemoveOfferHandler">
+        <member name="T:ClassLibrary.RemoveOfferHandlerCopy">
             <summary>
-            Handler encargado de delegar la accion de retirar una oferta
+            Handler encargado de delegar la accion de retirar una oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.RemoveOfferHandlerCopy.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos RemoveOfferHandler
+            Constructor de objetos RemoveOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.RemoveOfferHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.RemoveOfferHandlerCopy.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de eliminarla.
             De no existir la oferta le avisa por pantalla al usuario.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.ResumeOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de volver a activar una oferta suspendida
+            Handler encargado de delegar la accion de volver a activar una oferta suspendida.
             </summary>
         </member>
         <member name="M:ClassLibrary.ResumeOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos ResumeOfferHandler
+            Constructor de objetos ResumeOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.ResumeOfferHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.ResumeOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de volver a activarla.
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.SuspendOfferHandler">
+        <member name="T:ClassLibrary.SuspendOfferHandlerCopy">
             <summary>
-            Handler encargado de delegar la accion de suspender una oferta
+            Handler encargado de delegar la accion de suspender una oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.SuspendOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.SuspendOfferHandlerCopy.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos SuspendOfferHandler
+            Constructor de objetos SuspendOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.SuspendOfferHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.SuspendOfferHandlerCopy.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de suspenderla.
             </summary>
             <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.EndHandler">
+            <summary>
+            Handler encargado de darle final a la CoR
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
+            <summary>
+            Constructor de objetos EndHandler
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Le avisa al usuario que el comando no se reconocio y 
+            va denuevo al primer handler de la cadena
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.ActiveOfferHandler">
             <summary>
@@ -387,58 +460,14 @@
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="T:ClassLibrary.SearchOfferByIdHandler">
-            <summary>
-            Handler encargado de delegar la accion de buscar ofertas por su Id
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.SearchOfferByIdHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos SearchOfferByIdHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="T:ClassLibrary.SearchOfferByLocationHandler">
-            <summary>
-            Handler encargado de delegar la accion de buscar ofertas por su ubicación
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.SearchOfferByLocationHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos SearchOfferByLocationHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="T:ClassLibrary.SearchOfferByMaterialsHandler">
-            <summary>
-            Handler encargado de delegar la accion de buscar ofertas por material
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.SearchOfferByMaterialsHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos SearchOfferByMaterialsHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="T:ClassLibrary.SearchOfferByKeyWordsHandler">
+        <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
             Handler encargado de delegar la accion de buscar ofertas por keywords
             </summary>
         </member>
-        <member name="M:ClassLibrary.SearchOfferByKeyWordsHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.SearchOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
             Constructor de objetos SearchOfferByKeyWordsHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="T:ClassLibrary.ShowBoughtOffersHandler">
-            <summary>
-            Handler encargado de delegar la accion de mostrar las ofertas compradas por un emprendedor
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ShowBoughtOffersHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de objetos ShowBoughtOffersHandler.
             </summary>
             <param name="channel"></param>
         </member>
@@ -453,34 +482,17 @@
             </summary>
             <param name="handler"></param>
         </member>
-        <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Verifica si se realiza el proceso o se lo manda al next handler
             </summary>
         </member>
-        <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Ejecución del proceso de Handler
             </summary>
             <param name="input"></param>
             <returns></returns>
-        </member>
-        <member name="T:ClassLibrary.EndHandler">
-            <summary>
-            Handler encargado de darle final a la CoR
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
-            <summary>
-            Constructor de objetos EndHandler
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage)">
-            <summary>
-            Le avisa al usuario que el comando no se reconocio y 
-            va denuevo al primer handler de la cadena
-            </summary>
-            <param name="input"></param>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
@@ -492,13 +504,19 @@
             Constructor de objetos UnregistredCompanyUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
             y la creacion de el usuario empresa.
             De no ser asi se le avisa al usuario.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserData.Token">
+            <summary>
+            El Token que se ingresó en el estado UnregisteredCompanyUserState.Token.
+            </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
             <summary>
@@ -510,11 +528,37 @@
             Constructor de objetos UnregistredEntrepreneurUserHandler
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Name">
+            <summary>
+            El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Location">
+            <summary>
+            El nombre que se ingresó en el estado UnregisteredCompanyUserState.Location.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.LocationResult">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Habilitations">
+            <summary>
+            El link a las habilitaciones que se ingresó en el estado UnregisteredCompanyUserState.Habilitations.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Headings">
+            <summary>
+            El rubro que se ingresó en el estado UnregisteredCompanyUserState.Headings.
+            </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredUserHandler">
             <summary>
@@ -526,12 +570,13 @@
             Constructor de objetos UnregistredUserHandler.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredUserHandler.InternalHandle(ClassLibrary.IMessage)">
+        <member name="M:ClassLibrary.UnregisteredUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de darle la bienvenida al usuario no registrado y preguntarle
             si es un emprendedor o ubn usuario empresa
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.Material">
             <summary>
@@ -650,6 +695,40 @@
             </summary>
             <param name="mensaje"></param>
         </member>
+        <member name="T:ClassLibrary.TelegramBotMessage">
+            <summary>
+            Esta clase representa los mensajes.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.TelegramBotMessage.Id">
+            <summary>
+            Devuelve el Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.TelegramBotMessage.Text">
+            <summary>
+            Devuelve el Message
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:ClassLibrary.TelegramBotMessageChannel">
+            <summary>
+            Esta clase representa los mensajes.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.TelegramBotMessageChannel.ReceiveMessage">
+            <summary>
+            Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TelegramBotMessageChannel.SendMessage(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mensaje"></param>
+        </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
             Esta clase representa una oferta
@@ -657,13 +736,13 @@
         </member>
         <member name="P:ClassLibrary.Offer.Id">
             <summary>
-            Id de la Oferta
+            Id de la oferta.
             </summary>
-            <value></value>
+            <value></value> 
         </member>
         <member name="P:ClassLibrary.Offer.Material">
             <summary>
-            Material que se vende en la oferta
+            Material que se vende en la oferta.
             </summary>
             <value></value>
         </member>
@@ -833,12 +912,19 @@
             </summary>
             <value></value>
         </member>
+<<<<<<< HEAD
         <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+=======
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+=======
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+>>>>>>> origin
+>>>>>>> master
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
             </summary>
-            <param name="id"></param>
-            <param name="material"></param>
+            /// <param name="material"></param>
             <param name="habilitation"></param>
             <param name="location"></param>
             <param name="quantityMaterial"></param>
@@ -970,19 +1056,19 @@
             <param name="headings"></param>
             <param name="habilitations"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.Add(ClassLibrary.User)">
+        <member name="M:ClassLibrary.UserRegister.Add(ClassLibrary.Users)">
             <summary>
             Esto se hace por la ley de demeter
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.Remove(ClassLibrary.User)">
+        <member name="M:ClassLibrary.UserRegister.Remove(ClassLibrary.Users)">
             <summary>
             Remueve un user de la lista. Por la ley de demeter
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.ContainsUser(ClassLibrary.User)">
+        <member name="M:ClassLibrary.UserRegister.ContainsUser(ClassLibrary.Users)">
             <summary>
             Por la ley de demeter se crea Contains
             </summary>
@@ -1051,6 +1137,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Entrepreneur.AddBoughtOffer(ClassLibrary.Offer)">
+            <summary>
+            Agrega una oferta comprada a la lista de oferta compradas
+            </summary>
+            <param name="offer"></param>
+        </member>
         <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
@@ -1060,7 +1152,7 @@
             <param name="heading"></param>
             <param name="habilitation"></param>
         </member>
-        <member name="T:ClassLibrary.User">
+        <member name="T:ClassLibrary.Users">
             <summary>
             Esta clase representa un usuario.
             Decidimos crearla de esta manera porque solo tiene la responsabilidad de conocer los datos
@@ -1069,31 +1161,51 @@
             CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
             </summary>
         </member>
-        <member name="F:ClassLibrary.User.Role">
+        <member name="F:ClassLibrary.Users.Role">
             <summary>
             Rol del usuario
             </summary>
         </member>
-        <member name="P:ClassLibrary.User.Id">
+        <member name="P:ClassLibrary.Users.Id">
             <summary>
             Id del usuario
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.User.#ctor(System.Int32,ClassLibrary.IRole)">
+        <member name="M:ClassLibrary.Users.#ctor(System.Int32,ClassLibrary.IRole)">
             <summary>
             Constructor de User
             </summary>
             <param name="id"></param>
             <param name="role"></param>
         </member>
-        <member name="M:ClassLibrary.User.IsCompanyUser">
+        <member name="M:ClassLibrary.Users.IsCompanyUser">
             <summary>
             Booleano para comprobar que un usuario es un usuario empresa.
             </summary>
             <returns></returns>
         </member>
+<<<<<<< HEAD
         <member name="M:ClassLibrary.User.ConvertToJson">
+=======
+<<<<<<< HEAD
+        <member name="M:ClassLibrary.User.ConvertToJson">
+=======
+        <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario emprendedor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Users.IsAdminUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario admin.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Users.ConvertToJson">
+>>>>>>> origin
+>>>>>>> master
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.

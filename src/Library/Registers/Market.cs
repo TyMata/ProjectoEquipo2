@@ -13,12 +13,20 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
-        
+        /// <summary>
+        /// Genera un numero mayor que el anterior para el Id.
+        /// </summary>
+        /// <value></value>
+        public int Count {get;set;}
+
         private Market()
         {
             Initialize();
-        } 
-
+        }
+        /// <summary>
+        /// Se crea un Singelton de la clase Market.
+        /// </summary>
+        /// <value></value>
         public static Market Instance
         {
             get{
@@ -29,7 +37,7 @@ namespace ClassLibrary
 
                 return instance;
             }
-        }   
+        }
 
         private List<Offer> actualOfferList;
 
@@ -45,7 +53,9 @@ namespace ClassLibrary
                 return this.actualOfferList;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de ofertas.
+        /// </summary>
         public void Initialize()
         {
             this.actualOfferList = new List<Offer>();
@@ -53,7 +63,7 @@ namespace ClassLibrary
 
         private List<Offer> suspendedOfferList = new List<Offer>();
         /// <summary>
-        /// Lista de ofertas suspendidas
+        /// Lista de ofertas suspendidas.
         /// </summary>
         /// <value></value>
         [JsonInclude]
@@ -68,8 +78,7 @@ namespace ClassLibrary
         /// <summary>
         /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="material"></param>
+        /// /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="quantityMaterial"></param>
@@ -77,9 +86,11 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(int id, Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
+        public Offer CreateOffer(Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
-            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            this.Count ++;
+            int id = this.Count;
+            Offer nuevaOferta = new Offer(id,material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
@@ -207,17 +218,17 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         }
         
-        public void LoadFromJson(string json)
-        {
-            this.Initialize();
-            Offer offer = JsonSerializer.Deserialize<Offer>(json);
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
+        // public void LoadFromJson(string json)
+        // {
+        //     this.Initialize();
+        //     Offer offer = JsonSerializer.Deserialize<Offer>(json);
+        //     JsonSerializerOptions options = new()
+        //     {                                                        //TODO: Cambiar LoadFromJson a Offer (lo mismo con otras clases)
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true
+        //     };
 
-            offer = JsonSerializer.Deserialize<Offer>(json, options);
-        }
+        //     offer = JsonSerializer.Deserialize<Offer>(json, options);
+        // }
     }
 }

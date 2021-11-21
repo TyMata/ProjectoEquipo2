@@ -8,7 +8,9 @@ namespace ClassLibrary
     /// </summary>
     public class UnregisteredCompanyUserHandler : AbstractHandler
     {
-        
+        public UnregisteredCompanyUserState State { get; set; }
+
+        public UnregisteredCompanyUserData Data{ get; set; }
         /// <summary>
         /// Constructor de objetos UnregistredCompanyUserHandler
         /// </summary>
@@ -16,6 +18,8 @@ namespace ClassLibrary
         {
             this.Command = "empresa";
             this.messageChannel = channel;
+            this.State = UnregisteredCompanyUserState.Start;
+            this.Data = new UnregisteredCompanyUserData();
         }
         /// <summary>
         /// Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
@@ -23,38 +27,63 @@ namespace ClassLibrary
         /// De no ser asi se le avisa al usuario.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        /// <param name="response"></param>
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            if (CanHandle(input))
+            if (this.State == UnregisteredCompanyUserState.Start && CanHandle(input))
             {
                 StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion\n")
                                                 .Append("Ingrese el codigo de invitacion\n");
-                this.messageChannel.SendMessage(datos.ToString());
-                string codigo = this.messageChannel.ReceiveMessage().Text;
-                //Company response;
-
-                if (TokenRegister.Instance.IsValid(codigo))
+                this.State = UnregisteredCompanyUserState.Token;
+                response = datos.ToString();
+                return true;
+            }
+            else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
+            {
+                this.Data.Token = this.messageChannel.ReceiveMessage().Text;
+                this.State = UnregisteredCompanyUserState.Token;
+                response = "";
+                return true;
+            }
+            else if(this.State == UnregisteredCompanyUserState.Token)
+            {
+                this.Data.Token = this.messageChannel.ReceiveMessage().Text;
+                if (TokenRegister.Instance.IsValid(this.Data.Token))
                 {
-                    Company temp = TokenRegister.Instance.GetCompany(codigo);
+                    Company temp = TokenRegister.Instance.GetCompany(this.Data.Token);
                     temp.AddUser(input.Id);
+                    this.State = UnregisteredCompanyUserState.Start;
+                    response = $"Se verifico el Token ingresado y se esta creando su usario perteneciente a la empresa {temp.Name}";
                     return true;
                 }
-                // else
-                // {
-                //    Excepcion?????? 
-                // }
                 else
                 {
-                    this.messageChannel.SendMessage("No se pudo verificar el Token ingresado, intente nuevamente");
+                    this.State = UnregisteredCompanyUserState.NotFirstTime;
+                    response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitacion";
                     return true;
                 }
-               
             }
             else
             {
+                response = "";
                 return false;
             }
+        }
+
+        public enum UnregisteredCompanyUserState
+        {
+            Start,
+            NotFirstTime,
+            Token
+        }
+
+        public class UnregisteredCompanyUserData
+        {
+            /// <summary>
+            /// El Token que se ingresó en el estado UnregisteredCompanyUserState.Token.
+            /// </summary>
+            public string Token { get; set; }
         }
     }
 }
