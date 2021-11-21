@@ -30,7 +30,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba que se realice el handle
+        /// Prueba que se realice el handle.
         /// </summary>
         [Test]
         public void InternalHandleTest()
@@ -42,7 +42,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Prueba que no se realice el handler
+        /// Prueba que no se realice el handler.
         /// </summary>
         [Test]
         public void InternalNotHandleTest()

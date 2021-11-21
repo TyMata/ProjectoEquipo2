@@ -8,12 +8,12 @@ namespace ClassLibrary
     public interface IMessage
     {
         /// <summary>
-        /// Devuelve el Id
+        /// Devuelve el .
         /// </summary>
         /// <value></value>
         int Id{get;}
         /// <summary>
-        /// Devuelve el Message
+        /// Devuelve el Message.
         /// </summary>
         /// <value></value>
         string Text{get;}

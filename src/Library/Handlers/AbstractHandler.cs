@@ -4,25 +4,25 @@ using System.Linq;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers
+    /// Marcamos el formato del resto de handlers.
     /// </summary>
     public abstract class AbstractHandler : IHandler
     {
         /// <summary>
-        /// Canal por el cual se envian los mensajes
+        /// Canal por el cual se envian los mensajes.
         /// </summary>
         protected IMessageChannel messageChannel;
         /// <summary>
-        /// Contiene al siguiente Handler
+        /// Contiene al siguiente Handler.
         /// </summary>
         protected IHandler nextHandler;
         /// <summary>
-        /// Palabra clave de Handler(comando)
+        /// Palabra clave de Handler(comando).
         /// </summary>
         protected string Command;
         
         /// <summary>
-        /// Se setea el próximo handler (nextHandler)
+        /// Se setea el próximo handler (nextHandler).
         /// </summary>
         /// <param name="handler"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace ClassLibrary
             return handler;
         }
         /// <summary>
-        /// Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler
+        /// Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Verifica si el mensaje que recibe es igual al del comando
+        /// Verifica si el mensaje que recibe es igual al del comando.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -60,12 +60,11 @@ namespace ClassLibrary
             {
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
-
             return this.Command.Equals(input.Text.ToLower().Trim());
         }
 
         /// <summary>
-        /// Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar
+        /// Procesa el mensaje o lo manda al siguiente handler si no lo puede procesar.
         /// </summary>
         /// <param name="message">El mensaje a procesar</param>
         /// <returns></returns>
