@@ -10,7 +10,7 @@ namespace ClassLibrary
     {   
         public SearchOfferState State {get; private set;}
 
-        public SearchOfferData Data {get; private set;} = new SearchOfferData();
+        public SearchOfferData Data {get; private set;}
 
         private Company company;
 
