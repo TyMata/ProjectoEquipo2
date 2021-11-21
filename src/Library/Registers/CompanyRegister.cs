@@ -17,7 +17,10 @@ namespace ClassLibrary
         {
             Initialize();
         }
-
+        /// <summary>
+        /// Se crea un Singelton de la clase CompanyRegister.
+        /// </summary>
+        /// <value></value>
         public static CompanyRegister Instance
         {
             get{
@@ -31,7 +34,9 @@ namespace ClassLibrary
         }
 
         private List<Company> companyList;
-
+        /// <summary>
+        /// Se crea la lista de empresas.
+        /// </summary>
         public void Initialize()
         {
             this.companyList = new List<Company>();

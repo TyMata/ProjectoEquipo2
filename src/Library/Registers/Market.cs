@@ -13,14 +13,20 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
-        
+        /// <summary>
+        /// Genera un numero mayor que el anterior para el Id.
+        /// </summary>
+        /// <value></value>
         public int Count {get;set;}
 
         private Market()
         {
             Initialize();
         }
-        
+        /// <summary>
+        /// Se crea un Singelton de la clase Market.
+        /// </summary>
+        /// <value></value>
         public static Market Instance
         {
             get{
@@ -47,7 +53,9 @@ namespace ClassLibrary
                 return this.actualOfferList;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de ofertas.
+        /// </summary>
         public void Initialize()
         {
             this.actualOfferList = new List<Offer>();

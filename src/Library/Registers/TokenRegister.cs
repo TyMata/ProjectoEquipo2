@@ -23,7 +23,10 @@ namespace ClassLibrary
         {
             Initialize();
         }
-
+        /// <summary>
+        /// Se crea un Singelton de la clase TokenRegister.
+        /// </summary>
+        /// <value></value>
         public static TokenRegister Instance
         {
             get{
@@ -35,7 +38,9 @@ namespace ClassLibrary
                 return instance;
             }
         }
-
+        /// <summary>
+        /// Se crea diccionario para asociar un token con su respectiva empresa.
+        /// </summary>
         public void Initialize()
         {
             this.TokenList = new Dictionary<string, Company>();
@@ -56,7 +61,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo par añadir un token al diccionario de tokens.
+        /// Metodo para añadir un token al diccionario de tokens.
         /// </summary>
         /// <param name="token"></param>
         /// <param name="company"></param>
@@ -90,7 +95,11 @@ namespace ClassLibrary
                 return false;
             }
         }
-
+        /// <summary>
+        /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Json utilizando JsonSerializer.Deserialize.
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             JsonSerializerOptions options = new()
@@ -100,7 +109,10 @@ namespace ClassLibrary
             };
             return JsonSerializer.Serialize(this, options);
         }
-
+        /// <summary>
+        /// Convierte el texto en formato Json a objeto.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             this.Initialize();
