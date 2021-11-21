@@ -314,5 +314,19 @@ namespace ClassLibrary
 
             return JsonSerializer.Serialize(this, options);
         }
+
+        /// <summary>
+        /// Carga la oferta que esta en formato json para reconstruir el objeto
+        /// </summary>
+        /// <param name="json"></param>
+        public void LoadFromJson(string json)
+        {
+            Offer offer = JsonSerializer.Deserialize<Offer>(json);
+            this.Material = offer.Material;
+            this.Location = offer.Location;
+            this.PublicationDate = offer.PublicationDate;
+            this.QuantityMaterial = offer.QuantityMaterial;
+            this.TotalPrice = offer.TotalPrice;
+        }
     }
 }

@@ -306,7 +306,7 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson() // TODO hacer el load ffrom json
+        public string ConvertToJson() 
         {
             JsonSerializerOptions options = new()
             {
@@ -314,6 +314,20 @@ namespace ClassLibrary
                 WriteIndented = true
             };
             return JsonSerializer.Serialize(this, options);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            Company company = JsonSerializer.Deserialize<Company>(json);
+            this.Name = company.Name;
+            this.OfferRegister = company.OfferRegister;
+            this.ProducedMaterials = company.ProducedMaterials;
+            this.Locations = company.Locations;
+            this.CompanyUsers = company.CompanyUsers;
+            this.Headings = company.Headings;
+            this.Id = company.Id;
+            this.InvitationToken = company.InvitationToken;
+            
         }
     }
 }
