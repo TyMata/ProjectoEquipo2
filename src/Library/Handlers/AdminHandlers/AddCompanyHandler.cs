@@ -40,6 +40,7 @@ namespace ClassLibrary
         /// Pide algunos datos de la empresa que se quiere registrar la crea
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
             Users user = UserRegister.Instance.GetUserById(input.Id);
