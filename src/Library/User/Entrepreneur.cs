@@ -108,6 +108,15 @@ namespace ClassLibrary
                 }
             }
         }
+        
+        /// <summary>
+        /// Agrega una oferta comprada a la lista de oferta compradas
+        /// </summary>
+        /// <param name="offer"></param>
+        public void AddBoughtOffer(Offer offer)
+        {
+            this.BoughtList.Add(offer);
+        }
 
         /// <summary>
         /// Constructor de objetos Entrepreneur

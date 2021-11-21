@@ -22,10 +22,11 @@ namespace ClassLibrary
         /// va denuevo al primer handler de la cadena.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        /// <param name="response"></param>
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            this.messageChannel.SendMessage("No se reconocio el comando, intente denuevo");
-            //Setear primer Handler de la cadena
+            response = "No se reconocio el comando, intente denuevo";
+            //TODO Setear primer Handler de la cadena ????????
             return false;
         }
     }

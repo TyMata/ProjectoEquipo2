@@ -14,16 +14,17 @@ namespace ClassLibrary
         private int id;
 
         /// <summary>
-        /// Id de la Oferta.
+        /// Id de la oferta.
         /// </summary>
-        /// <value></value>
-        public int Id{
+        /// <value></value> 
+        public int Id
+        {
             get
             {
-                return this.id;
+                return id; 
             }
             private set
-            {
+            { 
                 this.id = value;
             }
         }
@@ -250,7 +251,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer(int id, Material material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
+        public Offer( int id, Material material, string habilitation, Location location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
         {
             this.Id = id;
             this.Material = material;
@@ -261,6 +262,14 @@ namespace ClassLibrary
             this.Availability = availability;
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
+        }
+        /// <summary>
+        /// JsonConstructor para objetos Offer.
+        /// </summary>
+        [JsonConstructor]
+        public Offer()
+        {
+
         }
 
         /// <summary>
@@ -304,7 +313,7 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson()  // TODO : hacer el Load from json
         {
             JsonSerializerOptions options = new()
             {

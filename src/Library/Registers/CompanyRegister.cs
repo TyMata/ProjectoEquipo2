@@ -79,8 +79,16 @@ namespace ClassLibrary
         /// <returns></returns>
         public Company GetCompanyByUserId(int id)
         {
-            User x = UserRegister.Instance.GetUserById(id);
-            return (x.Role as CompanyRole).Company;
+            Users x = UserRegister.Instance.GetUserById(id);
+            if(x != null)
+            {
+                return (x.Role as CompanyRole).Company;
+            }
+            else
+            {
+                return null;
+            }
+            
         } 
 
         /// <summary>
@@ -109,7 +117,7 @@ namespace ClassLibrary
         {
             Company nuevaCompany = new Company(nombre, ubi, headings);
             CompanyRegister.Instance.Add(nuevaCompany);
-            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany);
+            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
         }
 

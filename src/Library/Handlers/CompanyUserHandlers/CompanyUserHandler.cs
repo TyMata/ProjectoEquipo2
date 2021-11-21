@@ -7,6 +7,12 @@ namespace ClassLibrary
     /// </summary>
     public class CompanyUserHandler : AbstractHandler
     {
+        public CompanyUserState State {get; private set;}
+
+        public CompanyUserData Data {get; private set;} = new CompanyUserData();
+
+        private Company company;
+
         /// <summary>
         /// Constructor de objetos CompanyUserHandler.
         /// </summary>
@@ -15,14 +21,16 @@ namespace ClassLibrary
         {
             this.Command = "/empresa";
             this.messageChannel = channel;
+            this.State = CompanyUserState.Start;
+            this.company = null;
         }
         /// <summary>
         /// Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            if(CanHandle(input))
+            if((State == CompanyUserState.Start) && this.CanHandle(input))
             {
                 StringBuilder commandsStringBuilder = new StringBuilder($"Bienvenido \n Que desea hacer?:\n")
                                                                             .Append("/publicaroferta\n")
@@ -30,12 +38,28 @@ namespace ClassLibrary
                                                                             .Append("/suspenderoferta\n")
                                                                             .Append("/reanudaroferta\n")
                                                                             .Append("/modificaroferta\n")
-                                                                            .Append("/buscaroferta\n");
-                this.messageChannel.SendMessage(commandsStringBuilder.ToString());
-                input = this.messageChannel.ReceiveMessage();
+                                                                            .Append("/buscaroferta\n"); //TODO fijarse si los comandos estan bien
+                response = commandsStringBuilder.ToString();
                 return true;
             }
+            response = string.Empty;
             return false;
+        }
+
+        protected override void InternalCancel()
+        {
+            this.State = CompanyUserState.Start;
+            this.Data = new CompanyUserData();
+        }
+
+        public enum CompanyUserState
+        {
+            Start,
+        }
+
+        public class CompanyUserData
+        {
+            public int id {get; set;}
         }
     }
 }

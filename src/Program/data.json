@@ -1,0 +1,31 @@
+{
+  "$id": "1",
+  "Id": 123,
+  "Material": {
+    "$id": "2",
+    "Name": null,
+    "Type": null,
+    "Classification": null
+  },
+  "Habilitation": "habilitaci\u00F3n",
+  "Location": {
+    "$id": "3",
+    "Found": false,
+    "AddresLine": null,
+    "CountryRegion": null,
+    "FormattedAddress": null,
+    "Locality": null,
+    "PostalCode": null,
+    "Latitude": 0,
+    "Longitude": 0
+  },
+  "QuantityMaterial": 25,
+  "TotalPrice": 10000,
+  "Company": null,
+  "Keywords": {
+    "$id": "4",
+    "$values": []
+  },
+  "Availability": true,
+  "PublicationDate": "0001-01-01T00:00:00"
+}

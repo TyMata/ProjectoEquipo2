@@ -8,7 +8,10 @@ namespace ClassLibrary
     /// </summary>
     public class RemoveCompanyHandler : AbstractHandler
     {
-        
+        public RemoveCompanyState State {get;set;}
+
+        public RemoveCompanyData Data {get; set;}
+
         /// <summary>
         /// Constructor de objetos RemoveCompanyHandler
         /// </summary>
@@ -16,6 +19,8 @@ namespace ClassLibrary
         {
             this.Command = "/eliminarempresa";
             this.messageChannel = channel;
+            this.State = RemoveCompanyState.Start;
+            this.Data = new RemoveCompanyData();
         }
         /// <summary>
         /// Pregunta por el nombre de la empresa la cual se quiere eliminar y luego de 
@@ -23,25 +28,53 @@ namespace ClassLibrary
         /// De no estar registrada le avisa al usuario de esto.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        /// <param name="response"></param>
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            if(CanHandle(input))
+            if(this.State == RemoveCompanyState.Start && this.CanHandle(input))
             {
-                this.messageChannel.SendMessage("¿Cual es el nombre de la empresa que quieres eliminar?");
-                string companyName = this.messageChannel.ReceiveMessage().Text;
-                Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                if (company != null)
+                this.State = RemoveCompanyState.Company;
+                response = "¿Cual es el Id de la empresa que quieres eliminar?";
+                return true;
+            }
+            else if(this.State == RemoveCompanyState.Company)
+            {
+                this.Data.Company = Convert.ToInt32(input.Text);
+                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.Company);
+                if (this.Data.Result != null)
                 {
-                    CompanyRegister.Instance.Remove(company);
-                    this.messageChannel.SendMessage($"La empresa {companyName} ha sido eliminada");
+                    CompanyRegister.Instance.Remove(this.Data.Result);
+                    response = $"La empresa {this.Data.Result.Name} ha sido eliminada";
+                    return true;
                 }
                 else 
                 {
-                    this.messageChannel.SendMessage($"La empresa {companyName} no esta registrada");
+                    response = $"La empresa com el Id {this.Data.Company} no esta registrada";
+                    return true;
                 }
-                return true;
+                
             }
+            response = string.Empty;   
             return false;
         }
+    }
+
+    /// <summary>
+    /// Guarda los estados de el handler para remover una empresa
+    /// </summary>
+    public enum RemoveCompanyState
+    {
+        Start,
+        Company,
+    }
+
+    /// <summary>
+    /// Guarda la informacion que envia el usuario
+    /// </summary>
+    public class RemoveCompanyData
+    {
+        public int Company {get; set;}
+
+        public Company Result {get;set;}
     }
 }

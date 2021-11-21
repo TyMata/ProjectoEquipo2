@@ -36,7 +36,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public virtual bool InternalHandle(IMessage input)
+        public virtual bool InternalHandle(IMessage input, out string response)
         {
             throw new Exception();
             // if (this.nextHandler != null)
@@ -68,20 +68,24 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar</param>
         /// <returns></returns>
-        public IHandler Handle(IMessage message)
+        public IHandler Handle(IMessage message, out string response)
         {
-            if (this.InternalHandle(message))
+            if (this.InternalHandle(message, out response))
             {
                 return this;
             }
             else if (this.nextHandler != null)
             {
-                return this.nextHandler.Handle(message);
+                return this.nextHandler.Handle(message, out response);
             }
             else
             {
                 return null;
             }
         }
-    }
+        protected virtual void InternalCancel()
+        {
+
+        }
+    }   
 }

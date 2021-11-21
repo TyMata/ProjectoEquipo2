@@ -14,7 +14,7 @@ namespace Tests
         private Offer oferta;
         private Material material;
         private DateTime dateTime;
-        private IHandler handler;
+        private ModifyQuantityHandler handler;
         private Location location;
 
         /// <summary>
@@ -35,7 +35,10 @@ namespace Tests
         [Test]
         public void InternalHandleTest()
         {
-            Assert.IsTrue(handler.InternalHandle(new ConsoleMessage("/modificarcantidad")));
+            string response;
+            IHandler result = handler.Handle(new ConsoleMessage("/modificarcantidad"), out response);
+            Assert.IsNotNull(result);
+            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
         }
 
         /// <summary>
@@ -43,8 +46,10 @@ namespace Tests
         /// </summary>
         [Test]
         public void InternalNotHandleTest()
-        {
-            Assert.IsFalse(handler.InternalHandle(new ConsoleMessage("/modificarprecio")));
+        {   string response ;
+            IHandler result = handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
+            Assert.IsNull(result);
+            Assert.IsEmpty(response);
         }
     }
 }

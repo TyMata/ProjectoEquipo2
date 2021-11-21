@@ -13,12 +13,14 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
+        
+        public int Count {get;set;}
 
         private Market()
         {
             Initialize();
-        } 
-
+        }
+        
         public static Market Instance
         {
             get{
@@ -29,7 +31,7 @@ namespace ClassLibrary
 
                 return instance;
             }
-        }   
+        }
 
         private List<Offer> actualOfferList;
 
@@ -68,8 +70,7 @@ namespace ClassLibrary
         /// <summary>
         /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="material"></param>
+        /// /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="quantityMaterial"></param>
@@ -77,9 +78,11 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(int id, Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
+        public Offer CreateOffer(Material material,string habilitation, Location location,int quantityMaterial, double totalPrice, Company company, bool availability)
         {
-            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            this.Count ++;
+            int id = this.Count;
+            Offer nuevaOferta = new Offer(id,material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
@@ -217,17 +220,17 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         }
         
-        public void LoadFromJson(string json)
-        {
-            this.Initialize();
-            Offer offer = JsonSerializer.Deserialize<Offer>(json);
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
+        // public void LoadFromJson(string json)
+        // {
+        //     this.Initialize();
+        //     Offer offer = JsonSerializer.Deserialize<Offer>(json);
+        //     JsonSerializerOptions options = new()
+        //     {                                                        //TODO: Cambiar LoadFromJson a Offer (lo mismo con otras clases)
+        //         ReferenceHandler = MyReferenceHandler.Instance,
+        //         WriteIndented = true
+        //     };
 
-            offer = JsonSerializer.Deserialize<Offer>(json, options);
-        }
+        //     offer = JsonSerializer.Deserialize<Offer>(json, options);
+        // }
     }
 }

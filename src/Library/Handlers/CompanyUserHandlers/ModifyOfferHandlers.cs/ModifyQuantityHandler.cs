@@ -8,6 +8,10 @@ namespace ClassLibrary
     /// </summary>
     public class ModifyQuantityHandler : AbstractHandler
     {
+         public ModifyState State { get; set; }
+        public ModifyOfferData Data {get;set;}
+        private Company company;
+
         /// <summary>
         /// Constructor de objetos ModifyQuantityHandler.
         /// </summary>
@@ -16,6 +20,9 @@ namespace ClassLibrary
         {
             this.Command = "/modificarcantidad";
             this.messageChannel = channel;
+            this.State = ModifyState.Start;
+            this.Data = new ModifyOfferData();
+            this.company = null;
         }
 
         /// <summary>
@@ -23,14 +30,14 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override bool InternalHandle(IMessage input)
+        public override bool InternalHandle(IMessage input, out string response)
         {
-            if (CanHandle(input))
+            if (this.State == ModifyState.Start && CanHandle(input))
             {
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
+                StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
                 if(company.OfferRegister != null)
                 {
-                    StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
                     foreach(Offer x in company.OfferRegister)
                     {
                         offers.Append($"Id : {x.Id}\n")
@@ -39,17 +46,51 @@ namespace ClassLibrary
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
-                    }                       
-                    this.messageChannel.SendMessage(offers.ToString());
-                    int oferta = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    Offer offer = company.OfferRegister.Find(offer => offer.Id == oferta);
-                    this.messageChannel.SendMessage("Ingrese la nueva cantidad de la oferta:\n");
-                    int quantity = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
-                    offer.ChangeQuantity(quantity);
-                    return true; 
-                }
+                    } 
+                }   
+                this.State = ModifyState.OfferList;
+                response = offers.ToString();
+                return true; 
             }
+            else if(this.State == ModifyState.OfferList)
+            {
+                this.Data.Offer = Convert.ToInt32(input.Text);
+                this.State = ModifyState.Modification;
+                response = "Ingrese la nueva cantidad de la oferta:\n";
+                return true;
+            }
+            else if(this.State == ModifyState.Modification)
+            {
+                int quantity = Convert.ToInt32(input.Text);
+                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.Offer);
+                this.Data.Result.ChangeQuantity(quantity);
+                this.State = ModifyState.Start;
+                response = "La cantidad se ha modificado";
+                return true;
+            }
+            response = string.Empty;
             return false;
-        }    
+        } 
+        public enum ModifyState
+        {
+            Start,
+            OfferList,
+            Modification,
+
+            
+        }
+
+        public class ModifyOfferData
+        {
+            /// <summary>
+            /// La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            /// </summary>
+            public int Offer { get; set; }
+
+            /// <summary>
+            /// El resultado de la búsqueda de la dirección ingresada.
+            /// </summary>
+            public Offer Result { get; set; }
+        }  
     } 
 }

@@ -39,37 +39,39 @@ namespace ConsoleApplication
             //                                     .Append("/EliminarUsuario\n")
             //                                     .Append("/EliminarEmpresa\n");
             // mc.SendMessage(bienvenida.ToString());
-            // if (handler.Handle(mc.ReceiveMessage()) != null)
-            // {
-            //     return;
-            // }
+            // // if (handler.Handle(mc.ReceiveMessage()) != null)
+            // // {
+            // //     return;
+            // // }
 
-            // }
 
             if (!File.Exists(@"data.json"))
             {
                 CompanyRegister.Instance.CreateCompany("empresa", new Location(), "rubro");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
-                Offer createOffer = Market.Instance.CreateOffer(1234567, new Material(), "habilitación", company.Locations, 25, 10000, company, true);
+                Offer oferta = new Offer(123,new Material(), "habilitación", new Location(), 25, 10000, company, true, new DateTime());
+                
 
-                string json = createOffer.ConvertToJson();
+                string json = oferta.ConvertToJson();
                 Console.WriteLine(json);
                 File.WriteAllText(@"data.json", json);
             }
-            else
-            {
-                Market.Instance.Initialize();
+            // else
+            // {
+            //     Market.Instance.Initialize();
 
-                string json = File.ReadAllText(@"data.json");
+            //     string json = File.ReadAllText(@"data.json");
 
-                JsonSerializerOptions options = new()
-                {
-                    ReferenceHandler = MyReferenceHandler.Instance,
-                    WriteIndented = true
-                };
 
-                Console.WriteLine(Market.Instance.ConvertToJson());
-            }
+            //     JsonSerializerOptions options = new()
+            //     {
+            //         ReferenceHandler = MyReferenceHandler.Instance,
+            //         WriteIndented = true
+            //     };
+
+            //     Offer offer = JsonSerializer.Deserialize<Offer>(json, options);
+            //     Console.WriteLine(offer.ConvertToJson());
+            // }
         }
     }
 }
