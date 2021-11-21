@@ -11,6 +11,7 @@ namespace Tests
     public class CompanyRegisterTest
     {
         private Company company;
+        private LocationAdapter location;
 
         /// <summary>
         /// Set up del test de CompanyRegister.
@@ -18,7 +19,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.company = new Company("nombre", new Location(), "rubro");
+            this.location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            this.company = new Company("nombre", this.location, "rubro");
         }
 
         /// <summary>

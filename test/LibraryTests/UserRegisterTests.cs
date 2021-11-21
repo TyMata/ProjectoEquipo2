@@ -12,6 +12,7 @@ namespace Tests
     {
         private static UserRegisterTests instance;
         private Users user;
+        private LocationAdapter location;
 
         /// <summary>
         /// Se crea una instancia de User para los tests.
@@ -19,7 +20,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.user = new Users(1234567, new CompanyRole(new Company("empresa", new Location(), "rubro")));
+            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            this.user = new Users(1234567, new CompanyRole(new Company("empresa", location, "rubro")));
         }
 
         /// <summary>

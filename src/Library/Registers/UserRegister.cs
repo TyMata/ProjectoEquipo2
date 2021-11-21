@@ -74,10 +74,10 @@ namespace ClassLibrary
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitations"></param>
-        public void CreateEntrepreneurUser(IMessage input,string name , Location location, string headings, string habilitations)
+        public void CreateEntrepreneurUser(int Id,string name , LocationAdapter location, string headings, string habilitations)
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
-            Users usuario = new Users(input.Id, rol);
+            Users usuario = new Users(Id, rol);
         }
 
         /// <summary>
