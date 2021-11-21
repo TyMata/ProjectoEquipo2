@@ -7,7 +7,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {   
     /// <summary>
-    /// Esta clase representa un registro de empresas
+    /// Esta clase representa un registro de empresas.
     /// </summary>
     public class CompanyRegister : IJsonConvertible
     {   
@@ -28,7 +28,7 @@ namespace ClassLibrary
                 {
                     instance = new CompanyRegister ();
                 }
-
+                
                 return instance;
             }
         }

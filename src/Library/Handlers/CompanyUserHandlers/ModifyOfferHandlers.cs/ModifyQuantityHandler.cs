@@ -4,7 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta
+    /// Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
     /// </summary>
     public class ModifyQuantityHandler : AbstractHandler
     {
@@ -13,7 +13,7 @@ namespace ClassLibrary
         private Company company;
 
         /// <summary>
-        /// Constructor de objetos ModifyQuantityHandler
+        /// Constructor de objetos ModifyQuantityHandler.
         /// </summary>
         /// <param name="channel"></param>
         public ModifyQuantityHandler(IMessageChannel channel)
@@ -26,7 +26,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada
+        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
