@@ -47,7 +47,7 @@ namespace Tests
         /// </summary>
         public void GetCompanyByUserIdTest()
         {
-            User user = new User(1234567, new CompanyRole(this.company));
+            Users user = new Users(1234567, new CompanyRole(this.company));
             company.CompanyUsers.Add(user);
             Company result = CompanyRegister.Instance.GetCompanyByUserId(1234567);
             Assert.AreEqual(this.company, result);

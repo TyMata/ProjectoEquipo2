@@ -8,34 +8,53 @@ namespace ClassLibrary
     /// </summary>
     public class AdminStartHandler : AbstractHandler
     {
-        
+        public AdminStartState State { get; set; }
+
         /// <summary>
         /// Constructor de los objetos AdminStartHandler.
         /// </summary>
         public AdminStartHandler(IMessageChannel channel)
         {
             this.messageChannel = channel;
+            this.State = AdminStartState.Start;
         }
         /// <summary>
         /// Le otorga por pantalla los comandos que puede utilizar el admin.
         /// </summary>
         /// <param name="input"></param>
-        public override bool InternalHandle(IMessage input)
+        /// <param name="response"></param>
+        public override bool InternalHandle(IMessage input,out string response)
         {
-            if (this.nextHandler != null)
+            if (this.State == AdminStartState.Start && this.nextHandler != null) // TODO ver como hacer este handler o como mandlre el next handler
             {
                 StringBuilder bienvenida = new StringBuilder("Bienvenido Admin!\n")
                                                 .Append("Que quieres hacer?\n")
                                                 .Append("/RegistrarEmpresa\n")
                                                 .Append("/EliminarUsuario\n")
                                                 .Append("/EliminarEmpresa\n");
-                this.messageChannel.SendMessage(bienvenida.ToString());
-                IMessage input2 = this.messageChannel.ReceiveMessage();
-                this.nextHandler.Handle(input2);
-                return false;
+                this.State = AdminStartState.NotFirstTime;
+                response = bienvenida.ToString();
             }
-            return true;
+            else if(this.State == AdminStartState.Command)
+            {
+                IMessage input2 = this.messageChannel.ReceiveMessage();
+                response = "";
+                return true;
+            }
+            response = "";
+            return false;
         }
-        
+
+        public enum AdminStartState
+        {
+            Start,
+            NotFirstTime,
+            Command
+        }
+
+        public class RemoveUserData
+        {
+            public int User {get;set;}
+        }
     }
 }

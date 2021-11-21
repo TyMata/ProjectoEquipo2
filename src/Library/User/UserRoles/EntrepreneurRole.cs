@@ -27,6 +27,7 @@ namespace ClassLibrary
 
             }
         }
+        
         /// <summary>
         /// Es el constructor de EntrepreneurRole
         /// </summary>
