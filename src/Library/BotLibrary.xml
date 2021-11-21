@@ -74,11 +74,6 @@
         </member>
         <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
             <summary>
-            JsonConstructor de objetos Company.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
-            <summary>
             Constructor de objetos Company.
             </summary>
             <param name="name"></param>
@@ -170,36 +165,16 @@
             <param name="message">El mensaje a procesar</param>
             <returns></returns>
         </member>
-        <member name="T:ClassLibrary.AddCompanyHandler">
-            <summary>
-            Handler encargado de delegar la accion de añadir una empresa nueva al registro
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de los objetos AddCompanyHandler
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Pide algunos datos de la empresa que se quiere registrar la crea
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Name">
-            <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Country">
-            <summary>
-            El resultado de la búsqueda de la dirección ingresada.
-            </summary>
-        </member>
         <member name="T:ClassLibrary.AdminStartHandler">
             <summary>
             Primer Handler de la CoR para los usuarios Admin.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.AdminStartHandler.State">
+            <summary>
+            Estado para el handler de AdminStart.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.AdminStartHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -213,10 +188,32 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AdminStartHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de eliminar una empresa del registro.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.RemoveCompanyHandler.State">
+            <summary>
+            Estado para el handler de RemoveCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.RemoveCompanyHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveCompany.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -232,24 +229,58 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="T:ClassLibrary.RemoveCompanyState">
+        <member name="T:ClassLibrary.RemoveCompanyHandler.RemoveCompanyState">
             <summary>
-            Guarda los estados de el handler para remover una empresa
+            Indica los diferentes estados que tiene AddCompanyHandler.
             </summary>
         </member>
-        <member name="T:ClassLibrary.RemoveCompanyData">
+        <member name="F:ClassLibrary.RemoveCompanyHandler.RemoveCompanyState.Start">
             <summary>
-            Guarda la informacion que envia el usuario
+            El estado inicial del comando. Aquí pide el Id de la empresa a eliminar y pasa al siguiente estado.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.RemoveCompanyHandler.RemoveCompanyState.Company">
+            <summary>
+            Luego de pedir el Id de la empresa. En este estado el comando elimina la empresa si existe y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.RemoveCompanyHandler.RemoveCompanyData">
+            <summary>
+            Representa los datos que va obteniendo el comando RemoveCompanyHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.RemoveCompanyHandler.RemoveCompanyData.CompanyId">
+            <summary>
+            El Id de la empresa que se ingresó en el estado RemoveCompanyState.Company.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.RemoveCompanyHandler.RemoveCompanyData.Result">
+            <summary>
+            El resultado de la búsqueda de la empresa por medio del Id.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
             Handler encargado de delegar la accion de eliminar un usario del registro
             </summary>
         </member>
+        <member name="P:ClassLibrary.RemoveUserHandler.State">
+            <summary>
+            Estado para el handler de RemoveUser.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.RemoveUserHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveUserHandler.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.RemoveUserHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos RemoveUserHandler
+            Constructor de objetos RemoveUserHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.RemoveUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
@@ -260,6 +291,38 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.RemoveUserHandler.RemoveUserState">
+            <summary>
+            Indica los diferentes estados que tiene RemoveUserHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.RemoveUserHandler.RemoveUserState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide el Id del usuario a eliminar y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.RemoveUserHandler.RemoveUserState.User">
+            <summary>
+            Luego de pedir el Id del usuario. En este estado el comando elimina el usuario si existe y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.RemoveUserHandler.RemoveUserData">
+            <summary>
+            Representa los datos que va obteniendo el comando RemoveUserHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.RemoveUserHandler.RemoveUserData.UserId">
+            <summary>
+            El Id del usuario que se ingresó en el estado RemoveUserState.User.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.RemoveUserHandler.RemoveUserData.Result">
+            <summary>
+            El resultado de la búsqueda del usuario por medio del Id.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.CompanyUserHandler">
             <summary>
@@ -365,18 +428,18 @@
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de crear y publicar una oferta en el registro.
+            Handler encargado de delegar la accion de crear y publicar una oferta en el registro
             </summary>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
-            Constructor de objetos PublishOfferHandler.
+            Constructor de objetos PublishOfferHandler
             </summary>
             <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
+            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
             </summary>
             <param name="input"></param>
         </member>
@@ -438,18 +501,18 @@
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
-            Handler encargado de darle final a la CoR
+            Handler encargado de darle final a la CoR.
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
             <summary>
-            Constructor de objetos EndHandler
+            Constructor de objetos EndHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Le avisa al usuario que el comando no se reconocio y 
-            va denuevo al primer handler de la cadena
+            va denuevo al primer handler de la cadena.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -467,7 +530,7 @@
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
-            Handler encargado de delegar la accion de buscar ofertas por keywords.
+            Handler encargado de delegar la accion de buscar ofertas por keywords
             </summary>
         </member>
         <member name="M:ClassLibrary.SearchOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
@@ -491,7 +554,6 @@
             <summary>
             Verifica si se realiza el proceso o se lo manda al next handler.
             </summary>
-            <param name="input"></param>
         </member>
         <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
@@ -794,6 +856,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Offer.#ctor">
+            <summary>
+            JsonConstructor para objetos Offer.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer.
@@ -807,11 +874,6 @@
             <param name="company"></param>
             <param name="availability"></param>
             <param name="publicationDate"></param>
-        </member>
-        <member name="M:ClassLibrary.Offer.#ctor">
-            <summary>
-            JsonConstructor para objetos Offer.
-            </summary>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
@@ -989,7 +1051,7 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.GetCompany(System.String)">
             <summary>
-            Devuelve la empresa a la cual le pertenece un codigo
+            Devuelve la empresa a la cual le pertenece un codigo.
             </summary>
             <param name="codigo"></param>
             <returns></returns>
@@ -1022,12 +1084,6 @@
         <member name="P:ClassLibrary.UserRegister.DataUsers">
             <summary>
             Lista de usuarios registrados.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.UserRegister.Instance">
-            <summary>
-            Instancia de UserRegister (COMENTAR SINGLETON)
             </summary>
             <value></value>
         </member>
