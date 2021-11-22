@@ -72,12 +72,12 @@
             JsonConstructor de objetos Company.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
+        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.LocationAdapter,System.String)">
             <summary>
             Constructor de objetos Company.
             </summary>
             <param name="name"></param>
-            <param name="ubi"></param>
+            <param name="location"></param>
             <param name="headings"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
@@ -116,6 +116,26 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="M:ClassLibrary.Company.LoadFromJson(System.String)">
+            <summary>
+            Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:ClassLibrary.Company.GetMaterial(System.String)">
+            <summary>
+            Retorna un material segun el nombre de estes
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Company.GetLocation(System.String)">
+            <summary>
+            Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
@@ -164,6 +184,32 @@
             </summary>
             <param name="message">El mensaje a procesar</param>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.AddCompanyHandler">
+            <summary>
+            Handler encargado de delegar la accion de añadir una empresa nueva al registro
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de los objetos AddCompanyHandler
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Pide algunos datos de la empresa que se quiere registrar la crea
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Name">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Country">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
         </member>
         <member name="T:ClassLibrary.AdminStartHandler">
             <summary>
@@ -603,15 +649,37 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserState">
+            <summary>
+            Estados para el handler de un emprendedor no registrado
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData">
+            <summary>
+            Se guardan los datos que el usuario pasa por el chat.
+            </summary>
+        </member>
         <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Name">
             <summary>
             El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Location">
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Address">
             <summary>
-            El nombre que se ingresó en el estado UnregisteredCompanyUserState.Location.
+            se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .
             </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.City">
+            <summary>
+            Se guarda la ciudad que se ingresó en el estado UnregisteredEntrepreneurUserState.City .
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Department">
+            <summary>
+            Se guarda eL departamento que se ingresó en el estado UnregisteredEntrepreneurUserState.Department .
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.LocationResult">
             <summary>
@@ -645,6 +713,128 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.IDistanceResult">
+            <summary>
+            Una interfaz que define una abstracción para el resultado de calcular distancias.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.FromExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de origen para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.ToExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de destino para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.Distance">
+            <summary>
+            La distancia calculada.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.Time">
+            <summary>
+            El tiempo en llegar del origen al destino.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.DistanceResult">
+            <summary>
+            Una implementación concreta del resutlado de calcular distancias. Además de las propiedades definidas en
+            IDistanceResult esta clase agrega propiedades para acceder a las coordenadas de las direcciones buscadas.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.DistanceResult.#ctor(Ucu.Poo.Locations.Client.Location,Ucu.Poo.Locations.Client.Location,System.Double,System.Double)">
+            <summary>
+            Inicializa una nueva instancia de DistanceResult a partir de dos coordenadas, la distancia y el tiempo
+            entre ellas.
+            </summary>
+            <param name="from">Las coordenadas de origen.</param>
+            <param name="to">Las coordenadas de destino.</param>
+            <param name="distance">La distancia entre las coordenadas.</param>
+            <param name="time">El tiempo que se demora en llegar del origen al destino.</param>
+        </member>
+        <member name="T:ClassLibrary.ILocationApiAdapter">
+            <summary>
+            Interface para el adapter de las api de ubicacion
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="ciudad"></param>
+            <param name="departamento"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetDistance(System.String,System.String)">
+            <summary>
+            Devuelve la distancia entre dos Locations de la Api
+            </summary>
+            <param name="fromAddress"></param>
+            <param name="toAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.LocationAdapter">
+            <summary>
+            Esta clase representa una ubicacion
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Found">
+            <summary>
+            Devuelve si la ubicacion existe o no
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Address">
+            <summary>
+            Devuelve la direccion completa
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Latitude">
+            <summary>
+            Devuelve la latitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Longitude">
+            <summary>
+            Devuelve la longitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.LocationAdapter.#ctor(Ucu.Poo.Locations.Client.Location)">
+            <summary>
+            Adaptador del objeto location de la api
+            </summary>
+            <param name="location"></param>
+        </member>
+        <member name="T:ClassLibrary.LocationApiAdapter">
+            <summary>
+            Esta clase representa un adaptador de una Api de ubicaciones
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="city"></param>
+            <param name="department"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(System.String,System.String)">
+            <summary>
+            Devuelve las distancia entre dos direcciones
+            </summary>
+            <param name="fromAddress"></param>
+            <param name="toAddress"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Material">
             <summary>
@@ -861,7 +1051,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -906,9 +1096,26 @@
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
+        <member name="M:ClassLibrary.Offer.LoadFromJson(System.String)">
+            <summary>
+            Carga la oferta que esta en formato json para reconstruir el objeto
+            </summary>
+            <param name="json"></param>
+        </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
             Esta clase representa un registro de empresas.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyRegister.Instance">
+            <summary>
+            Se crea un Singelton de la clase CompanyRegister.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.Initialize">
+            <summary>
+            Se crea la lista de empresas.
             </summary>
         </member>
         <member name="P:ClassLibrary.CompanyRegister.CompanyList">
@@ -942,7 +1149,7 @@
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
+        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,ClassLibrary.LocationAdapter,System.String)">
             <summary>
             Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
             </summary>
@@ -962,11 +1169,28 @@
             Esta clase representa el mercado con sus ofertas.
             </summary>
         </member>
+        <member name="P:ClassLibrary.Market.Count">
+            <summary>
+            Genera un numero mayor que el anterior para el Id.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Market.Instance">
+            <summary>
+            Se crea un Singelton de la clase Market.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
             <summary>
             Lista de ofertas actuales.
             </summary>
             <value></value>
+        </member>
+        <member name="M:ClassLibrary.Market.Initialize">
+            <summary>
+            Se crea la lista de ofertas.
+            </summary>
         </member>
         <member name="P:ClassLibrary.Market.SuspendedOfferList">
             <summary>
@@ -974,11 +1198,7 @@
             </summary>
             <value></value>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.Market.CreateOffer(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
-=======
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
->>>>>>> origin
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
@@ -1053,6 +1273,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:ClassLibrary.TokenRegister.Instance">
+            <summary>
+            Se crea un Singelton de la clase TokenRegister.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.Initialize">
+            <summary>
+            Se crea diccionario para asociar un token con su respectiva empresa.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.TokenRegister.GetCompany(System.String)">
             <summary>
             Devuelve la empresa a la cual le pertenece un codigo.
@@ -1062,7 +1293,7 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.Add(System.String,ClassLibrary.Company)">
             <summary>
-            Metodo par añadir un token al diccionario de tokens.
+            Metodo para añadir un token al diccionario de tokens.
             </summary>
             <param name="token"></param>
             <param name="company"></param>
@@ -1079,6 +1310,19 @@
             </summary>
             <param name="codigo"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.LoadFromJson(System.String)">
+            <summary>
+            Convierte el texto en formato Json a objeto.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>
@@ -1097,6 +1341,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.UserRegister.Initialize">
+            <summary>
+            Se crea la lista de usuarios y se la guarda en la DataUsers.
+            </summary>
+        </member>
         <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
             <summary>
             Crea un usuario empresa.
@@ -1104,7 +1353,7 @@
             <param name="input"></param>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Crea un usuario emprendedor.
             </summary>
@@ -1139,6 +1388,19 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.ConvertToJson">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.UserRegister.LoadFromJson(System.String)">
+            <summary>
+            Convierte el texto en formato Json a obejto.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.IJsonConvertible">
             <summary>
@@ -1201,7 +1463,7 @@
             </summary>
             <param name="offer"></param>
         </member>
-        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
             </summary>
@@ -1243,9 +1505,6 @@
             </summary>
             <returns></returns>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.User.ConvertToJson">
-=======
         <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
             <summary>
             Booleano para comprobar que un usuario es un usuario emprendedor.
@@ -1259,7 +1518,6 @@
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Users.ConvertToJson">
->>>>>>> origin
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1322,7 +1580,7 @@
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
         </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Es el constructor de EntrepreneurRole
             </summary>
