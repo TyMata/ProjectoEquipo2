@@ -10,7 +10,7 @@ namespace ClassLibrary
     {
 
         /// <summary>
-        /// Estado para el handler de AddCompany.
+        /// Estado para el handler de ModifyPriceHandler.
         /// </summary>
         /// <value></value>
         public ModifyState State { get; set; }
@@ -25,8 +25,7 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos ModifyPriceHandler
         /// </summary>
-        /// <param name="channel"></param>
-        public ModifyPriceHandler(IMessageChannel channel)
+        public ModifyPriceHandler()
         {
             this.Command = "/modificarprecio";
             this.State = ModifyState.Start;

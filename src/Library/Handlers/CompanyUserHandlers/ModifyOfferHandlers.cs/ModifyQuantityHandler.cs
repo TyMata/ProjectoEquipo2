@@ -10,7 +10,7 @@ namespace ClassLibrary
     {
 
         /// <summary>
-        /// Estado para el handler de AddCompany.
+        /// Estado para el handler de ModifyQuantityHandler.
         /// </summary>
         /// <value></value>
         public ModifyState State { get; set; }
@@ -25,8 +25,7 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos ModifyQuantityHandler.
         /// </summary>
-        /// <param name="channel"></param>
-        public ModifyQuantityHandler(IMessageChannel channel)
+        public ModifyQuantityHandler()
         {
             this.Command = "/modificarcantidad";
             this.State = ModifyState.Start;
@@ -111,7 +110,7 @@ namespace ClassLibrary
         public class ModifyOfferData
         {
             /// <summary>
-            /// La dirección que se ingresó en el estado ModifyState.OfferList.
+            /// El ID que se ingresó en el estado ModifyState.OfferList.
             /// </summary>
             public int Offer { get; set; }
 

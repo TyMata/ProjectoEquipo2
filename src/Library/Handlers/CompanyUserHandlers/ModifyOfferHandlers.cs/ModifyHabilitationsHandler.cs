@@ -9,13 +9,13 @@ namespace ClassLibrary
     public class ModifyHabilitationsHandler : AbstractHandler
     {
         /// <summary>
-        /// Estado para el handler de AddCompany.
+        /// Estado para el handler de ModifyHabilitations.
         /// </summary>
         /// <value></value>
         public ModifyState State { get; set; }
 
         /// <summary>
-        /// Guarda los prompts ingresados por el  usuario.
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
         /// </summary>
         /// <value></value>
         public ModifyOfferData Data {get;set;}
