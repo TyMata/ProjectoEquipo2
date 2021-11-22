@@ -216,7 +216,7 @@ namespace ClassLibrary
         {
             this.name = name;
             this.Locations.Add(location);
-            this.id = 0;
+            this.id = 0; //TODO hacer lista de keywords this.name this.material (en offer)
             this.Headings = headings;
             this.InvitationToken = this.GenerateToken();
         }

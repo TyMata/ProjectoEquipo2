@@ -31,7 +31,7 @@ namespace ClassLibrary
         /// <param name="input"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if (this.State == OfferState.Start && CanHandle(input))
+            if (State == OfferState.Start && CanHandle(input))
             {
                 this.State = OfferState.Material;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
