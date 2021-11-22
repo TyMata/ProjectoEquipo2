@@ -10,7 +10,7 @@ namespace ClassLibrary
     {   
         public SearchOfferState State {get; private set;}
 
-        public SearchOfferData Data {get; private set;} = new SearchOfferData();
+        public SearchOfferData Data {get; private set;}
 
         private Company company;
 
@@ -18,11 +18,11 @@ namespace ClassLibrary
         /// Constructor de objetos SearchOfferByKeyWordsHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public SearchOfferHandler(IMessageChannel channel)
+        public SearchOfferHandler()
         {
             this.Command = "/buscaroferta";
-            this.messageChannel = channel;
             this.State = SearchOfferState.Start;
+            this.Data = new SearchOfferData();
         }
 
         

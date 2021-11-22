@@ -22,6 +22,7 @@ namespace ClassLibrary
         /// Ejecución del proceso de Handler.
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
         bool InternalHandle(IMessage input, out string response);
     }

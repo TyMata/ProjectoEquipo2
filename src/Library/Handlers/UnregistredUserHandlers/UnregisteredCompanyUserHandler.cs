@@ -14,10 +14,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos UnregistredCompanyUserHandler.
         /// </summary>
-        public UnregisteredCompanyUserHandler(IMessageChannel channel)
+        public UnregisteredCompanyUserHandler()
         {
-            this.Command = "empresa";
-            this.messageChannel = channel;
+            this.Command = "/empresanoregistrada";
             this.State = UnregisteredCompanyUserState.Start;
             this.Data = new UnregisteredCompanyUserData();
         }
@@ -41,14 +40,14 @@ namespace ClassLibrary
             }
             else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
             {
-                this.Data.Token = this.messageChannel.ReceiveMessage().Text;
+                this.Data.Token = input.Text;
                 this.State = UnregisteredCompanyUserState.Token;
                 response = "";
                 return true;
             }
             else if(this.State == UnregisteredCompanyUserState.Token)
             {
-                this.Data.Token = this.messageChannel.ReceiveMessage().Text;
+                this.Data.Token = input.Text;
                 if (TokenRegister.Instance.IsValid(this.Data.Token))
                 {
                     Company temp = TokenRegister.Instance.GetCompany(this.Data.Token);

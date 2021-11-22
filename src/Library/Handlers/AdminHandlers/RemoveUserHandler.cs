@@ -22,10 +22,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos RemoveUserHandler.
         /// </summary>
-        public RemoveUserHandler(IMessageChannel channel)
+        public RemoveUserHandler()
         {
             this.Command = "eliminarusuario";
-            this.messageChannel = channel;
             this.State = RemoveUserState.Start;
             this.Data = new RemoveUserData();
         }
@@ -47,7 +46,7 @@ namespace ClassLibrary
             else if(this.State == RemoveUserState.User)
             {
                 this.State = RemoveUserState.Start;
-                this.Data.UserId = Convert.ToInt32(this.messageChannel.ReceiveMessage().Text);
+                this.Data.UserId = Convert.ToInt32(input.Text);
                 this.Data.Result = UserRegister.Instance.GetUserById(this.Data.UserId);
                 if (this.Data.Result != null)
                 {

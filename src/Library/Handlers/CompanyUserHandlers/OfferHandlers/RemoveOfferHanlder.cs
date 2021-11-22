@@ -6,10 +6,18 @@ namespace ClassLibrary
     /// <summary>
     /// Handler encargado de delegar la accion de retirar una oferta.
     /// </summary>
-    public class RemoveOfferHandlerCopy: AbstractHandler
+    public class RemoveOfferHandler: AbstractHandler
     {   
+        /// <summary>
+        /// Estado para el handler de RemoveOfferHandler.
+        /// </summary>
+        /// <value></value>
         public RemoveOfferState State {get; private set;}
 
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyQuantityHandler.
+        /// </summary>
+        /// <value></value>
         public RemoveOfferData Data {get; private set;} = new RemoveOfferData();
 
         private Company company;
@@ -17,11 +25,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos RemoveOfferHandler.
         /// </summary>
-        /// <param name="channel"></param>
-        public RemoveOfferHandlerCopy(IMessageChannel channel)
+        public RemoveOfferHandler()
         {
-            this.Command = "/retiraroferta";            
-            this.messageChannel = channel ;
+            this.Command = "/retiraroferta";           
             this.State = RemoveOfferState.Start;
             this.company = null;
         }
@@ -56,7 +62,7 @@ namespace ClassLibrary
                 response = offers.ToString();
                 return true;
             }
-            else if (State == RemoveOfferState.AskActiveOfferIdState)
+            else if (State == RemoveOfferState.AskActiveOfferIdState)           //TODO Todo en un mismo if??
             {
                 this.State = RemoveOfferState.BoolIdAnswerState;
                 response = "¿Cual es el Id de la oferta a retirar?";
@@ -91,17 +97,30 @@ namespace ClassLibrary
             this.Data = new RemoveOfferData();
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que tiene RemoveOfferHandler.
+        /// </summary>
         public enum RemoveOfferState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            /// modificar y le muestra una lista de las ofertas actuales de la empresa.
+            /// </summary>
             Start,
             ShowActiveState,
             AskActiveOfferIdState,
             BoolIdAnswerState
         }
 
+        /// <summary>
+        /// Representa los datos que va obteniendo el comando RemoveOfferHandler en los diferentes estados.
+        /// </summary>
         public class RemoveOfferData
         {
-        public int id {get; set;}
+            /// <summary>
+            /// El ID que se ingresó en el estado RemoveOfferHandler.OfferList.
+            /// </summary>
+            public int id {get; set;}
         }
     }
 }
