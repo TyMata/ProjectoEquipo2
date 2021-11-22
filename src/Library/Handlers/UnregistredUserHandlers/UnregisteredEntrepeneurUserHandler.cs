@@ -65,7 +65,7 @@ namespace ClassLibrary
             {
                 this.Data.Department = input.Text;
                 this.State = UnregisteredEntrepeneurUserState.Habilitations;
-                this.Data.LocationResult = LocationApiAdapter.Instance.GetLocation(this.Data.Address,this.Data.City,this.Data.Department);
+                this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
                 response = "Ingrese sus habilitaciones\n";
                 return true;
             }

@@ -18,7 +18,7 @@ namespace Tests
         [Test]
         public void AddTest()
         {
-            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            location = new LocationAdapter("address","city","department");
             Company company = new Company("empresa", location, "rubro");
             string token = "145789";
             TokenRegister.Instance.Add(token, company);

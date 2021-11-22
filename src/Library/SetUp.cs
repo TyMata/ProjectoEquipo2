@@ -11,7 +11,7 @@ namespace ClassLibrary
     {
         
 
-        /*public IHandler Start(IMessageChannel channel, IMessage input)
+        public IHandler Start(IMessageChannel channel, IMessage input)
         {
             if(!this.Registro.IsRegistered(input.Id) )
             {
@@ -40,7 +40,7 @@ namespace ClassLibrary
             {
                 
             }
-        }*/
+        }
 
 
 

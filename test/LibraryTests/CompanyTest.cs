@@ -25,7 +25,7 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
-            this.location = LocationApiAdapter.Instance.GetLocation("address","city","department");;
+            this.location = new LocationAdapter("address","city","department");;
             this.company = new Company(this.name, this.location, this.headings);
         }
 
@@ -70,6 +70,7 @@ namespace Tests
         public void ProducedMaterialsTest()
         {
             Company company = new Company(this.name, this.location, this.headings);
+            company.ProducedMaterials.Add(new Material());
             Assert.IsNotEmpty(company.ProducedMaterials);
         }
     }
