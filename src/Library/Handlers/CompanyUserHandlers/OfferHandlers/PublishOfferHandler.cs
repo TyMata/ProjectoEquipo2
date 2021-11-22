@@ -32,6 +32,7 @@ namespace ClassLibrary
             this.Data = new OfferData();
             this.company = null;
         }
+
         /// <summary>
         /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
         /// </summary>
@@ -43,7 +44,7 @@ namespace ClassLibrary
             {
                 this.State = OfferState.Material;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa");
+                StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa:\n\n");
                 foreach (Material item in this.company.ProducedMaterials)
                 {
                     materials.Append($"Nombre del Material: {item.Name}\n")
@@ -79,6 +80,7 @@ namespace ClassLibrary
                             .Append($"Direccion: {item.Address}\n")   
                             .Append($"\n-----------------------------------------------\n\n");
                 }
+                location.Append("Ingresa la direccion de esta:\n");
                 response = location.ToString();
                 return true;
             }
@@ -128,16 +130,40 @@ namespace ClassLibrary
         /// </summary>
         public class OfferData
         {
+            /// <summary>
+            /// Se guarda el material que se quiere agregar en la oferta.
+            /// </summary>
+            /// <value></value>
             public Material Material {get;set;}
 
+            /// <summary>
+            /// Se guarda la cantidad del material que se quiere poner en la oferta.
+            /// </summary>
+            /// <value></value>
             public int Quantity {get;set;}
 
+            /// <summary>
+            /// Se guarda el precio total de la oferta.
+            /// </summary>
+            /// <value></value>
             public double Price {get;set;}
 
+            /// <summary>
+            /// Se guardan las habilitaciones para manejar el material.
+            /// </summary>
+            /// <value></value>
             public string Habilitations {get;set;}
 
+            /// <summary>
+            /// Se guarda la oferta creada con la informacion guardada previamente.
+            /// </summary>
+            /// <value></value>
             public Offer Offer {get;set;}
             
+            /// <summary>
+            /// Se guarda la ubicación de la oferta.
+            /// </summary>
+            /// <value></value>
             public LocationAdapter Location {get;set;}
         }
     }

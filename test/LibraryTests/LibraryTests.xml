@@ -84,6 +84,11 @@
             Prueba que se agreguen los materiales a la lista de materiales.
             </summary>
         </member>
+        <member name="M:Tests.CompanyTest.GetMaterialTest">
+            <summary>
+            Prueba que el metodo GetMAterial de company devuelva el material correcto y que no sea nulo.
+            </summary>
+        </member>
         <member name="T:Tests.EntrepreneurRoleTests">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.EntrepreneurRole"/>.
@@ -122,6 +127,31 @@
         <member name="M:Tests.ModifyQuantityHandlerTest.InternalNotHandleTest">
             <summary>
             Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="T:Tests.LocationAdapterTests">
+            <summary>
+            Prueba la clase <see cref="T:ClassLibrary.LocationAdapter"/>
+            </summary>
+        </member>
+        <member name="M:Tests.LocationAdapterTests.Setup">
+            <summary>
+            Se crean variable de la api y para la ubicación.
+            </summary>
+        </member>
+        <member name="M:Tests.LocationAdapterTests.SetLocationTest">
+            <summary>
+            Prueba si la ubicacion que devuelve el método GetLocation de LocationApiAdapter es igual a la ubicacion de la Api.
+            </summary>
+        </member>
+        <member name="M:Tests.LocationAdapterTests.GetDistance">
+            <summary>
+            Prueba que el metodo GetDistance devuelva la distancia correcta y no nula.
+            </summary>
+        </member>
+        <member name="M:Tests.LocationAdapterTests.GetDuration">
+            <summary>
+            Prueba que el metodo devuelva  que  la duracion entre direcciones sea correcta.
             </summary>
         </member>
         <member name="T:Tests.MarketTest">
