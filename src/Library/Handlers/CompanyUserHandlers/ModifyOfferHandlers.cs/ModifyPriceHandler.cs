@@ -14,6 +14,11 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public ModifyState State { get; set; }
+
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
+        /// </summary>
+        /// <value></value>
         public ModifyOfferData Data {get;set;}
         private Company company;
 
@@ -31,9 +36,11 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        ///  Handle
+        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar el precio
+        /// de la oferta indicada por el usuario.
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
@@ -93,11 +100,16 @@ namespace ClassLibrary
             /// En este estado se obtiene el id y pregunta por el link de las habilitaciones.
             /// </summary>
             OfferList,
-            Modification,
 
-            
+            /// <summary>
+            /// En este estado se obtiene el link. delega el proceso de modificacion y le informa al usuario.
+            /// </summary>
+            Modification
         }
 
+        /// <summary>
+        /// Representa los datos que va obteniendo el comando ModifyHabilitationsHandler en los diferentes estados.
+        /// </summary>
         public class ModifyOfferData
         {
             /// <summary>

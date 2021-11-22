@@ -72,12 +72,12 @@
             JsonConstructor de objetos Company.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
+        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.LocationAdapter,System.String)">
             <summary>
             Constructor de objetos Company.
             </summary>
             <param name="name"></param>
-            <param name="ubi"></param>
+            <param name="location"></param>
             <param name="headings"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
@@ -116,6 +116,26 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="M:ClassLibrary.Company.LoadFromJson(System.String)">
+            <summary>
+            Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:ClassLibrary.Company.GetMaterial(System.String)">
+            <summary>
+            Retorna un material segun el nombre de estes
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Company.GetLocation(System.String)">
+            <summary>
+            Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
@@ -165,6 +185,126 @@
             <param name="message">El mensaje a procesar</param>
             <returns></returns>
         </member>
+        <member name="T:ClassLibrary.AddCompanyHandler">
+            <summary>
+            Handler encargado de delegar la accion de añadir una empresa nueva al registro
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.State">
+            <summary>
+            Estado para el handler de AddCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+            <summary>
+            Constructor de los objetos AddCompanyHandler.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Pide algunos datos de la empresa que se quiere registrar y delega la accion de crearla.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.AddCompanyHandler.CompanyState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide el nombre de la empresa a registrar y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Name">
+            <summary>
+            Luego de pedir el nombre de la empresa. En este estado el comando pide el país de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Country">
+            <summary>
+            Luego de pedir el país de la empresa. En este estado el comando pide el departamento de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Estate">
+            <summary>
+            Luego de pedir el departamento de la empresa. En este estado el comando pide la ciudad de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.City">
+            <summary>
+            Luego de pedir la ciudad de la empresa. En este estado el comando pide la dirección de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Address">
+            <summary>
+            Luego de pedir la dirección de la empresa. En este estado el comando pide el rubro de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.CompanyState.Headings">
+            <summary>
+            Luego de pedir el rubro de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.AddCompanyHandler.CompanyData">
+            <summary>
+            Representa los datos que va obteniendo el comando Distance Handler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Name">
+            <summary>
+            El nombre de la companía que se ingresó en el estado CompanyState.Name.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Country">
+            <summary>
+            El país de la companía que se ingresó en el estado CompanyState.Country.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Estate">
+            <summary>
+            El departamento de la companía que se ingresó en el estado CompanyState.State.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.City">
+            <summary>
+            La ciudad de la companía que se ingresó en el estado CompanyState.City.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Address">
+            <summary>
+            La dirección de la companía que se ingresó en el estado CompanyState.Address.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Headings">
+            <summary>
+            El rubro de la companía que se ingresó en el estado CompanyState.Headings.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.Location">
+            <summary>
+            La ubicación completa de la empresa, creada a partir de los datos de ubiación recolectados anteriormente.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.CompanyData.company">
+            <summary>
+            La empresa creada a partir de todos los datos recolectados anteriormente.
+            </summary>
+            <value></value>
+        </member>
         <member name="T:ClassLibrary.AdminStartHandler">
             <summary>
             Primer Handler de la CoR para los usuarios Admin.
@@ -197,7 +337,11 @@
             <summary>
             El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             </summary>
-            <value></value>
+        </member>
+        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.NotFirstTime">
+            <summary>
+            Pide el comando . En este estado el comando pide el país de la empresa y pasa al siguiente estado.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -347,6 +491,18 @@
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             /// </summary>
         </member>
+        <member name="P:ClassLibrary.ModifyHabilitationsHandler.State">
+            <summary>
+            Estado para el handler de AddCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.ModifyHabilitationsHandler.Data">
+            <summary>
+            Guarda los prompts ingresados por el  usuario.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
             Constructor de objetos ModifyHabilitationsHandler.
@@ -355,26 +511,65 @@
         </member>
         <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            
+            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad
+            de materiales de la oferta indicada por el usuario.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
         </member>
-        <member name="P:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData.Offer">
+        <member name="T:ClassLibrary.ModifyHabilitationsHandler.ModifyState">
             <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            Indica los diferentes estados que tiene ModifyHabilitationsHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyHabilitationsHandler.ModifyState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            modificar y le muestra una lista de las ofertas actuales de la empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyHabilitationsHandler.ModifyState.OfferList">
+            <summary>
+            En este estado se obtiene el id y pregunta por el link de las habilitaciones.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyHabilitationsHandler.ModifyState.Modification">
+            <summary>
+            En este estado se obtiene el link. delega el proceso de modificacion y le informa al usuario.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData">
+            <summary>
+            Representa los datos que va obteniendo el comando ModifyHabilitationsHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData.OfferId">
+            <summary>
+            La dirección que se ingresó en el estado ModifyState.OfferList.
             </summary>
         </member>
         <member name="P:ClassLibrary.ModifyHabilitationsHandler.ModifyOfferData.Result">
             <summary>
-            El resultado de la búsqueda de la dirección ingresada.
+            El resultado de la búsqueda de la oferta ingresada.
             </summary>
         </member>
         <member name="T:ClassLibrary.ModifyPriceHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar el precio de una determinada oferta.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.State">
+            <summary>
+            Estado para el handler de AddCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.ModifyPriceHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -384,25 +579,65 @@
         </member>
         <member name="M:ClassLibrary.ModifyPriceHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-             Handle
+            Se encarga de mostrar la lista de ofertas de la empresa y modificar el precio
+            de la oferta indicada por el usuario.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
             <returns></returns>
         </member>
-        <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Offer">
+        <member name="T:ClassLibrary.ModifyPriceHandler.ModifyState">
             <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            Indica los diferentes estados que tiene ModifyPriceHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyPriceHandler.ModifyState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            modificar y le muestra una lista de las ofertas actuales de la empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyPriceHandler.ModifyState.OfferList">
+            <summary>
+            En este estado se obtiene el id y pregunta por el link de las habilitaciones.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyPriceHandler.ModifyState.Modification">
+            <summary>
+            En este estado se obtiene el link. delega el proceso de modificacion y le informa al usuario.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ModifyPriceHandler.ModifyOfferData">
+            <summary>
+            Representa los datos que va obteniendo el comando ModifyHabilitationsHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.OfferId">
+            <summary>
+            La dirección que se ingresó en el estado ModifyState.OfferList.
             </summary>
         </member>
         <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Result">
             <summary>
-            El resultado de la búsqueda de la dirección ingresada.
+            El resultado de la búsqueda de la oferta ingresada.
             </summary>
         </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.ModifyQuantityHandler.State">
+            <summary>
+            Estado para el handler de AddCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.ModifyQuantityHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyQuantityHandler.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.ModifyQuantityHandler.#ctor(ClassLibrary.IMessageChannel)">
             <summary>
@@ -412,19 +647,47 @@
         </member>
         <member name="M:ClassLibrary.ModifyQuantityHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad de la oferta determinada.
+            Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad
+            de materiales de la oferta indicada por el usuario.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.ModifyQuantityHandler.ModifyState">
+            <summary>
+            Indica los diferentes estados que tiene ModifyQuantityHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyQuantityHandler.ModifyState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            modificar y le muestra una lista de las ofertas actuales de la empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyQuantityHandler.ModifyState.OfferList">
+            <summary>
+            En este estado se obtiene el id y pregunta por el link de las habilitaciones.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ModifyQuantityHandler.ModifyState.Modification">
+            <summary>
+            En este estado se obtiene el link. delega el proceso de modificacion y le informa al usuario.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ModifyQuantityHandler.ModifyOfferData">
+            <summary>
+            Representa los datos que va obteniendo el comando ModifyQuantityHandler en los diferentes estados.
+            </summary>
         </member>
         <member name="P:ClassLibrary.ModifyQuantityHandler.ModifyOfferData.Offer">
             <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            La dirección que se ingresó en el estado ModifyState.OfferList.
             </summary>
         </member>
         <member name="P:ClassLibrary.ModifyQuantityHandler.ModifyOfferData.Result">
             <summary>
-            El resultado de la búsqueda de la dirección ingresada.
+            El resultado de la búsqueda de la oferta ingresada.
             </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
@@ -443,6 +706,11 @@
             Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
             </summary>
             <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.PublishOfferHandler.OfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveOfferHandlerCopy">
             <summary>
@@ -464,6 +732,11 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="T:ClassLibrary.RemoveOfferHandlerCopy.RemoveOfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.ResumeOfferHandler">
             <summary>
             Handler encargado de delegar la accion de volver a activar una oferta suspendida.
@@ -482,6 +755,11 @@
             </summary>
             <param name="input"></param>
         </member>
+        <member name="T:ClassLibrary.ResumeOfferHandler.ResumeOfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.SuspendOfferHandlerCopy">
             <summary>
             Handler encargado de delegar la accion de suspender una oferta.
@@ -499,6 +777,11 @@
             de una oferta delega la accion de suspenderla.
             </summary>
             <param name="input"></param>
+        </member>
+        <member name="T:ClassLibrary.SuspendOfferHandlerCopy.SuspendOfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
@@ -604,15 +887,37 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserState">
+            <summary>
+            Estados para el handler de un emprendedor no registrado
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData">
+            <summary>
+            Se guardan los datos que el usuario pasa por el chat.
+            </summary>
+        </member>
         <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Name">
             <summary>
             El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Location">
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Address">
             <summary>
-            El nombre que se ingresó en el estado UnregisteredCompanyUserState.Location.
+            se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .
             </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.City">
+            <summary>
+            Se guarda la ciudad que se ingresó en el estado UnregisteredEntrepreneurUserState.City .
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Department">
+            <summary>
+            Se guarda eL departamento que se ingresó en el estado UnregisteredEntrepreneurUserState.Department .
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.LocationResult">
             <summary>
@@ -646,6 +951,128 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.IDistanceResult">
+            <summary>
+            Una interfaz que define una abstracción para el resultado de calcular distancias.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.FromExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de origen para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.ToExists">
+            <summary>
+            Obtiene un valor que indica si la dirección de destino para el cálculo de distancias existe; sólo se puede
+            calcular la distancia entre direcciones que existen.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.Distance">
+            <summary>
+            La distancia calculada.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IDistanceResult.Time">
+            <summary>
+            El tiempo en llegar del origen al destino.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.DistanceResult">
+            <summary>
+            Una implementación concreta del resutlado de calcular distancias. Además de las propiedades definidas en
+            IDistanceResult esta clase agrega propiedades para acceder a las coordenadas de las direcciones buscadas.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.DistanceResult.#ctor(Ucu.Poo.Locations.Client.Location,Ucu.Poo.Locations.Client.Location,System.Double,System.Double)">
+            <summary>
+            Inicializa una nueva instancia de DistanceResult a partir de dos coordenadas, la distancia y el tiempo
+            entre ellas.
+            </summary>
+            <param name="from">Las coordenadas de origen.</param>
+            <param name="to">Las coordenadas de destino.</param>
+            <param name="distance">La distancia entre las coordenadas.</param>
+            <param name="time">El tiempo que se demora en llegar del origen al destino.</param>
+        </member>
+        <member name="T:ClassLibrary.ILocationApiAdapter">
+            <summary>
+            Interface para el adapter de las api de ubicacion
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="ciudad"></param>
+            <param name="departamento"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ILocationApiAdapter.GetDistance(System.String,System.String)">
+            <summary>
+            Devuelve la distancia entre dos Locations de la Api
+            </summary>
+            <param name="fromAddress"></param>
+            <param name="toAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.LocationAdapter">
+            <summary>
+            Esta clase representa una ubicacion
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Found">
+            <summary>
+            Devuelve si la ubicacion existe o no
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Address">
+            <summary>
+            Devuelve la direccion completa
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Latitude">
+            <summary>
+            Devuelve la latitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Longitude">
+            <summary>
+            Devuelve la longitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.LocationAdapter.#ctor(Ucu.Poo.Locations.Client.Location)">
+            <summary>
+            Adaptador del objeto location de la api
+            </summary>
+            <param name="location"></param>
+        </member>
+        <member name="T:ClassLibrary.LocationApiAdapter">
+            <summary>
+            Esta clase representa un adaptador de una Api de ubicaciones
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
+            <summary>
+            Transforma la Location de la Api a una Location del Bot
+            </summary>
+            <param name="address"></param>
+            <param name="city"></param>
+            <param name="department"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(System.String,System.String)">
+            <summary>
+            Devuelve las distancia entre dos direcciones
+            </summary>
+            <param name="fromAddress"></param>
+            <param name="toAddress"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Material">
             <summary>
@@ -862,7 +1289,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -906,6 +1333,12 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="M:ClassLibrary.Offer.LoadFromJson(System.String)">
+            <summary>
+            Carga la oferta que esta en formato json para reconstruir el objeto
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
@@ -954,12 +1387,12 @@
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,Ucu.Poo.Locations.Client.Location,System.String)">
+        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,ClassLibrary.LocationAdapter,System.String)">
             <summary>
             Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
             </summary>
             <param name="nombre"></param>
-            <param name="ubi"></param>
+            <param name="location"></param>
             <param name="headings"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.ConvertToJson">
@@ -1003,7 +1436,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,Ucu.Poo.Locations.Client.Location,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
@@ -1146,14 +1579,11 @@
             </summary>
             <value></value>
         </member>
-<<<<<<< HEAD
         <member name="M:ClassLibrary.UserRegister.Initialize">
             <summary>
             Se crea la lista de usuarios y se la guarda en la DataUsers.
             </summary>
         </member>
-=======
->>>>>>> master
         <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
             <summary>
             Crea un usuario empresa.
@@ -1161,7 +1591,7 @@
             <param name="input"></param>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(ClassLibrary.IMessage,System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Crea un usuario emprendedor.
             </summary>
@@ -1271,7 +1701,7 @@
             </summary>
             <param name="offer"></param>
         </member>
-        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
             </summary>
@@ -1388,7 +1818,7 @@
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
         </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,Ucu.Poo.Locations.Client.Location,System.String,System.String)">
+        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Es el constructor de EntrepreneurRole
             </summary>
@@ -1437,6 +1867,11 @@
             metodo
             </summary>
             <value></value>
+        </member>
+        <member name="M:Library.TelegramBot.HandleErrorAsync(System.Exception,System.Threading.CancellationToken)">
+            <summary>
+            Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
+            </summary>
         </member>
     </members>
 </doc>

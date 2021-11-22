@@ -68,6 +68,9 @@ namespace ClassLibrary
             /// El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             /// </summary>
             Start,
+            /// <summary>
+            /// Pide el comando . En este estado el comando pide el país de la empresa y pasa al siguiente estado.
+            /// </summary>
             NotFirstTime,
             Command
         }

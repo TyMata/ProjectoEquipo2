@@ -35,8 +35,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Pregunta por la oferta que se quiere modificar, el nuevo link a las habilitaciones del usuario
-        /// y delega la accion de modificar la oferta.
+        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad
+        /// de materiales de la oferta indicada por el usuario.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -68,13 +68,13 @@ namespace ClassLibrary
                 this.Data.OfferId = Convert.ToInt32(input.Text);
                 this.State = ModifyState.Modification;
                 response = "Pase por aquí el link que lleva a sus habilitaciones\n";
+                return true;
 
             }
             else if (this.State == ModifyState.Modification)
             {
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
-                string habilitations = this.messageChannel.ReceiveMessage().Text;
-                this.Data.Result.ChangeHabilitation(habilitations); 
+                this.Data.Result.ChangeHabilitation(input.Text); 
                 this.State = ModifyState.Start;
                 response = "Las habilitaciones se han modificó";
                 return true;
@@ -107,7 +107,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Clase que representa los prompts recibidos en los diferentes estados.
+        /// Representa los datos que va obteniendo el comando ModifyHabilitationsHandler en los diferentes estados.
         /// </summary>
         public class ModifyOfferData
         {

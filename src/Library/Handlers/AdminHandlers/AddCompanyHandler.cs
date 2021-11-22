@@ -19,7 +19,7 @@ namespace ClassLibrary
         public CompanyState State { get; set; }
         
         /// <summary>
-        /// Guarda la información que pasa el usuario por el chat.
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
         /// </summary>
         /// <value></value>
         public CompanyData Data {get;set;}
