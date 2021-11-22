@@ -27,6 +27,7 @@ namespace ClassLibrary
         /// Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if((State == CompanyUserState.Start) && this.CanHandle(input))
