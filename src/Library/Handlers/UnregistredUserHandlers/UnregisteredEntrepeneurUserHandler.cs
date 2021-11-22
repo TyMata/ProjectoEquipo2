@@ -19,7 +19,7 @@ namespace ClassLibrary
         /// </summary>
         public UnregisteredEntrepeneurUserHandler()
         {
-            this.Command = "emprendedor";
+            this.Command = "/emprendedornoregistrado";
             this.State = UnregisteredEntrepeneurUserState.Start;
             this.Data = new UnregisteredEntrepeneurUserData();
         }
