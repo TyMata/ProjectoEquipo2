@@ -4,6 +4,7 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using System.Threading;
+using Telegram.Bot.Extensions.Polling;
 using System.Threading.Tasks;
 using Telegram.Bot.Types.Enums;
 
@@ -15,15 +16,31 @@ namespace ClassLibrary
 
         private const string TELEGRAM_BOT_TOKEN = "2111701435:AAGo9zhSgJ-c7gteyA8xWopkMDrsgyScUGE";
         private static TelegramBot instance;
-        
 
         private TelegramBot()
         {
             this.Client = new TelegramBotClient(TELEGRAM_BOT_TOKEN);
            // StartCommunication();
+           this.handlers = new UnregisteredCompanyUserHandler();
+           this.handlers
+                .SetNext(new UnregisteredEntrepeneurUserHandler()
+                .SetNext(new AddCompanyHandler()
+                .SetNext(new RemoveUserHandler()
+                .SetNext(new RemoveCompanyHandler()
+                .SetNext(new PublishOfferHandler()
+                .SetNext(new RemoveOfferHandler()
+                .SetNext(new SuspendOfferHandler()
+                .SetNext(new ResumeOfferHandler()
+                .SetNext(new ModifyHabilitationsHandler()
+                .SetNext(new ModifyPriceHandler()
+                .SetNext(new ModifyQuantityHandler()
+                .SetNext(new ShowCompanyOffersHandler()
+                .SetNext(new ActiveOfferHandler()
+                .SetNext(new SearchOfferHandler()))))))))))))));
         }
 
         public ITelegramBotClient Client { get; private set; }
+        private CancellationTokenSource cts = new CancellationTokenSource();
 
         private User BotInfo
         {
@@ -61,30 +78,44 @@ namespace ClassLibrary
             }
         }
 
-        private IHandler handlers {get; set;} = new UnregisteredCompanyUserHandler()
-                                    .SetNext(new UnregisteredEntrepeneurUserHandler()
-                                    .SetNext(new AddCompanyHandler()
-                                    .SetNext(new RemoveUserHandler()
-                                    .SetNext(new RemoveCompanyHandler()
-                                    .SetNext(new PublishOfferHandler()
-                                    .SetNext(new RemoveOfferHandler()
-                                    .SetNext(new SuspendOfferHandler()
-                                    .SetNext(new ResumeOfferHandler()
-                                    .SetNext(new ModifyHabilitationsHandler()
-                                    .SetNext(new ModifyPriceHandler()
-                                    .SetNext(new ModifyQuantityHandler()
-                                    .SetNext(new ShowCompanyOffersHandler()
-                                    .SetNext(new ActiveOfferHandler()
-                                    .SetNext(new SearchOfferHandler()))))))))))))));
+        private IHandler handlers {get; set;}
                                     
     
         public void StartCommunication()
         {
-            Client.OnMessage += OnMessage;
-            Client.StartReceiving();
+            //Client.OnMessage += OnMessage;
+            Client.StartReceiving(
+                new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
+                cts.Token
+            );
         }
 
-        private void OnMessage(object sender, MessageEventArgs messageEventArgs)
+        public async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Sólo respondemos a mensajes de texto
+                if (update.Type == UpdateType.Message)
+                {
+                    await HandleMessageReceived(update.Message);
+                }
+            }
+            catch(Exception e)
+            {
+                await HandleErrorAsync(e, cancellationToken);
+            }
+        }
+               /// <summary>
+        /// Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
+        /// </summary>
+        public Task HandleErrorAsync(Exception exception, CancellationToken cancellationToken)
+        {
+            Console.WriteLine(exception.Message);
+            return Task.CompletedTask;
+        }
+
+       // private void OnMessage(object sender, MessageEventArgs messageEventArgs)
+       private async Task HandleMessageReceived(Message message)
         {
             // IMessageChannel mc = new TelegramBotMessageChannel();
             // IHandler handlers = new AddCompanyHandler(mc);
@@ -93,7 +124,7 @@ namespace ClassLibrary
             //         .SetNext(new EndHandler(mc, null))));
 
 
-            Message message = messageEventArgs.Message;
+            //Message message = messageEventArgs.Message;
             int chatId = Convert.ToInt32(message.Chat.Id);
             
             string answer;
