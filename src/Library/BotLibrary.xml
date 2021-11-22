@@ -338,13 +338,7 @@
             El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             </summary>
         </member>
-        <member name="P:ClassLibrary.AdminStartHandler.State">
-            <summary>
-            Estado para el handler de AdminStart.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de eliminar una empresa del registro.
             </summary>
@@ -355,17 +349,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando AdminStartHandler.
-            </summary>
-        </member>
-        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
-            <summary>
-            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.RemoveCompanyHandler">
+        <member name="P:ClassLibrary.RemoveCompanyHandler.Data">
             <summary>
             Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveCompany.
             </summary>
