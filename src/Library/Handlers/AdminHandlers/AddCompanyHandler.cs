@@ -89,7 +89,7 @@ namespace ClassLibrary
             {
                 this.Data.Headings = input.Text;
                 this.State = CompanyState.Start;
-                this.Data.Location = LocationApiAdapter.Instance.GetLocation(this.Data.Address, this.Data.City,this.Data.Estate);
+                this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
                 this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
                 response = "Ya se creo la empresa.";
                 return true;

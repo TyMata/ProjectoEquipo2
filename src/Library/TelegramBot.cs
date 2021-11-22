@@ -59,12 +59,10 @@ namespace Library
                 return instance;
             }
         }
-
         public void StartCommunication()
         {
             Client.OnMessage += OnMessage;
             Client.StartReceiving();
-
         }
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)

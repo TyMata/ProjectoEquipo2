@@ -21,7 +21,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            location = new LocationAdapter("address","city","department");
             this.company = new Company("empresa",location, "rubro");
             this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
         }
