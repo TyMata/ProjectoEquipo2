@@ -9,15 +9,22 @@ namespace ClassLibrary
     /// </summary>
     public class PublishOfferHandler : AbstractHandler
     {
-        public OfferData Data {get;set;}
-
+        /// <summary>
+        /// Estado para el handler de PublishOfferHandler.
+        /// </summary>
+        /// <value></value>
         public OfferState State {get; set;}
+
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando PublishOfferHandler.
+        /// </summary>
+        /// <value></value>
+        public OfferData Data {get;set;}
 
         private Company company;
         /// <summary>
         /// Constructor de objetos PublishOfferHandler
         /// </summary>
-        /// <param name="channel"></param>
         public PublishOfferHandler()
         {
             this.Command = "/publicaroferta";
@@ -29,6 +36,7 @@ namespace ClassLibrary
         /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if (this.State == OfferState.Start && CanHandle(input))
@@ -95,8 +103,16 @@ namespace ClassLibrary
         
     
         }
+        
+        /// <summary>
+        /// Indica los diferentes estados que tiene PublishOfferHandler.
+        /// </summary>
         public enum OfferState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pregunta por el material que se quiere vender
+            /// y le muestra una lista de los materialesc producidos por la empresa.
+            /// </summary>
             Start,
             Material,
             Quantity,
@@ -107,6 +123,9 @@ namespace ClassLibrary
 
         }
 
+        /// <summary>
+        /// Representa los datos que va obteniendo el comando PublishOfferHandler en los diferentes estados.
+        /// </summary>
         public class OfferData
         {
             public Material Material {get;set;}
@@ -118,6 +137,7 @@ namespace ClassLibrary
             public string Habilitations {get;set;}
 
             public Offer Offer {get;set;}
+            
             public LocationAdapter Location {get;set;}
         }
     }
