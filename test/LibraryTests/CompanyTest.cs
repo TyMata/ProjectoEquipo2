@@ -70,7 +70,7 @@ namespace Tests
         public void ProducedMaterialsTest()
         {
             Company company = new Company(this.name, this.location, this.headings);
-            company.ProducedMaterials.Add(new Material());
+            company.ProducedMaterials.Add(new Material("nombre","tipo","clasificacion"));
             Assert.IsNotEmpty(company.ProducedMaterials);
         }
     }

@@ -6,7 +6,7 @@ namespace ClassLibrary
     /// <summary>
     /// Handler encargado de delegar la accion de retirar una oferta.
     /// </summary>
-    public class RemoveOfferHandlerCopy: AbstractHandler
+    public class RemoveOfferHandler: AbstractHandler
     {   
         public RemoveOfferState State {get; private set;}
 
@@ -18,7 +18,7 @@ namespace ClassLibrary
         /// Constructor de objetos RemoveOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public RemoveOfferHandlerCopy(IMessageChannel channel)
+        public RemoveOfferHandler(IMessageChannel channel)
         {
             this.Command = "/retiraroferta";            
             this.messageChannel = channel ;
@@ -91,6 +91,9 @@ namespace ClassLibrary
             this.Data = new RemoveOfferData();
         }
 
+        /// <summary>
+        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+        /// </summary>
         public enum RemoveOfferState
         {
             Start,
