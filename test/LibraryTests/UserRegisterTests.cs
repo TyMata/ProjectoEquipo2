@@ -20,7 +20,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+            location = new LocationAdapter("address","city","department");
             this.user = new Users(1234567, new CompanyRole(new Company("empresa", location, "rubro")));
         }
 

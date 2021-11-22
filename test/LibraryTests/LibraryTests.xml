@@ -144,11 +144,6 @@
             Prueba la clase <see cref="T:ClassLibrary.LocationApiAdapter"/>
             </summary>
         </member>
-        <member name="M:Tests.LocationApiAdapterTests.GetDistanceTest">
-            <summary>
-            Prueba que se devuelva la distancia correcta
-            </summary>
-        </member>
         <member name="T:Tests.MarketTest">
             <summary>
             Prueba  la clase <see cref="T:ClassLibrary.Market"/>.

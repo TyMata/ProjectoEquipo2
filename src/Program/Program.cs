@@ -25,7 +25,10 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            // IMessageChannel mc = new ConsoleMessageChannel();
+            
+           TelegramBot tb = TelegramBot.Instance;
+           tb.StartCommunication();
+           Console.ReadLine();
             // IHandler handler = new AddCompanyHandler(mc);
             // handler.SetNext(new RemoveUserHandler(mc)
             //         .SetNext(new RemoveCompanyHandler(mc)
@@ -47,7 +50,7 @@ namespace ConsoleApplication
 
             if (!File.Exists(@"data.json"))
             {
-                LocationAdapter location = LocationApiAdapter.Instance.GetLocation("address","city","department");
+                LocationAdapter location = new LocationAdapter("address","city","department");
                 CompanyRegister.Instance.CreateCompany("empresa",location , "rubro");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
                 Offer oferta = new Offer(123,new Material(), "habilitación",location, 25, 10000, company, true, new DateTime());

@@ -17,10 +17,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos UnregistredEntrepreneurUserHandler.
         /// </summary>
-        public UnregisteredEntrepeneurUserHandler(IMessageChannel channel)
+        public UnregisteredEntrepeneurUserHandler()
         {
             this.Command = "emprendedor";
-            this.messageChannel = channel;
             this.State = UnregisteredEntrepeneurUserState.Start;
             this.Data = new UnregisteredEntrepeneurUserData();
         }
@@ -65,19 +64,19 @@ namespace ClassLibrary
             {
                 this.Data.Department = input.Text;
                 this.State = UnregisteredEntrepeneurUserState.Habilitations;
-                this.Data.LocationResult = LocationApiAdapter.Instance.GetLocation(this.Data.Address,this.Data.City,this.Data.Department);
+                this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
                 response = "Ingrese sus habilitaciones\n";
                 return true;
             }
             else if (this.State == UnregisteredEntrepeneurUserState.Habilitations)
             {
-                string habilitaciones =  this.messageChannel.ReceiveMessage().Text;
+                string habilitaciones =  input.Text;
                 response = "Ingrese su rubro\n";
                 return true;
             }
             else if (this.State == UnregisteredEntrepeneurUserState.Headings)
             {
-                string rubro = this.messageChannel.ReceiveMessage().Text;
+                string rubro = input.Text;
                 this.State = UnregisteredEntrepeneurUserState.Start;
                 UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
                 response = "Gracias por sus datos, se esta creando su usuario\n";

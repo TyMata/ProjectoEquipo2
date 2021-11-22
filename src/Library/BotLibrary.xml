@@ -142,11 +142,6 @@
             Marcamos el formato del resto de handlers.
             </summary>
         </member>
-        <member name="F:ClassLibrary.AbstractHandler.messageChannel">
-            <summary>
-            Canal por el cual se envian los mensajes.
-            </summary>
-        </member>
         <member name="F:ClassLibrary.AbstractHandler.nextHandler">
             <summary>
             Contiene al siguiente Handler.
@@ -190,13 +185,39 @@
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
             </summary>
         </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.#ctor">
+            <summary>
+            Constructor de los objetos AddCompanyHandler
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Pide algunos datos de la empresa que se quiere registrar la crea
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Name">
+            <summary>
+            La dirección que se ingresó en el estado AddressState.AddressPrompt.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CompanyData.Country">
+            <summary>
+            El resultado de la búsqueda de la dirección ingresada.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.AdminStartHandler">
+            <summary>
+            Handler encargado de delegar la accion de añadir una empresa nueva al registro
+            </summary>
+        </member>
         <member name="P:ClassLibrary.AddCompanyHandler.State">
             <summary>
             Estado para el handler de AddCompany.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AddCompanyHandler.Data">
+        <member name="M:ClassLibrary.AdminStartHandler.#ctor">
             <summary>
             Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
             </summary>
@@ -310,13 +331,7 @@
             Primer Handler de la CoR para los usuarios Admin.
             </summary>
         </member>
-        <member name="P:ClassLibrary.AdminStartHandler.State">
-            <summary>
-            Estado para el handler de AdminStart.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
             Constructor de los objetos AdminStartHandler.
             </summary>
@@ -328,17 +343,7 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando AdminStartHandler.
-            </summary>
-        </member>
-        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
-            <summary>
-            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.RemoveCompanyHandler">
+        <member name="P:ClassLibrary.RemoveCompanyHandler.Data">
             <summary>
             Handler encargado de delegar la accion de eliminar una empresa del registro.
             </summary>
@@ -355,7 +360,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor">
             <summary>
             Constructor de objetos RemoveCompanyHandler
             </summary>
@@ -418,7 +423,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.RemoveUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.RemoveUserHandler.#ctor">
             <summary>
             Constructor de objetos RemoveUserHandler.
             </summary>
@@ -469,7 +474,7 @@
             Handler encargado de dar a conocer los comandos disponibles para un usuario empresa.
             </summary>
         </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.CompanyUserHandler.#ctor">
             <summary>
             Constructor de objetos CompanyUserHandler.
             </summary>
@@ -486,7 +491,7 @@
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             /// </summary>
         </member>
-        <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.#ctor">
             <summary>
             Constructor de objetos ModifyHabilitationsHandler.
             </summary>
@@ -515,7 +520,7 @@
             Handler para que el usuario empresa pueda modificar el precio de una determinada oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.ModifyPriceHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.ModifyPriceHandler.#ctor">
             <summary>
             Constructor de objetos ModifyPriceHandler
             </summary>
@@ -543,7 +548,7 @@
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.ModifyQuantityHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.ModifyQuantityHandler.#ctor">
             <summary>
             Constructor de objetos ModifyQuantityHandler.
             </summary>
@@ -571,7 +576,7 @@
             Handler encargado de delegar la accion de crear y publicar una oferta en el registro
             </summary>
         </member>
-        <member name="M:ClassLibrary.PublishOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.PublishOfferHandler.#ctor">
             <summary>
             Constructor de objetos PublishOfferHandler
             </summary>
@@ -583,18 +588,18 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.RemoveOfferHandlerCopy">
+        <member name="T:ClassLibrary.RemoveOfferHandler">
             <summary>
             Handler encargado de delegar la accion de retirar una oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.RemoveOfferHandlerCopy.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.RemoveOfferHandler.#ctor">
             <summary>
             Constructor de objetos RemoveOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.RemoveOfferHandlerCopy.InternalHandle(ClassLibrary.IMessage,System.String@)">
+        <member name="M:ClassLibrary.RemoveOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de eliminarla.
@@ -608,7 +613,7 @@
             Handler encargado de delegar la accion de volver a activar una oferta suspendida.
             </summary>
         </member>
-        <member name="M:ClassLibrary.ResumeOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.ResumeOfferHandler.#ctor">
             <summary>
             Constructor de objetos ResumeOfferHandler.
             </summary>
@@ -621,18 +626,18 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="T:ClassLibrary.SuspendOfferHandlerCopy">
+        <member name="T:ClassLibrary.SuspendOfferHandler">
             <summary>
             Handler encargado de delegar la accion de suspender una oferta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.SuspendOfferHandlerCopy.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.SuspendOfferHandler.#ctor">
             <summary>
             Constructor de objetos SuspendOfferHandler.
             </summary>
             <param name="channel"></param>
         </member>
-        <member name="M:ClassLibrary.SuspendOfferHandlerCopy.InternalHandle(ClassLibrary.IMessage,System.String@)">
+        <member name="M:ClassLibrary.SuspendOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de suspenderla.
@@ -644,7 +649,7 @@
             Handler encargado de darle final a la CoR.
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IMessageChannel,ClassLibrary.IHandler)">
+        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IHandler)">
             <summary>
             Constructor de objetos EndHandler.
             </summary>
@@ -662,7 +667,7 @@
             HAndler encargado de 
             </summary>
         </member>
-        <member name="M:ClassLibrary.ActiveOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.ActiveOfferHandler.#ctor">
             <summary>
             Constructor de objetos ActiveOfferHandler.
             </summary>
@@ -673,7 +678,7 @@
             Handler encargado de delegar la accion de buscar ofertas por keywords
             </summary>
         </member>
-        <member name="M:ClassLibrary.SearchOfferHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.SearchOfferHandler.#ctor">
             <summary>
             Constructor de objetos SearchOfferByKeyWordsHandler.
             </summary>
@@ -707,7 +712,7 @@
             Handler encargado de delegar la accion de registrar un usuario empresa.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor">
             <summary>
             Constructor de objetos UnregistredCompanyUserHandler.
             </summary>
@@ -731,7 +736,7 @@
             Handler encargado de crear un usuario emprendedor.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor">
             <summary>
             Constructor de objetos UnregistredEntrepreneurUserHandler.
             </summary>
@@ -795,7 +800,7 @@
             HAndler encargado de darle la bienvenida a un usuario no registrado.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredUserHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.UnregisteredUserHandler.#ctor">
             <summary>
             Constructor de objetos UnregistredUserHandler.
             </summary>
@@ -890,7 +895,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.LocationAdapter.Latitude">
+        <member name="P:ClassLibrary.LocationAdapter.City">
             <summary>
             Devuelve la latitud de la ubicacion
             </summary>
@@ -902,32 +907,30 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.LocationAdapter.#ctor(Ucu.Poo.Locations.Client.Location)">
+        <member name="M:ClassLibrary.LocationAdapter.#ctor(System.String,System.String,System.String)">
             <summary>
-            Adaptador del objeto location de la api
+            Adaptador de la Location Api
             </summary>
-            <param name="location"></param>
+            <param name="address"></param>
+            <param name="city"></param>
+            <param name="department"></param>
         </member>
-        <member name="T:ClassLibrary.LocationApiAdapter">
+        <member name="M:ClassLibrary.LocationAdapter.GetDistance(System.String,System.String,System.String)">
             <summary>
-            Esta clase representa un adaptador de una Api de ubicaciones
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
-            <summary>
-            Transforma la Location de la Api a una Location del Bot
+            Retorna la distancia entre dos locations
             </summary>
             <param name="address"></param>
             <param name="city"></param>
             <param name="department"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(System.String,System.String)">
+        <member name="M:ClassLibrary.LocationAdapter.GetDuration(System.String,System.String,System.String)">
             <summary>
-            Devuelve las distancia entre dos direcciones
+            REtorna la duracion entre dos locaciones
             </summary>
-            <param name="fromAddress"></param>
-            <param name="toAddress"></param>
+            <param name="address"></param>
+            <param name="city"></param>
+            <param name="department"></param>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.Material">
@@ -1512,7 +1515,7 @@
         <member name="T:ClassLibrary.Setup">
             <summary>
             Esta clase solo se encarga de crear la chain of responsability correspondiente para cada usuario
-            por lo tanto cumple con el patron SRP. Tambien comple con el patron Creator porque utiliza, necesariamente, ya que es la encargada
+            por lo tanto cumple con el patron SRP. Tambien cumple con el patron Creator porque utiliza, necesariamente, ya que es la encargada
             de construir los Handler para crear la CoR.
             </summary>
         </member>

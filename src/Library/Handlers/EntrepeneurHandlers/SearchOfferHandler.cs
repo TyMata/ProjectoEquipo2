@@ -18,10 +18,9 @@ namespace ClassLibrary
         /// Constructor de objetos SearchOfferByKeyWordsHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public SearchOfferHandler(IMessageChannel channel)
+        public SearchOfferHandler()
         {
             this.Command = "/buscaroferta";
-            this.messageChannel = channel;
             this.State = SearchOfferState.Start;
         }
 

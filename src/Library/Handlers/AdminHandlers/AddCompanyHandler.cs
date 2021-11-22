@@ -27,10 +27,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de los objetos AddCompanyHandler.
         /// </summary>
-        public AddCompanyHandler(IMessageChannel channel)
+        public AddCompanyHandler()
         {
             this.Command ="registrarempresa";
-            this.messageChannel = channel;
             this.nextHandler = null;
             this.State = AddCompanyState.Start;
             this.Data = new AddCompanyData();
@@ -89,7 +88,7 @@ namespace ClassLibrary
             {
                 this.Data.Headings = input.Text;
                 this.State = AddCompanyState.Start;
-                this.Data.Location = LocationApiAdapter.Instance.GetLocation(this.Data.Address, this.Data.City,this.Data.Estate);
+                this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
                 this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
                 response = "Ya se creo la empresa.";
                 return true;

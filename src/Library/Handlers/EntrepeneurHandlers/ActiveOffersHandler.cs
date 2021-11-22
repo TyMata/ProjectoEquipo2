@@ -11,9 +11,8 @@ namespace ClassLibrary
         /// Constructor de objetos ActiveOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public ActiveOfferHandler(IMessageChannel channel)
+        public ActiveOfferHandler()
         {
-            this.messageChannel = channel;
         }
         public override bool InternalHandle(IMessage input, out string response)
         {

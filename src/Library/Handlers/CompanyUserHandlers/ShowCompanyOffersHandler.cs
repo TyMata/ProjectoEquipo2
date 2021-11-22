@@ -2,10 +2,9 @@ namespace ClassLibrary
 {
     class ShowCompanyOffersHandler : AbstractHandler, IHandler
     {
-        public ShowCompanyOffersHandler(IMessageChannel channel)
+        public ShowCompanyOffersHandler()
         {
             this.Command = "/mostrarofertas";
-            this.messageChannel = channel;
         }
 
         public override bool InternalHandle(IMessage input, out string response)
@@ -14,7 +13,7 @@ namespace ClassLibrary
             if (CanHandle(input))
             {
                 response="Inserte las keywords que desea utilizar, separadas por una coma, para buscar una oferta";
-                string[] keywords = this.messageChannel.ReceiveMessage().Text.Split(",");
+                string[] keywords = input.Text.Split(",");
                 return true;
             }
             else

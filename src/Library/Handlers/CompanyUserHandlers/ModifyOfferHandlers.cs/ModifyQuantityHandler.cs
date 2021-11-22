@@ -16,10 +16,9 @@ namespace ClassLibrary
         /// Constructor de objetos ModifyQuantityHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public ModifyQuantityHandler(IMessageChannel channel)
+        public ModifyQuantityHandler()
         {
             this.Command = "/modificarcantidad";
-            this.messageChannel = channel;
             this.State = ModifyState.Start;
             this.Data = new ModifyOfferData();
             this.company = null;

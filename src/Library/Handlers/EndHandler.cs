@@ -11,9 +11,8 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos EndHandler.
         /// </summary>
-        public EndHandler(IMessageChannel channel, IHandler handler)
+        public EndHandler(IHandler handler)
         {
-            this.messageChannel = channel;
             this.nextHandler = handler;
         }
 
