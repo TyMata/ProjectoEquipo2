@@ -21,6 +21,10 @@ namespace ClassLibrary
         /// Devuelve la latitud de la ubicacion
         /// </summary>
         /// <value></value>
+        
+        public string City { get; set; }
+        public string Department { get; set; }
+
         public double Latitude { get; set; }
         /// <summary>
         /// Devuelve la longitud de la ubicacion
@@ -28,16 +32,50 @@ namespace ClassLibrary
         /// <value></value>
         public double Longitude { get; set; }
 
+        private LocationApiClient client = new LocationApiClient();
+        private Location location;
+
        /// <summary>
-       /// Adaptador del objeto location de la api
+       /// Adaptador de la Location Api
        /// </summary>
-       /// <param name="location"></param>
-        public LocationAdapter(Location location)
+       /// <param name="address"></param>
+       /// <param name="city"></param>
+       /// <param name="department"></param>
+        public LocationAdapter(string address, string city, string department)
         {
-            this.Found = location.Found;
-            this.Address = location.FormattedAddress;
-            this.Latitude = location.Latitude;
-            this.Longitude = location.Longitude;
+            this.location =  this.client.GetLocation(address,city,department);
+            this.Address = address;
+            this.City = city;
+            this.Department = department;
+        }
+
+        /// <summary>
+        /// Retorna la distancia entre dos locations
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="city"></param>
+        /// <param name="department"></param>
+        /// <returns></returns>
+        public double GetDistance(string address, string city, string department)
+        {
+           Location location2 = this.client.GetLocation(address,city,department);
+            Distance distance = this.client.GetDistance(this.location,location2);
+
+            return distance.TravelDistance;
+        }
+
+        /// <summary>
+        /// REtorna la duracion entre dos locaciones
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="city"></param>
+        /// <param name="department"></param>
+        /// <returns></returns>
+        public double GetDuration(string address,string city,string department)
+        {
+            Location location2 = this.client.GetLocation(address,city,department);
+            Distance distance = this.client.GetDistance(this.location,location2);
+            return distance.TravelDuration;
         }
     }
 }

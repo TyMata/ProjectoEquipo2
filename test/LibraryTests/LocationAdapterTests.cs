@@ -35,8 +35,9 @@ namespace Tests
         public void LocationTest()
         {
             Location expected = client.GetLocation(address, city, department);
-            LocationAdapter location = LocationApiAdapter.Instance.GetLocation(address,city,department);
-            Assert.AreEqual(expected,location);
+            LocationAdapter location = new LocationAdapter(address,city,department);
+            Assert.AreEqual(expected.Latitude,location.Latitude);
+            Assert.AreEqual(expected.Longitude,location.Longitude);
         }
     }
 }
