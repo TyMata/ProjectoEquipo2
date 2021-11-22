@@ -43,7 +43,7 @@ namespace ClassLibrary
         public override bool InternalHandle(IMessage input, out string response)
         {
             Users user = UserRegister.Instance.GetUserById(input.Id);
-            if (this.State == AddCompanyState.Start && this.CanHandle(input))
+            if (this.State == AddCompanyState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
             {
                 this.State = AddCompanyState.Name;
                 response = "Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n";
@@ -71,7 +71,7 @@ namespace ClassLibrary
                 return true;
             } 
            else if(this.State == AddCompanyState.City)
-            {
+            {   
                 this.Data.City = input.Text;
                 this.State = AddCompanyState.Address;
                 response = "Ingrese la direccion:\n";
