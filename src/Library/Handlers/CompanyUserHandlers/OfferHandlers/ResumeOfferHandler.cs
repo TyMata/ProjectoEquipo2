@@ -17,10 +17,9 @@ namespace ClassLibrary
         /// Constructor de objetos ResumeOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public ResumeOfferHandler(IMessageChannel channel)
+        public ResumeOfferHandler()
         {
             this.Command = "/reanudaroferta";
-            this.messageChannel = channel;
             this.State = ResumeOfferState.Start;
             this.company = null;
         }

@@ -8,10 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public abstract class AbstractHandler : IHandler
     {
-        /// <summary>
-        /// Canal por el cual se envian los mensajes.
-        /// </summary>
-        protected IMessageChannel messageChannel;
+        
         /// <summary>
         /// Contiene al siguiente Handler.
         /// </summary>

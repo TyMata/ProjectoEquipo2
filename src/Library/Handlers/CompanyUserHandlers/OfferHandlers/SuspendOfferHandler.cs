@@ -18,10 +18,9 @@ namespace ClassLibrary
         /// Constructor de objetos SuspendOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public SuspendOfferHandler(IMessageChannel channel)
+        public SuspendOfferHandler()
         {
             this.Command = "/suspenderoferta";
-            this.messageChannel = channel;
             this.State = SuspendOfferState.Start;
             this.company = null;
         }

@@ -17,9 +17,8 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de los objetos AdminStartHandler.
         /// </summary>
-        public AdminStartHandler(IMessageChannel channel)
+        public AdminStartHandler()
         {
-            this.messageChannel = channel;
             this.State = AdminStartState.Start;
         }
         /// <summary>
@@ -41,7 +40,7 @@ namespace ClassLibrary
             }
             else if(this.State == AdminStartState.Command)
             {
-                IMessage input2 = this.messageChannel.ReceiveMessage();
+                IMessage input2 = input;
                 response = "";
                 return true;
             }

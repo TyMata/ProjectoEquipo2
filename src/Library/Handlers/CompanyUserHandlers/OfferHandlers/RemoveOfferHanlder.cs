@@ -18,10 +18,9 @@ namespace ClassLibrary
         /// Constructor de objetos RemoveOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public RemoveOfferHandler(IMessageChannel channel)
+        public RemoveOfferHandler()
         {
-            this.Command = "/retiraroferta";            
-            this.messageChannel = channel ;
+            this.Command = "/retiraroferta";           
             this.State = RemoveOfferState.Start;
             this.company = null;
         }
