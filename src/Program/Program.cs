@@ -26,6 +26,8 @@ namespace ConsoleApplication
         public static void Main()
         {
             
+
+            
            TelegramBot tb = TelegramBot.Instance;
            tb.StartCommunication();
            Console.ReadLine();
@@ -77,5 +79,7 @@ namespace ConsoleApplication
             //     Console.WriteLine(offer.ConvertToJson());
             // }
         }
+    
     }
 }
+

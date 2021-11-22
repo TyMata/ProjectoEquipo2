@@ -16,7 +16,7 @@ namespace ClassLibrary
         /// </summary>
         public UnregisteredCompanyUserHandler()
         {
-            this.Command = "empresa";
+            this.Command = "/empresanoregistrada";
             this.State = UnregisteredCompanyUserState.Start;
             this.Data = new UnregisteredCompanyUserData();
         }
