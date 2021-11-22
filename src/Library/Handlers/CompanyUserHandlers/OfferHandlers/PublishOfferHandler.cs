@@ -92,8 +92,6 @@ namespace ClassLibrary
             }
             response = string.Empty;    
             return false;
-        
-    
         }
         public enum OfferState
         {
@@ -103,8 +101,7 @@ namespace ClassLibrary
             Price,
             Location,
             Habilitations,
-            Offer,
-
+            Offer
         }
 
         public class OfferData

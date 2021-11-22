@@ -141,7 +141,7 @@
         </member>
         <member name="T:Tests.LocationApiAdapterTests">
             <summary>
-            Prueba la clase <see cref="T:ClassLibrary.LocationApiAdapter"/>
+            Prueba la clase <see cref="!:LocationApiAdapter"/>
             </summary>
         </member>
         <member name="T:Tests.MarketTest">
