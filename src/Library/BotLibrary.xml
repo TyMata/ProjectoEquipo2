@@ -185,45 +185,19 @@
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
             </summary>
         </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.#ctor">
-            <summary>
-            Constructor de los objetos AddCompanyHandler
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Pide algunos datos de la empresa que se quiere registrar la crea
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Name">
-            <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Country">
-            <summary>
-            El resultado de la búsqueda de la dirección ingresada.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.AdminStartHandler">
-            <summary>
-            Handler encargado de delegar la accion de añadir una empresa nueva al registro
-            </summary>
-        </member>
         <member name="P:ClassLibrary.AddCompanyHandler.State">
             <summary>
             Estado para el handler de AddCompany.
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.AdminStartHandler.#ctor">
+        <member name="P:ClassLibrary.AddCompanyHandler.Data">
             <summary>
             Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
+        <member name="M:ClassLibrary.AddCompanyHandler.#ctor">
             <summary>
             Constructor de los objetos AddCompanyHandler.
             </summary>
@@ -331,7 +305,13 @@
             Primer Handler de la CoR para los usuarios Admin.
             </summary>
         </member>
-        <member name="T:ClassLibrary.RemoveCompanyHandler">
+        <member name="P:ClassLibrary.AdminStartHandler.State">
+            <summary>
+            Estado para el handler de AdminStart.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.AdminStartHandler.#ctor">
             <summary>
             Constructor de los objetos AdminStartHandler.
             </summary>
@@ -343,7 +323,17 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="P:ClassLibrary.RemoveCompanyHandler.Data">
+        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AdminStartHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de eliminar una empresa del registro.
             </summary>
@@ -1511,13 +1501,6 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
-        </member>
-        <member name="T:ClassLibrary.Setup">
-            <summary>
-            Esta clase solo se encarga de crear la chain of responsability correspondiente para cada usuario
-            por lo tanto cumple con el patron SRP. Tambien cumple con el patron Creator porque utiliza, necesariamente, ya que es la encargada
-            de construir los Handler para crear la CoR.
-            </summary>
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>
