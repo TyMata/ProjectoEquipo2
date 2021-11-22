@@ -8,16 +8,8 @@ namespace ClassLibrary
     /// /// </summary>
     public class ModifyHabilitationsHandler : AbstractHandler
     {
-        /// <summary>
-        /// Estado para el handler de AddCompany.
-        /// </summary>
-        /// <value></value>
-        public ModifyState State { get; set; }
 
-        /// <summary>
-        /// Guarda los prompts ingresados por el  usuario.
-        /// </summary>
-        /// <value></value>
+        public ModifyState State { get; set; }
         public ModifyOfferData Data {get;set;}
         private Company company;
 
@@ -35,8 +27,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Se encarga de mostrar la lista de ofertas de la empresa y modificar la cantidad
-        /// de materiales de la oferta indicada por el usuario.
+        /// 
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -46,14 +37,14 @@ namespace ClassLibrary
             if(this.State == ModifyState.Start && this.CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
+                StringBuilder offers = new StringBuilder("Que oferta desea modificar:\n");
                 if(this.company.OfferRegister != null)
                 {
                     foreach(Offer x in this.company.OfferRegister)
                     {
-                        offers.Append($"ID : {x.Id}\n")
+                        offers.Append($"Id : {x.Id}\n")
                             .Append($"Material : {x.Material}\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}\n")                            //TODO preguntar por id de la oferta a modificar
+                            .Append($"Cantidad: {x.QuantityMaterial}\n")
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
@@ -65,16 +56,16 @@ namespace ClassLibrary
             }
             else if(this.State == ModifyState.OfferList)
             {
-                this.Data.OfferId = Convert.ToInt32(input.Text);
+                this.Data.Offer = Convert.ToInt32(input.Text);
                 this.State = ModifyState.Modification;
                 response = "Pase por aquí el link que lleva a sus habilitaciones\n";
-                return true;
 
             }
             else if (this.State == ModifyState.Modification)
             {
-                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
-                this.Data.Result.ChangeHabilitation(input.Text); 
+                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.Offer);
+                string habilitations = this.messageChannel.ReceiveMessage().Text;
+                this.Data.Result.ChangeHabilitation(habilitations); 
                 this.State = ModifyState.Start;
                 response = "Las habilitaciones se han modificó";
                 return true;
@@ -83,41 +74,25 @@ namespace ClassLibrary
             return false;
         }
     
-        /// <summary>
-        /// Indica los diferentes estados que tiene ModifyHabilitationsHandler.
-        /// </summary>
+
         public enum ModifyState
         {
-
-            /// <summary>
-            /// El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
-            /// modificar y le muestra una lista de las ofertas actuales de la empresa.
-            /// </summary>
             Start,
-
-            /// <summary>
-            /// En este estado se obtiene el id y pregunta por el link de las habilitaciones.
-            /// </summary>
             OfferList,
+            Modification,
 
-            /// <summary>
-            /// En este estado se obtiene el link. delega el proceso de modificacion y le informa al usuario.
-            /// </summary>
-            Modification
+            
         }
 
-        /// <summary>
-        /// Representa los datos que va obteniendo el comando ModifyHabilitationsHandler en los diferentes estados.
-        /// </summary>
         public class ModifyOfferData
         {
             /// <summary>
-            /// La dirección que se ingresó en el estado ModifyState.OfferList.
+            /// La dirección que se ingresó en el estado AddressState.AddressPrompt.
             /// </summary>
-            public int OfferId { get; set; }
+            public int Offer { get; set; }
 
             /// <summary>
-            /// El resultado de la búsqueda de la oferta ingresada.
+            /// El resultado de la búsqueda de la dirección ingresada.
             /// </summary>
             public Offer Result { get; set; }
         }

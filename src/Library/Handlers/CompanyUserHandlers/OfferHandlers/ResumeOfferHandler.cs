@@ -88,9 +88,6 @@ namespace ClassLibrary
             this.Data = new ResumeOfferData();
         }
 
-        /// <summary>
-        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
-        /// </summary>
         public enum ResumeOfferState
         {
             Start,

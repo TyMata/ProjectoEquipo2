@@ -9,10 +9,11 @@ namespace ClassLibrary
     /// </summary>
     public class Setup
     {
+        
 
         public IHandler Start(IMessageChannel channel, IMessage input)
         {
-            if(UserRegister.Instance.GetUserById(input.Id) == null )
+            if(!this.Registro.IsRegistered(input.Id) )
             {
                 //Chain of Responsability de unregistered
                 IHandler respuesta =  new UnregisteredUserHandler(channel);
@@ -21,36 +22,24 @@ namespace ClassLibrary
                         .SetNext(new EndHandler(channel, respuesta))));
                 return respuesta;
             }
-            else if(UserRegister.Instance.GetUserById(input.Id).IsAdminUser())
+            else if(this.Registro.IsAdmin(input.Id))
             {
                 IHandler respuesta =  new AdminStartHandler(channel);
                 respuesta.SetNext(new AddCompanyHandler(channel)
+                        .SetNext(new InviteTokenGeneratorHandler(channel)
                         .SetNext(new RemoveUserHandler(channel)
                         .SetNext(new RemoveCompanyHandler(channel)
-                        .SetNext(new EndHandler(channel, respuesta)))));
+                        .SetNext(new EndHandler(channel, respuesta))))));
                 return respuesta;
             }
-            else if (UserRegister.Instance.GetUserById(input.Id).IsCompanyUser())
+            else if (this.Registro.IsCompany(input.Id))
             {
-                IHandler respuesta = new CompanyUserHandler(channel);
-                respuesta.SetNext(new PublishOfferHandler(channel)
-                            .SetNext(new RemoveOfferHandler(channel)
-                            .SetNext(new SuspendOfferHandler(channel)
-                            .SetNext(new ResumeOfferHandler(channel)
-                            .SetNext(new ModifyHabilitationsHandler(channel)
-                            .SetNext(new ModifyPriceHandler(channel)
-                            .SetNext(new ModifyQuantityHandler(channel)
-                            .SetNext(new ShowCompanyOffersHandler(channel)
-                            .SetNext(new EndHandler(channel, null))))))))));
-                return respuesta;
+
             }
-            // else
-            // {
-            //     // IHandler respuesta = new EntrepreneurUserHandler(channel);
-            //     // respuesta.SetNext(new ActiveOfferHandler(channel)
-            //     //             .SetNext(new SearchOfferHandler(channel)));
-            // }
-            return null;
+            else
+            {
+                
+            }
         }
 
 
