@@ -6,7 +6,7 @@ namespace ClassLibrary
     /// <summary>
     /// Handler encargado de delegar la accion de suspender una oferta.
     /// </summary>
-    public class SuspendOfferHandler : AbstractHandler
+    public class SuspendOfferHandlerCopy : AbstractHandler
     {
         public SuspendOfferState State {get; private set;}
 
@@ -18,7 +18,7 @@ namespace ClassLibrary
         /// Constructor de objetos SuspendOfferHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public SuspendOfferHandler(IMessageChannel channel)
+        public SuspendOfferHandlerCopy(IMessageChannel channel)
         {
             this.Command = "/suspenderoferta";
             this.messageChannel = channel;
@@ -89,9 +89,6 @@ namespace ClassLibrary
             this.Data = new SuspendOfferData();
         }
 
-        /// <summary>
-        /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
-        /// </summary>
         public enum SuspendOfferState
         {
             Start,
