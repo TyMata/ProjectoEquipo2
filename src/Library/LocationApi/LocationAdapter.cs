@@ -34,7 +34,7 @@ namespace ClassLibrary
        /// <param name="location"></param>
         public LocationAdapter(Location location)
         {
-            this.Found = location.Found;
+            this.Found = location.Found ;
             this.Address = location.FormattedAddress;
             this.Latitude = location.Latitude;
             this.Longitude = location.Longitude;

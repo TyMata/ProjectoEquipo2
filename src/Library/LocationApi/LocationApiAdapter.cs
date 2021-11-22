@@ -21,7 +21,8 @@ namespace ClassLibrary
                 return instance;
             }
         }
-        private LocationApiClient client;
+        private LocationApiClient client = new LocationApiClient();
+        
         /// <summary>
         /// Transforma la Location de la Api a una Location del Bot
         /// </summary>
@@ -31,7 +32,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public LocationAdapter GetLocation(string address,string city, string department)
         {
-            Location location = AsyncContext.Run(() => client.GetLocationAsync(address));
+            Location location = AsyncContext.Run(() => client.GetLocationAsync(address, city, department));
             LocationAdapter result = new LocationAdapter(location);
             return result;
         }
@@ -44,8 +45,8 @@ namespace ClassLibrary
         /// <returns></returns>
         public IDistanceResult GetDistance(string fromAddress, string toAddress)
         {
-            Location fromLocation = AsyncContext. Run(() => client.GetLocationAsync(fromAddress));
-            Location toLocation = AsyncContext. Run(() => client.GetLocationAsync(toAddress));
+            Location fromLocation = AsyncContext. Run(() => client.GetLocationAsync(fromAddress, "montevideo", "montevideo")); //TODO cambiar a location nuestra y conseguir de ahi los datos???
+            Location toLocation = AsyncContext. Run(() => client.GetLocationAsync(toAddress, "montevideo", "montevideo"));
             Distance distance = AsyncContext. Run(() => client.GetDistanceAsync(fromLocation, toLocation));
 
             DistanceResult result = new DistanceResult(fromLocation, toLocation, distance.TravelDistance, distance.TravelDuration);
