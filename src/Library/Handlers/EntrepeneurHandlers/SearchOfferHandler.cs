@@ -22,6 +22,7 @@ namespace ClassLibrary
         {
             this.Command = "/buscaroferta";
             this.State = SearchOfferState.Start;
+            this.Data = new SearchOfferData();
         }
 
         
