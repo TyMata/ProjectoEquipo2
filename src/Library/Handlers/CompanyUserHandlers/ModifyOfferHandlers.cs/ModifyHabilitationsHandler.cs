@@ -17,10 +17,9 @@ namespace ClassLibrary
         /// Constructor de objetos ModifyHabilitationsHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public ModifyHabilitationsHandler(IMessageChannel channel)
+        public ModifyHabilitationsHandler()
         {
             this.Command = "/modificarhabilitaciones";
-            this.messageChannel = channel;
             this.State = ModifyState.Start;
             this.Data = new ModifyOfferData();
             this.company = null;
@@ -64,7 +63,7 @@ namespace ClassLibrary
             else if (this.State == ModifyState.Modification)
             {
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.Offer);
-                string habilitations = this.messageChannel.ReceiveMessage().Text;
+                string habilitations = input.Text;
                 this.Data.Result.ChangeHabilitation(habilitations); 
                 this.State = ModifyState.Start;
                 response = "Las habilitaciones se han modificó";

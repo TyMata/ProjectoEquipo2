@@ -26,8 +26,8 @@ namespace Tests
             location = new LocationAdapter("address","city","department");
             this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
             this.material = new Material("material", "type", "clasificacion");
-            IMessageChannel messageChannel = new ConsoleMessageChannel();
-            this.handler = new ModifyQuantityHandler(messageChannel);
+            
+            this.handler = new ModifyQuantityHandler();
         }
 
         /// <summary>

@@ -19,10 +19,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de los objetos AddCompanyHandler
         /// </summary>
-        public AddCompanyHandler(IMessageChannel channel)
+        public AddCompanyHandler()
         {
             this.Command ="registrarempresa";
-            this.messageChannel = channel;
             this.nextHandler = null;
             this.State = CompanyState.Start;
             this.Data = new CompanyData();

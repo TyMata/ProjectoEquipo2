@@ -5,21 +5,21 @@ using Telegram.Bot.Types;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Types.Enums;
-using ClassLibrary;
 
-namespace Library
+
+namespace ClassLibrary
 {
     public class TelegramBot
     {
 
         private const string TELEGRAM_BOT_TOKEN = "2111701435:AAGo9zhSgJ-c7gteyA8xWopkMDrsgyScUGE";
         private static TelegramBot instance;
-        private ITelegramBotClient bot;
+        
 
         private TelegramBot()
         {
-            this.bot = new TelegramBotClient(TELEGRAM_BOT_TOKEN);
-            StartCommunication();
+            this.Client = new TelegramBotClient(TELEGRAM_BOT_TOKEN);
+           // StartCommunication();
         }
 
         public ITelegramBotClient Client { get; private set; }
@@ -59,6 +59,8 @@ namespace Library
                 return instance;
             }
         }
+
+        private IHandler handlers;
     
         public void StartCommunication()
         {
@@ -68,11 +70,11 @@ namespace Library
 
         private void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
-            IMessageChannel mc = new TelegramBotMessageChannel();
-            IHandler handlers = new AddCompanyHandler(mc);
-            handlers.SetNext(new RemoveUserHandler(mc)
-                    .SetNext(new RemoveCompanyHandler(mc)
-                    .SetNext(new EndHandler(mc, null))));
+            // IMessageChannel mc = new TelegramBotMessageChannel();
+            // IHandler handlers = new AddCompanyHandler(mc);
+            // handlers.SetNext(new RemoveUserHandler(mc)
+            //         .SetNext(new RemoveCompanyHandler(mc)
+            //         .SetNext(new EndHandler(mc, null))));
 
 
             Message message = messageEventArgs.Message;
@@ -80,9 +82,13 @@ namespace Library
             
             string answer;
             IMessage message1 = new TelegramBotMessage(chatId, message.Text);
-            //Client.SendTextMessageAsync(chatId, "Bienvenido");
-    
-            if (handlers.Handle(message1, out answer) != null)
+            Client.SendTextMessageAsync(chatId, "Bienvenido");
+            if(handlers == null)
+            {
+                Setup su = new Setup();
+                handlers = su.Start(message1);
+            }
+            if (handlers.Handle(message1,out answer) != null)
             {
                 Client.SendTextMessageAsync(chatId, answer);
             }

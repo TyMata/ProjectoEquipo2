@@ -25,7 +25,10 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            // IMessageChannel mc = new ConsoleMessageChannel();
+            
+           TelegramBot tb = TelegramBot.Instance;
+           tb.StartCommunication();
+           Console.ReadLine();
             // IHandler handler = new AddCompanyHandler(mc);
             // handler.SetNext(new RemoveUserHandler(mc)
             //         .SetNext(new RemoveCompanyHandler(mc)

@@ -22,10 +22,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos RemoveCompanyHandler
         /// </summary>
-        public RemoveCompanyHandler(IMessageChannel channel)
+        public RemoveCompanyHandler()
         {
             this.Command = "/eliminarempresa";
-            this.messageChannel = channel;
             this.State = RemoveCompanyState.Start;
             this.Data = new RemoveCompanyData();
         }

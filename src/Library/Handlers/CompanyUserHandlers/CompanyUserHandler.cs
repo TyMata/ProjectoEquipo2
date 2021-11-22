@@ -17,10 +17,9 @@ namespace ClassLibrary
         /// Constructor de objetos CompanyUserHandler.
         /// </summary>
         /// <param name="channel"></param>
-        public CompanyUserHandler(IMessageChannel channel)
+        public CompanyUserHandler()
         {
             this.Command = "/empresa";
-            this.messageChannel = channel;
             this.State = CompanyUserState.Start;
             this.company = null;
         }

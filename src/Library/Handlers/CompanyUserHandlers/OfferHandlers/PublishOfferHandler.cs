@@ -18,10 +18,9 @@ namespace ClassLibrary
         /// Constructor de objetos PublishOfferHandler
         /// </summary>
         /// <param name="channel"></param>
-        public PublishOfferHandler(IMessageChannel channel)
+        public PublishOfferHandler()
         {
             this.Command = "/publicaroferta";
-            this.messageChannel = channel;
             this.State = OfferState.Start;
             this.Data = new OfferData();
             this.company = null;
