@@ -25,7 +25,7 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
-            this.location = new LocationAdapter("address","city","department");;
+            this.location = new LocationAdapter("address", "city", "department");
             this.company = new Company(this.name, this.location, this.headings);
         }
 

@@ -124,26 +124,6 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
-        <member name="T:Tests.LocationAdapterTests">
-            <summary>
-            Prueba la clase <see cref="T:ClassLibrary.LocationAdapter"/>
-            </summary>
-        </member>
-        <member name="M:Tests.LocationAdapterTests.Setup">
-            <summary>
-            Se crean variable de la api y para la ubicación.
-            </summary>
-        </member>
-        <member name="M:Tests.LocationAdapterTests.LocationTest">
-            <summary>
-            Prueba si la ubicacion que devuelve el método GetLocation de LocationApiAdapter es igual a la ubicacion de la Api.
-            </summary>
-        </member>
-        <member name="T:Tests.LocationApiAdapterTests">
-            <summary>
-            Prueba la clase <see cref="!:LocationApiAdapter"/>
-            </summary>
-        </member>
         <member name="T:Tests.MarketTest">
             <summary>
             Prueba  la clase <see cref="T:ClassLibrary.Market"/>.

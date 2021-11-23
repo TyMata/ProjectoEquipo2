@@ -21,8 +21,8 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            location = new LocationAdapter("address","city","department");
-            this.company = new Company("empresa",location, "rubro");
+            location = new LocationAdapter("address", "city", "department");
+            this.company = new Company("empresa", location, "rubro");
             this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
         }
 
@@ -52,13 +52,13 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321, new Material(),"habilitaciones", location,30,3000, this.company,true, new DateTime());
+            Offer nuevaOferta = new Offer(7654321, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
             Market.Instance.PublishOffer(nuevaOferta);
             Market.Instance.SuspendOffer(7654321);
             Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));
             Assert.IsFalse(Market.Instance.ContainsActive(nuevaOferta));
         }
-        
+
         /// <summary>
         /// Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
         /// </summary>

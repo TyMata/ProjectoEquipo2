@@ -5,6 +5,5 @@ namespace Tests
     [TestFixture]
     public class ActiveOffersHandlerTest
     {
-
     }
 }
