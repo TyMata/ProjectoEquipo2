@@ -9,7 +9,6 @@ namespace ClassLibrary
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
-        private string pais;
         private string nombre;
 
         /// <summary>
@@ -30,10 +29,8 @@ namespace ClassLibrary
         public AddCompanyHandler()
         {
             this.Command ="/registrarempresa";
-            this.nextHandler = null;
             this.State = AddCompanyState.Start;
             this.Data = new AddCompanyData();
-
         }
         /// <summary>
         /// Pide algunos datos de la empresa que se quiere registrar la crea.
@@ -51,6 +48,12 @@ namespace ClassLibrary
             }
             else if(this.State == AddCompanyState.Name)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.Name = input.Text;
                 this.State = AddCompanyState.Country;
                 response = "Ingrese el pais:\n";
@@ -58,13 +61,25 @@ namespace ClassLibrary
             }
              else if(this.State == AddCompanyState.Country)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.Country = input.Text;
-                this.State = AddCompanyState.Estate;
+                this.State = AddCompanyState.State;
                 response = "Ingrese el departamento:\n";
                 return true;
             }
-             else if(this.State == AddCompanyState.Estate)
+             else if(this.State == AddCompanyState.State)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.Estate = input.Text;
                 this.State = AddCompanyState.City;
                 response = "Ingrese la ciudad:\n";
@@ -72,6 +87,12 @@ namespace ClassLibrary
             } 
            else if(this.State == AddCompanyState.City)
             {   
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.City = input.Text;
                 this.State = AddCompanyState.Address;
                 response = "Ingrese la direccion:\n";
@@ -79,6 +100,12 @@ namespace ClassLibrary
             } 
             else if(this.State == AddCompanyState.Address)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.Address= input.Text;
                 this.State = AddCompanyState.Headings;
                 response = "Ingrese su rubro:\n";
@@ -86,18 +113,32 @@ namespace ClassLibrary
             } 
              else if(this.State == AddCompanyState.Headings)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.Data.Headings = input.Text;
                 this.State = AddCompanyState.Start;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
                 this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
                 response = "Ya se creo la empresa.";
                 return true;
-               
             }
             response = string.Empty;
             return false;
         }  
-    
+
+        /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = AddCompanyState.Start;
+            this.Data = new AddCompanyData();
+        }
+
         /// <summary>
         /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
         /// </summary>
@@ -121,7 +162,7 @@ namespace ClassLibrary
             /// <summary>
             /// Luego de pedir el departamento de la empresa. En este estado el comando pide la ciudad de la empresa y pasa al siguiente estado.
             /// </summary>
-            Estate,
+            State,
 
             /// <summary>
             /// Luego de pedir la ciudad de la empresa. En este estado el comando pide la dirección de la empresa y pasa al siguiente estado.
@@ -150,7 +191,7 @@ namespace ClassLibrary
             public string Name { get; set; }
 
             /// <summary>
-            /// El país de la compaía que se ingresó en el estado CompanyState.Country.
+            /// El país de la empresa que se ingresó en el estado CompanyState.Country.
             /// </summary>
             public string Country { get; set; }
 
@@ -179,7 +220,7 @@ namespace ClassLibrary
             public string Headings { get; set; }
 
             /// <summary>
-            /// La ubicación completa de la empresa, creada a partir de los datos de ubiación recolectados anteriormente.
+            /// La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
             /// </summary>
             /// <value></value>
             public LocationAdapter Location { get; set; }

@@ -211,6 +211,11 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.AddCompanyHandler.AddCompanyState">
             <summary>
             Indica los diferentes estados que puede tener el comando AddCompanyHandler.
@@ -231,7 +236,7 @@
             Luego de pedir el país de la empresa. En este estado el comando pide el departamento de la empresa y pasa al siguiente estado.
             </summary>
         </member>
-        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.Estate">
+        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.State">
             <summary>
             Luego de pedir el departamento de la empresa. En este estado el comando pide la ciudad de la empresa y pasa al siguiente estado.
             </summary>
@@ -263,7 +268,7 @@
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Country">
             <summary>
-            El país de la compaía que se ingresó en el estado CompanyState.Country.
+            El país de la empresa que se ingresó en el estado CompanyState.Country.
             </summary>
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Estate">
@@ -292,7 +297,7 @@
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Location">
             <summary>
-            La ubicación completa de la empresa, creada a partir de los datos de ubiación recolectados anteriormente.
+            La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
             </summary>
             <value></value>
         </member>
@@ -301,39 +306,6 @@
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
             <value></value>
-        </member>
-        <member name="T:ClassLibrary.AdminStartHandler">
-            <summary>
-            Primer Handler de la CoR para los usuarios Admin.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.AdminStartHandler.State">
-            <summary>
-            Estado para el handler de AdminStart.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.#ctor">
-            <summary>
-            Constructor de los objetos AdminStartHandler.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Le otorga por pantalla los comandos que puede utilizar el admin.
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
-        </member>
-        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando AdminStartHandler.
-            </summary>
-        </member>
-        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
-            <summary>
-            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
-            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -354,7 +326,7 @@
         </member>
         <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor">
             <summary>
-            Constructor de objetos RemoveCompanyHandler
+            Constructor de objetos RemoveCompanyHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.RemoveCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
@@ -365,6 +337,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.RemoveCompanyHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler.RemoveCompanyState">
             <summary>
@@ -400,7 +377,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
-            Handler encargado de delegar la accion de eliminar un usario del registro
+            Handler encargado de delegar la accion de eliminar un usario del registro.
             </summary>
         </member>
         <member name="P:ClassLibrary.RemoveUserHandler.State">
@@ -428,6 +405,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.RemoveUserHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler.RemoveUserState">
             <summary>
@@ -964,7 +946,14 @@
             <summary>
             Constructor de objetos ActiveOfferHandler.
             </summary>
-            <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.ActiveOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
@@ -976,6 +965,43 @@
             Constructor de objetos SearchOfferByKeyWordsHandler.
             </summary>
             <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando SearchOfferHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide las palabras claves de la ofertas a buscar.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.ShowActiveState">
+            <summary>
+            Luego de pedir las palabras claves de las ofertas. En este estado el comando devuelve todas las ofertas
+            existentes, que cumplan con los requisitos. Además sugiere la posibilidad de seleccionar una oferta única por medio de una Id.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.AskActiveOfferIdState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferData">
+            <summary>
+            Representa los datos que va obteniendo el comando SearchOfferHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Offers">
+            <summary>
+            La lista de ofertas que se mostrará al emprendedor una vez haya enviado las palabras claves.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>

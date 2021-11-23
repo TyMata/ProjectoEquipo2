@@ -102,8 +102,6 @@ namespace ClassLibrary
             }
             response = string.Empty;    
             return false;
-        
-    
         }
         
         /// <summary>
@@ -121,8 +119,7 @@ namespace ClassLibrary
             Price,
             Location,
             Habilitations,
-            Offer,
-
+            Offer
         }
 
         /// <summary>
