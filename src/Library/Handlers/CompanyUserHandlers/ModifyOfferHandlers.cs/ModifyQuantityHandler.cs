@@ -44,9 +44,9 @@ namespace ClassLibrary
         {
             if (this.State == ModifyState.Start && CanHandle(input))
             {
-                Company company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
+                this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
-                if(company.OfferRegister != null)
+                if(this.company.OfferRegister != null)
                 {
                     foreach(Offer x in company.OfferRegister)
                     {
