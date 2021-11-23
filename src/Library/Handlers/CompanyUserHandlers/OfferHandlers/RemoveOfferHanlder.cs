@@ -51,10 +51,10 @@ namespace ClassLibrary
                     foreach (Offer item in this.company.OfferRegister)
                     {
                         offers.Append($"Id de la oferta: {item.Id}\n")
-                                .Append($"Material de la oferta: {item.Material}\n")
-                                .Append($"Cantidad: {item.QuantityMaterial}\n")
-                                .Append($"Fecha de publicacion: {item.PublicationDate}\n")
-                                .Append($"\n-----------------------------------------------\n\n");
+                            .Append($"Material de la oferta: {item.Material}\n")
+                            .Append($"Cantidad: {item.QuantityMaterial}\n")
+                            .Append($"Fecha de publicacion: {item.PublicationDate}\n")
+                            .Append($"\n-----------------------------------------------\n\n");
                     }
                     offers.Append("Ingrese el Id de la oferta a remover:\n");
                     this.State = RemoveOfferState.IdOfferState;

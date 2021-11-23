@@ -56,6 +56,7 @@ namespace ClassLibrary
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
                     }
+                    offers.Append("Ingrese el Id de la oferta a modificar:\n"); 
                     this.State = ModifyState.OfferList;
                     response = offers.ToString();
                     return true;   
@@ -81,7 +82,7 @@ namespace ClassLibrary
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
                 this.Data.Result.ChangeHabilitation(input.Text); 
                 this.State = ModifyState.Start;
-                response = "Las habilitaciones se han modificó";
+                response = "Las habilitaciones se han modificado";
                 return true;
             }
             response = string.Empty;

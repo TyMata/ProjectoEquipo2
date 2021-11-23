@@ -49,11 +49,14 @@ namespace ClassLibrary
                 { 
                     foreach (Offer item in this.company.OfferRegister)
                     {
-                        offers.Append($"Id de la oferta: {item.Id}\n")
+                        if(!item.Availability)
+                        {
+                            offers.Append($"Id de la oferta: {item.Id}\n")
                                 .Append($"Material de la oferta: {item.Material}\n")
                                 .Append($"Cantidad: {item.QuantityMaterial}\n")
                                 .Append($"Fecha de publicacion: {item.PublicationDate}\n")
                                 .Append($"\n-----------------------------------------------\n\n");
+                        }
                     }
                     this.State = ResumeOfferState.SuspendedOfferIdState;
                     offers.Append("¿Cual es el Id de la que quiere activar?\n");

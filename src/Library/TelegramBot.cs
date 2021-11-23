@@ -36,7 +36,6 @@ namespace ClassLibrary
                 .SetNext(new ModifyPriceHandler())
                 .SetNext(new ModifyQuantityHandler())
                 .SetNext(new ShowCompanyOffersHandler())
-                .SetNext(new ActiveOfferHandler())
                 .SetNext(new SearchOfferHandler())
                 .SetNext(new EndHandler(null));
         }

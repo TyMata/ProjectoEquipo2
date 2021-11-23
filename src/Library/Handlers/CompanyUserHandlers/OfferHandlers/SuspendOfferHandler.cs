@@ -47,13 +47,16 @@ namespace ClassLibrary
                 StringBuilder offers = new StringBuilder("Estas son tus ofertas actuales:\n");
                 if(this.company != null)
                 {
-                    foreach (Offer item in Market.Instance.ActualOfferList)
+                    foreach (Offer item in this.company.OfferRegister)
                     {
-                        offers.Append($"Id de la oferta: {item.Id}\n")
+                        if(item.Availability)
+                        {
+                            offers.Append($"Id de la oferta: {item.Id}\n")
                                 .Append($"Material de la oferta: {item.Material}\n")
                                 .Append($"Cantidad: {item.QuantityMaterial}\n")
                                 .Append($"Fecha de publicacion: {item.PublicationDate}\n")
                                 .Append($"\n-----------------------------------------------\n\n");
+                        }
                     }
                     this.State = SuspendOfferState.ActiveOfferIdState;
                     offers.Append("¿Cual es el Id de la que quiere suspender?");
@@ -73,7 +76,7 @@ namespace ClassLibrary
                 this.Data.Id = Convert.ToInt32(input.Text);
                 if (this.company.OfferRegister.Exists(Offer => Offer.Id == this.Data.Id))
                 {
-                    Market.Instance.SuspendOffer(this.Data.Id);
+                    Market.Instance.SuspendOffer(this.Data.Id);             //TODO Si le pasamos un id de una empresa suspendida la activaria y reciprocamente sucede lo mismo
                     this.State = SuspendOfferState.Start;
                     response = "La oferta ha sido suspendida.\n";  
                 }
