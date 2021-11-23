@@ -20,9 +20,10 @@ namespace ClassLibrary
         private TelegramBot()
         {
             this.Client = new TelegramBotClient(TELEGRAM_BOT_TOKEN);
-           // StartCommunication();
-           this.handlers = new UnregisteredCompanyUserHandler();
-           this.handlers
+            // StartCommunication();
+            this.handlers = new StartHandler();
+            this.handlers
+                .SetNext(new UnregisteredCompanyUserHandler()
                 .SetNext(new UnregisteredEntrepeneurUserHandler()
                 .SetNext(new AddCompanyHandler()
                 .SetNext(new RemoveUserHandler()
@@ -36,7 +37,7 @@ namespace ClassLibrary
                 .SetNext(new ModifyQuantityHandler()
                 .SetNext(new ShowCompanyOffersHandler()
                 .SetNext(new ActiveOfferHandler()
-                .SetNext(new SearchOfferHandler()))))))))))))));
+                .SetNext(new SearchOfferHandler())))))))))))))));
         }
 
         public ITelegramBotClient Client { get; private set; }
@@ -129,27 +130,6 @@ namespace ClassLibrary
             
             string answer;
             IMessage message1 = new TelegramBotMessage(chatId, message.Text);
-            StringBuilder menu = new StringBuilder("Bienvenido\n");
-            menu.Append("Usuario No Registrado:\n")
-                .Append("   /empresanoregistrada\n")
-                .Append("   /emprendedornoregistrado\n\n")
-                .Append("Usuario Admin:\n")
-                .Append("   /registrarempresa\n")
-                .Append("   /eliminarusuario\n")
-                .Append("   /eliminarempresa\n\n")
-                .Append("Usurio de una Empresa:\n")
-                .Append("   /publicaroferta\n")
-                .Append("   /retiraroferta\n")
-                .Append("   /suspenderoferta\n")
-                .Append("   /reanudaroferta\n")
-                .Append("   /mostrarofertas\n\n")
-                .Append("   Para modificar alguna oferta:\n")
-                .Append("       /modificarhabilitaciones\n")
-                .Append("       /modificarprecio\n")
-                .Append("       /modificarcantidad\n\n")
-                .Append("Usuario Emprendedor:\n")
-                .Append("   /buscaroferta");
-            Client.SendTextMessageAsync(chatId, menu.ToString());
             if (handlers.Handle(message1,out answer) != null)
             {
                 Client.SendTextMessageAsync(chatId, answer);

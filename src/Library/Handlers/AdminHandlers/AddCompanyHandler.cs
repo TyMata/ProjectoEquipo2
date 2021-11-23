@@ -30,7 +30,6 @@ namespace ClassLibrary
         public AddCompanyHandler()
         {
             this.Command ="registrarempresa";
-            this.nextHandler = null;
             this.State = AddCompanyState.Start;
             this.Data = new AddCompanyData();
 

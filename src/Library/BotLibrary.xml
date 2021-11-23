@@ -877,6 +877,39 @@
             <param name="response"></param>
             <returns></returns>
         </member>
+        <member name="T:ClassLibrary.StartHandler">
+            <summary>
+            Primer Handler de la CoR.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.StartHandler.State">
+            <summary>
+            Estado para el handler de StartHandler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.StartHandler.#ctor">
+            <summary>
+            Constructor de los objetos StartHandler.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.StartHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Le otorga por pantalla los comandos que puede utilizar.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.StartHandler.StartState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando StartHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.StartHandler.StartState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
             Handler encargado de delegar la accion de registrar un usuario empresa.
