@@ -4,16 +4,6 @@
         <name>BotLibrary</name>
     </assembly>
     <members>
-        <member name="T:ClassLibrary.Bot">
-            <summary>
-            Esta clase representa el Bot.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.Chat">
-            <summary>
-            Esta clase
-            </summary>
-        </member>
         <member name="T:ClassLibrary.Company">
             <summary>
             Esta clase representa una empresa.

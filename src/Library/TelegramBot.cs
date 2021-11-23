@@ -23,21 +23,22 @@ namespace ClassLibrary
             // StartCommunication();
             this.handlers = new StartHandler();
             this.handlers
-                .SetNext(new UnregisteredCompanyUserHandler()
-                .SetNext(new UnregisteredEntrepeneurUserHandler()
-                .SetNext(new AddCompanyHandler()
-                .SetNext(new RemoveUserHandler()
-                .SetNext(new RemoveCompanyHandler()
-                .SetNext(new PublishOfferHandler()
-                .SetNext(new RemoveOfferHandler()
-                .SetNext(new SuspendOfferHandler()
-                .SetNext(new ResumeOfferHandler()
-                .SetNext(new ModifyHabilitationsHandler()
-                .SetNext(new ModifyPriceHandler()
-                .SetNext(new ModifyQuantityHandler()
-                .SetNext(new ShowCompanyOffersHandler()
-                .SetNext(new ActiveOfferHandler()
-                .SetNext(new SearchOfferHandler())))))))))))))));
+                .SetNext(new UnregisteredCompanyUserHandler())
+                .SetNext(new UnregisteredEntrepeneurUserHandler())
+                .SetNext(new AddCompanyHandler())
+                .SetNext(new RemoveUserHandler())
+                .SetNext(new RemoveCompanyHandler())
+                .SetNext(new PublishOfferHandler())
+                .SetNext(new RemoveOfferHandler())
+                .SetNext(new SuspendOfferHandler())
+                .SetNext(new ResumeOfferHandler())
+                .SetNext(new ModifyHabilitationsHandler())
+                .SetNext(new ModifyPriceHandler())
+                .SetNext(new ModifyQuantityHandler())
+                .SetNext(new ShowCompanyOffersHandler())
+                .SetNext(new ActiveOfferHandler())
+                .SetNext(new SearchOfferHandler())
+                .SetNext(new EndHandler(null));
         }
 
         public ITelegramBotClient Client { get; private set; }
