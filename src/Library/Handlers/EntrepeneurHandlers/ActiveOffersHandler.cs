@@ -10,16 +10,25 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos ActiveOfferHandler.
         /// </summary>
-        /// <param name="channel"></param>
         public ActiveOfferHandler()
         {
         }
+<<<<<<< HEAD
         /// <summary>
         /// Le avisa al usuario que el comando no se reconocio y 
         /// va hacia el siguiente handler de la cadena.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
+=======
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
+>>>>>>> origin
         public override bool InternalHandle(IMessage input, out string response)
         {
             if ((CanHandle(input)))

@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de eliminar un usario del registro
+    /// Handler encargado de delegar la accion de eliminar un usario del registro.
     /// </summary>
     public class RemoveUserHandler : AbstractHandler
     {
@@ -24,7 +25,7 @@ namespace ClassLibrary
         /// </summary>
         public RemoveUserHandler()
         {
-            this.Command = "eliminarusuario";
+            this.Command = "/eliminarusuario";
             this.State = RemoveUserState.Start;
             this.Data = new RemoveUserData();
         }
@@ -45,6 +46,12 @@ namespace ClassLibrary
             }
             else if(this.State == RemoveUserState.User)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = RemoveUserState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.State = RemoveUserState.Start;
                 this.Data.UserId = Convert.ToInt32(input.Text);
                 this.Data.Result = UserRegister.Instance.GetUserById(this.Data.UserId);
@@ -56,12 +63,21 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    response = $"No se encontro ningun usuario con el {this.Data.UserId}.";
+                    response = $"No se encontro ningún usuario con el {this.Data.UserId}.";
                 }
                 return true;
             }
             response = "";
             return false;   
+        }
+
+        /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = RemoveUserState.Start;
+            this.Data = new RemoveUserData();
         }
 
         /// <summary>

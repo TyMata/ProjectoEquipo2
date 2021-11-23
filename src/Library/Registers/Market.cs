@@ -226,8 +226,6 @@ namespace ClassLibrary
                 WriteIndented = true
             };
             return JsonSerializer.Serialize(this, options);
-        }
-        
-       
+        }  
     }
 }
