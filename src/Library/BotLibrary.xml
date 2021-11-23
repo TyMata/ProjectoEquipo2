@@ -211,6 +211,11 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="M:ClassLibrary.AddCompanyHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.AddCompanyHandler.AddCompanyState">
             <summary>
             Indica los diferentes estados que puede tener el comando AddCompanyHandler.
@@ -231,7 +236,7 @@
             Luego de pedir el país de la empresa. En este estado el comando pide el departamento de la empresa y pasa al siguiente estado.
             </summary>
         </member>
-        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.Estate">
+        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.State">
             <summary>
             Luego de pedir el departamento de la empresa. En este estado el comando pide la ciudad de la empresa y pasa al siguiente estado.
             </summary>
@@ -263,7 +268,7 @@
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Country">
             <summary>
-            El país de la compaía que se ingresó en el estado CompanyState.Country.
+            El país de la empresa que se ingresó en el estado CompanyState.Country.
             </summary>
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Estate">
@@ -292,7 +297,7 @@
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Location">
             <summary>
-            La ubicación completa de la empresa, creada a partir de los datos de ubiación recolectados anteriormente.
+            La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
             </summary>
             <value></value>
         </member>
@@ -301,39 +306,6 @@
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
             <value></value>
-        </member>
-        <member name="T:ClassLibrary.AdminStartHandler">
-            <summary>
-            Primer Handler de la CoR para los usuarios Admin.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.AdminStartHandler.State">
-            <summary>
-            Estado para el handler de AdminStart.
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.#ctor">
-            <summary>
-            Constructor de los objetos AdminStartHandler.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.AdminStartHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Le otorga por pantalla los comandos que puede utilizar el admin.
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
-        </member>
-        <member name="T:ClassLibrary.AdminStartHandler.AdminStartState">
-            <summary>
-            Indica los diferentes estados que puede tener el comando AdminStartHandler.
-            </summary>
-        </member>
-        <member name="F:ClassLibrary.AdminStartHandler.AdminStartState.Start">
-            <summary>
-            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
-            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -354,7 +326,7 @@
         </member>
         <member name="M:ClassLibrary.RemoveCompanyHandler.#ctor">
             <summary>
-            Constructor de objetos RemoveCompanyHandler
+            Constructor de objetos RemoveCompanyHandler.
             </summary>
         </member>
         <member name="M:ClassLibrary.RemoveCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
@@ -365,6 +337,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.RemoveCompanyHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler.RemoveCompanyState">
             <summary>
@@ -400,7 +377,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
-            Handler encargado de delegar la accion de eliminar un usario del registro
+            Handler encargado de delegar la accion de eliminar un usario del registro.
             </summary>
         </member>
         <member name="P:ClassLibrary.RemoveUserHandler.State">
@@ -428,6 +405,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.RemoveUserHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler.RemoveUserState">
             <summary>
@@ -725,6 +707,42 @@
             Representa los datos que va obteniendo el comando PublishOfferHandler en los diferentes estados.
             </summary>
         </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Material">
+            <summary>
+            Se guarda el material que se quiere agregar en la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Quantity">
+            <summary>
+            Se guarda la cantidad del material que se quiere poner en la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Price">
+            <summary>
+            Se guarda el precio total de la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Habilitations">
+            <summary>
+            Se guardan las habilitaciones para manejar el material.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Offer">
+            <summary>
+            Se guarda la oferta creada con la informacion guardada previamente.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Location">
+            <summary>
+            Se guarda la ubicación de la oferta.
+            </summary>
+            <value></value>
+        </member>
         <member name="T:ClassLibrary.RemoveOfferHandler">
             <summary>
             Handler encargado de delegar la accion de retirar una oferta.
@@ -756,6 +774,11 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
+        <member name="M:ClassLibrary.RemoveOfferHandler.InternalCancel">
+            <summary>
+            Retorna este IHandler al estado inicial.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.RemoveOfferHandler.RemoveOfferState">
             <summary>
             Indica los diferentes estados que tiene RemoveOfferHandler.
@@ -763,8 +786,13 @@
         </member>
         <member name="F:ClassLibrary.RemoveOfferHandler.RemoveOfferState.Start">
             <summary>
-            El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            El estado inicial del comando. Aquí pregunta por el Id de la oferta oferta que se quiere 
             modificar y le muestra una lista de las ofertas actuales de la empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.RemoveOfferHandler.RemoveOfferState.IdOfferState">
+            <summary>
+            El estado en donde recibe la Id, se busca la oferta y se la remueve del mercado.
             </summary>
         </member>
         <member name="T:ClassLibrary.RemoveOfferHandler.RemoveOfferData">
@@ -772,7 +800,7 @@
             Representa los datos que va obteniendo el comando RemoveOfferHandler en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.RemoveOfferHandler.RemoveOfferData.id">
+        <member name="P:ClassLibrary.RemoveOfferHandler.RemoveOfferData.Id">
             <summary>
             El ID que se ingresó en el estado RemoveOfferHandler.OfferList.
             </summary>
@@ -782,36 +810,114 @@
             Handler encargado de delegar la accion de volver a activar una oferta suspendida.
             </summary>
         </member>
+        <member name="P:ClassLibrary.ResumeOfferHandler.State">
+            <summary>
+            Estado para este handler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.ResumeOfferHandler.Data">
+            <summary>
+            Clase para guardar la informacion que envia el usario por el chat cuando se le pregunta
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.ResumeOfferHandler.#ctor">
             <summary>
             Constructor de objetos ResumeOfferHandler.
             </summary>
-            <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.ResumeOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+            Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de volver a activarla.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.ResumeOfferHandler.ResumeOfferState">
+            <summary>
+            Enumerado de los estado de este handler
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ResumeOfferHandler.ResumeOfferState.Start">
+            <summary>
+            Estado con el que comienza el handler, en este se le muestra sus ofertas actuales y pide el id de la que quiere reanudar.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ResumeOfferHandler.ResumeOfferState.SuspendedOfferIdState">
+            <summary>
+            Estado en donde se guarda la Id que envio el usuario y se reanuda la oferta en el mercado.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ResumeOfferHandler.ResumeOfferData">
+            <summary>
+            Guarda la id que envia el usuario por el chat para luego ser usada.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ResumeOfferHandler.ResumeOfferData.Id">
+            <summary>
+            Se guarada la Id.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.SuspendOfferHandler">
             <summary>
             Handler encargado de delegar la accion de suspender una oferta.
             </summary>
         </member>
+        <member name="P:ClassLibrary.SuspendOfferHandler.State">
+            <summary>
+            Estado para este handler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.SuspendOfferHandler.Data">
+            <summary>
+            Clase para guardar la informacion que envia el usuario por el chat.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.SuspendOfferHandler.#ctor">
             <summary>
             Constructor de objetos SuspendOfferHandler.
             </summary>
-            <param name="channel"></param>
         </member>
         <member name="M:ClassLibrary.SuspendOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+            Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
             de una oferta delega la accion de suspenderla.
             </summary>
             <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.SuspendOfferHandler.SuspendOfferState">
+            <summary>
+            Enumerado de los estados de este handler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SuspendOfferHandler.SuspendOfferState.Start">
+            <summary>
+            Estado con el que comienza. Se le muestra todas las ofertas actuales de su empresa y se le pregunta por el Id de la que quiere Suspender.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SuspendOfferHandler.SuspendOfferState.ActiveOfferIdState">
+            <summary>
+            Estado en donde se guarda el Id que envio el usuario por el chat, se busca en las ofertas actuales de la empresa si esta existe y si es asi se la suspende en el mercado.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.SuspendOfferHandler.SuspendOfferData">
+            <summary>
+            Clase para guardar la información que envia el usuario por el chat.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.SuspendOfferHandler.SuspendOfferData.Id">
+            <summary>
+            Se guarda el Id de la oferta  a suspender.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
@@ -840,7 +946,14 @@
             <summary>
             Constructor de objetos ActiveOfferHandler.
             </summary>
-            <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.ActiveOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
@@ -852,6 +965,43 @@
             Constructor de objetos SearchOfferByKeyWordsHandler.
             </summary>
             <param name="channel"></param>
+        </member>
+        <member name="M:ClassLibrary.SearchOfferHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando SearchOfferHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide las palabras claves de la ofertas a buscar.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.ShowActiveState">
+            <summary>
+            Luego de pedir las palabras claves de las ofertas. En este estado el comando devuelve todas las ofertas
+            existentes, que cumplan con los requisitos. Además sugiere la posibilidad de seleccionar una oferta única por medio de una Id.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.AskActiveOfferIdState">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferData">
+            <summary>
+            Representa los datos que va obteniendo el comando SearchOfferHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Offers">
+            <summary>
+            La lista de ofertas que se mostrará al emprendedor una vez haya enviado las palabras claves.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
@@ -1016,71 +1166,6 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="T:ClassLibrary.IDistanceResult">
-            <summary>
-            Una interfaz que define una abstracción para el resultado de calcular distancias.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.IDistanceResult.FromExists">
-            <summary>
-            Obtiene un valor que indica si la dirección de origen para el cálculo de distancias existe; sólo se puede
-            calcular la distancia entre direcciones que existen.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.IDistanceResult.ToExists">
-            <summary>
-            Obtiene un valor que indica si la dirección de destino para el cálculo de distancias existe; sólo se puede
-            calcular la distancia entre direcciones que existen.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.IDistanceResult.Distance">
-            <summary>
-            La distancia calculada.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.IDistanceResult.Time">
-            <summary>
-            El tiempo en llegar del origen al destino.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.DistanceResult">
-            <summary>
-            Una implementación concreta del resutlado de calcular distancias. Además de las propiedades definidas en
-            IDistanceResult esta clase agrega propiedades para acceder a las coordenadas de las direcciones buscadas.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.DistanceResult.#ctor(Ucu.Poo.Locations.Client.Location,Ucu.Poo.Locations.Client.Location,System.Double,System.Double)">
-            <summary>
-            Inicializa una nueva instancia de DistanceResult a partir de dos coordenadas, la distancia y el tiempo
-            entre ellas.
-            </summary>
-            <param name="from">Las coordenadas de origen.</param>
-            <param name="to">Las coordenadas de destino.</param>
-            <param name="distance">La distancia entre las coordenadas.</param>
-            <param name="time">El tiempo que se demora en llegar del origen al destino.</param>
-        </member>
-        <member name="T:ClassLibrary.ILocationApiAdapter">
-            <summary>
-            Interface para el adapter de las api de ubicacion
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ILocationApiAdapter.GetLocation(System.String,System.String,System.String)">
-            <summary>
-            Transforma la Location de la Api a una Location del Bot
-            </summary>
-            <param name="address"></param>
-            <param name="ciudad"></param>
-            <param name="departamento"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.ILocationApiAdapter.GetDistance(System.String,System.String)">
-            <summary>
-            Devuelve la distancia entre dos Locations de la Api
-            </summary>
-            <param name="fromAddress"></param>
-            <param name="toAddress"></param>
-            <returns></returns>
-        </member>
         <member name="T:ClassLibrary.LocationAdapter">
             <summary>
             Esta clase representa una ubicacion
@@ -1092,21 +1177,39 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.LocationAdapter.Address">
+        <member name="P:ClassLibrary.LocationAdapter.Latitude">
             <summary>
-            Devuelve la direccion completa
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.LocationAdapter.City">
-            <summary>
-            Devuelve la latitud de la ubicacion
+            devuelve y guarda la latitud de la ubicacion.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.LocationAdapter.Longitude">
             <summary>
             Devuelve la longitud de la ubicacion
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.PostalCode">
+            <summary>
+            Devuelve y guarda el codigo postal de la ubicación.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Address">
+            <summary>
+            Devuelve y guarda la dirección. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.City">
+            <summary>
+            Devuelve y guarda la ciudad.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.LocationAdapter.Department">
+            <summary>
+            Devuelve y guarda el departamento.
             </summary>
             <value></value>
         </member>

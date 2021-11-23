@@ -13,24 +13,39 @@ namespace ClassLibrary
         /// <value></value>
         public bool Found { get; set; }
         /// <summary>
-        /// Devuelve la direccion completa
+        /// devuelve y guarda la latitud de la ubicacion.
         /// </summary>
         /// <value></value>
-        public string Address { get; set; }
-        /// <summary>
-        /// Devuelve la latitud de la ubicacion
-        /// </summary>
-        /// <value></value>
-        
-        public string City { get; set; }
-        public string Department { get; set; }
-
         public double Latitude { get; set; }
         /// <summary>
         /// Devuelve la longitud de la ubicacion
         /// </summary>
         /// <value></value>
         public double Longitude { get; set; }
+
+        /// <summary>
+        /// Devuelve y guarda el codigo postal de la ubicación.
+        /// </summary>
+        /// <value></value>
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// Devuelve y guarda la dirección. 
+        /// </summary>
+        /// <value></value>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Devuelve y guarda la ciudad.
+        /// </summary>
+        /// <value></value>
+        public string City { get; set; }
+
+        /// <summary>
+        /// Devuelve y guarda el departamento.
+        /// </summary>
+        /// <value></value>
+        public string Department { get; set; }
 
         private LocationApiClient client = new LocationApiClient();
         private Location location;
@@ -44,9 +59,15 @@ namespace ClassLibrary
         public LocationAdapter(string address, string city, string department)
         {
             this.location =  this.client.GetLocation(address,city,department);
-            this.Address = address;
-            this.City = city;
-            this.Department = department;
+            if(this.location.Found)
+            {
+                this.Address = address;
+                this.City = city;
+                this.Department = department;
+                this.Longitude = this.location.Longitude;
+                this.Latitude = this.location.Latitude;
+                this.PostalCode = this.location.PostalCode;
+            }
         }
 
         /// <summary>

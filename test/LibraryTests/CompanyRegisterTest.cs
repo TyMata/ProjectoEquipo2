@@ -19,7 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.location = new LocationAdapter("address","city","department");
+            this.location = new LocationAdapter("address", "city", "department");
             this.company = new Company("nombre", this.location, "rubro");
         }
 

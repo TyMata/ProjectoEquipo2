@@ -31,6 +31,7 @@ namespace ClassLibrary
             this.State = RemoveOfferState.Start;
             this.company = null;
         }
+
         /// <summary>
         /// Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
         /// de una oferta delega la accion de eliminarla.
@@ -40,46 +41,35 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if((State == RemoveOfferState.Start) && this.CanHandle(input))
+            if(State == RemoveOfferState.Start && this.CanHandle(input))
             {
-                this.State = RemoveOfferState.ShowActiveState;
+                this.State = RemoveOfferState.IdOfferState;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                response = "Estas son tus ofertas actuales:\n";
-                return true;
-            }
-            else if (State == RemoveOfferState.ShowActiveState)
-            {   
-                StringBuilder offers = new StringBuilder();
-                foreach (Offer item in Market.Instance.ActualOfferList)
+                StringBuilder offers = new StringBuilder("Estas son tus ofertas actuales\n\n");
+                foreach (Offer item in this.company.OfferRegister)
                 {
-                    this.State = RemoveOfferState.AskActiveOfferIdState;
                     offers.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
                             .Append($"Cantidad: {item.QuantityMaterial}\n")
                             .Append($"Fecha de publicacion: {item.PublicationDate}\n")
                             .Append($"\n-----------------------------------------------\n\n");
                 }
+                offers.Append("Ingrese el Id de la oferta a remover:\n");
                 response = offers.ToString();
                 return true;
             }
-            else if (State == RemoveOfferState.AskActiveOfferIdState)           //TODO Todo en un mismo if??
-            {
-                this.State = RemoveOfferState.BoolIdAnswerState;
-                response = "¿Cual es el Id de la oferta a retirar?";
-                return true;
-            }
-            else if (State == RemoveOfferState.BoolIdAnswerState)
-            {
-                this.Data.id = Convert.ToInt32(input.Text);
-                if (this.company.CompanyUsers.Exists(user => user.Id == this.Data.id))
+            else if (State == RemoveOfferState.IdOfferState)
+            {   
+                this.Data.Id = Convert.ToInt32(input.Text);
+                if (this.company.OfferRegister.Exists(offer => offer.Id == this.Data.Id))
                 {
-                    Market.Instance.SuspendOffer(this.Data.id);
+                    Market.Instance.RemoveOffer(this.Data.Id);
                     this.State = RemoveOfferState.Start;
-                    response = "La oferta ha sido retirada del mercado.";  
+                    response = "La oferta ha sido retirada del mercado.\n";  
                 }
                 else
                 {
-                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.";
+                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.\n";
                     this.State = RemoveOfferState.Start;
                 }
                 return true;
@@ -91,6 +81,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Retorna este IHandler al estado inicial.
+        /// </summary>
         protected override void InternalCancel()
         {
             this.State = RemoveOfferState.Start;
@@ -103,13 +96,15 @@ namespace ClassLibrary
         public enum RemoveOfferState
         {
             /// <summary>
-            /// El estado inicial del comando. Aquí pregunta por el ID de la oferta oferta que se quiere 
+            /// El estado inicial del comando. Aquí pregunta por el Id de la oferta oferta que se quiere 
             /// modificar y le muestra una lista de las ofertas actuales de la empresa.
             /// </summary>
             Start,
-            ShowActiveState,
-            AskActiveOfferIdState,
-            BoolIdAnswerState
+
+            /// <summary>
+            /// El estado en donde recibe la Id, se busca la oferta y se la remueve del mercado.
+            /// </summary>
+           IdOfferState
         }
 
         /// <summary>
@@ -120,7 +115,7 @@ namespace ClassLibrary
             /// <summary>
             /// El ID que se ingresó en el estado RemoveOfferHandler.OfferList.
             /// </summary>
-            public int id {get; set;}
+            public int Id {get; set;}
         }
     }
 }

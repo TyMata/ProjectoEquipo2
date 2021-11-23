@@ -35,7 +35,7 @@
 //         public List<string> producedMaterials = new List<string>();
 
 //         public List<string> ProducedMaterials {get; private set;}
-        
+
 //         static Company()
 //         {
 //             Id = 0;
@@ -70,7 +70,7 @@
 
 //         public void GetLocationTest()
 //         {
-            
+
 //         }
 //     }
 // }

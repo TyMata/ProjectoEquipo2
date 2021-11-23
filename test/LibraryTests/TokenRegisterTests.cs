@@ -18,7 +18,7 @@ namespace Tests
         [Test]
         public void AddTest()
         {
-            location = new LocationAdapter("address","city","department");
+            location = new LocationAdapter("address", "city", "department");
             Company company = new Company("empresa", location, "rubro");
             string token = "145789";
             TokenRegister.Instance.Add(token, company);
@@ -56,7 +56,7 @@ namespace Tests
         [Test]
         public void ContainsTest()
         {
-            Company company = new Company("empresa",location, "rubro");
+            Company company = new Company("empresa", location, "rubro");
             string token = "548796";
             TokenRegister.Instance.Add(token, company);
             Assert.True(TokenRegister.Instance.IsValid(token));

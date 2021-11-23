@@ -87,8 +87,7 @@ namespace ClassLibrary
             //Client.OnMessage += OnMessage;
             Client.StartReceiving(
                 new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
-                cts.Token
-            );
+                cts.Token);
         }
 
         public async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
@@ -106,7 +105,7 @@ namespace ClassLibrary
                 await HandleErrorAsync(e, cancellationToken);
             }
         }
-               /// <summary>
+        /// <summary>
         /// Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
         /// </summary>
         public Task HandleErrorAsync(Exception exception, CancellationToken cancellationToken)

@@ -11,7 +11,7 @@ namespace Tests
     public class EntrepreneurRoleTests
     {
         private EntrepreneurRole role;
-        private LocationAdapter location ;
+        private LocationAdapter location;
 
         /// <summary>
         /// Se crea un EntrepreneurRole para las pruebas.
@@ -19,7 +19,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.location = new LocationAdapter("address","city","department");
+            this.location = new LocationAdapter("address", "city", "department");
             this.role = new EntrepreneurRole("emprendedor", location, "headings", "habilitaciones");
         }
 

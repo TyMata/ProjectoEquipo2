@@ -16,6 +16,8 @@ namespace Tests
         private string headings;
         private Company company;
 
+        private Material material;
+
         /// <summary>
         /// Se crean variables con los parametros para crear una empresa.
         /// </summary>
@@ -25,8 +27,9 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
-            this.location = new LocationAdapter("address","city","department");;
+            this.location = new LocationAdapter("address", "city", "department");
             this.company = new Company(this.name, this.location, this.headings);
+            material = new Material("material","type","classification");
         }
 
         /// <summary>
@@ -72,6 +75,18 @@ namespace Tests
             Company company = new Company(this.name, this.location, this.headings);
             company.ProducedMaterials.Add(new Material());
             Assert.IsNotEmpty(company.ProducedMaterials);
+        }
+
+        /// <summary>
+        /// Prueba que el metodo GetMAterial de company devuelva el material correcto y que no sea nulo.
+        /// </summary>
+        [Test]
+        public void GetMaterialTest()
+        {
+            this.company.ProducedMaterials.Add(material);
+            Material material2 = this.company.GetMaterial("material");
+            Assert.AreEqual(material.Name, material2.Name);
+            Assert.IsNotNull(material2);
         }
     }
 }
