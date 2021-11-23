@@ -4,16 +4,6 @@
         <name>BotLibrary</name>
     </assembly>
     <members>
-        <member name="T:ClassLibrary.Bot">
-            <summary>
-            Esta clase representa el Bot.
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.Chat">
-            <summary>
-            Esta clase
-            </summary>
-        </member>
         <member name="T:ClassLibrary.Company">
             <summary>
             Esta clase representa una empresa.
@@ -442,24 +432,6 @@
             El resultado de la búsqueda del usuario por medio del Id.
             </summary>
             <value></value>
-        </member>
-        <member name="T:ClassLibrary.CompanyUserHandler">
-            <summary>
-            Handler encargado de dar a conocer los comandos disponibles para un usuario empresa.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.#ctor">
-            <summary>
-            Constructor de objetos CompanyUserHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
@@ -937,24 +909,6 @@
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="T:ClassLibrary.ActiveOfferHandler">
-            <summary>
-            HAndler encargado de 
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ActiveOfferHandler.#ctor">
-            <summary>
-            Constructor de objetos ActiveOfferHandler.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.ActiveOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
-            <returns></returns>
-        </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
             Handler encargado de delegar la accion de buscar ofertas por keywords
@@ -1026,6 +980,39 @@
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.StartHandler">
+            <summary>
+            Primer Handler de la CoR.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.StartHandler.State">
+            <summary>
+            Estado para el handler de StartHandler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.StartHandler.#ctor">
+            <summary>
+            Constructor de los objetos StartHandler.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.StartHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Le otorga por pantalla los comandos que puede utilizar.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="T:ClassLibrary.StartHandler.StartState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando StartHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.StartHandler.StartState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
+            </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
@@ -1114,24 +1101,6 @@
             <summary>
             El rubro que se ingresó en el estado UnregisteredCompanyUserState.Headings.
             </summary>
-        </member>
-        <member name="T:ClassLibrary.UnregisteredUserHandler">
-            <summary>
-            HAndler encargado de darle la bienvenida a un usuario no registrado.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.UnregisteredUserHandler.#ctor">
-            <summary>
-            Constructor de objetos UnregistredUserHandler.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.UnregisteredUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Se encarga de darle la bienvenida al usuario no registrado y preguntarle
-            si es un emprendedor o ubn usuario empresa
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
         </member>
         <member name="T:ClassLibrary.LocationAdapter">
             <summary>
@@ -1459,6 +1428,11 @@
             </summary>
             <param name="price"></param>
         </member>
+        <member name="M:ClassLibrary.Offer.ChangeAvailability">
+            <summary>
+            Modifica el precio
+            </summary>
+        </member>
         <member name="M:ClassLibrary.Offer.ConvertToJson">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
@@ -1524,7 +1498,7 @@
             Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
             </summary>
             <param name="nombre"></param>
-            <param name="ubi"></param>
+            <param name="location"></param>
             <param name="headings"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.ConvertToJson">
@@ -1727,7 +1701,7 @@
             <summary>
             Crea un usuario emprendedor.
             </summary>
-            <param name="input"></param>
+            <param name="id"></param>
             <param name="name"></param>
             <param name="location"></param>
             <param name="headings"></param>

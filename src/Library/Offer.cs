@@ -301,6 +301,16 @@ namespace ClassLibrary
         }
 
         /// <summary>
+        /// Modifica el precio
+        /// </summary>
+        public void ChangeAvailability()
+        {
+            if(this.availability) this.availability = false;
+            else this.availability = true;
+
+        }
+
+        /// <summary>
         /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>

@@ -43,20 +43,33 @@ namespace ClassLibrary
         {
             if((State == ResumeOfferState.Start) && this.CanHandle(input))
             {
-                this.State = ResumeOfferState.SuspendedOfferIdState;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder offers = new StringBuilder();
-                foreach (Offer item in this.company.OfferRegister)
-                {
-                    offers.Append($"Id de la oferta: {item.Id}\n")
-                            .Append($"Material de la oferta: {item.Material}\n")
-                            .Append($"Cantidad: {item.QuantityMaterial}\n")
-                            .Append($"Fecha de publicacion: {item.PublicationDate}\n")
-                            .Append($"\n-----------------------------------------------\n\n");
+                if(this.company != null)
+                { 
+                    foreach (Offer item in this.company.OfferRegister)
+                    {
+                        if(!item.Availability)
+                        {
+                            offers.Append($"Id de la oferta: {item.Id}\n")
+                                .Append($"Material de la oferta: {item.Material}\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}\n")
+                                .Append($"Fecha de publicacion: {item.PublicationDate}\n")
+                                .Append($"\n-----------------------------------------------\n\n");
+                        }
+                    }
+                    this.State = ResumeOfferState.SuspendedOfferIdState;
+                    offers.Append("¿Cual es el Id de la que quiere activar?\n");
+                    response = offers.ToString();
+                    return true;
                 }
-                offers.Append("¿Cual es el Id de la que quiere activar?\n");
-                response = offers.ToString();
-                return true;
+                else
+                {
+                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    response = offers.ToString();
+                    return true;
+                }
             }
             else if (State == ResumeOfferState.SuspendedOfferIdState)
             {  

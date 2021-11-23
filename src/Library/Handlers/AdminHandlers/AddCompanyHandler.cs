@@ -123,7 +123,7 @@ namespace ClassLibrary
                 this.State = AddCompanyState.Start;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
                 this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
-                response = "Ya se creo la empresa.";
+                response = $"Ya se creo la empresa. El token de invitacion es {this.Data.company.InvitationToken}";
                 return true;
             }
             response = string.Empty;
