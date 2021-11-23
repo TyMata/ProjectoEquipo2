@@ -116,7 +116,7 @@ namespace ClassLibrary
         /// Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
         /// </summary>
         /// <param name="nombre"></param>
-        /// <param name="ubi"></param>
+        /// <param name="location"></param>
         /// <param name="headings"></param>
         public Company CreateCompany(string nombre, LocationAdapter location, string headings)
         {

@@ -14,6 +14,12 @@ namespace ClassLibrary
         public ActiveOfferHandler()
         {
         }
+        /// <summary>
+        /// Le avisa al usuario que el comando no se reconocio y 
+        /// va hacia el siguiente handler de la cadena.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if ((CanHandle(input)))

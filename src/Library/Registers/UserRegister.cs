@@ -69,15 +69,15 @@ namespace ClassLibrary
         /// <summary>
         /// Crea un usuario emprendedor.
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitations"></param>
-        public void CreateEntrepreneurUser(int Id,string name , LocationAdapter location, string headings, string habilitations)
+        public void CreateEntrepreneurUser(int id,string name , LocationAdapter location, string headings, string habilitations)
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
-            Users usuario = new Users(Id, rol);
+            Users usuario = new Users(id, rol);
         }
 
         /// <summary>
