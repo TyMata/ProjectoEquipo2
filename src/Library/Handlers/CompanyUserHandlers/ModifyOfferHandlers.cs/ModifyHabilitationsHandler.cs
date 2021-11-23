@@ -81,6 +81,12 @@ namespace ClassLibrary
             return false;
         }
     
+        protected override void InternalCancel()
+        {
+            this.State = ModifyState.Start;
+            this.Data = new ModifyOfferData();
+        }
+
         /// <summary>
         /// Indica los diferentes estados que tiene ModifyHabilitationsHandler.
         /// </summary>

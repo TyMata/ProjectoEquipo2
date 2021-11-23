@@ -36,7 +36,7 @@ namespace Tests
         public void InternalHandleTest()
         {
             string response;
-            IHandler result = handler.Handle(new ConsoleMessage("/modificarcantidad"), out response);
+            IHandler result = this.handler.Handle(new ConsoleMessage("/modificarcantidad"), out response);
             Assert.IsNotNull(result);
             Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
         }

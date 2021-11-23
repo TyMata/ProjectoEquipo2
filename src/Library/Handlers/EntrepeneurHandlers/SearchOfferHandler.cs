@@ -33,7 +33,7 @@ namespace ClassLibrary
                 response = "Escriba las palabras claves de la oferta a buscar";  //TODO: Como hacer lo de las SearchOffer.
                 return true;
             }
-            else if(this.State == SearchOfferState.ShowActiveState)
+            else if(State == SearchOfferState.ShowActiveState)
             {
                 if (input.Text == "/menu")
                 {

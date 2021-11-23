@@ -76,5 +76,7 @@ namespace ConsoleApplication
             //     Console.WriteLine(offer.ConvertToJson());
             // }
         }
+    
     }
 }
+
