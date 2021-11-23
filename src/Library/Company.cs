@@ -282,21 +282,23 @@ namespace ClassLibrary
         /// Se genera un  token para una nueva empresa y se lo añade al diccionario
         /// </summary>
         /// <returns></returns>
-        public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa 
+        public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa. Ver si es mejor aca o en TokenRegister
         {
             Random rnd = new Random();
-            StringBuilder token = new StringBuilder();
-            for (int i = 0; i < 3; i++)         //Creo un nuevo token
+            StringBuilder token = new StringBuilder("");
+            while (token.ToString() == "")        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
             {
-                int num = rnd.Next(10000, 100000);
-                token.Append(num.ToString());
-                if (i != 2) token.Append("-");
+                for (int i = 0; i < 3; i++)         //En este for se crea un nuevo token
+                {
+                    int num = rnd.Next(10000, 100000);
+                    token.Append(num.ToString());
+                    if (i != 2) token.Append("-");
+                }
+                if (TokenRegister.Instance.IsValid(token.ToString()))
+                {
+                    token = new StringBuilder("");
+                }
             }
-            if (TokenRegister.Instance.IsValid(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
-            {
-                throw new Exception(); //EL TOKEN YA EXISTE
-            }
-            TokenRegister.Instance.Add(token.ToString(), this);
             return token.ToString();
         }
         
