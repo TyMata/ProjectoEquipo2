@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// </summary>
         public RemoveUserHandler()
         {
-            this.Command = "eliminarusuario";
+            this.Command = "/eliminarusuario";
             this.State = RemoveUserState.Start;
             this.Data = new RemoveUserData();
         }

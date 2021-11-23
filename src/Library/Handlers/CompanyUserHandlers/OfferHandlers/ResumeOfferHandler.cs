@@ -8,64 +8,64 @@ namespace ClassLibrary
     /// </summary>
     public class ResumeOfferHandler : AbstractHandler
     {
+        /// <summary>
+        /// Estado para este handler.
+        /// </summary>
+        /// <value></value>
         public ResumeOfferState State {get; private set;}
 
+        /// <summary>
+        /// Clase para guardar la informacion que envia el usario por el chat cuando se le pregunta
+        /// </summary>
+        /// <returns></returns>
         public ResumeOfferData Data {get; private set;} = new ResumeOfferData();
 
         private Company company;
+
         /// <summary>
         /// Constructor de objetos ResumeOfferHandler.
         /// </summary>
-        /// <param name="channel"></param>
         public ResumeOfferHandler()
         {
             this.Command = "/reanudaroferta";
             this.State = ResumeOfferState.Start;
             this.company = null;
         }
+
         /// <summary>
-        /// Se encarga de pasarle por pantalla la lista de ofertas actuales y luego de recibir un Id
+        /// Se encarga de pasar por pantalla la lista de ofertas actuales y luego de recibir un Id
         /// de una oferta delega la accion de volver a activarla.
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if((State == ResumeOfferState.Start) && this.CanHandle(input))
             {
-                this.State = ResumeOfferState.ShowSuspendedState;
+                this.State = ResumeOfferState.SuspendedOfferIdState;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                response = "Estas son tus ofertas suspendidas actuales:\n";
-                return true;
-            }
-            else if (State == ResumeOfferState.ShowSuspendedState)
-            {   
                 StringBuilder offers = new StringBuilder();
-                foreach (Offer item in Market.Instance.ActualOfferList)
+                foreach (Offer item in this.company.OfferRegister)
                 {
-                    this.State = ResumeOfferState.AskSuspendedOfferIdState;
                     offers.Append($"Id de la oferta: {item.Id}\n")
                             .Append($"Material de la oferta: {item.Material}\n")
                             .Append($"Cantidad: {item.QuantityMaterial}\n")
                             .Append($"Fecha de publicacion: {item.PublicationDate}\n")
                             .Append($"\n-----------------------------------------------\n\n");
                 }
+                offers.Append("¿Cual es el Id de la que quiere activar?\n");
                 response = offers.ToString();
                 return true;
             }
-            else if (State == ResumeOfferState.AskSuspendedOfferIdState)
-            {
-                this.State = ResumeOfferState.BoolIdAnswerState;
-                response = "¿Cual es el Id de la que quiere activar?";
-                return true;
-            }
-            else if (State == ResumeOfferState.BoolIdAnswerState)
-            {
-                this.Data.id = Convert.ToInt32(input.Text);
-                if (this.company.CompanyUsers.Exists(user => user.Id == this.Data.id))
+            else if (State == ResumeOfferState.SuspendedOfferIdState)
+            {  
+                this.Data.Id = Convert.ToInt32(input.Text);
+                if (this.company.OfferRegister.Exists(offer => offer.Id == this.Data.Id))
                 {
-                    Market.Instance.SuspendOffer(this.Data.id);
+                    Market.Instance.ResumeOffer(this.Data.Id);
                     this.State = ResumeOfferState.Start;
-                    response = "La oferta se ha activado nuevamente";  
+                    response = "La oferta se ha activado nuevamente\n";  
                 }
                 else
                 {
@@ -87,17 +87,33 @@ namespace ClassLibrary
             this.Data = new ResumeOfferData();
         }
 
+        /// <summary>
+        /// Enumerado de los estado de este handler
+        /// </summary>
         public enum ResumeOfferState
         {
+            /// <summary>
+            /// Estado con el que comienza el handler, en este se le muestra sus ofertas actuales y pide el id de la que quiere reanudar.
+            /// </summary>
             Start,
-            ShowSuspendedState,
-            AskSuspendedOfferIdState,
-            BoolIdAnswerState
+            
+            /// <summary>
+            /// Estado en donde se guarda la Id que envio el usuario y se reanuda la oferta en el mercado.
+            /// </summary>
+            SuspendedOfferIdState,
+            
         }
 
+        /// <summary>
+        /// Guarda la id que envia el usuario por el chat para luego ser usada.
+        /// </summary>
         public class ResumeOfferData
         {
-            public int id {get; set;}
+            /// <summary>
+            /// Se guarada la Id.
+            /// </summary>
+            /// <value></value>
+            public int Id {get; set;}
         }
     }
 }
