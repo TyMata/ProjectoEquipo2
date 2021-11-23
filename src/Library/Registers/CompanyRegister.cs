@@ -61,7 +61,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public void Add(Company company)
         {
-            this.companyList.Add(company);
+            this.CompanyList.Add(company);
         }
         
         /// <summary>
@@ -116,13 +116,13 @@ namespace ClassLibrary
         /// Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
         /// </summary>
         /// <param name="nombre"></param>
-        /// <param name="ubi"></param>
+        /// <param name="location"></param>
         /// <param name="headings"></param>
         public Company CreateCompany(string nombre, LocationAdapter location, string headings)
         {
             Company nuevaCompany = new Company(nombre, location, headings);
             CompanyRegister.Instance.Add(nuevaCompany);
-            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany); // TODO todas las empresas tienen el mismo token
+            TokenRegister.Instance.Add( nuevaCompany.InvitationToken, nuevaCompany ); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
         }
 
