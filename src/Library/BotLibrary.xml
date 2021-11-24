@@ -428,24 +428,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="T:ClassLibrary.CompanyUserHandler">
-            <summary>
-            Handler encargado de dar a conocer los comandos disponibles para un usuario empresa.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.#ctor">
-            <summary>
-            Constructor de objetos CompanyUserHandler.
-            </summary>
-            <param name="channel"></param>
-        </member>
-        <member name="M:ClassLibrary.CompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
-            <summary>
-            Le da la bienvenida al usuario empresa y le pasa por pantalla los comandos disponibles.
-            </summary>
-            <param name="input"></param>
-            <param name="response"></param>
-        </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.

@@ -33,7 +33,6 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "nombre de la empresa";
-            handler.State = AddCompanyHandler.AddCompanyState.Name;
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese el pais:\n"));
@@ -46,15 +45,28 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "nombre de la empresa";
-            handler.State = AddCompanyHandler.AddCompanyState.Name;
             result = handler.InternalHandle(message, out response);
             message.Text = "Uruguay";
-            handler.State = AddCompanyHandler.AddCompanyState.Country;
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese el departamento:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.State));
+        }
 
+        [Test]
+        public void HandleDepartmentTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "nombre de la empresa";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Uruguay";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Montevideo";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("Ingrese la ciudad:\n"));
+            Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.City));
         }
 
         [Test]
