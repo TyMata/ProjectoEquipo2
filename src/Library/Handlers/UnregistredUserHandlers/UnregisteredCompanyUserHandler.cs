@@ -49,7 +49,7 @@ namespace ClassLibrary
             }
             else if(this.state == UnregisteredCompanyUserState.Token)
             {
-                this.data.Token = input.Text;
+                this.data.Token = input.Text.Trim();
                 if (TokenRegister.Instance.IsValid(this.data.Token))
                 {
                     Company temp = TokenRegister.Instance.GetCompany(this.data.Token);
