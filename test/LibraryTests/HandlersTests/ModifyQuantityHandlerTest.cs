@@ -1,5 +1,6 @@
 using System;
 using ClassLibrary;
+using System.Text;
 using NUnit.Framework;
 using Ucu.Poo.Locations.Client;
 
@@ -16,6 +17,8 @@ namespace Tests
         private DateTime dateTime;
         private ModifyQuantityHandler handler;
         private LocationAdapter location;
+        private IMessage message;
+        private Company company;
 
         /// <summary>
         /// SetUp de la clase ModifyQuantityHandlerTest.
@@ -23,22 +26,74 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
+            message = new TelegramBotMessage(1234, "/modificarcantidad");
             location = new LocationAdapter("address", "city", "department");
-            this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
-            this.material = new Material("material", "type", "clasificacion");
-            this.handler = new ModifyQuantityHandler();
+            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
+            material = new Material("material", "type", "clasificacion");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+            company.AddUser(1234);
+            company.AddOffer(oferta);
+            
+            handler = new ModifyQuantityHandler();
         }
 
         /// <summary>
-        /// Prueba que se realice el handle.
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
         /// </summary>
         [Test]
-        public void InternalHandleTest()
+        public void HandleStartTest()
         {
             string response;
-           bool result = this.handler.InternalHandle(new ConsoleMessage("/modificarcantidad"), out response);
+            bool result = handler.InternalHandle(message, out response);
+            StringBuilder sb = new StringBuilder("Que oferta desea modificar?\n");
+            foreach (Offer x in company.OfferRegister)
+            {
+                sb.Append($"Id : {x.Id}\n")
+                        .Append($"Material : {x.Material}\n")
+                        .Append($"Cantidad: {x.QuantityMaterial}\n")
+                        .Append($"Fecha de publicacion: {x.PublicationDate}\n")
+                        .Append($"Precio: {x.TotalPrice}\n")
+                        .Append($"\n-----------------------------------------------\n\n");  
+            }
+            sb.Append("Ingrese el Id de la oferta a modificar:\n");
             Assert.IsTrue(result);
-            //Assert.That(response, Is.EqualTo("Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n"));
+            Assert.That(response, Is.EqualTo(sb.ToString())); 
+            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
+        }
+
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
+        [Test]
+        public void HandleOfferListTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "1234567";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta:\n")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
+        }
+
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
+        ///  y que se cambie la cantidad del material de la oferta correctamente.
+        /// </summary>
+        [Test]
+        public void HandleFinaleTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "1234567";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "5";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.AreEqual(5,oferta.QuantityMaterial);
+            Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Start));
+
         }
 
         /// <summary>

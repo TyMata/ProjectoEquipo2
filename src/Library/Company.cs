@@ -28,7 +28,7 @@ namespace ClassLibrary
             }
             private set
             { 
-                this.id = CompanyRegister.Instance.CompanyList.Count + 1;
+                this.id = value;
             }
         }
 
@@ -216,7 +216,7 @@ namespace ClassLibrary
         {
             this.Name = name;
             this.Locations.Add(location);
-            this.id = 0; //TODO hacer lista de keywords this.name this.material (en offer)
+            this.Id = CompanyRegister.Instance.CompanyList.Count + 1;//TODO hacer lista de keywords this.name this.material (en offer)
             this.Headings = headings;
             this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
 
