@@ -25,7 +25,6 @@ namespace ClassLibrary
         public override bool InternalHandle(IMessage input, out string response)
         {
             response = "No se reconocio el comando, intente denuevo";
-            //TODO Setear primer Handler de la cadena ????????
             return false;
         }
     }

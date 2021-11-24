@@ -35,7 +35,7 @@ namespace Tests
             string departamento = "Montevideo";
             string ciudad = "Montevideo";
             string direccion = "Avenida 8 de Octubre";
-            location = new LocationAdapter(direccion,ciudad,departamento);
+            location = new LocationAdapter(direccion, ciudad, departamento);
             this.quantityMaterial = 15;
             this.company = new Company("farmashop", location, "farmacia");
             this.keywords = "Acido";

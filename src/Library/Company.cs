@@ -214,11 +214,12 @@ namespace ClassLibrary
         /// <param name="headings"></param>
         public Company(string name, LocationAdapter location, string headings)
         {
-            this.name = name;
+            this.Name = name;
             this.Locations.Add(location);
             this.id = 0; //TODO hacer lista de keywords this.name this.material (en offer)
             this.Headings = headings;
-            this.InvitationToken = this.GenerateToken();
+            this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
+
         }
         
         /// <summary>
@@ -278,27 +279,7 @@ namespace ClassLibrary
             Offer x = this.OfferRegister.Find(offer => offer.Id == id);
             this.OfferRegister.Remove(x);
         }
-        /// <summary>
-        /// Se genera un  token para una nueva empresa y se lo añade al diccionario
-        /// </summary>
-        /// <returns></returns>
-        public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa 
-        {
-            Random rnd = new Random();
-            StringBuilder token = new StringBuilder();
-            for (int i = 0; i < 3; i++)         //Creo un nuevo token
-            {
-                int num = rnd.Next(10000, 100000);
-                token.Append(num.ToString());
-                if (i != 2) token.Append("-");
-            }
-            if (TokenRegister.Instance.IsValid(token.ToString()))        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
-            {
-                throw new Exception(); //EL TOKEN YA EXISTE
-            }
-            TokenRegister.Instance.Add(token.ToString(), this);
-            return token.ToString();
-        }
+        /// TODO add token
         
         /// <summary>
         /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato

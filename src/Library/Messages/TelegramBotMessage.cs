@@ -13,11 +13,24 @@ namespace ClassLibrary
         /// <value></value>
         public int Id{get;}
 
+        private string text;
+        
         /// <summary>
         /// Devuelve el Message
         /// </summary>
         /// <value></value>
-        public string Text{get;}
+        public string Text
+        {
+            get
+            {
+                return this.text;
+            } 
+            set
+            {
+                this.text = value;
+            }
+            
+        }
 
         public TelegramBotMessage(int id, string text)
         {

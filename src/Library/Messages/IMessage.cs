@@ -16,6 +16,6 @@ namespace ClassLibrary
         /// Devuelve el Message.
         /// </summary>
         /// <value></value>
-        string Text{get;}
+        string Text{get; set;}
     }
 }

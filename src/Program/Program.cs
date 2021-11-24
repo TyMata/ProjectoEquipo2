@@ -49,25 +49,22 @@ namespace ConsoleApplication
             // //     return;
             // // }
 
-
             if (!File.Exists(@"data.json"))
             {
-                LocationAdapter location = new LocationAdapter("address","city","department");
-                CompanyRegister.Instance.CreateCompany("empresa",location , "rubro");
+                LocationAdapter location = new LocationAdapter("address", "city", "department");
+                CompanyRegister.Instance.CreateCompany("empresa", location, "rubro");
                 Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
-                Offer oferta = new Offer(123,new Material(), "habilitación",location, 25, 10000, company, true, new DateTime());
-                
-
+                Offer oferta = new Offer(123, new Material(), "habilitación", location, 25, 10000, company, true, new DateTime());                
                 string json = oferta.ConvertToJson();
                 Console.WriteLine(json);
                 File.WriteAllText(@"data.json", json);
             }
+
             // else
             // {
             //     Market.Instance.Initialize();
 
             //     string json = File.ReadAllText(@"data.json");
-
 
             //     JsonSerializerOptions options = new()
             //     {

@@ -23,10 +23,9 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            location = new LocationAdapter("address","city","department");
+            location = new LocationAdapter("address", "city", "department");
             this.oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
             this.material = new Material("material", "type", "clasificacion");
-            
             this.handler = new ModifyQuantityHandler();
         }
 
@@ -37,9 +36,9 @@ namespace Tests
         public void InternalHandleTest()
         {
             string response;
-            IHandler result = this.handler.Handle(new ConsoleMessage("/modificarcantidad"), out response);
-            Assert.IsNotNull(result);
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
+           bool result = this.handler.InternalHandle(new ConsoleMessage("/modificarcantidad"), out response);
+            Assert.IsTrue(result);
+            //Assert.That(response, Is.EqualTo("Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n"));
         }
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace Tests
         /// </summary>
         [Test]
         public void InternalNotHandleTest()
-        {   string response ;
+        {string response;
             IHandler result = handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
             Assert.IsNull(result);
             Assert.IsEmpty(response);

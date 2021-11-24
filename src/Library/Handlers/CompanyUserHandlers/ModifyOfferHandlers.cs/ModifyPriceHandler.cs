@@ -46,7 +46,7 @@ namespace ClassLibrary
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
-                if(this.company.OfferRegister != null)
+                if(this.company != null && this.company.OfferRegister != null)
                 {
                     foreach(Offer x in this.company.OfferRegister)
                     {
@@ -55,11 +55,18 @@ namespace ClassLibrary
                             .Append($"Cantidad: {x.QuantityMaterial}\n")
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
-                            .Append($"\n-----------------------------------------------\n\n")
-                            .Append("Cual quiere modificar?\n\n Ingrese el Id de esta:\n");
-                    }                       
+                            .Append($"\n-----------------------------------------------\n\n");
+                    }
+                    offers.Append("Ingrese el Id de la oferta a modificar:\n");                       
                     this.State = ModifyState.OfferList;
                     response = offers.ToString();
+                    return true;
+                }
+                else
+                {
+                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    response = offers.ToString() ;      
                     return true;
                 }
             }

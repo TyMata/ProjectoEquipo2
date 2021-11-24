@@ -13,14 +13,16 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public RemoveCompanyState State {get;set;}
+
         /// <summary>
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveCompany.
         /// </summary>
         /// <value></value>
+
         public RemoveCompanyData Data {get; set;}
 
         /// <summary>
-        /// Constructor de objetos RemoveCompanyHandler
+        /// Constructor de objetos RemoveCompanyHandler.
         /// </summary>
         public RemoveCompanyHandler()
         {
@@ -28,6 +30,7 @@ namespace ClassLibrary
             this.State = RemoveCompanyState.Start;
             this.Data = new RemoveCompanyData();
         }
+
         /// <summary>
         /// Pregunta por el nombre de la empresa la cual se quiere eliminar y luego de 
         /// verificar que ya esta registrada, la elimina.
@@ -45,6 +48,12 @@ namespace ClassLibrary
             }
             else if(this.State == RemoveCompanyState.Company)
             {
+                if (input.Text == "/menu")
+                {
+                    this.State = RemoveCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.State = RemoveCompanyState.Start;
                 this.Data.CompanyId = Convert.ToInt32(input.Text);
                 this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.CompanyId);
@@ -54,14 +63,23 @@ namespace ClassLibrary
                     response = $"La empresa {this.Data.Result.Name} ha sido eliminada";
                     return true;
                 }
-                else 
+                else
                 {
                     response = $"La empresa con el Id {this.Data.CompanyId} no esta registrada";
                     return true;
-                } 
+                }
             }
             response = string.Empty;   
             return false;
+        }
+
+        /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = RemoveCompanyState.Start;
+            this.Data = new RemoveCompanyData();
         }
 
         /// <summary>
