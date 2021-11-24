@@ -20,7 +20,7 @@ namespace ClassLibrary
         public CompanyUserHandler()
         {
             this.Command = "/empresa";
-            this.State = CompanyUserState.Start;
+            this.State = CompanyUserState.Start;//TODO ver de eliminar este handler
             this.company = null;
         }
         /// <summary>

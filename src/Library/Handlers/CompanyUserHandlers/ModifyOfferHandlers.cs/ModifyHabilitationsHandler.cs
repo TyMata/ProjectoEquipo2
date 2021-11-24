@@ -55,7 +55,8 @@ namespace ClassLibrary
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
-                    }   
+                    }
+                    offers.Append("Ingrese el id de la oferta:\n");
                 }            
                 this.State = ModifyState.OfferList;
                 response = offers.ToString();
