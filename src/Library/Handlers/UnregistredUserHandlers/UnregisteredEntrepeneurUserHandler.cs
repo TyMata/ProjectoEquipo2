@@ -128,7 +128,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Se guardan los datos que el usuario pasa por el chat.
+        /// Representa los datos que va obteniendo el comando UnregistredEntrepeneurHandler en los diferentes estados.
         /// </summary>
         public class UnregisteredEntrepeneurUserData
         {

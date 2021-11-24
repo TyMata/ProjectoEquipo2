@@ -93,12 +93,10 @@ namespace ClassLibrary
             /// El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             /// </summary>
             Start,
+            /// <summary>
+            /// Estado que vuelve a enviar el menu de comandos en caso de que el usuario lo pregunte.
+            /// </summary>
             NotFirstTime
-        }
-
-        public class RemoveUserData
-        {
-            public int User {get;set;}      //TODO Es necesario un data aca???
         }
     }
 }
