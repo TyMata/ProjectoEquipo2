@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Ucu.Poo.Locations.Client;
+
 namespace ClassLibrary
 {
     /// <summary>

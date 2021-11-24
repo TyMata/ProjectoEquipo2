@@ -37,14 +37,6 @@ namespace ClassLibrary
         public virtual bool InternalHandle(IMessage input, out string response)
         {
             throw new Exception();
-            // if (this.nextHandler != null)
-            // {
-            //     this.nextHandler.Handle(input);
-            // }
-            // else
-            // {
-            //     messageChannel.SendMessage("Ni idea");
-            // }
         }
 
         /// <summary>

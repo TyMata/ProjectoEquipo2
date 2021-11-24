@@ -1,7 +1,6 @@
 // using ClassLibrary;
 // using NUnit.Framework;
 // using System.Collections.Generic;
-// using Ucu.Poo.Locations.Client;
 
 // namespace Tests
 // {
