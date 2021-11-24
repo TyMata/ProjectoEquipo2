@@ -15,9 +15,9 @@ namespace ClassLibrary
         public ResumeOfferState State {get; private set;}
 
         /// <summary>
-        /// Clase para guardar la informacion que envia el usario por el chat cuando se le pregunta
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
         /// </summary>
-        /// <returns></returns>
+        /// <value></value>
         public ResumeOfferData Data {get; private set;} = new ResumeOfferData();
 
         private Company company;

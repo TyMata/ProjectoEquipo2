@@ -115,7 +115,7 @@ namespace ClassLibrary
             /// <summary>
             /// El estado en donde recibe la Id, se busca la oferta y se la remueve del mercado.
             /// </summary>
-           IdOfferState
+            IdOfferState
         }
 
         /// <summary>

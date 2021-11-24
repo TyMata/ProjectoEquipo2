@@ -9,7 +9,7 @@ namespace ClassLibrary
     public class SuspendOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Estado para este handler.
+        /// Estado para el handler de ModifyPriceHandler.
         /// </summary>
         /// <value></value>
         public SuspendOfferState State {get; private set;}
