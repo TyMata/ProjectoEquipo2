@@ -48,6 +48,7 @@ namespace ClassLibrary
             }
             else if(this.State == RemoveCompanyState.Company)
             {
+                string id = input.Text;
                 if (input.Text == "/menu")
                 {
                     this.State = RemoveCompanyState.Start;
@@ -55,8 +56,8 @@ namespace ClassLibrary
                     return true;
                 }
                 this.State = RemoveCompanyState.Start;
-                this.Data.CompanyId = Convert.ToInt32(input.Text);
-                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.CompanyId);
+                this.Data.CompanyId = Convert.ToInt32(id);
+                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.CompanyId); // sepide el Id de la company pero se usa el id del user para buscrla
                 if (this.Data.Result != null)
                 {
                     CompanyRegister.Instance.Remove(this.Data.Result);

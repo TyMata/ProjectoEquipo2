@@ -94,13 +94,8 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.GenerateToken">
-            <summary>
-            Se genera un  token para una nueva empresa y se lo añade al diccionario
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.Company.ConvertToJson">
+            TODO add token
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1667,6 +1662,12 @@
             Convierte el texto en formato Json a objeto.
             </summary>
             <param name="json"></param>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.GenerateToken">
+            /// <summary>
+            Se genera un  token para una nueva empresa y se lo añade al diccionario, por expert est aaca
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>
