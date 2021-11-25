@@ -45,21 +45,29 @@ namespace ClassLibrary
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
-                if(this.company.OfferRegister != null)
+                if(this.company != null && this.company.OfferRegister != null)
                 {
                     foreach(Offer x in this.company.OfferRegister)
                     {
-                        offers.Append($"ID : {x.Id}\n")
-                            .Append($"Material : {x.Material}\n")
+                        offers.Append($"Id: {x.Id}\n")
+                            .Append($"Material: {x.Material}\n")
                             .Append($"Cantidad: {x.QuantityMaterial}\n")                            //TODO preguntar por id de la oferta a modificar
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")
                             .Append($"\n-----------------------------------------------\n\n");
-                    }   
-                }            
-                this.State = ModifyState.OfferList;
-                response = offers.ToString();
-                return true;
+                    }
+                    offers.Append("Ingrese el Id de la oferta a modificar:\n"); 
+                    this.State = ModifyState.OfferList;
+                    response = offers.ToString();
+                    return true;   
+                }
+                else
+                {
+                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    response = offers.ToString() ;      
+                    return true;
+                }
             }
             else if(this.State == ModifyState.OfferList)
             {
@@ -74,7 +82,7 @@ namespace ClassLibrary
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
                 this.Data.Result.ChangeHabilitation(input.Text); 
                 this.State = ModifyState.Start;
-                response = "Las habilitaciones se han modificó";
+                response = "Las habilitaciones se han modificado";
                 return true;
             }
             response = string.Empty;

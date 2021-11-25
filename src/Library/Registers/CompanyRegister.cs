@@ -61,7 +61,7 @@ namespace ClassLibrary
         /// <param name="company"></param>
         public void Add(Company company)
         {
-            this.companyList.Add(company);
+            this.CompanyList.Add(company);
         }
         
         /// <summary>
@@ -122,7 +122,7 @@ namespace ClassLibrary
         {
             Company nuevaCompany = new Company(nombre, location, headings);
             CompanyRegister.Instance.Add(nuevaCompany);
-            TokenRegister.Instance.TokenList.Add("nuevo token",nuevaCompany); // TODO todas las empresas tienen el mismo token
+            TokenRegister.Instance.Add( nuevaCompany.InvitationToken, nuevaCompany ); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
         }
 

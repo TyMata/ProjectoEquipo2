@@ -42,18 +42,29 @@ namespace ClassLibrary
         {
             if (State == OfferState.Start && CanHandle(input))
             {
-                this.State = OfferState.Material;
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa:\n\n");
-                foreach (Material item in this.company.ProducedMaterials)
+                if (this.company != null)
                 {
-                    materials.Append($"Nombre del Material: {item.Name}\n")
-                            .Append($"Tipo: {item.Type}\n")
-                            .Append($"Clasificacion: {item.Classification}\n")
-                            .Append($"\n-----------------------------------------------\n\n");
+                    foreach (Material item in this.company.ProducedMaterials)
+                    {
+                        materials.Append($"Nombre del Material: {item.Name}\n")
+                                .Append($"Tipo: {item.Type}\n")
+                                .Append($"Clasificacion: {item.Classification}\n")
+                                .Append($"\n-----------------------------------------------\n\n");
+                    }
+                    this.State = OfferState.Material;
+                    materials.Append($"Que material desea vender?:\n")
+                            .Append($"\nIngrese el nombre\n");
+                    response = materials.ToString();
+                    return true;
                 }
-                response = "Que material desea vender?:\nIngrese el nombre\n";
-                return true;
+                else
+                {
+                    materials.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    response = materials.ToString();
+                }
             }
             else if(this.State == OfferState.Material)
             {

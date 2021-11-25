@@ -182,6 +182,7 @@ namespace ClassLibrary
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
+            x.ChangeAvailability();
             this.SuspendedOfferList.Add(x);
             this.ActualOfferList.Remove(x);
         }
@@ -197,6 +198,7 @@ namespace ClassLibrary
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
             }
             Offer x = this.SuspendedOfferList.Find(offer => offer.Id == id);
+            x.ChangeAvailability();
             this.ActualOfferList.Add(x);
             this.SuspendedOfferList.Remove(x);
         }

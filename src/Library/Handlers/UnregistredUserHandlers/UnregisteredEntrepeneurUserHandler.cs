@@ -71,6 +71,7 @@ namespace ClassLibrary
             else if (this.State == UnregisteredEntrepeneurUserState.Habilitations)
             {
                 string habilitaciones =  input.Text;
+                this.State = UnregisteredEntrepeneurUserState.Headings;
                 response = "Ingrese su rubro\n";
                 return true;
             }
