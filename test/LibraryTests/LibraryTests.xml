@@ -159,6 +159,68 @@
             Prueba que el InternalHandle no se haga ya que no se envia el mensaje correcto y qu eno cambie el estado del handler.
             </summary>
         </member>
+        <member name="T:Tests.ModifyHabilitationsHandlerTests">
+            <summary>
+            Prueba el handler para modificar las habilitaciones en una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyHabilitationsHandlerTests.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyHabilitationsHandlerTests.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyHabilitationsHandlerTests.HandleOfferListTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyHabilitationsHandlerTests.HandleFinaleTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
+             y que se cambien las habilitaciones del material de la oferta correctamente.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyHabilitationsHandlerTests.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="T:Tests.ModifyPriceHandlerTests">
+            <summary>
+            Prueba el handler para modificar la cantidad en una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyPriceHandlerTests.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyPriceHandlerTests.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyPriceHandlerTests.HandleOfferListTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyPriceHandlerTests.HandleFinaleTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
+             y que se cambie la cantidad del material de la oferta correctamente.
+            </summary>
+        </member>
+        <member name="M:Tests.ModifyPriceHandlerTests.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
         <member name="T:Tests.ModifyQuantityHandlerTest">
             <summary>
             Prueba el handler para modificar la cantidad en una oferta.
