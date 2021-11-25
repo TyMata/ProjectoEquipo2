@@ -78,10 +78,7 @@ namespace ClassLibrary
         {
             IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
             Users usuario = new Users(id, rol);
-<<<<<<< HEAD
-=======
             UserRegister.Instance.Add(usuario);
->>>>>>> origin
         }
 
         /// <summary>

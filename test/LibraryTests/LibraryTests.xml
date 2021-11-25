@@ -252,6 +252,62 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
+        <member name="T:Tests.PublishOfferHandlerTest">
+            <summary>
+            Prueba el handler para publicar una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandleMaterialTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandleQuantityTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
+             y que se cambie la cantidad del material de la oferta correctamente.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="T:Tests.ResumeOfferHandlerTest">
+            <summary>
+            Prueba el handler para reanudar una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.ResumeOfferHandlerTest.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.ResumeOfferHandlerTest.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.ResumeOfferHandlerTest.HandleSuspendOfferTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.ResumeOfferHandlerTest.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
         <member name="T:Tests.LocationAdapterTests">
             <summary>
             Prueba la clase <see cref="T:ClassLibrary.LocationAdapter"/>

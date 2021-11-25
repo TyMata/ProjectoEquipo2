@@ -103,29 +103,6 @@
             <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="M:ClassLibrary.Company.LoadFromJson(System.String)">
-<<<<<<< HEAD
-            <summary>
-            Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
-            </summary>
-            <param name="json"></param>
-        </member>
-        <member name="M:ClassLibrary.Company.GetMaterial(System.String)">
-            <summary>
-            Retorna un material segun el nombre de estes
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Company.GetLocation(System.String)">
-            <summary>
-            Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
-            </summary>
-            <param name="address"></param>
-            <returns></returns>
-        </member>
-        <member name="T:ClassLibrary.AbstractHandler">
-=======
->>>>>>> origin
             <summary>
             Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
             </summary>
@@ -195,11 +172,6 @@
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.AddCompanyHandler.#ctor(ClassLibrary.IMessageChannel)">
-            <summary>
-            Constructor de los objetos AddCompanyHandler
-=======
         <member name="P:ClassLibrary.AddCompanyHandler.State">
             <summary>
             Estado para el handler de AddCompany.
@@ -215,26 +187,10 @@
         <member name="M:ClassLibrary.AddCompanyHandler.#ctor">
             <summary>
             Constructor de los objetos AddCompanyHandler.
->>>>>>> origin
             </summary>
         </member>
         <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-<<<<<<< HEAD
-            Pide algunos datos de la empresa que se quiere registrar la crea
-            </summary>
-            <param name="input"></param>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Name">
-            <summary>
-            La dirección que se ingresó en el estado AddressState.AddressPrompt.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.CompanyData.Country">
-            <summary>
-            El resultado de la búsqueda de la dirección ingresada.
-            </summary>
-=======
             Pide algunos datos de la empresa que se quiere registrar la crea.
             </summary>
             <param name="input"></param>
@@ -335,7 +291,6 @@
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
             <value></value>
->>>>>>> origin
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
@@ -1177,11 +1132,7 @@
             </summary>
             <value></value>
         </member>
-<<<<<<< HEAD
-        <member name="P:ClassLibrary.LocationAdapter.Latitude">
-=======
         <member name="P:ClassLibrary.LocationAdapter.City">
->>>>>>> origin
             <summary>
             Devuelve y guarda la ciudad.
             </summary>
@@ -1193,22 +1144,6 @@
             </summary>
             <value></value>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.LocationAdapter.#ctor(Ucu.Poo.Locations.Client.Location)">
-            <summary>
-            Adaptador del objeto location de la api
-            </summary>
-            <param name="location"></param>
-        </member>
-        <member name="T:ClassLibrary.LocationApiAdapter">
-            <summary>
-            Esta clase representa un adaptador de una Api de ubicaciones
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.LocationApiAdapter.GetLocation(System.String,System.String,System.String)">
-            <summary>
-            Transforma la Location de la Api a una Location del Bot
-=======
         <member name="M:ClassLibrary.LocationAdapter.#ctor(System.String,System.String,System.String)">
             <summary>
             Adaptador de la Location Api
@@ -1220,21 +1155,12 @@
         <member name="M:ClassLibrary.LocationAdapter.GetDistance(System.String,System.String,System.String)">
             <summary>
             Retorna la distancia entre dos locations
->>>>>>> origin
             </summary>
             <param name="address"></param>
             <param name="city"></param>
             <param name="department"></param>
             <returns></returns>
         </member>
-<<<<<<< HEAD
-        <member name="M:ClassLibrary.LocationApiAdapter.GetDistance(System.String,System.String)">
-            <summary>
-            Devuelve las distancia entre dos direcciones
-            </summary>
-            <param name="fromAddress"></param>
-            <param name="toAddress"></param>
-=======
         <member name="M:ClassLibrary.LocationAdapter.GetDuration(System.String,System.String,System.String)">
             <summary>
             REtorna la duracion entre dos locaciones
@@ -1242,7 +1168,6 @@
             <param name="address"></param>
             <param name="city"></param>
             <param name="department"></param>
->>>>>>> origin
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.Material">
