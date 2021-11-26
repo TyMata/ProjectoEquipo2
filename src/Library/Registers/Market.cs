@@ -90,7 +90,7 @@ namespace ClassLibrary
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id,material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            Offer nuevaOferta = new Offer(id ,material , habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
