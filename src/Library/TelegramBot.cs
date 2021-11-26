@@ -24,7 +24,7 @@ namespace ClassLibrary
             this.handlers = new StartHandler();
             this.handlers
                 .SetNext(new UnregisteredCompanyUserHandler())
-                .SetNext(new UnregisteredEntrepeneurUserHandler())
+                .SetNext(new UnregisteredEntrepreneurUserHandler())
                 .SetNext(new AddCompanyHandler())
                 .SetNext(new RemoveUserHandler())
                 .SetNext(new RemoveCompanyHandler())

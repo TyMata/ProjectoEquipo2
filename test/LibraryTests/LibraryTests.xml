@@ -308,6 +308,41 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
+        <member name="T:Tests.SuspendOfferHandlerTests">
+            <summary>
+            Prueba el handler para reanudar una oferta.
+            </summary>
+        </member>
+        <member name="M:Tests.SuspendOfferHandlerTests.Setup">
+            <summary>
+            SetUp de la clase ModifyQuantityHandlerTest.
+            </summary>
+        </member>
+        <member name="M:Tests.SuspendOfferHandlerTests.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.SuspendOfferHandlerTests.HandleSuspendOfferTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.SuspendOfferHandlerTests.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredCompanyUserHandlerTests.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
         <member name="T:Tests.LocationAdapterTests">
             <summary>
             Prueba la clase <see cref="T:ClassLibrary.LocationAdapter"/>

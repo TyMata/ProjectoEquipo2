@@ -8,20 +8,20 @@ namespace ClassLibrary
     /// <summary>
     /// Handler encargado de crear un usuario emprendedor.
     /// </summary>
-    public class UnregisteredEntrepeneurUserHandler : AbstractHandler
+    public class UnregisteredEntrepreneurUserHandler : AbstractHandler
     {
-        public UnregisteredEntrepeneurUserState State { get; set; }
+        public UnregisteredEntrepreneurUserState State { get; set; }
 
-        public UnregisteredEntrepeneurUserData Data{ get; set; }
+        public UnregisteredEntrepreneurUserData Data{ get; set; }
 
         /// <summary>
         /// Constructor de objetos UnregistredEntrepreneurUserHandler.
         /// </summary>
-        public UnregisteredEntrepeneurUserHandler()
+        public UnregisteredEntrepreneurUserHandler()
         {
             this.Command = "/emprendedornoregistrado";
-            this.State = UnregisteredEntrepeneurUserState.Start;
-            this.Data = new UnregisteredEntrepeneurUserData();
+            this.State = UnregisteredEntrepreneurUserState.Start;
+            this.Data = new UnregisteredEntrepreneurUserData();
         }
         /// <summary>
         /// Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor.
@@ -30,55 +30,55 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if ((this.State == UnregisteredEntrepeneurUserState.Start) && (CanHandle(input)))
+            if ((this.State == UnregisteredEntrepreneurUserState.Start) && (CanHandle(input)))
             {
                 StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
                                                 .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
                                                 .Append("Ingrese su nombre completo\n");
-                this.State = UnregisteredEntrepeneurUserState.Name;
+                this.State = UnregisteredEntrepreneurUserState.Name;
                 response = datos.ToString();
                 return true;
             }
-            else if(this.State == UnregisteredEntrepeneurUserState.Name)
+            else if(this.State == UnregisteredEntrepreneurUserState.Name)
             {
                 this.Data.Name =  input.Text;
-                this.State = UnregisteredEntrepeneurUserState.Address;
+                this.State = UnregisteredEntrepreneurUserState.Address;
                 response = "Ingrese su dirección:\n";
                 return true;
             }
-            else if (this.State == UnregisteredEntrepeneurUserState.Address)
+            else if (this.State == UnregisteredEntrepreneurUserState.Address)
             {
                 this.Data.Address =  input.Text;
-                this.State = UnregisteredEntrepeneurUserState.City;
+                this.State = UnregisteredEntrepreneurUserState.City;
                 response = "Ingrese la ciudad:\n";
                 return true;
             }
-            else if(this.State == UnregisteredEntrepeneurUserState.City)
+            else if(this.State == UnregisteredEntrepreneurUserState.City)
             {
                 this.Data.City = input.Text;
-                this.State = UnregisteredEntrepeneurUserState.Department;
+                this.State = UnregisteredEntrepreneurUserState.Department;
                 response = "Ingrese el departamento:\n";
                 return true;
             }
-            else if (this.State == UnregisteredEntrepeneurUserState.Department)
+            else if (this.State == UnregisteredEntrepreneurUserState.Department)
             {
                 this.Data.Department = input.Text;
-                this.State = UnregisteredEntrepeneurUserState.Habilitations;
+                this.State = UnregisteredEntrepreneurUserState.Habilitations;
                 this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
                 response = "Ingrese sus habilitaciones\n";
                 return true;
             }
-            else if (this.State == UnregisteredEntrepeneurUserState.Habilitations)
+            else if (this.State == UnregisteredEntrepreneurUserState.Habilitations)
             {
                 string habilitaciones =  input.Text;
-                this.State = UnregisteredEntrepeneurUserState.Headings;
+                this.State = UnregisteredEntrepreneurUserState.Headings;
                 response = "Ingrese su rubro\n";
                 return true;
             }
-            else if (this.State == UnregisteredEntrepeneurUserState.Headings)
+            else if (this.State == UnregisteredEntrepreneurUserState.Headings)
             {
                 string rubro = input.Text;
-                this.State = UnregisteredEntrepeneurUserState.Start;
+                this.State = UnregisteredEntrepreneurUserState.Start;
                 UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
                 response = "Gracias por sus datos, se esta creando su usuario\n";
                 return true;
@@ -94,7 +94,7 @@ namespace ClassLibrary
         /// <summary>
         /// Estados para el handler de un emprendedor no registrado
         /// </summary>
-        public enum UnregisteredEntrepeneurUserState
+        public enum UnregisteredEntrepreneurUserState
         {
             Start,
             Name,
@@ -108,7 +108,7 @@ namespace ClassLibrary
         /// <summary>
         /// Se guardan los datos que el usuario pasa por el chat.
         /// </summary>
-        public class UnregisteredEntrepeneurUserData
+        public class UnregisteredEntrepreneurUserData
         {
             /// <summary>
             /// El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
