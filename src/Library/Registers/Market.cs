@@ -19,10 +19,12 @@ namespace ClassLibrary
         /// <value></value>
         public int Count {get;set;}
 
-        private Market()
+        [JsonConstructor]
+        public Market()
         {
             Initialize();
         }
+
         /// <summary>
         /// Se crea un Singelton de la clase Market.
         /// </summary>
@@ -208,26 +210,28 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson(JsonSerializerOptions options)
         {
-            string result = "{\"Items\":[";
+            // string result = "{\"Items\":[";
 
-            foreach (var item in this.actualOfferList)
-            {
-                result = result + item.ConvertToJson() + ",";
-            }
+            // foreach (var item in this.actualOfferList)
+            // {
+            //     result = result + item.ConvertToJson() + ",";
+            // }
 
-            result = result.Remove(result.Length - 1);
-            result = result + "]}";
+            // result = result.Remove(result.Length - 1);
+            // result = result + "]}";
 
-            string temp = JsonSerializer.Serialize(this.actualOfferList);
+            // string temp = JsonSerializer.Serialize(this.actualOfferList);
 
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
             return JsonSerializer.Serialize(this, options);
-        }  
+        } 
+
+        public void LoadFromJson(string json, JsonSerializerOptions options)
+        {
+            Market temp = JsonSerializer.Deserialize<Market>(json, options);
+            this.actualOfferList = temp.ActualOfferList;
+            this.suspendedOfferList = temp.suspendedOfferList;
+        }
     }
 }

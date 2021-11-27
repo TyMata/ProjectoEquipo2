@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -49,34 +50,27 @@ namespace ConsoleApplication
             // //     return;
             // // }
 
-            if (!File.Exists(@"data.json"))
+            // string jsonD = File.ReadAllText(@"data.json");
+
+            JsonSerializerOptions options = new()
             {
-                LocationAdapter location = new LocationAdapter("address", "city", "department");
-                CompanyRegister.Instance.CreateCompany("empresa", location, "rubro");
-                Company company = CompanyRegister.Instance.GetCompanyByUserId(1234567);
-                Offer oferta = new Offer(123, new Material(), "habilitación", location, 25, 10000, company, true, new DateTime());                
-                string json = oferta.ConvertToJson();
-                Console.WriteLine(json);
-                File.WriteAllText(@"data.json", json);
-            }
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
 
-            // else
-            // {
-            //     Market.Instance.Initialize();
+            Console.WriteLine(CompanyRegister.Instance.ConvertToJson(options));
+            Console.WriteLine(Market.Instance.ConvertToJson(options));
 
-            //     string json = File.ReadAllText(@"data.json");
-
-            //     JsonSerializerOptions options = new()
-            //     {
-            //         ReferenceHandler = MyReferenceHandler.Instance,
-            //         WriteIndented = true
-            //     };
-
-            //     Offer offer = JsonSerializer.Deserialize<Offer>(json, options);
-            //     Console.WriteLine(offer.ConvertToJson());
-            // }
+            // Market.Instance.Initialize();
+            // CompanyRegister.Instance.Initialize();
+            
+            string jsonOffer = Market.Instance.ConvertToJson(options);
+            string jsonCompany = CompanyRegister.Instance.ConvertToJson(options);
+            Console.WriteLine(jsonOffer);
+            File.WriteAllText(@"data.json", jsonOffer);
+            Console.WriteLine(jsonCompany);
+            File.WriteAllText(@"data.json", jsonCompany);
         }
-    
     }
 }
 
