@@ -9,9 +9,16 @@ namespace ClassLibrary
     /// Handler encargado de crear un usuario emprendedor.
     /// </summary>
     public class UnregisteredEntrepreneurUserHandler : AbstractHandler
-    {
+    {   
+        /// <summary>
+        /// Estado para el handler de UnregisteredEntrepreneurUserHandler.
+        /// </summary>
+        /// <value></value>
         public UnregisteredEntrepreneurUserState State { get; set; }
-
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando UnregisteredEntrepreneurUserHandler.
+        /// </summary>
+        /// <value></value>
         public UnregisteredEntrepreneurUserData Data{ get; set; }
 
         /// <summary>

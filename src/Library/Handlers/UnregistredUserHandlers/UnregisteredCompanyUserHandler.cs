@@ -7,9 +7,16 @@ namespace ClassLibrary
     /// Handler encargado de delegar la accion de registrar un usuario empresa.
     /// </summary>
     public class UnregisteredCompanyUserHandler : AbstractHandler
-    {
+    {   
+        /// <summary>
+        /// Estado para el handler de UnregisteredCompanyUserState .
+        /// </summary>
+        /// <value></value>
         public UnregisteredCompanyUserState State { get; set; }
-
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando UnregisteredCompanyUserHandler.
+        /// </summary>
+        /// <value></value>
         public UnregisteredCompanyUserData Data{ get; set; }
         /// <summary>
         /// Constructor de objetos UnregistredCompanyUserHandler.
@@ -69,14 +76,18 @@ namespace ClassLibrary
                 return false;
             }
         }
-
+        /// <summary>
+        /// Estados para el handler de un CompanyUser no registrado
+        /// </summary>
         public enum UnregisteredCompanyUserState
-        {
+        {    
             Start,
             NotFirstTime,
             Token
         }
-
+        /// <summary>
+        /// Se guardan los datos que el usuario pasa por el chat.
+        /// </summary>
         public class UnregisteredCompanyUserData
         {
             /// <summary>

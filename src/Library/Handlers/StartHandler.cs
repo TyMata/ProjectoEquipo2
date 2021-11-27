@@ -95,7 +95,9 @@ namespace ClassLibrary
             Start,
             NotFirstTime
         }
-
+        /// <summary>
+        /// Se crea la clase RemoveUserData para cuando se desea eliminar un usuario  de la UserData.
+        /// </summary>
         public class RemoveUserData
         {
             public int User {get;set;}      //TODO Es necesario un data aca???

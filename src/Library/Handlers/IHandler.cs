@@ -3,7 +3,7 @@ using System;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase
+    /// Esta clase representa los handlers.
     /// </summary>
     public interface IHandler
     {

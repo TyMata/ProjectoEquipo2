@@ -94,6 +94,10 @@ namespace Tests
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Price));
 
         }
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+        /// y que se modifique el precio de la oferta correctamente.
+        /// </summary>
         [Test]
         public void HandlePriceTest()
         {
@@ -118,6 +122,10 @@ namespace Tests
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Location));
 
         }
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+        /// y que se modifique la location de la oferta correctamente.
+        /// </summary>
         [Test]
         public void HandleLocationTest()
         {
@@ -134,6 +142,10 @@ namespace Tests
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Habilitations));
 
         }//TODO Arreglar Location y habilitationTest.
+        /// <summary>
+        ///  /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+        /// y que se modifique las habilitaciones de la oferta correctamente.
+        /// </summary>
         [Test]
         public void HandleHabilitationTest()
         {

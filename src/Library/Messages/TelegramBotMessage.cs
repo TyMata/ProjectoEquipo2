@@ -31,7 +31,11 @@ namespace ClassLibrary
             }
             
         }
-
+      /// <summary>
+      /// Se crea el constructor de TelegramBotMessage que tiene como parametros id y text.
+      /// </summary>
+      /// <param name="id"></param>
+      /// <param name="text"></param>
         public TelegramBotMessage(int id, string text)
         {
             this.Id = id;
