@@ -3,7 +3,10 @@ using NUnit.Framework;
 using ClassLibrary;
 
 namespace Tests
-{
+{   
+    /// <summary>
+    /// Se prueba el handler para remover una company.
+    /// </summary>
     [TestFixture]
     public class RemoveCompanyHandlerTests
     {
@@ -11,6 +14,9 @@ namespace Tests
         private Company company;
         private RemoveCompanyHandler handler;
 
+        /// <summary>
+        /// Se setea la company a eliminar.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -18,7 +24,9 @@ namespace Tests
             company = CompanyRegister.Instance.CreateCompany("company", new LocationAdapter("address","city","departemnt"),"Headings");
             handler = new RemoveCompanyHandler();
         }
-
+        /// <summary>
+        ///  Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+        /// </summary>
         [Test]
         public void HandleStartTest()
         {           
@@ -28,7 +36,10 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿Cual es el Id de la empresa que quieres eliminar?"));
             Assert.That(handler.State, Is.EqualTo(RemoveCompanyHandler.RemoveCompanyState.Company));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// Borrando a la company que se deseaba eliminar.
+        /// </summary>
         [Test]
         public void HandleCompanyTest()
         {
@@ -40,7 +51,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo($"La empresa {company.Name} ha sido eliminada"));
             Assert.That(handler.State, Is.EqualTo(RemoveCompanyHandler.RemoveCompanyState.Start));
         }
-
+        /// <summary>
+        /// Prueba que no se realice el handler.
+        /// </summary>
         [Test]
         public void DoesNotHandleTest()
         {
