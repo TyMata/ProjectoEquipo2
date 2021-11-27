@@ -62,7 +62,6 @@ namespace ClassLibrary
                     response = offers.ToString();
                     return true; 
                 }   
-                
                 else
                 {
                     offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")

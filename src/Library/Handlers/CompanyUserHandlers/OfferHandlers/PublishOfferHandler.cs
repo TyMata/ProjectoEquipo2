@@ -85,15 +85,26 @@ namespace ClassLibrary
                 this.Data.Price = Convert.ToDouble(input.Text);
                 this.State = OfferState.Location;
                 StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
-                foreach (LocationAdapter item in this.company.Locations) 
+                if (this.company.Locations!=null)
                 {
-                    location.Append($"Ubicacion:\n")   
-                            .Append($"Direccion: {item.Address}\n")   
-                            .Append($"\n-----------------------------------------------\n\n");
-                }
+
+                      foreach (LocationAdapter item in this.company.Locations) 
+                      {
+                          location.Append($"Ubicacion:\n")   
+                                  .Append($"Direccion: {item.Address}\n")   
+                                  .Append($"\n-----------------------------------------------\n\n");
+                      }
                 location.Append("Ingresa la direccion de esta:\n");
                 response = location.ToString();
                 return true;
+                }
+                else 
+                {
+                    location.Append("La empresa no tiene ninguna ubicacion cargada.\n")
+                            .Append("Ingrese /menu si quiere volver a ver a los comandos disponibles.");
+
+                }
+              
             }
             else if(this.State == OfferState.Location)
             {

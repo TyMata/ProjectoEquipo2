@@ -2,20 +2,20 @@ using System;
 using ClassLibrary;
 using System.Text;
 using NUnit.Framework;
-using Ucu.Poo.Locations.Client;
+
 
 namespace Tests
 {
     /// <summary>
-    /// Prueba el handler para modificar la cantidad en una oferta.
+    /// Prueba el handler para modificar las habilitaciones en una oferta.
     /// </summary>
     [TestFixture]
-    public class ModifyQuantityHandlerTest
+    public class ModifyHabilitationsHandlerTests
     {
         private Offer oferta;
         private Material material;
         private DateTime dateTime;
-        private ModifyQuantityHandler handler;
+        private ModifyHabilitationsHandler handler;
         private LocationAdapter location;
         private IMessage message;
         private Company company;
@@ -26,7 +26,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            message = new TelegramBotMessage(1234, "/modificarcantidad");
+            message = new TelegramBotMessage(1234, "/modificarhabilitaciones");
             location = new LocationAdapter("address", "city", "department");
             oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
             material = new Material("material", "type", "clasificacion");
@@ -34,11 +34,11 @@ namespace Tests
             company.AddUser(1234);
             company.AddOffer(oferta);
             
-            handler = new ModifyQuantityHandler();
+            handler = new ModifyHabilitationsHandler();
         }
 
         /// <summary>
-        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
         [Test]
         public void HandleStartTest()
@@ -48,8 +48,8 @@ namespace Tests
             StringBuilder sb = new StringBuilder("Que oferta desea modificar?\n");
             foreach (Offer x in company.OfferRegister)
             {
-                sb.Append($"Id : {x.Id}\n")
-                        .Append($"Material : {x.Material}\n")
+                sb.Append($"Id: {x.Id}\n")
+                        .Append($"Material: {x.Material}\n")
                         .Append($"Cantidad: {x.QuantityMaterial}\n")
                         .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                         .Append($"Precio: {x.TotalPrice}\n")
@@ -58,7 +58,7 @@ namespace Tests
             sb.Append("Ingrese el Id de la oferta a modificar:\n");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(sb.ToString())); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
+            Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.OfferList));
         }
 
         /// <summary>
@@ -72,13 +72,13 @@ namespace Tests
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta:\n")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
+            Assert.That(response, Is.EqualTo("Pase por aquí el link que lleva a sus habilitaciones\n")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
         }
 
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
-        ///  y que se cambie la cantidad del material de la oferta correctamente.
+        ///  y que se cambien las habilitaciones del material de la oferta correctamente.
         /// </summary>
         [Test]
         public void HandleFinaleTest()
@@ -87,13 +87,12 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
-            message.Text = "5";
+            message.Text = "link";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.AreEqual(5,oferta.QuantityMaterial);
-            Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Start));
-
+            Assert.AreEqual("link",oferta.Habilitation);
+            Assert.That(response, Is.EqualTo("Las habilitaciones se han modificado")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Start));
         }
 
         /// <summary>
@@ -101,7 +100,8 @@ namespace Tests
         /// </summary>
         [Test]
         public void InternalNotHandleTest()
-        {string response;
+        {
+            string response;
             IHandler result = handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
             Assert.IsNull(result);
             Assert.IsEmpty(response);
