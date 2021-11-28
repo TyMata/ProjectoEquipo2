@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// </summary>
         public UnregisteredCompanyUserHandler()
         {
-            this.Command = "/empresanoregistrada";
+            this.Command = "/usuarioempresanoregistrado";
             this.State = UnregisteredCompanyUserState.Start;
             this.Data = new UnregisteredCompanyUserData();
         }
@@ -39,9 +39,9 @@ namespace ClassLibrary
         {
             if (this.State == UnregisteredCompanyUserState.Start && CanHandle(input))
             {
-                StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
-                                                .Append("Para poder registrarte vamos a necesitar el codigo de invitacion\n")
-                                                .Append("Ingrese el codigo de invitacion\n");
+                StringBuilder datos = new StringBuilder("¡Así que eres usuario de una empresa!\n")
+                                                .Append("Para poder registrarte vamos a necesitar el código de invitación.\n")
+                                                .Append("Ingrese el código de invitación.");
                 this.State = UnregisteredCompanyUserState.Token;
                 response = datos.ToString();
                 return true;
@@ -54,13 +54,13 @@ namespace ClassLibrary
                     Company temp = TokenRegister.Instance.GetCompany(this.Data.Token);
                     temp.AddUser(input.Id);
                     this.State = UnregisteredCompanyUserState.Start;
-                    response = $"Se verifico el Token ingresado y se esta creando su usario perteneciente a la empresa {temp.Name}";
+                    response = $"Se verificó el Token ingresado y se está creando su usuario perteneciente a la empresa {temp.Name}.";
                     return true;
                 }
                 else
                 {
                     this.State = UnregisteredCompanyUserState.NotFirstTime;
-                    response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitacion";
+                    response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitación.";
                     return true;
                 }
             }

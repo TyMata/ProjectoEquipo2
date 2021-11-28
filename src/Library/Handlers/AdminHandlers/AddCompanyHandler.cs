@@ -21,7 +21,7 @@ namespace ClassLibrary
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
         /// </summary>
         /// <value></value>
-        public AddCompanyData Data {get;set;}
+        public AddCompanyData Data { get; set; }
 
         /// <summary>
         /// Constructor de los objetos AddCompanyHandler.
@@ -56,7 +56,7 @@ namespace ClassLibrary
                 }
                 this.Data.Name = input.Text;
                 this.State = AddCompanyState.Country;
-                response = "Ingrese el pais:\n";
+                response = "Ingrese el país:\n";
                 return true;
             }
             else if(this.State == AddCompanyState.Country)
@@ -95,7 +95,7 @@ namespace ClassLibrary
                 }
                 this.Data.City = input.Text;
                 this.State = AddCompanyState.Address;
-                response = "Ingrese la direccion:\n";
+                response = "Ingrese la dirección:\n";
                 return true;
             } 
             else if(this.State == AddCompanyState.Address)
@@ -108,7 +108,7 @@ namespace ClassLibrary
                 }
                 this.Data.Address= input.Text;
                 this.State = AddCompanyState.Headings;
-                response = "Ingrese su rubro:\n";
+                response = "Ingrese el rubro:\n";
                 return true;
             } 
              else if(this.State == AddCompanyState.Headings)
@@ -120,10 +120,36 @@ namespace ClassLibrary
                     return true;
                 }
                 this.Data.Headings = input.Text;
+                this.State = AddCompanyState.Email;
+                response = "Ingrese el email:\n";
+                return true;
+            }
+            else if(this.State == AddCompanyState.Email)
+            {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
+                this.State = AddCompanyState.PhoneNumber;
+                this.Data.Email = input.Text;
+                response = "Ingrese el número de teléfono:\n";
+                return true;
+            }
+            else if(this.State == AddCompanyState.PhoneNumber)
+            {
+                if (input.Text == "/menu")
+                {
+                    this.State = AddCompanyState.Start;
+                    response = "Volviendo al menú...";
+                    return true;
+                }
                 this.State = AddCompanyState.Start;
+                this.Data.PhoneNumber = input.Text;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
-                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings);
-                response = $"Ya se creo la empresa. El token de invitacion es {this.Data.company.InvitationToken}";
+                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
+                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.company.InvitationToken}";
                 return true;
             }
             response = string.Empty;
@@ -177,7 +203,11 @@ namespace ClassLibrary
             /// <summary>
             /// Luego de pedir el rubro de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
             /// </summary>
-            Headings
+            Headings,
+
+            Email,
+
+            PhoneNumber
         }
 
         /// <summary>
@@ -214,22 +244,26 @@ namespace ClassLibrary
             public string Address { get; set; }
 
             /// <summary>
+            /// La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
+            /// </summary>
+            /// <value></value>
+            public LocationAdapter Location { get; set; }
+
+            /// <summary>
             /// El rubro de la empresa que se ingresó en el estado CompanyState.Headings.
             /// </summary>
             /// <value></value>
             public string Headings { get; set; }
 
-            /// <summary>
-            /// La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
-            /// </summary>
-            /// <value></value>
-            public LocationAdapter Location { get; set; }
+            public string Email { get; set; }
+
+            public string PhoneNumber { get; set; }
             
             /// <summary>
             /// La empresa creada a partir de todos los datos recolectados anteriormente.
             /// </summary>
             /// <value></value>
-            public Company company {get;set;}
+            public Company company { get; set; }
         }
     }
 }

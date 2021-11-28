@@ -143,13 +143,13 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns></returns>
-        public string ConvertToJson()
+        public string ConvertToJson(JsonSerializerOptions options)
         {
             string result = "{\"Items\":[";
 
             foreach (var item in this.DataUsers)
             {
-                result = result + item.ConvertToJson() + ",";
+                result = result + item.ConvertToJson(options) + ",";
             }
 
             result = result.Remove(result.Length - 1);
@@ -158,13 +158,13 @@ namespace ClassLibrary
             string temp = JsonSerializer.Serialize(this.DataUsers);
             return result;
            
-            JsonSerializerOptions options = new()
+            JsonSerializerOptions option = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize(this.DataUsers, options);            
+            return JsonSerializer.Serialize(this.DataUsers, option);            
         }
         /// <summary>
         /// Convierte el texto en formato Json a obejto.

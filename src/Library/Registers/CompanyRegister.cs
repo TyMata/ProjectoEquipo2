@@ -46,7 +46,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public  List<Company> CompanyList 
+        public List<Company> CompanyList 
         {
             get
             {
@@ -117,9 +117,9 @@ namespace ClassLibrary
         /// <param name="nombre"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
-        public Company CreateCompany(string nombre, LocationAdapter location, string headings)
+        public Company CreateCompany(string nombre, LocationAdapter location, string headings, string email, string phoneNumber)
         {
-            Company nuevaCompany = new Company(nombre, location, headings);
+            Company nuevaCompany = new Company(nombre, location, headings, email, phoneNumber);
             CompanyRegister.Instance.Add(nuevaCompany);
             TokenRegister.Instance.Add( nuevaCompany.InvitationToken, nuevaCompany ); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
@@ -130,14 +130,16 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson(JsonSerializerOptions options)
         {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
             return JsonSerializer.Serialize(this, options);
+        }
+
+        public object LoadFromJson(string json, JsonSerializerOptions options)
+        {
+            CompanyRegister temp = JsonSerializer.Deserialize<CompanyRegister>(json, options);
+            this.companyList = temp.CompanyList;
+            return this.CompanyList;
         }
     }
 }

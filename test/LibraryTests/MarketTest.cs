@@ -21,8 +21,8 @@ namespace Tests
         public void SetUp()
         {
             location = new LocationAdapter("address", "city", "department");
-            this.company = new Company("empresa", location, "rubro");
-            this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
+            this.company = new Company("empresa", location, "rubro", "company@gmail.com", "091919191");
+            this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "constante");
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime());
+            Offer nuevaOferta = new Offer(7654321, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "constante");
             Market.Instance.PublishOffer(nuevaOferta);
             Market.Instance.SuspendOffer(7654321);
             Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));

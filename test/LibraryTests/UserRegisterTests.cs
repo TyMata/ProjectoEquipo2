@@ -20,7 +20,7 @@ namespace Tests
         public void SetUp()
         {
             location = new LocationAdapter("address", "city", "department");
-            this.user = new Users(1234567, new CompanyRole(new Company("empresa", location, "rubro")));
+            this.user = new Users(1234567, new CompanyRole(new Company("empresa", location, "rubro", "company@gmail.com", "091919191")));
         }
 
         /// <summary>

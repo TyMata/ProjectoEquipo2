@@ -36,7 +36,7 @@ namespace Tests
             string direccion = "Avenida 8 de Octubre";
             location = new LocationAdapter(direccion, ciudad, departamento);
             this.quantityMaterial = 15;
-            this.company = new Company("farmashop", location, "farmacia");
+            this.company = new Company("farmashop", location, "farmacia", "company@gmail.com", "091919191");
             this.keywords = "Acido";
             this.availability = true;
             this.publicationDate = DateTime.Today;
@@ -49,7 +49,7 @@ namespace Tests
         [Test]
         public void CreateOfferTest()
         {
-            Offer oferta = new Offer(this.id, this.material, this.habilitation, location, this.quantityMaterial, this.totalPrice, this.company, this.availability, this.publicationDate);
+            Offer oferta = new Offer(this.id, this.material, this.habilitation, location, this.quantityMaterial, this.totalPrice, this.company, this.availability, this.publicationDate, "constante");
             Assert.AreEqual(this.id, oferta.Id);
             Assert.AreEqual(this.material, oferta.Material);
             Assert.AreEqual(this.habilitation, oferta.Habilitation);
