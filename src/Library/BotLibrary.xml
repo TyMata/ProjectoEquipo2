@@ -94,7 +94,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.ConvertToJson">
+        <member name="M:ClassLibrary.Company.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             TODO add token
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato

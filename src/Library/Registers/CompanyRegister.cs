@@ -47,7 +47,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public  List<Company> CompanyList 
+        public List<Company> CompanyList 
         {
             get
             {
@@ -136,10 +136,11 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         }
 
-        public void LoadFromJson(string json, JsonSerializerOptions options)
+        public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             CompanyRegister temp = JsonSerializer.Deserialize<CompanyRegister>(json, options);
             this.companyList = temp.CompanyList;
+            return this.CompanyList;
         }
     }
 }

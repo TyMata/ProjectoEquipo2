@@ -31,7 +31,7 @@ namespace ClassLibrary
             }
         }
 
-        private string name;
+        public string name;
 
         /// <summary>
         /// Nombre de la empresa
@@ -219,6 +219,16 @@ namespace ClassLibrary
             this.Headings = headings;
             this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
 
+        }
+
+        public void AddMaterial(string name, string type, string classification)
+        {
+            if (this.producedMaterials.Count != 0 && this.producedMaterials.Exists(mat => mat.Name == name && mat.Type == type && mat.Classification == classification))
+            {
+                throw new Exception();
+            }
+            Material material = new Material(name, type, classification); //TODO: Cambiar a name, type, classification.
+            this.producedMaterials.Add(material);
         }
         
         /// <summary>

@@ -25,7 +25,7 @@ namespace ClassLibrary
                     foreach (Offer item in this.company.OfferRegister)
                     {
                         offers.Append($"Id de la oferta: {item.Id}\n")
-                                .Append($"Material de la oferta: {item.Material}\n")
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}\n")
                                 .Append($"Cantidad: {item.QuantityMaterial}\n")
                                 .Append($"Fecha de publicacion: {item.PublicationDate}\n");
                         if(item.Availability)

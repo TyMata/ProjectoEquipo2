@@ -46,6 +46,7 @@ namespace ClassLibrary
                 StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa:\n\n");
                 if (this.company != null)
                 {
+                    this.company.AddMaterial("Mesa", "Madera", "Reciclable"); //TODO: Borrar esto
                     foreach (Material item in this.company.ProducedMaterials)
                     {
                         materials.Append($"Nombre del Material: {item.Name}\n")

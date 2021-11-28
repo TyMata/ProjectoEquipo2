@@ -52,8 +52,6 @@ namespace ConsoleApplication
             // //     return;
             // // }
 
-            // string jsonD = File.ReadAllText(@"data.json");
-
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
@@ -63,15 +61,30 @@ namespace ConsoleApplication
             Console.WriteLine(CompanyRegister.Instance.ConvertToJson(options));
             Console.WriteLine(Market.Instance.ConvertToJson(options));
 
-            // Market.Instance.Initialize();
-            // CompanyRegister.Instance.Initialize();
-            
-            string jsonOffer = Market.Instance.ConvertToJson(options);
-            string jsonCompany = CompanyRegister.Instance.ConvertToJson(options);
-            Console.WriteLine(jsonOffer);
-            File.WriteAllText(@"data.json", jsonOffer);
-            Console.WriteLine(jsonCompany);
-            File.WriteAllText(@"data.json", jsonCompany);
+            foreach (Offer offer in Market.Instance.actualOfferList)
+            {
+                string temp = JsonSerializer.Serialize(Market.Instance.actualOfferList);
+                Console.WriteLine(temp);
+                File.WriteAllText(@"actualOfferListData.json", temp);
+            }
+            foreach (Company company in CompanyRegister.Instance.CompanyList)
+            {
+                // if (@"data.json" != string.Empty)
+                // {
+                //     string jsonD = File.ReadAllText(@"data.json");
+                //     CompanyRegister companyDeserializer = JsonSerializer.Deserialize<CompanyRegister>(jsonD, options);
+                // }
+                // File.ReadAllText("@data.json");
+                string temp2 = JsonSerializer.Serialize(CompanyRegister.Instance.CompanyList);
+                Console.WriteLine(temp2);
+                File.WriteAllText(@"companyData.json", temp2);
+            }
+            // string jsonOffer = Market.Instance.ConvertToJson(options);
+            // string jsonCompany = CompanyRegister.Instance.ConvertToJson(options);
+            // Console.WriteLine(jsonOffer);
+            // File.WriteAllText(@"data.json", jsonOffer);
+            // Console.WriteLine(jsonCompany);
+            // File.WriteAllText(@"data.json", jsonCompany);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace ClassLibrary
             }
         }
 
-        private List<Offer> actualOfferList;
+        public List<Offer> actualOfferList;
 
         /// <summary>
         /// Lista de ofertas actuales.
