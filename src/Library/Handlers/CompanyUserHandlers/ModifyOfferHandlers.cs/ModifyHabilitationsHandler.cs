@@ -18,7 +18,7 @@ namespace ClassLibrary
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
         /// </summary>
         /// <value></value>
-        public ModifyOfferData Data {get;set;}
+        public ModifyOfferData Data { get; set; }
         private Company company;
 
         /// <summary>
@@ -44,27 +44,27 @@ namespace ClassLibrary
             if(this.State == ModifyState.Start && this.CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
+                StringBuilder offers = new StringBuilder("¿Qué oferta desea modificar?\n");
                 if(this.company != null && this.company.OfferRegister != null)
                 {
                     foreach(Offer x in this.company.OfferRegister)
                     {
-                        offers.Append($"Id: {x.Id}\n")
-                            .Append($"Material: {x.Material}\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}\n")                            //TODO preguntar por id de la oferta a modificar
-                            .Append($"Fecha de publicacion: {x.PublicationDate}\n")
-                            .Append($"Precio: {x.TotalPrice}\n")
+                        offers.Append($"Id: {x.Id}.\n")
+                            .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}.\n")                            //TODO preguntar por id de la oferta a modificar
+                            .Append($"Precio: {x.TotalPrice}.\n")
+                            .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
                             .Append($"\n-----------------------------------------------\n\n");
                     }
-                    offers.Append("Ingrese el Id de la oferta a modificar:\n"); 
+                    offers.Append("Ingrese el Id de la oferta a modificar."); 
                     this.State = ModifyState.OfferList;
                     response = offers.ToString();
                     return true;   
                 }
                 else
                 {
-                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString() ;      
                     return true;
                 }
@@ -73,7 +73,7 @@ namespace ClassLibrary
             {
                 this.Data.OfferId = Convert.ToInt32(input.Text);
                 this.State = ModifyState.Modification;
-                response = "Pase por aquí el link que lleva a sus habilitaciones\n";
+                response = "Pase por aquí el link que lleva a sus habilitaciones.";
                 return true;
 
             }
@@ -82,7 +82,7 @@ namespace ClassLibrary
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
                 this.Data.Result.ChangeHabilitation(input.Text); 
                 this.State = ModifyState.Start;
-                response = "Las habilitaciones se han modificado";
+                response = "Las habilitaciones se han modificado.";
                 return true;
             }
             response = string.Empty;

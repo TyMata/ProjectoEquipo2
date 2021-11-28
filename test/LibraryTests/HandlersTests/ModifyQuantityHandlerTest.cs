@@ -28,9 +28,9 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/modificarcantidad");
             location = new LocationAdapter("address", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
+            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
             material = new Material("material", "type", "clasificacion");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
             company.AddOffer(oferta);
             

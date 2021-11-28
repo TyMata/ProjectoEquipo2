@@ -19,7 +19,7 @@ namespace ClassLibrary
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyQuantityHandler.
         /// </summary>
         /// <value></value>
-        public ModifyOfferData Data {get;set;}
+        public ModifyOfferData Data { get; set; }
         private Company company;
 
         /// <summary>
@@ -45,27 +45,27 @@ namespace ClassLibrary
             if (this.State == ModifyState.Start && CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("Que oferta desea modificar?\n");
+                StringBuilder offers = new StringBuilder("¿Qué oferta desea modificar?\n");
                 if(this.company != null && this.company.OfferRegister != null)
                 {
                     foreach(Offer x in company.OfferRegister)
                     {
-                        offers.Append($"Id : {x.Id}\n")
-                            .Append($"Material : {x.Material}\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}\n")
-                            .Append($"Fecha de publicacion: {x.PublicationDate}\n")
-                            .Append($"Precio: {x.TotalPrice}\n")
+                        offers.Append($"Id: {x.Id}.\n")
+                            .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}.\n")
+                            .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
+                            .Append($"Precio: {x.TotalPrice}.\n")
                             .Append($"\n-----------------------------------------------\n\n");
                     }
-                    offers.Append("Ingrese el Id de la oferta a modificar:\n"); 
+                    offers.Append("Ingrese el Id de la oferta a modificar."); 
                     this.State = ModifyState.OfferList;
                     response = offers.ToString();
                     return true; 
                 }   
                 else
                 {
-                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString() ;      
                     return true;
                 }
@@ -74,7 +74,7 @@ namespace ClassLibrary
             {
                 this.Data.Offer = Convert.ToInt32(input.Text);
                 this.State = ModifyState.Modification;
-                response = "Ingrese la nueva cantidad de materiales de la oferta:\n";
+                response = "Ingrese la nueva cantidad de materiales de la oferta.";
                 return true;
             }
             else if(this.State == ModifyState.Modification)
@@ -83,7 +83,7 @@ namespace ClassLibrary
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.Offer);
                 this.Data.Result.ChangeQuantity(quantity);
                 this.State = ModifyState.Start;
-                response = "La cantidad de materiales se ha modificado";
+                response = "La cantidad de materiales se ha modificado.";
                 return true;
             }
             response = string.Empty;

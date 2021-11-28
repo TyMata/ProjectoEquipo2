@@ -14,8 +14,9 @@ namespace Tests
         private string name;
         private LocationAdapter location;
         private string headings;
+        private string email;
+        private string phoneNumber;
         private Company company;
-
         private Material material;
 
         /// <summary>
@@ -27,8 +28,10 @@ namespace Tests
             this.name = "empresa";
             this.id = 12345678;
             this.headings = "rubro";
+            this.email = "company@gmail.com";
+            this.phoneNumber = "091919191";
             this.location = new LocationAdapter("address", "city", "department");
-            this.company = new Company(this.name, this.location, this.headings);
+            this.company = new Company(this.name, this.location, this.headings, this.email, this.phoneNumber);
             material = new Material("material","type","classification");
         }
 
@@ -72,7 +75,7 @@ namespace Tests
         [Test]
         public void ProducedMaterialsTest()
         {
-            Company company = new Company(this.name, this.location, this.headings);
+            Company company = new Company(this.name, this.location, this.headings, this.email, this.phoneNumber);
             company.ProducedMaterials.Add(new Material());
             Assert.IsNotEmpty(company.ProducedMaterials);
         }

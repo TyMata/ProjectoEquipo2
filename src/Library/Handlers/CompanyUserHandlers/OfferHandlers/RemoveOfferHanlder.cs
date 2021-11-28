@@ -50,21 +50,22 @@ namespace ClassLibrary
                 {
                     foreach (Offer item in this.company.OfferRegister)
                     {
-                        offers.Append($"Id de la oferta: {item.Id}\n")
-                            .Append($"Material de la oferta: {item.Material}\n")
-                            .Append($"Cantidad: {item.QuantityMaterial}\n")
-                            .Append($"Fecha de publicacion: {item.PublicationDate}\n")
+                        offers.Append($"Id de la oferta: {item.Id}.\n")
+                            .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                            .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                            .Append($"Precio: {item.TotalPrice}.\n")
+                            .Append($"Fecha de publicación: {item.PublicationDate}.\n")
                             .Append($"\n-----------------------------------------------\n\n");
                     }
-                    offers.Append("Ingrese el Id de la oferta a remover:\n");
+                    offers.Append("Ingrese el Id de la oferta a remover.");
                     this.State = RemoveOfferState.IdOfferState;
                     response = offers.ToString();
                     return true;
                 }
                 else
                 {
-                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString() ;      
                     return true;
                 }
@@ -76,11 +77,11 @@ namespace ClassLibrary
                 {
                     Market.Instance.RemoveOffer(this.Data.Id);
                     this.State = RemoveOfferState.Start;
-                    response = "La oferta ha sido retirada del mercado.\n";  
+                    response = "La oferta ha sido retirada del mercado.";  
                 }
                 else
                 {
-                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.\n";
+                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.";
                     this.State = RemoveOfferState.Start;
                 }
                 return true;

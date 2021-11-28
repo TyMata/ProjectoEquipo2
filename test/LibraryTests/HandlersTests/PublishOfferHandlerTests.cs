@@ -29,7 +29,7 @@ namespace Tests
             message = new TelegramBotMessage(1234, "/publicaroferta");
             location = new LocationAdapter("address", "city", "department");
             material = new Material("material", "type", "clasificacion");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
             company.ProducedMaterials.Add(material);
            

@@ -17,7 +17,7 @@ namespace ClassLibrary
         /// Genera un numero mayor que el anterior para el Id.
         /// </summary>
         /// <value></value>
-        public int Count {get;set;}
+        public int Count { get; set; }
 
         [JsonConstructor]
         public Market()
@@ -88,11 +88,11 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id ,material , habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now);
+            Offer nuevaOferta = new Offer(id ,material , habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "constante");
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
@@ -172,6 +172,16 @@ namespace ClassLibrary
             List<Offer> x = this.ActualOfferList.FindAll(offer => offer.Keywords.Contains(keyword));
             return x;
         }      
+
+        public Offer GetOfferById(int id)
+        {
+            if (!this.ActualOfferList.Exists(offer => offer.Id == id))
+            {
+                throw new NullReferenceException($"No existte ninguna oferta con ese Id."); //CAMBIAR EXCEPTION
+            }
+            Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
+            return x;
+        }
 
         /// <summary>
         /// Suspende una oferta actual.
