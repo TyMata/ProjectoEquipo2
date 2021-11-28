@@ -35,7 +35,7 @@
         </member>
         <member name="P:ClassLibrary.Company.InvitationToken">
             <summary>
-            Token para que un ususario empresa pueda registrarse.
+            Token para que un ususuario empresa pueda registrarse.
             </summary>
             <value></value>
         </member>
@@ -62,7 +62,7 @@
             JsonConstructor de objetos Company.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.LocationAdapter,System.String)">
+        <member name="M:ClassLibrary.Company.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String,System.String)">
             <summary>
             Constructor de objetos Company.
             </summary>
@@ -94,7 +94,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.ConvertToJson">
+        <member name="M:ClassLibrary.Company.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             TODO add token
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
@@ -274,15 +274,15 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Headings">
-            <summary>
-            El rubro de la empresa que se ingresó en el estado CompanyState.Headings.
-            </summary>
-            <value></value>
-        </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Location">
             <summary>
             La ubicación completa de la empresa, creada a partir de los datos de ubicación recolectados anteriormente.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Headings">
+            <summary>
+            El rubro de la empresa que se ingresó en el estado CompanyState.Headings.
             </summary>
             <value></value>
         </member>
@@ -362,7 +362,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
-            Handler encargado de delegar la accion de eliminar un usario del registro.
+            Handler encargado de delegar la accion de eliminar un usuario del registro.
             </summary>
         </member>
         <member name="P:ClassLibrary.RemoveUserHandler.State">
@@ -666,7 +666,7 @@
         <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Start">
             <summary>
             El estado inicial del comando. Aquí pregunta por el material que se quiere vender
-            y le muestra una lista de los materialesc producidos por la empresa.
+            y le muestra una lista de los materiales producidos por la empresa.
             </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler.OfferData">
@@ -707,6 +707,12 @@
         <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Location">
             <summary>
             Se guarda la ubicación de la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Continuity">
+            <summary>
+            Se guarda la continuidad de la oferta.
             </summary>
             <value></value>
         </member>
@@ -785,7 +791,7 @@
         </member>
         <member name="P:ClassLibrary.ResumeOfferHandler.Data">
             <summary>
-            Clase para guardar la informacion que envia el usario por el chat cuando se le pregunta
+            Clase para guardar la informacion que envia el usuario por el chat cuando se le pregunta
             </summary>
             <returns></returns>
         </member>
@@ -957,7 +963,12 @@
         </member>
         <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.AskActiveOfferIdState">
             <summary>
-            
+            Luego de pedir el Id de la oferta a comprar. En este estado el comando devuelve la oferta seleccionada y pregunta si es esa la que el usuario quiere comprar.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.BuyOfferState">
+            <summary>
+            .
             </summary>
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferData">
@@ -1456,7 +1467,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -1469,6 +1480,7 @@
             <param name="company"></param>
             <param name="availability"></param>
             <param name="publicationDate"></param>
+            <param name="continuity"></param>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
@@ -1499,7 +1511,7 @@
             Modifica el precio
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.ConvertToJson">
+        <member name="M:ClassLibrary.Offer.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1559,7 +1571,7 @@
             </summary>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,ClassLibrary.LocationAdapter,System.String)">
+        <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,ClassLibrary.LocationAdapter,System.String,System.String,System.String)">
             <summary>
             Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
             </summary>
@@ -1567,7 +1579,7 @@
             <param name="location"></param>
             <param name="headings"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.ConvertToJson">
+        <member name="M:ClassLibrary.CompanyRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1608,7 +1620,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean)">
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.String)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
@@ -1665,7 +1677,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Market.ConvertToJson">
+        <member name="M:ClassLibrary.Market.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1721,7 +1733,7 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.TokenRegister.ConvertToJson">
+        <member name="M:ClassLibrary.TokenRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1805,7 +1817,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.UserRegister.ConvertToJson">
+        <member name="M:ClassLibrary.UserRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1824,7 +1836,7 @@
             Json.
             </summary>
         </member>
-        <member name="M:ClassLibrary.IJsonConvertible.ConvertToJson">
+        <member name="M:ClassLibrary.IJsonConvertible.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1871,12 +1883,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Entrepreneur.AddBoughtOffer(ClassLibrary.Offer)">
-            <summary>
-            Agrega una oferta comprada a la lista de oferta compradas
-            </summary>
-            <param name="offer"></param>
-        </member>
         <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
@@ -1885,6 +1891,12 @@
             <param name="location"></param>
             <param name="heading"></param>
             <param name="habilitation"></param>
+        </member>
+        <member name="M:ClassLibrary.Entrepreneur.AddBoughtOffer(ClassLibrary.Offer)">
+            <summary>
+            Agrega una oferta comprada a la lista de oferta compradas
+            </summary>
+            <param name="offer"></param>
         </member>
         <member name="T:ClassLibrary.Users">
             <summary>
@@ -1931,7 +1943,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Users.ConvertToJson">
+        <member name="M:ClassLibrary.Users.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.

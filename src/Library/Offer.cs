@@ -205,6 +205,23 @@ namespace ClassLibrary
             }
         }
 
+        private string continuity;
+
+        public string Continuity
+        {
+            get
+            {
+                return this.continuity;
+            }
+            private set
+            {
+                if (value != null)
+                {
+                    this.continuity = value;
+                }
+            }
+        }
+
         private DateTime publicationDate;
         
         /// <summary>
@@ -251,7 +268,8 @@ namespace ClassLibrary
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
-        public Offer( int id, Material material, string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate)
+        /// <param name="continuity"></param>
+        public Offer( int id, Material material, string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate, string continuity)
         {
             this.Id = id;
             this.Material = material;
@@ -262,6 +280,7 @@ namespace ClassLibrary
             this.Availability = availability;
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
+            this.Continuity = continuity;
             this.Keywords.Add(material.Name);
             this.Keywords.Add(material.Type);
             this.Keywords.Add(material.Classification);
@@ -269,6 +288,7 @@ namespace ClassLibrary
             this.Keywords.Add(location.Department);
             this.Keywords.Add(company.Name);
             this.Keywords.Add(company.Headings);
+            this.Keywords.Add(this.continuity);   
         }
 
         /// <summary>
@@ -322,15 +342,15 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()  
+        public string ConvertToJson(JsonSerializerOptions options)  
         {
-            JsonSerializerOptions options = new()
+            JsonSerializerOptions option = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this, option);
         }
 
         /// <summary>

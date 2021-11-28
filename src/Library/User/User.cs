@@ -82,15 +82,15 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson(JsonSerializerOptions options)
         {
-            JsonSerializerOptions options = new()
+            JsonSerializerOptions option = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this, option);
         }
     }
 }

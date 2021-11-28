@@ -12,7 +12,7 @@ namespace ClassLibrary
         /// Estado para el handler de RemoveCompany.
         /// </summary>
         /// <value></value>
-        public RemoveCompanyState State {get;set;}
+        public RemoveCompanyState State { get; set; }
 
         /// <summary>
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando RemoveCompany.
@@ -38,12 +38,12 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
-        public override bool InternalHandle(IMessage input, out string response)
+        public override bool InternalHandle(IMessage input, out string response)  //TODO: mandar lista de companies.
         {
             if(this.State == RemoveCompanyState.Start && this.CanHandle(input))
             {
                 this.State = RemoveCompanyState.Company;
-                response = "¿Cual es el Id de la empresa que quieres eliminar?";
+                response = "¿Cuál es el Id de la empresa que quieres eliminar?";
                 return true;
             }
             else if(this.State == RemoveCompanyState.Company)
@@ -66,7 +66,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    response = $"La empresa con el Id {this.Data.CompanyId} no esta registrada";
+                    response = $"La empresa con el Id \"{this.Data.CompanyId}\" no está registrada";
                     return true;
                 }
             }
@@ -112,7 +112,7 @@ namespace ClassLibrary
             /// El resultado de la búsqueda de la empresa por medio del Id.
             /// </summary>
             /// <value></value>
-            public Company Result {get;set;}
+            public Company Result { get; set; }
         }
     }
 }

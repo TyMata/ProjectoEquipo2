@@ -29,7 +29,7 @@ namespace Tests
             message = new TelegramBotMessage(1234, "/publicaroferta");
             location = new LocationAdapter("address", "city", "department");
             material = new Material("material", "type", "clasificacion");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
             company.ProducedMaterials.Add(material);
            
@@ -155,8 +155,8 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
-            message.Text="Link";
-            result=handler.InternalHandle(message, out response);
+            message.Text = "Link";
+            result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("La oferta a sido creada y publicada en el mercado.\n")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Start));

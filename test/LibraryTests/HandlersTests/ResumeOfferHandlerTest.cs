@@ -28,9 +28,9 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/reanudaroferta");
             location = new LocationAdapter("address", "city", "department");
-             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
-            oferta = Market.Instance.CreateOffer(new Material(), "habilitation", location, 3, 3000,company, true);
+            oferta = Market.Instance.CreateOffer(new Material(), "habilitation", location, 3, 3000,company, true, "constante");
             material = new Material("material", "type", "clasificacion");
            Market.Instance.SuspendOffer(oferta.Id);
             handler = new ResumeOfferHandler();

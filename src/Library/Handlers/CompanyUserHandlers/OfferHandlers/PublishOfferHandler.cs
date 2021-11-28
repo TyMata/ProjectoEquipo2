@@ -19,7 +19,7 @@ namespace ClassLibrary
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando PublishOfferHandler.
         /// </summary>
         /// <value></value>
-        public OfferData Data {get;set;}
+        public OfferData Data { get; set; }
 
         private Company company;
         /// <summary>
@@ -46,38 +46,40 @@ namespace ClassLibrary
                 StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa:\n\n");
                 if (this.company != null)
                 {
+                    this.company.AddMaterial("Mesa", "Madera", "Reciclable"); //TODO: Borrar esto
                     foreach (Material item in this.company.ProducedMaterials)
                     {
                         materials.Append($"Nombre del Material: {item.Name}\n")
                                 .Append($"Tipo: {item.Type}\n")
-                                .Append($"Clasificacion: {item.Classification}\n")
+                                .Append($"Clasificación: {item.Classification}\n")
                                 .Append($"\n-----------------------------------------------\n\n");
                     }
                     this.State = OfferState.Material;
-                    materials.Append($"Que material desea vender?:\n")
-                            .Append($"\nIngrese el nombre\n");
+                    materials.Append($"¿Qué material desea vender?\n")
+                            .Append($"Ingrese el nombre.");
                     response = materials.ToString();
                     return true;
                 }
                 else
                 {
-                    materials.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    materials.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = materials.ToString();
+                    return true;
                 }
             }
             else if(this.State == OfferState.Material)
             {
                 this.Data.Material = this.company.GetMaterial(input.Text); 
                 this.State = OfferState.Quantity;
-                response = "Cantidad de material:\n";
+                response = "Ingrese la cantidad de material.";
                 return true;
             }
             else if(this.State == OfferState.Quantity)
             {
                 this.Data.Quantity = Convert.ToInt32(input.Text);
                 this.State = OfferState.Price;
-                response = "¿Cuál va a ser el precio total?\n";
+                response = "¿Cuál va a ser el precio total?";
                 return true;
             }
             else if (this.State == OfferState.Price)
@@ -87,39 +89,43 @@ namespace ClassLibrary
                 StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
                 if (this.company.Locations!=null)
                 {
-
-                      foreach (LocationAdapter item in this.company.Locations) 
-                      {
-                          location.Append($"Ubicacion:\n")   
-                                  .Append($"Direccion: {item.Address}\n")   
-                                  .Append($"\n-----------------------------------------------\n\n");
-                      }
-                location.Append("Ingresa la direccion de esta:\n");
+                    foreach (LocationAdapter item in this.company.Locations) 
+                    {
+                        location.Append($"Ubicación:\n")   
+                                .Append($"Dirección: {item.Address}\n")   
+                                .Append($"\n-----------------------------------------------\n\n");
+                    }
+                location.Append("Ingresa la dirección de esta:\n");
                 response = location.ToString();
                 return true;
                 }
                 else 
                 {
-                    location.Append("La empresa no tiene ninguna ubicacion cargada.\n")
+                    location.Append("La empresa no tiene ninguna ubicación cargada.\n")
                             .Append("Ingrese /menu si quiere volver a ver a los comandos disponibles.");
-
-                }
-              
+                }      
             }
-            else if(this.State == OfferState.Location)
+            else if(this.State == OfferState.Location) //TODO: Crear handler para addmaterial y para add location.
             {
                 string address = input.Text;
                 this.Data.Location = this.company.GetLocation(address);
                 this.State = OfferState.Habilitations;
-                response = "¿Que habilitaciones son necesarias para poder manipular este material?:\n";
+                response = "¿Que habilitaciones son necesarias para poder manipular este material?";
                 return true;
             }
             else if(this.State == OfferState.Habilitations)
             {
                 this.Data.Habilitations = input.Text;
+                this.State = OfferState.Continuity;
+                response = $"Para determinar la continuidad de la oferta, escriba \"si\" para que sea continua, o \"no\" para que sea puntual.";
+                return true;
+            }
+            else if(this.State == OfferState.Continuity)
+            {
+                this.Data.Continuity = input.Text;
                 this.State = OfferState.Start;
-                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location,this.Data.Quantity,this.Data.Price,this.company,true);
-                response = "La oferta a sido creada y publicada en el mercado.\n";
+                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location,this.Data.Quantity,this.Data.Price,this.company,true, "constante");
+                response = "La oferta ha sido creada y publicada en el mercado.";
                 return true;
             }
             response = string.Empty;    
@@ -133,7 +139,7 @@ namespace ClassLibrary
         {
             /// <summary>
             /// El estado inicial del comando. Aquí pregunta por el material que se quiere vender
-            /// y le muestra una lista de los materialesc producidos por la empresa.
+            /// y le muestra una lista de los materiales producidos por la empresa.
             /// </summary>
             Start,
             Material,
@@ -141,7 +147,8 @@ namespace ClassLibrary
             Price,
             Location,
             Habilitations,
-            Offer
+            Offer,
+            Continuity
         }
 
         /// <summary>
@@ -153,37 +160,43 @@ namespace ClassLibrary
             /// Se guarda el material que se quiere agregar en la oferta.
             /// </summary>
             /// <value></value>
-            public Material Material {get;set;}
+            public Material Material { get; set; }
 
             /// <summary>
             /// Se guarda la cantidad del material que se quiere poner en la oferta.
             /// </summary>
             /// <value></value>
-            public int Quantity {get;set;}
+            public int Quantity { get; set; }
 
             /// <summary>
             /// Se guarda el precio total de la oferta.
             /// </summary>
             /// <value></value>
-            public double Price {get;set;}
+            public double Price { get; set; }
 
             /// <summary>
             /// Se guardan las habilitaciones para manejar el material.
             /// </summary>
             /// <value></value>
-            public string Habilitations {get;set;}
+            public string Habilitations { get; set; }
 
             /// <summary>
             /// Se guarda la oferta creada con la informacion guardada previamente.
             /// </summary>
             /// <value></value>
-            public Offer Offer {get;set;}
+            public Offer Offer { get; set; }
             
             /// <summary>
             /// Se guarda la ubicación de la oferta.
             /// </summary>
             /// <value></value>
-            public LocationAdapter Location {get;set;}
+            public LocationAdapter Location { get; set; }
+            
+            /// <summary>
+            /// Se guarda la continuidad de la oferta.
+            /// </summary>
+            /// <value></value>
+            public string Continuity { get; set; }
         }
     }
 }

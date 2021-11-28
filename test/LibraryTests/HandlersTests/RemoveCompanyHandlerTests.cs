@@ -21,7 +21,7 @@ namespace Tests
         public void SetUp()
         {
             message = new TelegramBotMessage(1234,"/eliminarempresa");
-            company = CompanyRegister.Instance.CreateCompany("company", new LocationAdapter("address","city","departemnt"),"Headings");
+            company = CompanyRegister.Instance.CreateCompany("company", new LocationAdapter("address","city","departemnt"),"Headings", "company@gmail.com", "091919191");
             handler = new RemoveCompanyHandler();
         }
         /// <summary>

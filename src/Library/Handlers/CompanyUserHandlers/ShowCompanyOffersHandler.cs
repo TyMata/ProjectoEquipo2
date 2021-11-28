@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    class ShowCompanyOffersHandler : AbstractHandler, IHandler
+    public class ShowCompanyOffersHandler : AbstractHandler, IHandler
     {
         private Company company;
         public ShowCompanyOffersHandler()
@@ -24,17 +24,18 @@ namespace ClassLibrary
                 {
                     foreach (Offer item in this.company.OfferRegister)
                     {
-                        offers.Append($"Id de la oferta: {item.Id}\n")
-                                .Append($"Material de la oferta: {item.Material}\n")
-                                .Append($"Cantidad: {item.QuantityMaterial}\n")
-                                .Append($"Fecha de publicacion: {item.PublicationDate}\n");
+                        offers.Append($"Id de la oferta: {item.Id}.\n")
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Precio: {item.TotalPrice}.\n")
+                                .Append($"Fecha de publicación: {item.PublicationDate}.\n");
                         if(item.Availability)
                         {
-                            offers.Append($"Disponibilidad: Activa\n");
+                            offers.Append($"Disponibilidad: Activa.\n");
                         }
                         else
                         {
-                            offers.Append($"Disponibilidad: Suspendida\n");
+                            offers.Append($"Disponibilidad: Suspendida.\n");
                         }
                         offers.Append($"\n-----------------------------------------------\n\n");
                     }
@@ -43,15 +44,15 @@ namespace ClassLibrary
                 }
                 else if(this.company.OfferRegister.Count == 0)
                 {
-                    offers.Append($"La empresa a la que usted pertenece no tiene ninguna oferta publicada")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"La empresa a la que usted pertenece no tiene ninguna oferta publicada.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString();
                     return true;
                 }
                 else
                 {
-                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString();
                     return true;
                 }
@@ -61,7 +62,6 @@ namespace ClassLibrary
                 response = string.Empty;
                 return false;
             }
-            
         }
     }
 }

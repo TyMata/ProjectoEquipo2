@@ -118,7 +118,7 @@
         </member>
         <member name="T:ClassLibrary.ModifyUnitPriceHandler">
             <summary>
-            Handler para qu eel usario empresa pueda modifcar el precio por unidad de un determinado material en una oferta
+            Handler para qu eel usuario empresa pueda modifcar el precio por unidad de un determinado material en una oferta
             </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
