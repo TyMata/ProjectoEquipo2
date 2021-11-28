@@ -22,7 +22,7 @@ namespace Tests
         public void SetUp()
         {
             this.location = new LocationAdapter("address", "city", "department");
-            this.company = new Company("nombre", this.location, "rubro");
+            this.company = new Company("nombre", this.location, "rubro", "company@gmail.com", "091919191");
         }
 
         /// <summary>

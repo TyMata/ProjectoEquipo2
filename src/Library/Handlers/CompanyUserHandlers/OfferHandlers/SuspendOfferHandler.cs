@@ -51,22 +51,23 @@ namespace ClassLibrary
                     {
                         if(item.Availability)
                         {
-                            offers.Append($"Id de la oferta: {item.Id}\n")
-                                .Append($"Material de la oferta: {item.Material}\n")
-                                .Append($"Cantidad: {item.QuantityMaterial}\n")
-                                .Append($"Fecha de publicacion: {item.PublicationDate}\n")
+                            offers.Append($"Id de la oferta: {item.Id}.\n")
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Precio: {item.TotalPrice}.\n")
+                                .Append($"Fecha de publicación: {item.PublicationDate}.\n")
                                 .Append($"\n-----------------------------------------------\n\n");
                         }
                     }
                     this.State = SuspendOfferState.ActiveOfferIdState;
-                    offers.Append("¿Cual es el Id de la que quiere suspender?");
+                    offers.Append("¿Cuál es el Id de la oferta que quiere suspender?");
                     response = offers.ToString();
                     return true;
                 }
                 else
                 {
-                    offers.Append($"No se encontro ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles\n");
+                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
                     response = offers.ToString();
                     return true;
                 }
@@ -78,11 +79,11 @@ namespace ClassLibrary
                 {
                     Market.Instance.SuspendOffer(this.Data.Id);             //TODO Si le pasamos un id de una empresa suspendida la activaria y reciprocamente sucede lo mismo
                     this.State = SuspendOfferState.Start;
-                    response = "La oferta ha sido suspendida.\n";  
+                    response = "La oferta ha sido suspendida.";  
                 }
                 else
                 {
-                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.\n";
+                    response = "No hay ninguna oferta publicada bajo el nombre de esta empresa.";
                     this.State = SuspendOfferState.Start;
                 }
                 return true;

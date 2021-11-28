@@ -95,7 +95,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION OBJETO NULO
+                    throw new NullReferenceException();
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace ClassLibrary
         private string invitationToken;
         
         /// <summary>
-        /// Token para que un ususario empresa pueda registrarse.
+        /// Token para que un ususuario empresa pueda registrarse.
         /// </summary>
         /// <value></value>
         public string InvitationToken
@@ -140,7 +140,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
+                    throw new NullReferenceException();
                 }
             }
         }
@@ -165,7 +165,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION OBJETO NULO
+                    throw new NullReferenceException();
                 }
             }
         }
@@ -191,7 +191,49 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION OBJETO NULO
+                    throw new NullReferenceException();
+                }
+            }
+        }
+
+        public string email;
+
+        public string Email
+        {
+            get
+            {
+                return this.email;
+            }
+            private set
+            {
+                if (value != null)
+                {
+                    this.email = value;
+                }
+                else
+                {
+                   throw new NullReferenceException(); 
+                }
+            }
+        }
+
+        public string phoneNumber;
+
+        public string PhoneNumber
+        {
+            get
+            {
+                return this.phoneNumber;
+            }
+            private set
+            {
+                if (value != null)
+                {
+                    this.phoneNumber = value;
+                }
+                else
+                {
+                   throw new NullReferenceException(); 
                 }
             }
         }
@@ -211,14 +253,15 @@ namespace ClassLibrary
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
-        public Company(string name, LocationAdapter location, string headings)
+        public Company(string name, LocationAdapter location, string headings, string email, string phoneNumber)
         {
             this.Name = name;
             this.Locations.Add(location);
             this.Id = CompanyRegister.Instance.CompanyList.Count + 1;//TODO hacer lista de keywords this.name this.material (en offer)
             this.Headings = headings;
+            this.Email = email;
+            this.PhoneNumber = phoneNumber;
             this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
-
         }
 
         public void AddMaterial(string name, string type, string classification)

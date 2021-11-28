@@ -18,7 +18,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/empresanoregistrada");
             location = new LocationAdapter("address", "city", "department");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             handler = new UnregisteredCompanyUserHandler();
         }
 
@@ -44,7 +44,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.IsTrue(company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
-            Assert.That(response, Is.EqualTo( $"Se verifico el Token ingresado y se esta creando su usario perteneciente a la empresa {company.Name}")); 
+            Assert.That(response, Is.EqualTo( $"Se verifico el Token ingresado y se esta creando su usuario perteneciente a la empresa {company.Name}")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Start));
         }
 

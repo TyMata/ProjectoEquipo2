@@ -5,7 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de eliminar un usario del registro.
+    /// Handler encargado de delegar la accion de eliminar un usuario del registro.
     /// </summary>
     public class RemoveUserHandler : AbstractHandler
     {
@@ -41,7 +41,7 @@ namespace ClassLibrary
             if(this.State == RemoveUserState.Start && this.CanHandle(input))
             {
                 this.State = RemoveUserState.User;
-                response = "¿Cual es el Id del usuario que quieres eliminar?";
+                response = "¿Cuál es el Id del usuario que quieres eliminar?";
                 return true;
             }
             else if(this.State == RemoveUserState.User)
@@ -59,11 +59,11 @@ namespace ClassLibrary
                 {
                     UserRegister.Instance.Remove(this.Data.Result);
                     this.State = RemoveUserState.Start;
-                    response = $"El usuario de Id: {this.Data.UserId} ha sido eliminado";                    
+                    response = $"El usuario de Id \"{this.Data.UserId}\" ha sido eliminado";                    
                 }
                 else
                 {
-                    response = $"No se encontro ningún usuario con el {this.Data.UserId}.";
+                    response = $"No se encontró ningún usuario con el Id \"{this.Data.UserId}\".";
                 }
                 return true;
             }
@@ -104,7 +104,7 @@ namespace ClassLibrary
             /// El Id del usuario que se ingresó en el estado RemoveUserState.User.
             /// </summary>
             /// <value></value>
-            public int UserId {get;set;}
+            public int UserId { get; set; }
             /// <summary>
             /// El resultado de la búsqueda del usuario por medio del Id.
             /// </summary>

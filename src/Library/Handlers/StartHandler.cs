@@ -33,13 +33,13 @@ namespace ClassLibrary
             {
                 StringBuilder menu = new StringBuilder("Bienvenido\n");
                 menu.Append("Usuario No Registrado:\n")
-                    .Append("   /empresanoregistrada\n")
+                    .Append("   /usuarioempresanoregistrado\n")
                     .Append("   /emprendedornoregistrado\n\n")
                     .Append("Usuario Admin:\n")
                     .Append("   /registrarempresa\n")
                     .Append("   /eliminarusuario\n")
                     .Append("   /eliminarempresa\n\n")
-                    .Append("Usurio de una Empresa:\n")
+                    .Append("Usuario de una Empresa:\n")
                     .Append("   /publicaroferta\n")
                     .Append("   /retiraroferta\n")
                     .Append("   /suspenderoferta\n")
@@ -65,7 +65,7 @@ namespace ClassLibrary
                     .Append("   /registrarempresa\n")
                     .Append("   /eliminarusuario\n")
                     .Append("   /eliminarempresa\n\n")
-                    .Append("Usurio de una Empresa:\n")
+                    .Append("Usuario de una Empresa:\n")
                     .Append("   /publicaroferta\n")
                     .Append("   /retiraroferta\n")
                     .Append("   /suspenderoferta\n")
@@ -98,7 +98,7 @@ namespace ClassLibrary
 
         public class RemoveUserData
         {
-            public int User {get;set;}      //TODO Es necesario un data aca???
+            public int User { get; set; }      //TODO Es necesario un data aca???
         }
     }
 }

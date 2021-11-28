@@ -32,9 +32,9 @@ namespace ClassLibrary
         {
             if ((this.State == UnregisteredEntrepreneurUserState.Start) && (CanHandle(input)))
             {
-                StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
-                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
-                                                .Append("Ingrese su nombre completo\n");
+                StringBuilder datos = new StringBuilder("¡Así que eres un Emprendedor!\n")
+                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales.\n")
+                                                .Append("Ingrese su nombre completo.");
                 this.State = UnregisteredEntrepreneurUserState.Name;
                 response = datos.ToString();
                 return true;
@@ -43,21 +43,21 @@ namespace ClassLibrary
             {
                 this.Data.Name =  input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Address;
-                response = "Ingrese su dirección:\n";
+                response = "Ingrese su dirección.";
                 return true;
             }
             else if (this.State == UnregisteredEntrepreneurUserState.Address)
             {
                 this.Data.Address =  input.Text;
                 this.State = UnregisteredEntrepreneurUserState.City;
-                response = "Ingrese la ciudad:\n";
+                response = "Ingrese la ciudad.";
                 return true;
             }
             else if(this.State == UnregisteredEntrepreneurUserState.City)
             {
                 this.Data.City = input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Department;
-                response = "Ingrese el departamento:\n";
+                response = "Ingrese el departamento.";
                 return true;
             }
             else if (this.State == UnregisteredEntrepreneurUserState.Department)
@@ -65,14 +65,14 @@ namespace ClassLibrary
                 this.Data.Department = input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Habilitations;
                 this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
-                response = "Ingrese sus habilitaciones\n";
+                response = "Ingrese sus habilitaciones.";
                 return true;
             }
             else if (this.State == UnregisteredEntrepreneurUserState.Habilitations)
             {
                 string habilitaciones =  input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Headings;
-                response = "Ingrese su rubro\n";
+                response = "Ingrese su rubro.";
                 return true;
             }
             else if (this.State == UnregisteredEntrepreneurUserState.Headings)
@@ -124,13 +124,13 @@ namespace ClassLibrary
             /// Se guarda la ciudad que se ingresó en el estado UnregisteredEntrepreneurUserState.City .
             /// </summary>
             /// <value></value>
-            public string City{get;set;}
+            public string City{ get; set; }
 
             /// <summary>
             /// Se guarda eL departamento que se ingresó en el estado UnregisteredEntrepreneurUserState.Department .
             /// </summary>
             /// <value></value>
-            public string Department {get;set;}
+            public string Department { get; set; }
 
             /// <summary>
             /// El resultado de la búsqueda de la dirección ingresada.
