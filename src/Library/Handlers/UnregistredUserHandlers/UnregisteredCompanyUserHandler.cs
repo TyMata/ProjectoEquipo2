@@ -8,26 +8,25 @@ namespace ClassLibrary
     /// Handler encargado de delegar la accion de registrar un usuario empresa.
     /// </summary>
     public class UnregisteredCompanyUserHandler : AbstractHandler
-    {
+    {   
         /// <summary>
-        /// Estado para el handler de UnregisteredCompanyUserHandler.
+        /// Estado para el handler de UnregisteredCompanyUserState .
         /// </summary>
         /// <value></value>
-        private UnregisteredCompanyUserState state { get; set; }
-
+        public UnregisteredCompanyUserState State { get; set; }
         /// <summary>
         /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando UnregisteredCompanyUserHandler.
         /// </summary>
         /// <value></value>
-        private UnregisteredCompanyUserData data{ get; set; }
+        public UnregisteredCompanyUserData Data{ get; set; }
         /// <summary>
         /// Constructor de objetos UnregistredCompanyUserHandler.
         /// </summary>
         public UnregisteredCompanyUserHandler()
         {
             this.Command = "/empresanoregistrada";
-            this.state = UnregisteredCompanyUserState.Start;
-            this.data = new UnregisteredCompanyUserData();
+            this.State = UnregisteredCompanyUserState.Start;
+            this.Data = new UnregisteredCompanyUserData();
         }
         /// <summary>
         /// Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
@@ -38,37 +37,37 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if (this.state == UnregisteredCompanyUserState.Start && CanHandle(input))
+            if (this.State == UnregisteredCompanyUserState.Start && CanHandle(input))
             {
                 StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
                                                 .Append("Para poder registrarte vamos a necesitar el codigo de invitacion\n")
                                                 .Append("Ingrese el codigo de invitacion\n");
-                this.state = UnregisteredCompanyUserState.Token;
+                this.State = UnregisteredCompanyUserState.Token;
                 response = datos.ToString();
                 return true;
             }
-            else if(this.state == UnregisteredCompanyUserState.Token)
+            else if(this.State == UnregisteredCompanyUserState.Token)
             {
-                this.data.Token = input.Text.Trim();
-                if (TokenRegister.Instance.IsValid(this.data.Token))
+                this.Data.Token = input.Text.Trim();
+                if (TokenRegister.Instance.IsValid(this.Data.Token))
                 {
-                    Company temp = TokenRegister.Instance.GetCompany(this.data.Token);
+                    Company temp = TokenRegister.Instance.GetCompany(this.Data.Token);
                     temp.AddUser(input.Id);
-                    this.state = UnregisteredCompanyUserState.Start;
+                    this.State = UnregisteredCompanyUserState.Start;
                     response = $"Se verifico el Token ingresado y se esta creando su usario perteneciente a la empresa {temp.Name}";
                     return true;
                 }
                 else
                 {
-                    this.state = UnregisteredCompanyUserState.NotFirstTime;
+                    this.State = UnregisteredCompanyUserState.NotFirstTime;
                     response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitacion";
                     return true;
                 }
             }
-            else if(this.state == UnregisteredCompanyUserState.NotFirstTime)
+            else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
             {
-                this.data.Token = input.Text;
-                this.state = UnregisteredCompanyUserState.Token;
+                this.Data.Token = input.Text;
+                this.State = UnregisteredCompanyUserState.Token;
                 response = "";
                 return true;
             }

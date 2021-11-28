@@ -23,6 +23,10 @@ namespace ClassLibrary
             {
                 return this.text;
             }
+            set
+            {
+                this.Text = value;
+            }
             }
             
         /// <summary>

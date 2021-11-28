@@ -3,18 +3,19 @@ using ClassLibrary;
 using System.Text;
 using NUnit.Framework;
 
+
 namespace Tests
 {
     /// <summary>
     /// Prueba el handler para modificar la cantidad en una oferta.
     /// </summary>
     [TestFixture]
-    public class ModifyQuantityHandlerTest
+    public class ModifyPriceHandlerTests
     {
         private Offer oferta;
         private Material material;
         private DateTime dateTime;
-        private ModifyQuantityHandler handler;
+        private ModifyPriceHandler handler;
         private LocationAdapter location;
         private IMessage message;
         private Company company;
@@ -25,7 +26,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            message = new TelegramBotMessage(1234, "/modificarcantidad");
+            message = new TelegramBotMessage(1234, "/modificarprecio");
             location = new LocationAdapter("address", "city", "department");
             oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro"), true, dateTime);
             material = new Material("material", "type", "clasificacion");
@@ -33,7 +34,7 @@ namespace Tests
             company.AddUser(1234);
             company.AddOffer(oferta);
             
-            handler = new ModifyQuantityHandler();
+            handler = new ModifyPriceHandler();
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Tests
             sb.Append("Ingrese el Id de la oferta a modificar:\n");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(sb.ToString())); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
+            Assert.That(handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.OfferList));
         }
 
         /// <summary>
@@ -71,8 +72,8 @@ namespace Tests
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta:\n")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
+            Assert.That(response, Is.EqualTo("Ingrese el nuevo precio de la oferta:\n")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.Modification));
         }
 
         /// <summary>
@@ -86,12 +87,12 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
-            message.Text = "5";
+            message.Text = "4500";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.AreEqual(5,oferta.QuantityMaterial);
-            Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Start));
+            Assert.AreEqual(4500,oferta.TotalPrice);
+            Assert.That(response, Is.EqualTo("El precio se ha modificado")); 
+            Assert.That(handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.Start));
 
         }
 
@@ -101,7 +102,7 @@ namespace Tests
         [Test]
         public void InternalNotHandleTest()
         {string response;
-            IHandler result = handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
+            IHandler result = handler.Handle(new ConsoleMessage("/modificarquantity"),out response);
             Assert.IsNull(result);
             Assert.IsEmpty(response);
         }

@@ -17,7 +17,11 @@ namespace ClassLibrary
             IMessage mensajeConsola = new ConsoleMessage(mensaje);
             return mensajeConsola;
         }
-
+        
+        /// <summary>
+        /// Recibe el string mensaje y lo muestra por consola.
+        /// </summary>
+        /// <param name="mensaje"></param>
         public void SendMessage(string mensaje)
         {
             Console.WriteLine(mensaje);

@@ -94,13 +94,8 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.GenerateToken">
-            <summary>
-            Se genera un  token para una nueva empresa y se lo añade al diccionario
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.Company.ConvertToJson">
+            TODO add token
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1038,66 +1033,66 @@
             El Token que se ingresó en el estado UnregisteredCompanyUserState.Token.
             </summary>
         </member>
-        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler">
+        <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler">
             <summary>
             Handler encargado de crear un usuario emprendedor.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.#ctor">
+        <member name="M:ClassLibrary.UnregisteredEntrepreneurUserHandler.#ctor">
             <summary>
             Constructor de objetos UnregistredEntrepreneurUserHandler.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UnregisteredEntrepeneurUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+        <member name="M:ClassLibrary.UnregisteredEntrepreneurUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
             Pregunta por los datos del emprendedor y delega la tarea de crear un usuario emprendedor.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
         </member>
-        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserState">
+        <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState">
             <summary>
             Estados para el handler de un emprendedor no registrado
             </summary>
         </member>
-        <member name="T:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData">
+        <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData">
             <summary>
             Se guardan los datos que el usuario pasa por el chat.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Name">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Name">
             <summary>
             El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Address">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Address">
             <summary>
             se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.City">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.City">
             <summary>
             Se guarda la ciudad que se ingresó en el estado UnregisteredEntrepreneurUserState.City .
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Department">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Department">
             <summary>
             Se guarda eL departamento que se ingresó en el estado UnregisteredEntrepreneurUserState.Department .
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.LocationResult">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.LocationResult">
             <summary>
             El resultado de la búsqueda de la dirección ingresada.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Habilitations">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Habilitations">
             <summary>
             El link a las habilitaciones que se ingresó en el estado UnregisteredCompanyUserState.Habilitations.
             </summary>
         </member>
-        <member name="P:ClassLibrary.UnregisteredEntrepeneurUserHandler.UnregisteredEntrepeneurUserData.Headings">
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Headings">
             <summary>
             El rubro que se ingresó en el estado UnregisteredCompanyUserState.Headings.
             </summary>
@@ -1667,6 +1662,12 @@
             Convierte el texto en formato Json a objeto.
             </summary>
             <param name="json"></param>
+        </member>
+        <member name="M:ClassLibrary.TokenRegister.GenerateToken">
+            /// <summary>
+            Se genera un  token para una nueva empresa y se lo añade al diccionario, por expert est aaca
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>

@@ -27,7 +27,7 @@ namespace ClassLibrary
             }
             private set
             { 
-                this.id = CompanyRegister.Instance.CompanyList.Count + 1;
+                this.id = value;
             }
         }
 
@@ -213,11 +213,12 @@ namespace ClassLibrary
         /// <param name="headings"></param>
         public Company(string name, LocationAdapter location, string headings)
         {
-            this.name = name;
+            this.Name = name;
             this.Locations.Add(location);
-            this.id = 0; //TODO hacer lista de keywords this.name this.material (en offer)
+            this.Id = CompanyRegister.Instance.CompanyList.Count + 1;//TODO hacer lista de keywords this.name this.material (en offer)
             this.Headings = headings;
-            this.InvitationToken = this.GenerateToken();
+            this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
+
         }
         
         /// <summary>
@@ -277,29 +278,7 @@ namespace ClassLibrary
             Offer x = this.OfferRegister.Find(offer => offer.Id == id);
             this.OfferRegister.Remove(x);
         }
-        /// <summary>
-        /// Se genera un  token para una nueva empresa y se lo añade al diccionario
-        /// </summary>
-        /// <returns></returns>
-        public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa. Ver si es mejor aca o en TokenRegister
-        {
-            Random rnd = new Random();
-            StringBuilder token = new StringBuilder("");
-            while (token.ToString() == "")        //Me fijo si ya existe token y de ser asi le añado el Token y su empresa a el diccionario
-            {
-                for (int i = 0; i < 3; i++)         //En este for se crea un nuevo token
-                {
-                    int num = rnd.Next(10000, 100000);
-                    token.Append(num.ToString());
-                    if (i != 2) token.Append("-");
-                }
-                if (TokenRegister.Instance.IsValid(token.ToString()))
-                {
-                    token = new StringBuilder("");
-                }
-            }
-            return token.ToString();
-        }
+        /// TODO add token
         
         /// <summary>
         /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato

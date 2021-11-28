@@ -49,8 +49,8 @@ namespace ClassLibrary
                 {
                     foreach(Offer x in this.company.OfferRegister)
                     {
-                        offers.Append($"ID : {x.Id}\n")
-                            .Append($"Material : {x.Material}\n")
+                        offers.Append($"Id: {x.Id}\n")
+                            .Append($"Material: {x.Material}\n")
                             .Append($"Cantidad: {x.QuantityMaterial}\n")                            //TODO preguntar por id de la oferta a modificar
                             .Append($"Fecha de publicacion: {x.PublicationDate}\n")
                             .Append($"Precio: {x.TotalPrice}\n")

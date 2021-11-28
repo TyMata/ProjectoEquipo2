@@ -261,6 +261,13 @@ namespace ClassLibrary
             this.Availability = availability;
             this.PublicationDate = publicationDate;
             this.TotalPrice = totalPrice;
+            this.Keywords.Add(material.Name);
+            this.Keywords.Add(material.Type);
+            this.Keywords.Add(material.Classification);
+            this.Keywords.Add(location.City);
+            this.Keywords.Add(location.Department);
+            this.Keywords.Add(company.Name);
+            this.Keywords.Add(company.Headings);
         }
 
         /// <summary>

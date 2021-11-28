@@ -59,7 +59,7 @@ namespace ClassLibrary
                 response = "Ingrese el pais:\n";
                 return true;
             }
-             else if(this.State == AddCompanyState.Country)
+            else if(this.State == AddCompanyState.Country)
             {
                 if (input.Text == "/menu")
                 {
