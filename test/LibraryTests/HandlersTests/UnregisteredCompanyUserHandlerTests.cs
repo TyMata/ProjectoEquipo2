@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    /// <summary>
+    /// /// Prueba el handler para registrar un company user.
+    /// </summary>
     [TestFixture]
     public class UnregisteredCompanyUserHandlerTests
     {
@@ -12,7 +15,9 @@ namespace Tests
         private LocationAdapter location;
         private IMessage message;
         private Company company;
-
+        /// <summary>
+        /// Se setea el company user.
+        /// </summary>
         [SetUp]
         public void SetUP()
         {
@@ -21,7 +26,9 @@ namespace Tests
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             handler = new UnregisteredCompanyUserHandler();
         }
-
+        /// <summary>
+        /// /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleStartTest()
         {
@@ -34,7 +41,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo(datos.ToString())); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Token));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleTokenTest()
         {

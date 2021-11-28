@@ -15,7 +15,9 @@ namespace Tests
         private LocationAdapter location;
         private IMessage message;
         private Company company;
-
+        /// <summary>
+        /// Se setea el usuario Entrepreneur.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -66,7 +68,6 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese la ciudad:\n")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.City));
         }
-
         [Test]
         public void HandleCityTest()
         {

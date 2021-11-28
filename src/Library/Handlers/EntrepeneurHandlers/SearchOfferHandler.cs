@@ -5,25 +5,38 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de buscar ofertas por keywords
+    /// Handler encargado de delegar la accion de buscar ofertas por keywords.
     /// </summary>
     public class SearchOfferHandler : AbstractHandler
-    {   
+    {  
+        /// <summary>
+        /// Estado para el handler de SearchOfferHandler.
+        /// </summary>
+        /// <value></value>
         public SearchOfferState State {get; private set;}
-
+        /// <summary>
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando SearchOfferHandler.
+        /// </summary>
+        /// <value></value>
         public SearchOfferData Data {get; private set;}
 
         /// <summary>
         /// Constructor de objetos SearchOfferByKeyWordsHandler.
         /// </summary>
-        /// <param name="channel"></param>
+        
         public SearchOfferHandler()
         {
             this.Command = "/buscaroferta";
             this.State = SearchOfferState.Start;
             this.Data = new SearchOfferData();
         }
-        
+
+        /// <summary>
+        /// /// Se encarga de mostrar la lista de ofertas asociadas a las keywords.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if ((State == SearchOfferState.Start) && this.CanHandle(input))
