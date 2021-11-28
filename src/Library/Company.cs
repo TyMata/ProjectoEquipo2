@@ -4,7 +4,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -32,7 +31,7 @@ namespace ClassLibrary
             }
         }
 
-        private string name;
+        public string name;
 
         /// <summary>
         /// Nombre de la empresa
@@ -221,6 +220,16 @@ namespace ClassLibrary
             this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
 
         }
+
+        public void AddMaterial(string name, string type, string classification)
+        {
+            if (this.producedMaterials.Count != 0 && this.producedMaterials.Exists(mat => mat.Name == name && mat.Type == type && mat.Classification == classification))
+            {
+                throw new Exception();
+            }
+            Material material = new Material(name, type, classification); //TODO: Cambiar a name, type, classification.
+            this.producedMaterials.Add(material);
+        }
         
         /// <summary>
         /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users.
@@ -286,14 +295,14 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson() 
+        public string ConvertToJson(JsonSerializerOptions options) 
         {
-            JsonSerializerOptions options = new()
+            JsonSerializerOptions option = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
                 WriteIndented = true
             };
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this, option);
         }
         
         /// <summary>

@@ -94,7 +94,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Company.ConvertToJson">
+        <member name="M:ClassLibrary.Company.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             TODO add token
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
@@ -1428,7 +1428,7 @@
             Modifica el precio
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.ConvertToJson">
+        <member name="M:ClassLibrary.Offer.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1496,7 +1496,7 @@
             <param name="location"></param>
             <param name="headings"></param>
         </member>
-        <member name="M:ClassLibrary.CompanyRegister.ConvertToJson">
+        <member name="M:ClassLibrary.CompanyRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1594,7 +1594,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ClassLibrary.Market.ConvertToJson">
+        <member name="M:ClassLibrary.Market.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1650,7 +1650,7 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.TokenRegister.ConvertToJson">
+        <member name="M:ClassLibrary.TokenRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1734,7 +1734,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.UserRegister.ConvertToJson">
+        <member name="M:ClassLibrary.UserRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1753,7 +1753,7 @@
             Json.
             </summary>
         </member>
-        <member name="M:ClassLibrary.IJsonConvertible.ConvertToJson">
+        <member name="M:ClassLibrary.IJsonConvertible.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.
@@ -1860,7 +1860,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Users.ConvertToJson">
+        <member name="M:ClassLibrary.Users.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
             Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
             Json utilizando JsonSerializer.Deserialize.

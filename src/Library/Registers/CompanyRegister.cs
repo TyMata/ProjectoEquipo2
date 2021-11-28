@@ -47,7 +47,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         [JsonInclude]
-        public  List<Company> CompanyList 
+        public List<Company> CompanyList 
         {
             get
             {
@@ -131,14 +131,16 @@ namespace ClassLibrary
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
-        public string ConvertToJson()
+        public string ConvertToJson(JsonSerializerOptions options)
         {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
             return JsonSerializer.Serialize(this, options);
+        }
+
+        public object LoadFromJson(string json, JsonSerializerOptions options)
+        {
+            CompanyRegister temp = JsonSerializer.Deserialize<CompanyRegister>(json, options);
+            this.companyList = temp.CompanyList;
+            return this.CompanyList;
         }
     }
 }
