@@ -373,7 +373,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public Material GetMaterial(string name)
         {
-            Material material = this.ProducedMaterials.Find(material => material.Name == name);
+            Material material = this.ProducedMaterials.Find(material => material.Name.ToLower().Trim() == name.ToLower().Trim());
             if(material != null)
             {
             return material;
@@ -391,7 +391,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public LocationAdapter GetLocation(string address)
         {
-            LocationAdapter location = this.Locations.Find(location => location.Address == address);
+            LocationAdapter location = this.Locations.Find(location => location.Address.ToLower().Trim() == address.ToLower().Trim());
             if(location != null)
             {
                 return location;
