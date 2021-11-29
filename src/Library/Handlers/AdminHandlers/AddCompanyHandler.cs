@@ -9,8 +9,6 @@ namespace ClassLibrary
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
-        private string nombre;
-
         /// <summary>
         /// Estado para el handler de AddCompany.
         /// </summary>
@@ -148,7 +146,7 @@ namespace ClassLibrary
                 this.State = AddCompanyState.Start;
                 this.Data.PhoneNumber = input.Text;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
-                this.Data.company = CompanyRegister.Instance.CreateCompany(nombre, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
+                this.Data.company = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
                 response = $"La empresa fue creada.\n El token de invitación es: {this.Data.company.InvitationToken}";
                 return true;
             }

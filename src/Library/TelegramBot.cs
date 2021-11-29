@@ -37,6 +37,7 @@ namespace ClassLibrary
                 .SetNext(new ModifyQuantityHandler())
                 .SetNext(new ShowCompanyOffersHandler())
                 .SetNext(new SearchOfferHandler())
+                .SetNext(new AddMaterialHandler())
                 .SetNext(new EndHandler(null));
         }
 
