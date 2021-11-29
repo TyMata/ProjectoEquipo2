@@ -139,7 +139,7 @@ namespace ClassLibrary
         {
             if(this.ActualOfferList.Contains(newOffer))
             {
-                throw new Exception(); //CAMBIAR EXCEPTION
+                throw new Exception("La oferta que se quiere crear ya existe"); //CAMBIAR EXCEPTION
             }
             this.ActualOfferList.Add(newOffer);
         }
@@ -180,6 +180,18 @@ namespace ClassLibrary
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             return x;
+        }
+
+        public void BuyOffer(int id)
+        {
+            if (!this.ActualOfferList.Exists(offer => offer.Id == id))
+            {
+                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //TODO: Agregar a la lista de ofertas compradas del usuario
+            }
+            Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
+            x.ChangeAvailability();
+            this.SuspendedOfferList.Add(x);
+            this.ActualOfferList.Remove(x);
         }
 
         /// <summary>

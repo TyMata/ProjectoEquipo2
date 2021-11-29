@@ -41,6 +41,7 @@ namespace ClassLibrary
                     .Append("   /eliminarusuario\n")
                     .Append("   /eliminarempresa\n\n")
                     .Append("Usuario de una Empresa:\n")
+                    .Append("   /agregarmaterial\n")
                     .Append("   /publicaroferta\n")
                     .Append("   /retiraroferta\n")
                     .Append("   /suspenderoferta\n")
@@ -60,13 +61,14 @@ namespace ClassLibrary
             {
                 IMessage input2 = input;
                 StringBuilder menu = new StringBuilder("Usuario No Registrado\n");
-                menu.Append("   /empresanoregistrada\n")
+                menu.Append("   /usuarioempresanoregistrado\n")
                     .Append("   /emprendedornoregistrado\n\n")
                     .Append("Usuario Admin:\n")
                     .Append("   /registrarempresa\n")
                     .Append("   /eliminarusuario\n")
                     .Append("   /eliminarempresa\n\n")
                     .Append("Usuario de una Empresa:\n")
+                    .Append("   /agregarmaterial\n")
                     .Append("   /publicaroferta\n")
                     .Append("   /retiraroferta\n")
                     .Append("   /suspenderoferta\n")

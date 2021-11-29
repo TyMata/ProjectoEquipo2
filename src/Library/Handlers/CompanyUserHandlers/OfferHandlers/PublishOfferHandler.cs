@@ -20,6 +20,8 @@ namespace ClassLibrary
         /// <value></value>
         public OfferData Data { get; set; }
 
+        private int material = 0; //TODO: Borrar esto
+
         private Company company;
         /// <summary>
         /// Constructor de objetos PublishOfferHandler
@@ -45,7 +47,14 @@ namespace ClassLibrary
                 StringBuilder materials = new StringBuilder("Estos son los materiales de tu empresa:\n\n");
                 if (this.company != null)
                 {
-                    this.company.AddMaterial("Mesa", "Madera", "Reciclable"); //TODO: Borrar esto
+                    if (material == 0)
+                    {
+                        this.company.AddMaterial("Pallet", "Plástico", "Residuo"); //TODO: Borrar esto
+                        this.company.AddMaterial("Bujes", "Madera", "Residuo");
+                        this.company.AddMaterial("Cáscara", "Naranja", "Residuo orgánico");
+
+                        material += 1;
+                    }
                     foreach (Material item in this.company.ProducedMaterials)
                     {
                         materials.Append($"Nombre del Material: {item.Name}\n")
@@ -90,9 +99,10 @@ namespace ClassLibrary
                 {
                     foreach (LocationAdapter item in this.company.Locations) 
                     {
-                        location.Append($"Ubicación:\n")   
+                        location.Append($"Departamento: {item.Department}\n") //TODO: Recorrer la lista con index
+                                .Append($"Ciudad: {item.City}\n")
                                 .Append($"Dirección: {item.Address}\n")   
-                                .Append($"\n-----------------------------------------------\n\n");
+                                .Append($"-----------------------------------------------\n\n");
                     }
                 location.Append("Ingresa la dirección de esta:\n");
                 response = location.ToString();
@@ -116,15 +126,16 @@ namespace ClassLibrary
             {
                 this.Data.Habilitations = input.Text;
                 this.State = OfferState.Continuity;
-                response = $"Para determinar la continuidad de la oferta, escriba \"si\" para que sea continua, o \"no\" para que sea puntual.";
+                response = $"Para determinar la continuidad de la oferta, escriba \"continua\" si es continua, o \"puntual\" si es puntual.";
                 return true;
             }
             else if(this.State == OfferState.Continuity)
             {
                 this.Data.Continuity = input.Text;
                 this.State = OfferState.Start;
-                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location,this.Data.Quantity,this.Data.Price,this.company,true, "constante");
+                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location,this.Data.Quantity,this.Data.Price,this.company,true, this.Data.Continuity);
                 response = "La oferta ha sido creada y publicada en el mercado.";
+                this.Data = new OfferData();
                 return true;
             }
             response = string.Empty;    
