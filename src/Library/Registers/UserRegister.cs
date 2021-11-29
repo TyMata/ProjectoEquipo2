@@ -128,15 +128,10 @@ namespace ClassLibrary
         public Users GetUserById(int id)
         {
             Users result = null;
-            int index = 0;
-            while (result == null && index < this.DataUsers.Count)
+            if (this.DataUsers.Exists(user => user.Id == id))
             {
-                if (this.DataUsers[index].Id == id)
-                {
-                    result = this.DataUsers[index];
-                }
+                result = this.DataUsers.Find(user => user.Id == id);
             }
-
             return result;
         }
         /// <summary>
