@@ -90,6 +90,9 @@ namespace ClassLibrary
             return false;
         }
         
+        /// <summary>
+        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// </summary>
         protected override void InternalCancel()
         {
             this.State = ModifyState.Start;

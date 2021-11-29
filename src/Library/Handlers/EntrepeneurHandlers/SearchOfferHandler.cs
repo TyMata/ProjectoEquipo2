@@ -147,13 +147,15 @@ namespace ClassLibrary
             /// existentes, que cumplan con los requisitos. Además sugiere la posibilidad de seleccionar una oferta única por medio de una Id.
             /// </summary>
             ShowActiveState,
+
             /// <summary>
             /// Luego de pedir el Id de la oferta a comprar. En este estado el comando devuelve la oferta seleccionada y pregunta si es esa la que el usuario quiere comprar.
             /// </summary>
             AskActiveOfferIdState,
 
             /// <summary>
-            /// .
+            /// Luego de pedir la confirmacion de la oferta a comprar. En este estado se realiza la compra de la oferta seleccionada y se le pasa 
+            /// a el usuario por pantalla la informacion de contacto de la empresa.
             /// </summary>
             BuyOfferState
         }
@@ -169,8 +171,16 @@ namespace ClassLibrary
             /// <value></value>
             public List<Offer> Offers { get; set; }
 
+            /// <summary>
+            /// La oferta que se mostrará al emprendedor una vez haya enviado el Id de la oferta a comprar.
+            /// </summary>
+            /// <value></value>
             public Offer OfferToBuy { get; set; }
 
+            /// <summary>
+            /// La empresa la cual le pasaremos la informacion de contacto al usuario.
+            /// </summary>
+            /// <value></value>
             public Company Seller { get; set; }
         }
     }

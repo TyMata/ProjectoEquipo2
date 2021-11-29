@@ -199,12 +199,18 @@ namespace ClassLibrary
             Address,
 
             /// <summary>
-            /// Luego de pedir el rubro de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            /// Luego de pedir el rubro de la empresa. En este estado el comando pide el e-mail de la empresa y pasa al siguiente estado.
             /// </summary>
             Headings,
 
+            /// <summary>
+            /// Luego de pedir el e-mail de la empresa. En este estado el comando pide el numero de contacto de la empresa y pasa al siguiente estado.
+            /// </summary>
             Email,
-
+            
+            /// <summary>
+            /// Luego de pedir el numero de contacto de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            /// </summary>
             PhoneNumber
         }
 
@@ -253,8 +259,16 @@ namespace ClassLibrary
             /// <value></value>
             public string Headings { get; set; }
 
+            /// <summary>
+            /// El e-mail de la empresa que se ingresó en el estado CompanyState.Email.
+            /// </summary>
+            /// <value></value>
             public string Email { get; set; }
 
+            /// <summary>
+            /// El numeo de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
+            /// </summary>
+            /// <value></value>
             public string PhoneNumber { get; set; }
             
             /// <summary>

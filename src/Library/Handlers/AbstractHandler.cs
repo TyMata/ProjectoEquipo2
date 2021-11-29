@@ -74,6 +74,10 @@ namespace ClassLibrary
                 return null;
             }
         }
+
+        /// <summary>
+        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// </summary>
         protected virtual void InternalCancel()
         {
 

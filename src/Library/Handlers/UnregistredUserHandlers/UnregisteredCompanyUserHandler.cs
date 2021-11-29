@@ -51,10 +51,10 @@ namespace ClassLibrary
                 this.Data.Token = input.Text.Trim();
                 if (TokenRegister.Instance.IsValid(this.Data.Token))
                 {
-                    this.Data.unregistered = TokenRegister.Instance.GetCompany(this.Data.Token);
-                    this.Data.unregistered.AddUser(input.Id);
+                    this.Data.Unregistered = TokenRegister.Instance.GetCompany(this.Data.Token);
+                    this.Data.Unregistered.AddUser(input.Id);
                     this.State = UnregisteredCompanyUserState.Start;
-                    response = $"Se verificó el Token ingresado y se ha creado su usuario perteneciente a la empresa {this.Data.unregistered.Name}.\nIngrese /menu para ver los comandos nuevamente.";
+                    response = $"Se verificó el Token ingresado y se ha creado su usuario perteneciente a la empresa {this.Data.Unregistered.Name}.\nIngrese /menu para ver los comandos nuevamente.";
                     return true;
                 }
                 else
@@ -109,7 +109,10 @@ namespace ClassLibrary
             /// </summary>
             public string Token { get; set; }
 
-            public Company unregistered { get; set; }
+            /// <summary>
+            /// La empresa que se encontro a partir del Token ingresado en el estado UnregisteredCompanyUserState.Token.
+            /// </summary>
+            public Company Unregistered { get; set; }
         }
     }
 }
