@@ -428,6 +428,71 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:ClassLibrary.AddMaterialHandler">
+            <summary>
+            Handler encargado de delegar la accion de añadir una empresa nueva al registro
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddMaterialHandler.State">
+            <summary>
+            Estado para el handler de AddCompany.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddMaterialHandler.Data">
+            <summary>
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando AddCompanyHandler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.AddMaterialHandler.#ctor">
+            <summary>
+            Constructor de los objetos AddCompanyHandler.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AddMaterialHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Pide algunos datos de la empresa que se quiere registrar la crea.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.AddMaterialHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.AddMaterialHandler.AddMaterialState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddMaterialHandler.AddMaterialState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pide el nombre del material a registrar y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddMaterialHandler.AddMaterialState.Name">
+            <summary>
+            Luego de pedir el nombre del material. En este estado el comando pide el tipo del material y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.AddMaterialHandler.AddMaterialData">
+            <summary>
+            Representa los datos que va obteniendo el comando AddCompanyHandler en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddMaterialHandler.AddMaterialData.Name">
+            <summary>
+            El nombre de la empresa que se ingresó en el estado CompanyState.Name.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddMaterialHandler.AddMaterialData.Classification">
+            <summary>
+            El departamento de la empresa que se ingresó en el estado CompanyState.State.
+            </summary>
+            <value></value>
+        </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.

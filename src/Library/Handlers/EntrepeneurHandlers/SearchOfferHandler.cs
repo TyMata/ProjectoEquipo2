@@ -64,11 +64,10 @@ namespace ClassLibrary
                             .Append($"Cantidad: {item.QuantityMaterial}.\n")
                             .Append($"Fecha de publicación: {item.PublicationDate}.\n")
                             .Append($"Precio: {item.TotalPrice}.\n")
-                            .Append($"\n-----------------------------------------------\n\n")
-                            .Append($"Si desea comprar alguna de las ofertas disponibles, por favor escriba su Id.\n")
-                            .Append($"De lo contrario escriba /menu para volver al menú principal.");
+                            .Append($"\n-----------------------------------------------\n\n");
                 }
-                response = offers.ToString();
+                response = offers.Append($"Si desea comprar alguna de las ofertas disponibles, por favor escriba su Id.\n")
+                                .Append($"De lo contrario escriba /menu para volver al menú principal.").ToString();
                 return true;
             }
             else if (this.State == SearchOfferState.AskActiveOfferIdState)
@@ -90,7 +89,8 @@ namespace ClassLibrary
                                     .Append($"Material de la oferta: {this.Data.OfferToBuy.Material.Name}.\n")
                                     .Append($"Cantidad: {this.Data.OfferToBuy.QuantityMaterial}.\n")
                                     .Append($"Fecha de publicación: {this.Data.OfferToBuy.PublicationDate}.\n")
-                                    .Append($"\n-----------------------------------------------\n\n");
+                                    .Append($"\n-----------------------------------------------\n\n")
+                                    .Append($"Ingrese \"si\" si es la correcta, o \"no\" en caso contrario.");
                     response = searchResult.ToString();
                 }
                 else
@@ -109,10 +109,11 @@ namespace ClassLibrary
                 }
                 if(input.Text.ToLower().Trim() == "si")
                 {
+                    Market.Instance.BuyOffer(this.Data.OfferToBuy.Id);
                     this.State = SearchOfferState.Start;
                     StringBuilder sb = new StringBuilder("Datos de la empresa:\n");
-                    sb.Append($"Nombre: {this.Data.Seller.Name}.")
-                        .Append($"Email: {this.Data.Seller.Email}.")
+                    sb.Append($"Nombre: {this.Data.Seller.Name}.\n")
+                        .Append($"Email: {this.Data.Seller.Email}.\n")
                         .Append($"Número de teléfono: {this.Data.Seller.PhoneNumber}.");
                     response = sb.ToString();
                     return true;
