@@ -992,18 +992,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.SearchOfferHandler.State">
-            <summary>
-            Estado para el handler de SearchOfferHandler.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:ClassLibrary.SearchOfferHandler.Data">
-            <summary>
-            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando SearchOfferHandler.
-            </summary>
-            <value></value>
-        </member>
         <member name="M:ClassLibrary.SearchOfferHandler.#ctor">
             <summary>
             Constructor de objetos SearchOfferByKeyWordsHandler.
