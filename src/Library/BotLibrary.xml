@@ -167,6 +167,11 @@
             <param name="response">Respuesta a enviar</param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.AbstractHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
             <summary>
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
@@ -238,7 +243,17 @@
         </member>
         <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.Headings">
             <summary>
-            Luego de pedir el rubro de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            Luego de pedir el rubro de la empresa. En este estado el comando pide el e-mail de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.Email">
+            <summary>
+            Luego de pedir el e-mail de la empresa. En este estado el comando pide el numero de contacto de la empresa y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.PhoneNumber">
+            <summary>
+            Luego de pedir el numero de contacto de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
             </summary>
         </member>
         <member name="T:ClassLibrary.AddCompanyHandler.AddCompanyData">
@@ -286,7 +301,19 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Result">
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Email">
+            <summary>
+            El e-mail de la empresa que se ingresó en el estado CompanyState.Email.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.PhoneNumber">
+            <summary>
+            El numeo de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.company">
             <summary>
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
@@ -477,6 +504,17 @@
             Luego de pedir el nombre del material. En este estado el comando pide el tipo del material y pasa al siguiente estado.
             </summary>
         </member>
+        <member name="F:ClassLibrary.AddMaterialHandler.AddMaterialState.Type">
+            <summary>
+            Luego de pedir el tipo del material. En este estado el comando pide las habilitaciones necesarias
+            para manejar el material y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.AddMaterialHandler.AddMaterialState.Classification">
+            <summary>
+            Luego de pedir las habilitaciones necesarias. En este estado el comando añade el material y vuelve al estado Start.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.AddMaterialHandler.AddMaterialData">
             <summary>
             Representa los datos que va obteniendo el comando AddCompanyHandler en los diferentes estados.
@@ -484,14 +522,18 @@
         </member>
         <member name="P:ClassLibrary.AddMaterialHandler.AddMaterialData.Name">
             <summary>
-            El nombre de la empresa que se ingresó en el estado CompanyState.Name.
+            El nombre del objeto que se ingresó en el estado AddMaterial.Name.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AddMaterialHandler.AddMaterialData.Type">
+            <summary>
+            El tipo del material que se ingresó en el estado AddMaterial.Type.
             </summary>
         </member>
         <member name="P:ClassLibrary.AddMaterialHandler.AddMaterialData.Classification">
             <summary>
-            El departamento de la empresa que se ingresó en el estado CompanyState.State.
+            La clasificacion necesaria para manejar el material que se ingresó en el estado AddMaterial.Classification.
             </summary>
-            <value></value>
         </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
@@ -523,6 +565,11 @@
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ModifyHabilitationsHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler.ModifyState">
             <summary>
@@ -591,6 +638,11 @@
             <param name="response"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.ModifyPriceHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.ModifyPriceHandler.ModifyState">
             <summary>
             Indica los diferentes estados que tiene ModifyPriceHandler.
@@ -657,6 +709,11 @@
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ModifyQuantityHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler.ModifyState">
             <summary>
@@ -856,9 +913,9 @@
         </member>
         <member name="P:ClassLibrary.ResumeOfferHandler.Data">
             <summary>
-            Clase para guardar la informacion que envia el usuario por el chat cuando se le pregunta
+            Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
             </summary>
-            <returns></returns>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.ResumeOfferHandler.#ctor">
             <summary>
@@ -873,6 +930,11 @@
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ResumeOfferHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ResumeOfferHandler.ResumeOfferState">
             <summary>
@@ -907,7 +969,7 @@
         </member>
         <member name="P:ClassLibrary.SuspendOfferHandler.State">
             <summary>
-            Estado para este handler.
+            Estado para el handler de ModifyPriceHandler.
             </summary>
             <value></value>
         </member>
@@ -930,6 +992,11 @@
             <param name="input"></param>
             <param name="response"></param>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.SuspendOfferHandler.InternalCancel">
+            <summary>
+            Metodo encargado de resetear el State y la Data del Handler.
+            </summary>
         </member>
         <member name="T:ClassLibrary.SuspendOfferHandler.SuspendOfferState">
             <summary>
@@ -1033,7 +1100,8 @@
         </member>
         <member name="F:ClassLibrary.SearchOfferHandler.SearchOfferState.BuyOfferState">
             <summary>
-            .
+            Luego de pedir la confirmacion de la oferta a comprar. En este estado se realiza la compra de la oferta seleccionada y se le pasa 
+            a el usuario por pantalla la informacion de contacto de la empresa.
             </summary>
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler.SearchOfferData">
@@ -1044,6 +1112,18 @@
         <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Offers">
             <summary>
             La lista de ofertas que se mostrará al emprendedor una vez haya enviado las palabras claves.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.OfferToBuy">
+            <summary>
+            La oferta que se mostrará al emprendedor una vez haya enviado el Id de la oferta a comprar.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Seller">
+            <summary>
+            La empresa la cual le pasaremos la informacion de contacto al usuario.
             </summary>
             <value></value>
         </member>
@@ -1104,9 +1184,9 @@
             El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             </summary>
         </member>
-        <member name="T:ClassLibrary.StartHandler.RemoveUserData">
+        <member name="F:ClassLibrary.StartHandler.StartState.NotFirstTime">
             <summary>
-            Se crea la clase RemoveUserData para cuando se desea eliminar un usuario  de la UserData.
+            Estado que vuelve a enviar el menu de comandos en caso de que el usuario lo pregunte.
             </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
@@ -1142,17 +1222,39 @@
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserState">
             <summary>
-            Estados para el handler de un CompanyUser no registrado
+            Indica los diferentes estados que tiene UnregisteredCompanyUserHandler.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pregunta por el token de invitacion necesario para 
+            registrar a un usuario empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.NotFirstTime">
+            <summary>
+            Estado que vuelve a recibir un token en caso de que el ingresado anteriormente tenga
+            errores o no se encuentre en el registro.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Token">
+            <summary>
+            Estado en el cual se verifica si el token ingresado es valido o no y se informa al usuario.
             </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserData">
             <summary>
-            Se guardan los datos que el usuario pasa por el chat.
+            Representa los datos que va obteniendo el comando UnregistredCompanyUserHandler en los diferentes estados.
             </summary>
         </member>
         <member name="P:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserData.Token">
             <summary>
             El Token que se ingresó en el estado UnregisteredCompanyUserState.Token.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserData.Unregistered">
+            <summary>
+            La empresa que se encontro a partir del Token ingresado en el estado UnregisteredCompanyUserState.Token.
             </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler">
@@ -1189,9 +1291,45 @@
             Estados para el handler de un emprendedor no registrado
             </summary>
         </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Start">
+            <summary>
+            El estado inicial del comando. Aquí pregunta por el token de invitacion necesario para 
+            registrar a un usuario empresa.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name">
+            <summary>
+            Estado en donde se guarda el nombre que envio el usuario y se pregunta por la direccion.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Address">
+            <summary>
+            Estado en donde se guarda la direccion que envio el usuario y se pregunta por la ciudad.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.City">
+            <summary>
+            Estado en donde se guarda la ciudad que envio el usuario y se pregunta por el departamento.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Department">
+            <summary>
+            Estado en donde se guarda el departamento que envio el usuario, se encuentra la ubicacion y se pregunta por las habilitaciones.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Habilitations">
+            <summary>
+            Estado en donde se guarda el link a las habilitaciones que envio el usuario y se pregunta por el rubro.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Headings">
+            <summary>
+            Estado en donde se guarda el rubro que envio el usuario, se crea el usuario emprendedor y se le informa al usuario.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData">
             <summary>
-            Se guardan los datos que el usuario pasa por el chat.
+            Representa los datos que va obteniendo el comando UnregistredEntrepeneurHandler en los diferentes estados.
             </summary>
         </member>
         <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Name">
@@ -1297,7 +1435,7 @@
         </member>
         <member name="M:ClassLibrary.LocationAdapter.GetDuration(System.String,System.String,System.String)">
             <summary>
-            REtorna la duracion entre dos locaciones
+            Retorna la duracion entre dos locaciones
             </summary>
             <param name="address"></param>
             <param name="city"></param>

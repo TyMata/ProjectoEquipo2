@@ -1,7 +1,6 @@
 // using System;
 // using ClassLibrary;
 // using NUnit.Framework;
-// using Ucu.Poo.Locations.Client;
 
 // namespace Tests
 // {

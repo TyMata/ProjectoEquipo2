@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -196,13 +195,15 @@ namespace ClassLibrary
             return x;
         }
 
-        public void BuyOffer(int id)
+        public void BuyOffer(int offerId, Users user)
         {
-            if (!this.ActualOfferList.Exists(offer => offer.Id == id))
+            if (!this.ActualOfferList.Exists(offer => offer.Id == offerId))
             {
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //TODO: Agregar a la lista de ofertas compradas del usuario
             }
-            Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
+            Offer x = this.ActualOfferList.Find(offer => offer.Id == offerId);
+            x.Company.OfferSold(x , user);
+            (user.Role as EntrepreneurRole).Entrepreneur.AddBoughtOffer(x);
             x.ChangeAvailability();
             this.SuspendedOfferList.Add(x);
             this.ActualOfferList.Remove(x);

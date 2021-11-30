@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -32,53 +33,79 @@ namespace ClassLibrary
             if (this.State == StartState.Start && this.nextHandler != null) 
             {
                 StringBuilder menu = new StringBuilder("Bienvenido\n");
-                menu.Append("Usuario No Registrado:\n")
-                    .Append("   /usuarioempresanoregistrado\n")
-                    .Append("   /emprendedornoregistrado\n\n")
-                    .Append("Usuario Admin:\n")
-                    .Append("   /registrarempresa\n")
-                    .Append("   /eliminarusuario\n")
-                    .Append("   /eliminarempresa\n\n")
-                    .Append("Usuario de una Empresa:\n")
-                    .Append("   /agregarmaterial\n")
-                    .Append("   /publicaroferta\n")
-                    .Append("   /retiraroferta\n")
-                    .Append("   /suspenderoferta\n")
-                    .Append("   /reanudaroferta\n")
-                    .Append("   /mostrarofertas\n\n")
-                    .Append("   Para modificar alguna oferta:\n")
-                    .Append("       /modificarhabilitaciones\n")
-                    .Append("       /modificarprecio\n")
-                    .Append("       /modificarcantidad\n\n")
-                    .Append("Usuario Emprendedor:\n")
-                    .Append("   /buscaroferta");
+                if (UserRegister.Instance.GetUserById(input.Id) == null)
+                {
+                    menu.Append("Usuario No Registrado:\n")
+                        .Append("   /usuarioempresanoregistrado\n")
+                        .Append("   /emprendedornoregistrado\n\n");
+                }
+                else if(UserRegister.Instance.GetUserById(input.Id).IsCompanyUser())
+                {
+                    menu.Append("Usuario de una Empresa:\n")
+                        .Append("   /agregarmaterial\n")
+                        .Append("   /publicaroferta\n")
+                        .Append("   /retiraroferta\n")
+                        .Append("   /suspenderoferta\n")
+                        .Append("   /reanudaroferta\n")
+                        .Append("   /mostrarofertas\n")
+                        .Append("   /mostrarofertasvendidas\n\n")
+                        .Append("   Para modificar alguna oferta:\n")
+                        .Append("       /modificarhabilitaciones\n")
+                        .Append("       /modificarprecio\n")
+                        .Append("       /modificarcantidad\n\n");
+                }
+                else if (UserRegister.Instance.GetUserById(input.Id).IsEntrepreneurUser())
+                {
+                    menu.Append("Usuario Emprendedor:\n")
+                        .Append("   /buscaroferta");
+                }
+                else
+                {
+                    menu.Append("Usuario Admin:\n")
+                        .Append("   /registrarempresa\n")
+                        .Append("   /eliminarusuario\n")
+                        .Append("   /eliminarempresa\n\n");
+                }
                 this.State = StartState.NotFirstTime;
                 response = menu.ToString();
                 return true;
             }
             else if(this.State == StartState.NotFirstTime && CanHandle(input))
             {
-                IMessage input2 = input;
-                StringBuilder menu = new StringBuilder("Usuario No Registrado\n");
-                menu.Append("   /usuarioempresanoregistrado\n")
-                    .Append("   /emprendedornoregistrado\n\n")
-                    .Append("Usuario Admin:\n")
-                    .Append("   /registrarempresa\n")
-                    .Append("   /eliminarusuario\n")
-                    .Append("   /eliminarempresa\n\n")
-                    .Append("Usuario de una Empresa:\n")
-                    .Append("   /agregarmaterial\n")
-                    .Append("   /publicaroferta\n")
-                    .Append("   /retiraroferta\n")
-                    .Append("   /suspenderoferta\n")
-                    .Append("   /reanudaroferta\n")
-                    .Append("   /mostrarofertas\n\n")
-                    .Append("   Para modificar alguna oferta:\n")
-                    .Append("       /modificarhabilitaciones\n")
-                    .Append("       /modificarprecio\n")
-                    .Append("       /modificarcantidad\n\n")
-                    .Append("Usuario Emprendedor:\n")
-                    .Append("   /buscaroferta");
+                StringBuilder menu = new StringBuilder();
+                if (UserRegister.Instance.GetUserById(input.Id) == null)
+                {
+                    menu.Append("Usuario No Registrado:\n")
+                        .Append("   /usuarioempresanoregistrado\n")
+                        .Append("   /emprendedornoregistrado\n\n");
+                }
+                else if(UserRegister.Instance.GetUserById(input.Id).IsCompanyUser())
+                {
+                    menu.Append("Usuario de una Empresa:\n")
+                        .Append("   /agregarmaterial\n")
+                        .Append("   /publicaroferta\n")
+                        .Append("   /retiraroferta\n")
+                        .Append("   /suspenderoferta\n")
+                        .Append("   /reanudaroferta\n")
+                        .Append("   /mostrarofertas\n")
+                        .Append("   /mostrarofertasvendidas\n\n")
+                        .Append("   Para modificar alguna oferta:\n")
+                        .Append("       /modificarhabilitaciones\n")
+                        .Append("       /modificarprecio\n")
+                        .Append("       /modificarcantidad\n\n");
+                }
+                else if (UserRegister.Instance.GetUserById(input.Id).IsEntrepreneurUser())
+                {
+                    menu.Append("Usuario Emprendedor:\n")
+                        .Append("   /buscaroferta");
+                }
+                else
+                {
+                    menu.Append("Usuario Admin:\n")
+                        .Append("   /registrarempresa\n")
+                        .Append("   /eliminarusuario\n")
+                        .Append("   /eliminarempresa\n\n");
+                }
                 response = menu.ToString();
                 return true;
             }
@@ -95,14 +122,10 @@ namespace ClassLibrary
             /// El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
             /// </summary>
             Start,
+            /// <summary>
+            /// Estado que vuelve a enviar el menu de comandos en caso de que el usuario lo pregunte.
+            /// </summary>
             NotFirstTime
-        }
-        /// <summary>
-        /// Se crea la clase RemoveUserData para cuando se desea eliminar un usuario  de la UserData.
-        /// </summary>
-        public class RemoveUserData
-        {
-            public int User { get; set; }      //TODO Es necesario un data aca???
         }
     }
 }

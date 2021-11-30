@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -45,16 +46,9 @@ namespace ClassLibrary
                 response = datos.ToString();
                 return true;
             }
-            else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
-            {
-                this.Data.Token = input.Text;
-                this.State = UnregisteredCompanyUserState.Token;
-                response = "";
-                return true;
-            }
             else if(this.State == UnregisteredCompanyUserState.Token)
             {
-                this.Data.Token = input.Text;
+                this.Data.Token = input.Text.Trim();
                 if (TokenRegister.Instance.IsValid(this.Data.Token))
                 {
                     this.Data.Unregistered = TokenRegister.Instance.GetCompany(this.Data.Token);
@@ -70,23 +64,43 @@ namespace ClassLibrary
                     return true;
                 }
             }
+            else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
+            {
+                this.Data.Token = input.Text;
+                this.State = UnregisteredCompanyUserState.Token;
+                response = "";
+                return true;
+            }
             else
             {
                 response = "";
                 return false;
             }
         }
+        
         /// <summary>
-        /// Estados para el handler de un CompanyUser no registrado
+        /// Indica los diferentes estados que tiene UnregisteredCompanyUserHandler.
         /// </summary>
         public enum UnregisteredCompanyUserState
-        {    
+        {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pregunta por el token de invitacion necesario para 
+            /// registrar a un usuario empresa.
+            /// </summary>
             Start,
+            /// <summary>
+            /// Estado que vuelve a recibir un token en caso de que el ingresado anteriormente tenga
+            /// errores o no se encuentre en el registro.
+            /// </summary>
             NotFirstTime,
+            /// <summary>
+            /// Estado en el cual se verifica si el token ingresado es valido o no y se informa al usuario.
+            /// </summary>
             Token
         }
+
         /// <summary>
-        /// Se guardan los datos que el usuario pasa por el chat.
+        /// Representa los datos que va obteniendo el comando UnregistredCompanyUserHandler en los diferentes estados.
         /// </summary>
         public class UnregisteredCompanyUserData
         {
@@ -95,6 +109,9 @@ namespace ClassLibrary
             /// </summary>
             public string Token { get; set; }
 
+            /// <summary>
+            /// La empresa que se encontro a partir del Token ingresado en el estado UnregisteredCompanyUserState.Token.
+            /// </summary>
             public Company Unregistered { get; set; }
         }
     }

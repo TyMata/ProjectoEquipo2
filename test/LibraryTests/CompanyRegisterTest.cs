@@ -1,6 +1,5 @@
 using ClassLibrary;
 using NUnit.Framework;
-using Ucu.Poo.Locations.Client;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

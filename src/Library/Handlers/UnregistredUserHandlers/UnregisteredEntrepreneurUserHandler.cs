@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -49,6 +48,13 @@ namespace ClassLibrary
             else if(this.State == UnregisteredEntrepreneurUserState.Name)
             {
                 this.Data.Name =  input.Text;
+                this.State = UnregisteredEntrepreneurUserState.Phone;
+                response = "Ingrese su numero de teléfono.";
+                return true;
+            }
+            else if(this.State == UnregisteredEntrepreneurUserState.Phone)
+            {
+                this.Data.Phone =  input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Address;
                 response = "Ingrese su dirección.";
                 return true;
@@ -86,8 +92,8 @@ namespace ClassLibrary
             {
                 string rubro = input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Start;
-                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
-                response = "Gracias por sus datos, ya se ha creado su usuario\n";
+                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Phone ,this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
+                response = "Gracias por sus datos, se esta creando su usuario\n";
                 return true;
 
             }
@@ -103,17 +109,43 @@ namespace ClassLibrary
         /// </summary>
         public enum UnregisteredEntrepreneurUserState
         {
+            /// <summary>
+            /// El estado inicial del comando. Aquí pregunta por el token de invitacion necesario para 
+            /// registrar a un usuario empresa.
+            /// </summary>
             Start,
+            /// <summary>
+            /// Estado en donde se guarda el nombre que envio el usuario y se pregunta por el telefono de contacto.
+            /// </summary>
             Name,
+            /// <summary>
+            /// Estado en donde se guarda el telefono de contacto que envio el usuario y se pregunta por la direccion.
+            /// </summary>
+            Phone,
+            /// <summary>
+            /// Estado en donde se guarda la direccion que envio el usuario y se pregunta por la ciudad.
+            /// </summary>
             Address,
+            /// <summary>
+            /// Estado en donde se guarda la ciudad que envio el usuario y se pregunta por el departamento.
+            /// </summary>
             City,
+            /// <summary>
+            /// Estado en donde se guarda el departamento que envio el usuario, se encuentra la ubicacion y se pregunta por las habilitaciones.
+            /// </summary>
             Department,
+            /// <summary>
+            /// Estado en donde se guarda el link a las habilitaciones que envio el usuario y se pregunta por el rubro.
+            /// </summary>
             Habilitations,
+            /// <summary>
+            /// Estado en donde se guarda el rubro que envio el usuario, se crea el usuario emprendedor y se le informa al usuario.
+            /// </summary>
             Headings,
         }
 
         /// <summary>
-        /// Se guardan los datos que el usuario pasa por el chat.
+        /// Representa los datos que va obteniendo el comando UnregistredEntrepeneurHandler en los diferentes estados.
         /// </summary>
         public class UnregisteredEntrepreneurUserData
         {
@@ -121,6 +153,11 @@ namespace ClassLibrary
             /// El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
             /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Se guarda el numero de telefono que se ingresó en el estado UnregisteredEntrepreneurUserState.Phone .
+            /// </summary>
+            public string Phone { get; set; }
 
             /// <summary>
             /// se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .

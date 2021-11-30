@@ -2,7 +2,6 @@ using System;
 using ClassLibrary;
 using System.Text;
 using NUnit.Framework;
-using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
