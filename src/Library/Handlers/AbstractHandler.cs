@@ -37,14 +37,6 @@ namespace ClassLibrary
         public virtual bool InternalHandle(IMessage input, out string response)
         {
             throw new Exception();
-            // if (this.nextHandler != null)
-            // {
-            //     this.nextHandler.Handle(input);
-            // }
-            // else
-            // {
-            //     messageChannel.SendMessage("Ni idea");
-            // }
         }
 
         /// <summary>
@@ -82,6 +74,10 @@ namespace ClassLibrary
                 return null;
             }
         }
+
+        /// <summary>
+        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// </summary>
         protected virtual void InternalCancel()
         {
 

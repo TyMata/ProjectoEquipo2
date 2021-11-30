@@ -86,7 +86,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// REtorna la duracion entre dos locaciones
+        /// Retorna la duracion entre dos locaciones
         /// </summary>
         /// <param name="address"></param>
         /// <param name="city"></param>

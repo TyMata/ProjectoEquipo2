@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -207,6 +206,10 @@ namespace ClassLibrary
 
         private string continuity;
 
+        /// <summary>
+        /// Continuidad de la oferta.
+        /// </summary>
+        /// <value></value>
         public string Continuity
         {
             get

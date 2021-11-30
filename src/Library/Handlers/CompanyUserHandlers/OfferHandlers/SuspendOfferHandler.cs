@@ -9,7 +9,7 @@ namespace ClassLibrary
     public class SuspendOfferHandler : AbstractHandler
     {
         /// <summary>
-        /// Estado para este handler.
+        /// Estado para el handler de ModifyPriceHandler.
         /// </summary>
         /// <value></value>
         public SuspendOfferState State {get; private set;}
@@ -95,6 +95,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// </summary>
         protected override void InternalCancel()
         {
             this.State = SuspendOfferState.Start;

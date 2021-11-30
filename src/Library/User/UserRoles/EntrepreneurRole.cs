@@ -12,7 +12,7 @@ namespace ClassLibrary
     public class EntrepreneurRole : IRole
 	{
         private Entrepreneur entrepreneur;
-		private Entrepreneur Entrepreneur 
+		public Entrepreneur Entrepreneur 
         {
              get
              {
@@ -32,23 +32,15 @@ namespace ClassLibrary
         /// Es el constructor de EntrepreneurRole
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="phone"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitation"></param>
-        public EntrepreneurRole(string name, LocationAdapter location, string headings, string habilitation)
+        public EntrepreneurRole(string name, string phone,LocationAdapter location, string headings, string habilitation)
         {
-            this.Entrepreneur = new Entrepreneur(name, location, headings, habilitation);
+            this.Entrepreneur = new Entrepreneur(name, phone ,location, headings, habilitation);
         }
 
-       
-        /// <summary>
-        /// Devuelve el tipo de Rol como string
-        /// </summary>
-        /// <returns></returns>
-        public string RoleType()
-        {
-            return "emprendedor";
-        }
         /// <summary>
         /// Devuelve la data de un usuario emprendedor
         /// </summary>
@@ -59,7 +51,8 @@ namespace ClassLibrary
             sb.Append($"Nombre: {Entrepreneur.Name}\n")
                 .Append($"Ubicacion: {Entrepreneur.Location}\n")
                 .Append($"Rubro: {Entrepreneur.Heading}\n")
-                .Append($"Link a habilitaciones: {Entrepreneur.Habilitation}");
+                .Append($"Habilitaciones: {Entrepreneur.Habilitation}/n")
+                .Append($"Telefono de contacto: {Entrepreneur.ContactPhone}");
             return sb.ToString();
         }
 	}

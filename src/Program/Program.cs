@@ -26,11 +26,8 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-                //92018-40659-95124
-
-            //TODO: Preguntar sobre los estados, si tenemos que hacer uno para la CoR y otro para cada handler.
             //TODO: Preguntar sobre las intancias del bot.
-            //TODO: Preguntar como hacer que no mande siempre el menu.
+            //TODO Agregar precondiciones y postcondiciones en TODO el bot
            TelegramBot tb = TelegramBot.Instance;
            tb.StartCommunication();
            Console.ReadLine();
