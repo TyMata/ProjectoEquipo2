@@ -109,7 +109,7 @@ namespace ClassLibrary
                 }
                 if(input.Text.ToLower().Trim() == "si")
                 {
-                    Market.Instance.BuyOffer(this.Data.OfferToBuy.Id);
+                    Market.Instance.BuyOffer(this.Data.OfferToBuy.Id, UserRegister.Instance.GetUserById(input.Id));
                     this.State = SearchOfferState.Start;
                     StringBuilder sb = new StringBuilder("Datos de la empresa:\n");
                     sb.Append($"Nombre: {this.Data.Seller.Name}.\n")

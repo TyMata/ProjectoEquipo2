@@ -206,6 +206,10 @@ namespace ClassLibrary
 
         private string continuity;
 
+        /// <summary>
+        /// Continuidad de la oferta.
+        /// </summary>
+        /// <value></value>
         public string Continuity
         {
             get

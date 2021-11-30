@@ -48,6 +48,13 @@ namespace ClassLibrary
             else if(this.State == UnregisteredEntrepreneurUserState.Name)
             {
                 this.Data.Name =  input.Text;
+                this.State = UnregisteredEntrepreneurUserState.Phone;
+                response = "Ingrese su numero de teléfono.";
+                return true;
+            }
+            else if(this.State == UnregisteredEntrepreneurUserState.Phone)
+            {
+                this.Data.Phone =  input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Address;
                 response = "Ingrese su dirección.";
                 return true;
@@ -85,7 +92,7 @@ namespace ClassLibrary
             {
                 string rubro = input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Start;
-                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
+                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Phone ,this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
                 response = "Gracias por sus datos, se esta creando su usuario\n";
                 return true;
 
@@ -108,9 +115,13 @@ namespace ClassLibrary
             /// </summary>
             Start,
             /// <summary>
-            /// Estado en donde se guarda el nombre que envio el usuario y se pregunta por la direccion.
+            /// Estado en donde se guarda el nombre que envio el usuario y se pregunta por el telefono de contacto.
             /// </summary>
             Name,
+            /// <summary>
+            /// Estado en donde se guarda el telefono de contacto que envio el usuario y se pregunta por la direccion.
+            /// </summary>
+            Phone,
             /// <summary>
             /// Estado en donde se guarda la direccion que envio el usuario y se pregunta por la ciudad.
             /// </summary>
@@ -142,6 +153,11 @@ namespace ClassLibrary
             /// El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
             /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Se guarda el numero de telefono que se ingresó en el estado UnregisteredEntrepreneurUserState.Phone .
+            /// </summary>
+            public string Phone { get; set; }
 
             /// <summary>
             /// se guarda la dirección que se ingresó en el estado UnregisteredEntrepreneurUserState.Addres .
