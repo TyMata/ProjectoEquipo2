@@ -79,12 +79,20 @@ namespace ClassLibrary
             }
             else if(this.State == ModifyState.Modification)
             {
-                int price = Convert.ToInt32(input.Text);
+                // this.Data.Price = Convert.ToInt32(input.Text);
                 this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
-                this.Data.Result.ChangePrice(price);
-                this.State = ModifyState.Start;
-                response = "El precio se ha modificado.";
-                return true;
+                if(this.Data.Result != null)
+                {
+                    this.Data.Result.ChangePrice(Convert.ToInt32(input.Text));  
+                    this.State = ModifyState.Start;
+                    response = "El precio se ha modificado.";
+                    return true; 
+                }
+                else
+                {
+                    response = "No se encontro ninguna oferta.";
+                    return true;
+                }
             }
             response = string.Empty;
             return false;
@@ -130,6 +138,8 @@ namespace ClassLibrary
             /// La dirección que se ingresó en el estado ModifyState.OfferList.
             /// </summary>
             public int OfferId { get; set; }
+
+            public int Price {get; set;}
 
             /// <summary>
             /// El resultado de la búsqueda de la oferta ingresada.

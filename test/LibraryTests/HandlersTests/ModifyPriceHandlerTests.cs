@@ -8,11 +8,13 @@ namespace Tests
 {
     /// <summary>
     /// Prueba el handler para modificar la cantidad en una oferta.
+    /// Cada test por separado funcionan bien, pero cuando los corremos todos juntos se rompe Handle3FinaleTest(). 
+    /// Llegamos a la conclusion de que puede ser a acausa de que el SetUp se realice antes de cada test.
     /// </summary>
     [TestFixture]
     public class ModifyPriceHandlerTests
     {
-        private Offer oferta;
+        private Offer oferta ;
         private Material material;
         private DateTime dateTime;
         private ModifyPriceHandler handler;
@@ -28,10 +30,10 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/modificarprecio");
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
-            material = new Material("material", "type", "clasificacion");
+            material = new Material("Pallet", "Madera", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
+            oferta = new Offer(1234567, material, "habilitation", location, 5, 3000, company, true, dateTime, "continua");
             company.AddOffer(oferta);
             handler = new ModifyPriceHandler();
         }
@@ -40,7 +42,7 @@ namespace Tests
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
         /// </summary>
         [Test]
-        public void HandleStartTest()
+        public void Handle1StartTest()
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
@@ -64,11 +66,11 @@ namespace Tests
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
         [Test]
-        public void HandleOfferListTest()
+        public void Handle2OfferListTest()
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234567";
+            message.Text = oferta.Id.ToString();
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese el nuevo precio de la oferta.")); 
@@ -80,7 +82,7 @@ namespace Tests
         ///  y que se cambie la cantidad del material de la oferta correctamente.
         /// </summary>
         [Test]
-        public void HandleFinaleTest()
+        public void Handle3FinaleTest()
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
@@ -89,9 +91,10 @@ namespace Tests
             message.Text = "4500";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.AreEqual(4500,oferta.TotalPrice);
             Assert.That(response, Is.EqualTo("El precio se ha modificado.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.Start));
+            Assert.AreEqual(handler.Data.Result.Id, oferta.Id);
+            Assert.AreEqual(4500, oferta.TotalPrice);
 
         }
 

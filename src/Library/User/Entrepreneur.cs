@@ -106,7 +106,7 @@ namespace ClassLibrary
             }
         }
 
-        private List<Offer> boughtList;
+        private List<Offer> boughtList  = new List<Offer>();
         /// <summary>
         /// Lista de compras pasadas del emprendedor.
         /// </summary>
@@ -121,7 +121,7 @@ namespace ClassLibrary
             {
                 if (value != null)
                 {
-                    this.boughtList = value;
+                    this.boughtList = value ;
                 }
             }
         }

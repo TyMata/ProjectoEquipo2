@@ -69,6 +69,8 @@
             <param name="name"></param>
             <param name="location"></param>
             <param name="headings"></param>
+            <param name="email"></param>
+            <param name="phoneNumber"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
@@ -313,7 +315,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.company">
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Result">
             <summary>
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
@@ -1299,7 +1301,12 @@
         </member>
         <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name">
             <summary>
-            Estado en donde se guarda el nombre que envio el usuario y se pregunta por la direccion.
+            Estado en donde se guarda el nombre que envio el usuario y se pregunta por el telefono de contacto.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Phone">
+            <summary>
+            Estado en donde se guarda el telefono de contacto que envio el usuario y se pregunta por la direccion.
             </summary>
         </member>
         <member name="F:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Address">
@@ -1335,6 +1342,11 @@
         <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Name">
             <summary>
             El nombre que se ingresó en el estado UnregisteredCompanyUserState.Name.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Phone">
+            <summary>
+            Se guarda el numero de telefono que se ingresó en el estado UnregisteredEntrepreneurUserState.Phone .
             </summary>
         </member>
         <member name="P:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserData.Address">
@@ -1659,6 +1671,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Offer.Continuity">
+            <summary>
+            Continuidad de la oferta.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Offer.PublicationDate">
             <summary>
             Fecha de publicacion.
@@ -1670,7 +1688,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Int32,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -1832,7 +1850,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Double,ClassLibrary.Company,System.Boolean,System.String)">
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Int32,ClassLibrary.Company,System.Boolean,System.String)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
@@ -1994,11 +2012,12 @@
             <param name="input"></param>
             <param name="company"></param>
         </member>
-        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
+        <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Crea un usuario emprendedor.
             </summary>
             <param name="id"></param>
+            <param name="phone"></param>
             <param name="name"></param>
             <param name="location"></param>
             <param name="headings"></param>
@@ -2096,11 +2115,12 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
+        <member name="M:ClassLibrary.Entrepreneur.#ctor(System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Constructor de objetos Entrepreneur
             </summary>
             <param name="name"></param>
+            <param name="phone"></param>
             <param name="location"></param>
             <param name="heading"></param>
             <param name="habilitation"></param>
@@ -2110,58 +2130,6 @@
             Agrega una oferta comprada a la lista de oferta compradas
             </summary>
             <param name="offer"></param>
-        </member>
-        <member name="T:ClassLibrary.Users">
-            <summary>
-            Esta clase representa un usuario.
-            Decidimos crearla de esta manera porque solo tiene la responsabilidad de conocer los datos
-            de un usuario asi cumple con el SRP, tambien decidimos que el Role sea un IRole por el LSP,
-            asi al momento de crear un usuario se le puede otorgar cualquiera de los 3 roles (AdminRole,
-            CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
-            </summary>
-        </member>
-        <member name="F:ClassLibrary.Users.Role">
-            <summary>
-            Rol del usuario.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Users.Id">
-            <summary>
-            Id del usuario
-            </summary>
-            <value></value>
-        </member>
-        <member name="M:ClassLibrary.Users.#ctor(System.Int32,ClassLibrary.IRole)">
-            <summary>
-            Constructor de User
-            </summary>
-            <param name="id"></param>
-            <param name="role"></param>
-        </member>
-        <member name="M:ClassLibrary.Users.IsCompanyUser">
-            <summary>
-            Booleano para comprobar que un usuario es un usuario empresa.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
-            <summary>
-            Booleano para comprobar que un usuario es un usuario emprendedor.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Users.IsAdminUser">
-            <summary>
-            Booleano para comprobar que un usuario es un usuario admin.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.Users.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
-            Json utilizando JsonSerializer.Deserialize.
-            </summary>
-            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:ClassLibrary.AdminRole">
             <summary>
@@ -2219,20 +2187,15 @@
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
         </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
+        <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
             Es el constructor de EntrepreneurRole
             </summary>
             <param name="name"></param>
+            <param name="phone"></param>
             <param name="location"></param>
             <param name="headings"></param>
             <param name="habilitation"></param>
-        </member>
-        <member name="M:ClassLibrary.EntrepreneurRole.RoleType">
-            <summary>
-            Devuelve el tipo de Rol como string
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:ClassLibrary.EntrepreneurRole.Data">
             <summary>
@@ -2245,17 +2208,63 @@
             Interface para los roles
             </summary>
         </member>
-        <member name="M:ClassLibrary.IRole.RoleType">
-            <summary>
-            Se devuelve TipoRol
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.IRole.Data">
             <summary>
             Nos devuelve la data del usuario en string
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.Users">
+            <summary>
+            Esta clase representa un usuario.
+            Decidimos crearla de esta manera porque solo tiene la responsabilidad de conocer los datos
+            de un usuario asi cumple con el SRP, tambien decidimos que el Role sea un IRole por el LSP,
+            asi al momento de crear un usuario se le puede otorgar cualquiera de los 3 roles (AdminRole,
+            CompanyRole o EntrepreneurRole) ya que son subtipos de IRole.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.Users.Role">
+            <summary>
+            Rol del usuario.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Users.Id">
+            <summary>
+            Id del usuario
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Users.#ctor(System.Int32,ClassLibrary.IRole)">
+            <summary>
+            Constructor de User
+            </summary>
+            <param name="id"></param>
+            <param name="role"></param>
+        </member>
+        <member name="M:ClassLibrary.Users.IsCompanyUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario empresa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Users.IsEntrepreneurUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario emprendedor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Users.IsAdminUser">
+            <summary>
+            Booleano para comprobar que un usuario es un usuario admin.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Users.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Json utilizando JsonSerializer.Deserialize.
+            </summary>
+            <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="T:Singleton`1">
             <summary>

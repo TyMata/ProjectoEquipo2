@@ -276,6 +276,8 @@ namespace ClassLibrary
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
+        /// <param name="email"></param>
+        /// <param name="phoneNumber"></param>
         public Company(string name, LocationAdapter location, string headings, string email, string phoneNumber)
         {
             this.Name = name;

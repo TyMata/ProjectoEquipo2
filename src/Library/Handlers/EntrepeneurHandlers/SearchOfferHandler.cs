@@ -79,8 +79,8 @@ namespace ClassLibrary
                     return true;
                 }
                 this.State = SearchOfferState.BuyOfferState;
-                int Id = Convert.ToInt32(input.Text);
-                this.Data.OfferToBuy = Market.Instance.GetOfferById(Id);
+                this.Data.Id = Convert.ToInt32(input.Text);
+                this.Data.OfferToBuy = Market.Instance.GetOfferById(this.Data.Id);
                 this.Data.Seller = this.Data.OfferToBuy.Company;
                 if (this.Data.OfferToBuy != null)
                 {
@@ -109,7 +109,8 @@ namespace ClassLibrary
                 }
                 if(input.Text.ToLower().Trim() == "si")
                 {
-                    Market.Instance.BuyOffer(this.Data.OfferToBuy.Id, UserRegister.Instance.GetUserById(input.Id));
+                    Users user = UserRegister.Instance.GetUserById(input.Id);
+                    Market.Instance.BuyOffer(this.Data.Id, user);
                     this.State = SearchOfferState.Start;
                     StringBuilder sb = new StringBuilder("Datos de la empresa:\n");
                     sb.Append($"Nombre: {this.Data.Seller.Name}.\n")
@@ -176,6 +177,8 @@ namespace ClassLibrary
             /// </summary>
             /// <value></value>
             public Offer OfferToBuy { get; set; }
+
+            public int Id {get; set;}
 
             /// <summary>
             /// La empresa la cual le pasaremos la informacion de contacto al usuario.

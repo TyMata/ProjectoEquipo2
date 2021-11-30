@@ -28,7 +28,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/publicaroferta");
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
-            material = new Material("material", "type", "clasificacion");
+            material = new Material("Pallet", "Madera", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
             company.ProducedMaterials.Add(material);
@@ -69,7 +69,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese la cantidad de material.")); 
@@ -85,7 +85,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
@@ -103,7 +103,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
@@ -132,7 +132,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
@@ -154,7 +154,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
@@ -177,7 +177,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
+            message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);

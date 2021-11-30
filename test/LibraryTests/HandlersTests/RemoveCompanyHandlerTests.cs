@@ -15,13 +15,13 @@ namespace Tests
         private RemoveCompanyHandler handler;
 
         /// <summary>
-        /// Se setea la company a eliminar.
+        /// Se crean Instancias par apoder realizar el caso de prueba para poder remover una empresa.
         /// </summary>
         [SetUp]
         public void SetUp()
         {
             message = new TelegramBotMessage(1234,"/eliminarempresa");
-            company = CompanyRegister.Instance.CreateCompany("company", new LocationAdapter("address","city","departemnt"),"Headings", "company@gmail.com", "091919191");
+            company = CompanyRegister.Instance.CreateCompany("Empresa", new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo"),"Headings", "company@gmail.com", "091919191");
             handler = new RemoveCompanyHandler();
         }
         /// <summary>

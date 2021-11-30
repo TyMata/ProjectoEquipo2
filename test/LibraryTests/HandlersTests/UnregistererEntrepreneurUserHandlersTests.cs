@@ -12,9 +12,8 @@ namespace Tests
     public class UnregisteredEntrepreneurUserHandlerTests //TODO Object reference not set to an instance of an object. ver cual es el error este
     {
         private UnregisteredEntrepreneurUserHandler handler;
-        private LocationAdapter location;
         private IMessage message;
-        private Company company;
+
         /// <summary>
         /// Se setea el usuario Entrepreneur.
         /// </summary>
@@ -22,7 +21,6 @@ namespace Tests
         public void SetUp()
         {
             message = new TelegramBotMessage(1234, "/emprendedornoregistrado");
-            location = new LocationAdapter("address", "city", "department");
             handler = new UnregisteredEntrepreneurUserHandler();
         }
 
@@ -40,11 +38,25 @@ namespace Tests
         }
 
         [Test]
-        public void HandleTokenTest()
+        public void HandleNameTest()
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("Ingrese su numero de teléfono.")); 
+            Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Phone));
+        }
+
+        [Test]
+        public void HandlePhoneTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese su dirección.")); 
@@ -58,6 +70,8 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
+            result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
@@ -70,6 +84,8 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
@@ -85,6 +101,8 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
@@ -102,6 +120,8 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
@@ -123,6 +143,8 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
+            message.Text = "098789456";
+            result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
             message.Text = "Montevideo";
@@ -135,7 +157,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Gracias por sus datos, ya se ha creado su usuario\n")); 
-            Assert.IsTrue(company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
+            Assert.IsTrue(UserRegister.Instance.DataUsers.Contains(UserRegister.Instance.GetUserById(1234)));
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Start));
         }
 
