@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -13,11 +12,23 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
+
+        public int count;
         /// <summary>
         /// Genera un numero mayor que el anterior para el Id.
         /// </summary>
         /// <value></value>
-        public int Count { get; set; }
+        public int Count 
+        { 
+            get
+            {
+                return this.count;
+            }
+            set
+            {
+                this.count = value;
+            }
+        }
 
         private Market()
         {
@@ -88,12 +99,13 @@ namespace ClassLibrary
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="availability"></param>
+        /// <param name="continuity"></param>
         /// <returns></returns>
         public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id ,material , habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "constante");
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "continua");
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
@@ -184,13 +196,15 @@ namespace ClassLibrary
             return x;
         }
 
-        public void BuyOffer(int id)
+        public void BuyOffer(int offerId, Users user)
         {
-            if (!this.ActualOfferList.Exists(offer => offer.Id == id))
+            if (!this.ActualOfferList.Exists(offer => offer.Id == offerId))
             {
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //TODO: Agregar a la lista de ofertas compradas del usuario
             }
-            Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
+            Offer x = this.ActualOfferList.Find(offer => offer.Id == offerId);
+            x.Company.OfferSold(x , user);
+            (user.Role as EntrepreneurRole).Entrepreneur.AddBoughtOffer(x);
             x.ChangeAvailability();
             this.SuspendedOfferList.Add(x);
             this.ActualOfferList.Remove(x);

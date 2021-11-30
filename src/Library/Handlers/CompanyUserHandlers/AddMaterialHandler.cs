@@ -70,7 +70,7 @@ namespace ClassLibrary
                 response = "Ingrese la clasificación:\n";
                 return true;
             }
-             else if(this.State == AddMaterialState.Classification)
+            else if(this.State == AddMaterialState.Classification)
             {
                 if (input.Text == "/menu")
                 {
@@ -113,8 +113,15 @@ namespace ClassLibrary
             /// </summary>
             Name,
 
+            /// <summary>
+            /// Luego de pedir el tipo del material. En este estado el comando pide las habilitaciones necesarias
+            /// para manejar el material y pasa al siguiente estado.
+            /// </summary>
             Type,
 
+            /// <summary>
+            /// Luego de pedir las habilitaciones necesarias. En este estado el comando añade el material y vuelve al estado Start.
+            /// </summary>
             Classification
         }
 
@@ -124,17 +131,18 @@ namespace ClassLibrary
         public class AddMaterialData
         {
             /// <summary>
-            /// El nombre de la empresa que se ingresó en el estado CompanyState.Name.
+            /// El nombre del objeto que se ingresó en el estado AddMaterial.Name.
             /// </summary>
             public string Name { get; set; }
 
-
+            /// <summary>
+            /// El tipo del material que se ingresó en el estado AddMaterial.Type.
+            /// </summary>
             public string Type { get; set; }
 
             /// <summary>
-            /// El departamento de la empresa que se ingresó en el estado CompanyState.State.
+            /// La clasificacion necesaria para manejar el material que se ingresó en el estado AddMaterial.Classification.
             /// </summary>
-            /// <value></value>
             public string Classification { get; set; }
         }
     }

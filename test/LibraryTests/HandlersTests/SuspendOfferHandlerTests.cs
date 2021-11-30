@@ -18,6 +18,7 @@ namespace Tests
         private SuspendOfferHandler handler;
         private LocationAdapter location;
         private IMessage message;
+        private IMessage message2;
         private Company company;
 
         /// <summary>
@@ -27,12 +28,12 @@ namespace Tests
         public void Setup()
         {
             message = new TelegramBotMessage(1234, "/suspenderoferta");
-            location = new LocationAdapter("address", "city", "department");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
-            company.AddUser(1234);
-            oferta = Market.Instance.CreateOffer(material, "habilitation", location, 3, 3000,company , true, "constante");
-            material = new Material("material", "type", "clasificacion");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
+            this.company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
+            this.company.AddUser(1234);
+            oferta = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"), "habilitation", location, 3, 3000, this.company, true, "continua");
             handler = new SuspendOfferHandler();
+            message2 = new TelegramBotMessage(1234, oferta.Id.ToString());
         }
 
         /// <summary>
@@ -48,17 +49,19 @@ namespace Tests
             {
                 if(item.Availability)
                 {
-                    offers.Append($"Id de la oferta: {item.Id}\n")
-                          .Append($"Material de la oferta: {item.Material}\n")
-                          .Append($"Cantidad: {item.QuantityMaterial}\n")
-                          .Append($"Fecha de publicacion: {item.PublicationDate}\n")
-                          .Append($"\n-----------------------------------------------\n\n");
+                    offers.Append($"Id de la oferta: {item.Id}.\n")
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Precio: {item.TotalPrice}.\n")
+                                .Append($"Fecha de publicación: {item.PublicationDate}.\n")
+                                .Append($"\n-----------------------------------------------\n\n");
                 }
             }       
-            offers.Append("¿Cual es el Id de la que quiere suspender?");
+            offers.Append("¿Cuál es el Id de la oferta que quiere suspender?");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(offers.ToString())); 
             Assert.That(handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.ActiveOfferIdState));
+            Assert.IsTrue(this.company.OfferRegister.Contains(oferta));
         }
 
         /// <summary>
@@ -70,9 +73,10 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = oferta.Id.ToString();
-            result = handler.InternalHandle(message, out response);
+            result = handler.InternalHandle(message2, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("La oferta ha sido suspendida.\n")); 
+            Assert.IsTrue(this.company.OfferRegister.Contains(oferta));
+            Assert.That(response, Is.EqualTo("La oferta ha sido suspendida.")); 
             Assert.That(handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.Start));
             Assert.IsTrue(Market.Instance.SuspendedOfferList.Contains(oferta));
         }

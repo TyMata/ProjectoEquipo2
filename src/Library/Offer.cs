@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {
@@ -207,6 +206,10 @@ namespace ClassLibrary
 
         private string continuity;
 
+        /// <summary>
+        /// Continuidad de la oferta.
+        /// </summary>
+        /// <value></value>
         public string Continuity
         {
             get
@@ -269,7 +272,7 @@ namespace ClassLibrary
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
         /// <param name="continuity"></param>
-        public Offer( int id, Material material, string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate, string continuity)
+        public Offer(int id, Material material, string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company,bool availability, DateTime publicationDate, string continuity)
         {
             this.Id = id;
             this.Material = material;
@@ -332,9 +335,14 @@ namespace ClassLibrary
         /// </summary>
         public void ChangeAvailability()
         {
-            if(this.availability) this.availability = false;
-            else this.availability = true;
-
+            if(this.availability) 
+            {
+                this.availability = false;
+            }
+            else 
+            {
+            this.availability = true;
+            }
         }
 
         /// <summary>

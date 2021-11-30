@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ClassLibrary
 {
-    public class ShowCompanyOffersHandler : AbstractHandler, IHandler
+    public class ShowCompanySoldOffersHandler : AbstractHandler, IHandler
     {
         private Company company;
-        public ShowCompanyOffersHandler()
+        public ShowCompanySoldOffersHandler()
         {
-            this.Command = "/mostrarofertas";
+            this.Command = "/mostrarofertasvendidas";
             this.company = null;
         }
 
@@ -19,9 +20,9 @@ namespace ClassLibrary
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
                 StringBuilder offers = new StringBuilder("Estas son tus ofertas actuales:\n");
-                if(this.company != null && this.company.OfferRegister.Count != 0)
+                if(this.company != null && this.company.SoldOffers.Count != 0)
                 {
-                    foreach (Offer item in this.company.OfferRegister)
+                    foreach (Offer item in this.company.SoldOffers.Keys.ToArray())
                     {
                         offers.Append($"Id de la oferta: {item.Id}.\n")
                                 .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
@@ -36,6 +37,8 @@ namespace ClassLibrary
                         {
                             offers.Append($"Disponibilidad: Suspendida.\n");
                         }
+                        offers.Append($"Comprador:\n")
+                                .Append(this.company.SoldOffers[item].Role.Data());
                         offers.Append($"\n-----------------------------------------------\n\n");
                     }
                     response = offers.ToString();

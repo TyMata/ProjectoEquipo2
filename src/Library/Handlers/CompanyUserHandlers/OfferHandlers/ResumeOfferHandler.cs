@@ -15,9 +15,9 @@ namespace ClassLibrary
         public ResumeOfferState State {get; private set;}
 
         /// <summary>
-        /// Clase para guardar la informacion que envia el usuario por el chat cuando se le pregunta
+        /// Guarda la información que pasa el usuario por el chat cuando se utiliza el comando ModifyPriceHandler.
         /// </summary>
-        /// <returns></returns>
+        /// <value></value>
         public ResumeOfferData Data {get; private set;} = new ResumeOfferData();
 
         private Company company;
@@ -44,10 +44,10 @@ namespace ClassLibrary
             if((State == ResumeOfferState.Start) && this.CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder();
+                StringBuilder offers = new StringBuilder("Estas son tus ofertas:\n");
                 if(this.company != null)
                 { 
-                    foreach (Offer item in this.company.OfferRegister)
+                    foreach(Offer item in this.company.OfferRegister)
                     {
                         if(!item.Availability)
                         {
@@ -95,6 +95,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// </summary>
         protected override void InternalCancel()
         {
             this.State = ResumeOfferState.Start;

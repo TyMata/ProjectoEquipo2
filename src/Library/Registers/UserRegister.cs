@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Ucu.Poo.Locations.Client;
 
 namespace ClassLibrary
 {   
@@ -61,22 +60,24 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <param name="company"></param>
-        public  void CreateCompanyUser(IMessage input,Company company)
+        public void CreateCompanyUser(int id,Company company)
         {
-            company.AddUser(input.Id);
+            company.AddUser(id);
+
         }
         
         /// <summary>
         /// Crea un usuario emprendedor.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="phone"></param>
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
         /// <param name="habilitations"></param>
-        public void CreateEntrepreneurUser(int id,string name , LocationAdapter location, string headings, string habilitations)
+        public void CreateEntrepreneurUser(int id, string phone,string name , LocationAdapter location, string headings, string habilitations)
         {
-            IRole rol = new EntrepreneurRole(name , location, headings, habilitations);
+            IRole rol = new EntrepreneurRole(name, phone, location, headings, habilitations);
             Users usuario = new Users(id, rol);
             UserRegister.Instance.Add(usuario);
         }

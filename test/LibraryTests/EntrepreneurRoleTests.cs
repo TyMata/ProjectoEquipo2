@@ -1,6 +1,5 @@
 using ClassLibrary;
 using NUnit.Framework;
-using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
@@ -20,18 +19,9 @@ namespace Tests
         public void SetUp()
         {
             this.location = new LocationAdapter("address", "city", "department");
-            this.role = new EntrepreneurRole("emprendedor", location, "headings", "habilitaciones");
+            this.role = new EntrepreneurRole("emprendedor", "099088077", location, "headings", "habilitaciones");
         }
 
-        /// <summary>
-        /// Prueba que RoleType() devuelve la string "emprendedor".
-        /// </summary>
-        [Test]
-        public void RoletypeTest()
-        {
-            string expected = this.role.RoleType();
-            Assert.AreEqual(expected, "emprendedor");
-        }
 
         /// <summary>
         /// Prueba que la información del usuario no este vacía.

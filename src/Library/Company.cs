@@ -169,6 +169,29 @@ namespace ClassLibrary
                 }
             }
         }
+
+        private Dictionary<Offer, Users> soldOffers = new Dictionary<Offer, Users>();
+        
+        [JsonInclude]
+        public Dictionary<Offer, Users> SoldOffers
+        {
+            get
+            {
+                return this.soldOffers;
+            }
+            private set
+            {
+                if (value != null)
+                {
+                    this.soldOffers = value;
+                }
+                else
+                {
+                    throw new NullReferenceException();
+                }
+            }
+        }
+
         
         private List<Material> producedMaterials = new List<Material>();
 
@@ -270,7 +293,7 @@ namespace ClassLibrary
             {
                 throw new Exception();
             }
-            Material material = new Material(name, type, classification); //TODO: Cambiar a name, type, classification.
+            Material material = new Material(name, type, classification); 
             this.producedMaterials.Add(material);
         }
         
@@ -311,9 +334,9 @@ namespace ClassLibrary
         /// <param name="offer"></param>
         public void AddOffer(Offer offer)
         {
-            if (this.OfferRegister.Exists(x => x == offer))
+            if(this.OfferRegister.Exists(x => x == offer))
             {
-                throw new Exception();
+                throw new Exception("Esta oferta ya esta creada.");
             }   
             this.OfferRegister.Add(offer);
         }
@@ -363,6 +386,7 @@ namespace ClassLibrary
             this.Headings = company.Headings;
             this.Id = company.Id;
             this.InvitationToken = company.InvitationToken;
+            this.SoldOffers = company.SoldOffers;
             
         }
 
@@ -373,7 +397,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public Material GetMaterial(string name)
         {
-            Material material = this.ProducedMaterials.Find(material => material.Name == name);
+            Material material = this.ProducedMaterials.Find(material => material.Name.ToLower().Trim() == name.ToLower().Trim());
             if(material != null)
             {
             return material;
@@ -391,7 +415,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public LocationAdapter GetLocation(string address)
         {
-            LocationAdapter location = this.Locations.Find(location => location.Address == address);
+            LocationAdapter location = this.Locations.Find(location => location.Address.ToLower().Trim() == address.ToLower().Trim());
             if(location != null)
             {
                 return location;
@@ -400,6 +424,11 @@ namespace ClassLibrary
             {
                 return null;
             }
+        }
+
+        public void OfferSold(Offer offer, Users user)
+        {
+            this.SoldOffers.Add(offer, user); //TODO HAcer esto bien, precondiciones preuntando si ya esta ingresada en el diccionario y falta agregar a la lista en el handler al momento de hacerse la compra
         }
     }
 }

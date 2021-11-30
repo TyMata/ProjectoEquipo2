@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Ucu.Poo.Locations.Client;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -146,8 +146,8 @@ namespace ClassLibrary
                 this.State = AddCompanyState.Start;
                 this.Data.PhoneNumber = input.Text;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
-                this.Data.company = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
-                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.company.InvitationToken}";
+                this.Data.Result = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
+                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.Result.InvitationToken}";
                 return true;
             }
             response = string.Empty;
@@ -199,12 +199,18 @@ namespace ClassLibrary
             Address,
 
             /// <summary>
-            /// Luego de pedir el rubro de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            /// Luego de pedir el rubro de la empresa. En este estado el comando pide el e-mail de la empresa y pasa al siguiente estado.
             /// </summary>
             Headings,
 
+            /// <summary>
+            /// Luego de pedir el e-mail de la empresa. En este estado el comando pide el numero de contacto de la empresa y pasa al siguiente estado.
+            /// </summary>
             Email,
-
+            
+            /// <summary>
+            /// Luego de pedir el numero de contacto de la empresa. En este estado el comando crea la empresa y vuelve al estado Start.
+            /// </summary>
             PhoneNumber
         }
 
@@ -253,15 +259,23 @@ namespace ClassLibrary
             /// <value></value>
             public string Headings { get; set; }
 
+            /// <summary>
+            /// El e-mail de la empresa que se ingresó en el estado CompanyState.Email.
+            /// </summary>
+            /// <value></value>
             public string Email { get; set; }
 
+            /// <summary>
+            /// El numeo de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
+            /// </summary>
+            /// <value></value>
             public string PhoneNumber { get; set; }
             
             /// <summary>
             /// La empresa creada a partir de todos los datos recolectados anteriormente.
             /// </summary>
             /// <value></value>
-            public Company company { get; set; }
+            public Company Result { get; set; }
         }
     }
 }

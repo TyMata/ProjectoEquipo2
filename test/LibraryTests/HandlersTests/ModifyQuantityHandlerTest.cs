@@ -2,7 +2,6 @@ using System;
 using ClassLibrary;
 using System.Text;
 using NUnit.Framework;
-using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {
@@ -28,7 +27,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/modificarcantidad");
             location = new LocationAdapter("address", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
+            oferta = new Offer(1234567, new Material(), "habilitation", location, 5, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
             material = new Material("material", "type", "clasificacion");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
@@ -45,17 +44,17 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            StringBuilder sb = new StringBuilder("Que oferta desea modificar?\n");
+            StringBuilder sb = new StringBuilder("¿Qué oferta desea modificar?\n");
             foreach (Offer x in company.OfferRegister)
             {
-                sb.Append($"Id : {x.Id}\n")
-                        .Append($"Material : {x.Material}\n")
-                        .Append($"Cantidad: {x.QuantityMaterial}\n")
-                        .Append($"Fecha de publicacion: {x.PublicationDate}\n")
-                        .Append($"Precio: {x.TotalPrice}\n")
-                        .Append($"\n-----------------------------------------------\n\n");  
+                sb.Append($"Id: {x.Id}.\n")
+                  .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                  .Append($"Cantidad: {x.QuantityMaterial}.\n")
+                  .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
+                  .Append($"Precio: {x.TotalPrice}.\n")
+                  .Append($"\n-----------------------------------------------\n\n");  
             }
-            sb.Append("Ingrese el Id de la oferta a modificar:\n");
+            sb.Append("Ingrese el Id de la oferta a modificar.");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(sb.ToString())); 
             Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.OfferList));
@@ -72,7 +71,7 @@ namespace Tests
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta:\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
         }
 
@@ -91,7 +90,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.AreEqual(5,oferta.QuantityMaterial);
-            Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado")); 
+            Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Start));
 
         }
