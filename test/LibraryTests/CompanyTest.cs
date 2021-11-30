@@ -90,14 +90,19 @@ namespace Tests
             Assert.AreEqual(material.Name, material2.Name);
             Assert.IsNotNull(material2);
         }
-
+        /// <summary>
+        /// Prueba que el metódo GetLocation devuelva la locación correcta.
+        /// </summary>
         [Test]
         public void GetLocationTest()
         {
             LocationAdapter result = this.company.GetLocation("Comandante Braga 2715");
             Assert.AreEqual(this.location, result);
         }
-
+        /// <summary>
+        /// Prueba que el metódo AddMaterial devuelva el nombre del material,su tipo y 
+        /// clasificación.
+        /// </summary>
         [Test]
         public void AddMaterialTest()
         {

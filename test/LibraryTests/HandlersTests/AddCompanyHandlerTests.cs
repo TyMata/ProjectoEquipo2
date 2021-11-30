@@ -130,7 +130,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese el rubro:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Headings));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se hag correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleEmailTest()
         {
@@ -152,7 +154,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese el email:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Email));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se hag correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandlePhoneNumberTest()
         {
