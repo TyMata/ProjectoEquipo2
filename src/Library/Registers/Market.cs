@@ -51,7 +51,9 @@ namespace ClassLibrary
                 return instance;
             }
         }
-
+        /// <summary>
+        /// Se crea la lista de ofertas actuales.
+        /// </summary>
         public List<Offer> actualOfferList;
 
         /// <summary>

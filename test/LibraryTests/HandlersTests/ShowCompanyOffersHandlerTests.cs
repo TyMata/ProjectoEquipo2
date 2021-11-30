@@ -15,7 +15,9 @@ namespace Tests
         private ShowCompanyOffersHandler handler;
         private Offer oferta;
         private DateTime dateTime;
-
+        /// <summary>
+        ///  Se crea una oferta de una empresa para las pruebas.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
