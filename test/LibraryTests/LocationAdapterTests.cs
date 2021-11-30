@@ -8,7 +8,7 @@ namespace Tests
     /// <summary>
     /// Prueba la clase <see cref="LocationAdapter"/>
     /// </summary>
-    [TestFixture]
+    /// [TestFixture]
     public class LocationAdapterTests
     {
         private string address;

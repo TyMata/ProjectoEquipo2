@@ -416,6 +416,7 @@
             <summary>
             Prueba la clase <see cref="T:ClassLibrary.LocationAdapter"/>
             </summary>
+            [TestFixture]
         </member>
         <member name="M:Tests.LocationAdapterTests.Setup">
             <summary>
