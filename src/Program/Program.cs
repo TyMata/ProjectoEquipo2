@@ -28,27 +28,10 @@ namespace ConsoleApplication
         {
             //TODO: Preguntar sobre las intancias del bot.
             //TODO Agregar precondiciones y postcondiciones en TODO el bot
-           TelegramBot tb = TelegramBot.Instance;
-           tb.StartCommunication();
-           Console.ReadLine();
-            // IHandler handler = new AddCompanyHandler(mc);
-            // handler.SetNext(new RemoveUserHandler(mc)
-            //         .SetNext(new RemoveCompanyHandler(mc)
-            //         .SetNext(/*new RemoveCompanyHandler(mc)
-            //         .SetNext(*/new EndHandler(mc, null))))/*)*/;
-            // mc.SendMessage("Bienvenido Admin!\n");
-            // while(true)
-            // {
-            // StringBuilder bienvenida = new StringBuilder("Que quieres hacer?\n")
-            //                                     .Append("/RegistrarEmpresa\n")
-            //                                     .Append("/EliminarUsuario\n")
-            //                                     .Append("/EliminarEmpresa\n");
-            // mc.SendMessage(bienvenida.ToString());
-            // // if (handler.Handle(mc.ReceiveMessage()) != null)
-            // // {
-            // //     return;
-            // // }
-
+            TelegramBot tb = TelegramBot.Instance;
+            tb.StartCommunication();
+            Console.ReadLine();
+            
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,
@@ -58,20 +41,23 @@ namespace ConsoleApplication
             Console.WriteLine(CompanyRegister.Instance.ConvertToJson(options));
             Console.WriteLine(Market.Instance.ConvertToJson(options));
 
-            foreach (Offer offer in Market.Instance.actualOfferList)
-            {
-                string temp = JsonSerializer.Serialize(Market.Instance.actualOfferList);
-                Console.WriteLine(temp);
-                File.WriteAllText(@"actualOfferListData.json", temp);
-            }
+            // foreach (Offer offer in Market.Instance.ActualOfferList)
+            // {
+            //     string temp = JsonSerializer.Serialize(Market.Instance.ActualOfferList);
+            //     Console.WriteLine(temp);
+            //     File.WriteAllText(@"actualOfferListData.json", temp);
+            // }
             foreach (Company company in CompanyRegister.Instance.CompanyList)
             {
-                // if (@"data.json" != string.Empty)
-                // {
-                //     string jsonD = File.ReadAllText(@"data.json");
-                //     CompanyRegister companyDeserializer = JsonSerializer.Deserialize<CompanyRegister>(jsonD, options);
+                // if (@"companyData.json" != string.Empty)
+                // {   
+                //     CompanyRegister.Instance.Initialize();
+
+                //     string jsonD = File.ReadAllText(@"companyData.json");
+                //     Company companyDeserializer = JsonSerializer.Deserialize<Company>(jsonD);
+
+                //     Console.WriteLine(companyDeserializer.ConvertToJson(options));
                 // }
-                // File.ReadAllText("@data.json");
                 string temp2 = JsonSerializer.Serialize(CompanyRegister.Instance.CompanyList);
                 Console.WriteLine(temp2);
                 File.WriteAllText(@"companyData.json", temp2);

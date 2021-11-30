@@ -58,7 +58,7 @@ namespace ClassLibrary
         /// <summary>
         /// Crea un usuario empresa.
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="id"></param>
         /// <param name="company"></param>
         public void CreateCompanyUser(int id,Company company)
         {

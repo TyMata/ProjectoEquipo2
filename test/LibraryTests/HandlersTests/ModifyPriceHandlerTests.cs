@@ -33,7 +33,7 @@ namespace Tests
             material = new Material("Pallet", "Madera", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
-            oferta = new Offer(1234567, material, "habilitation", location, 5, 3000, company, true, dateTime, "continua");
+            oferta = new Offer(1234567, material, "habilitation",location, "kg", 3, "pesos", 3000,  company, true, dateTime, "continua");
             company.AddOffer(oferta);
             handler = new ModifyPriceHandler();
         }
@@ -85,14 +85,14 @@ namespace Tests
         public void Handle3FinaleTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234567";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "4500";
-            result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "1234567";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "4500";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("El precio se ha modificado.")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.Start));
+            Assert.That(this.handler.State, Is.EqualTo(ModifyPriceHandler.ModifyState.Start));
             Assert.AreEqual(handler.Data.Result.Id, oferta.Id);
             Assert.AreEqual(4500, oferta.TotalPrice);
 

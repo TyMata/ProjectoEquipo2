@@ -30,7 +30,7 @@ namespace Tests
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             material = new Material("Pallet", "Plastico", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "Rubro", "company@gmail.com", "091919191");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, company, true, dateTime, "continua");
+            oferta = new Offer(1234567, material, "habilitation", location,"kg", 3,"pesos", 3000, company, true, dateTime, "continua");
             company.AddUser(1234);
             company.AddOffer(oferta);
             handler = new ModifyHabilitationsHandler();
@@ -68,11 +68,11 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234567";
-            result = handler.InternalHandle(message, out response);
+            this.message.Text = "1234567";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Pase por aquí el link que lleva a sus habilitaciones.")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
+            Assert.That(this.handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
         }
 
         /// <summary>

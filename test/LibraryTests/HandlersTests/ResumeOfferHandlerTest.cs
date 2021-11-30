@@ -31,7 +31,7 @@ namespace Tests
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "Rubro", "company@gmail.com", "091919191");
             this.company.AddUser(1234);
-            oferta = new Offer(1234567,new Material("Pallet","Madera","Residuo"), "link", location, 3, 3000, this.company, true,new DateTime(), "continua");
+            oferta = new Offer(1234567,new Material("Pallet","Madera","Residuo"), "link", location, "kg", 3, "pesos", 3000, this.company, true,new DateTime(), "continua");
             this.company.AddOffer(oferta);
             Market.Instance.AddActiveOffer(oferta);
             Market.Instance.SuspendOffer(oferta.Id);

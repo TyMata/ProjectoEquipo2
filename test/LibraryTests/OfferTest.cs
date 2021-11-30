@@ -15,7 +15,9 @@ namespace Tests
         private Material material;
         private string habilitation;
         private LocationAdapter location;
+        private string unitOfMeasure;
         private int quantityMaterial;
+        private string currency;
         private Company company;
         private string keywords;
         private bool availability;
@@ -49,12 +51,14 @@ namespace Tests
         [Test]
         public void CreateOfferTest()
         {
-            Offer oferta = new Offer(this.id, this.material, this.habilitation, location, this.quantityMaterial, this.totalPrice, this.company, this.availability, this.publicationDate, "constante");
+            Offer oferta = new Offer(this.id, this.material, this.habilitation, this.location, this.unitOfMeasure, this.quantityMaterial, this.currency, this.totalPrice, this.company, this.availability, this.publicationDate, "constante");
             Assert.AreEqual(this.id, oferta.Id);
             Assert.AreEqual(this.material, oferta.Material);
             Assert.AreEqual(this.habilitation, oferta.Habilitation);
-            Assert.AreEqual(location, oferta.Location);
+            Assert.AreEqual(this.location, oferta.Location);
+            Assert.AreEqual(this.unitOfMeasure, oferta.UnitOfMeasure);
             Assert.AreEqual(this.quantityMaterial, oferta.QuantityMaterial);
+            Assert.AreEqual(this.currency, oferta.Currency);
             Assert.AreEqual(this.company, oferta.Company);
             Assert.AreEqual(this.availability, oferta.Availability);
             Assert.AreEqual(this.publicationDate, oferta.PublicationDate);

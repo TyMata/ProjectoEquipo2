@@ -1653,6 +1653,18 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Offer.Currency">
+            <summary>
+            Divisa que se empleará para llevar a cabo la compra.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Offer.UnitOfMeasure">
+            <summary>
+            Unidad de medida para los materiales a vender.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Offer.Company">
             <summary>
             Empresa que vende el producto.
@@ -1696,7 +1708,9 @@
             <param name="material"></param>
             <param name="habilitation"></param>
             <param name="location"></param>
+            <param name="unitOfMeasure"></param>
             <param name="quantityMaterial"></param>
+            <param name="currency"></param>
             <param name="totalPrice"></param>
             <param name="company"></param>
             <param name="availability"></param>
@@ -1833,16 +1847,16 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Market.Initialize">
+            <summary>
+            Se crea la lista de ofertas.
+            </summary>
+        </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
             <summary>
             Lista de ofertas actuales.
             </summary>
             <value></value>
-        </member>
-        <member name="M:ClassLibrary.Market.Initialize">
-            <summary>
-            Se crea la lista de ofertas.
-            </summary>
         </member>
         <member name="P:ClassLibrary.Market.SuspendedOfferList">
             <summary>
@@ -1850,14 +1864,16 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Int32,ClassLibrary.Company,System.Boolean,System.String)">
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Int32,ClassLibrary.Company,System.Boolean,System.String)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>
             /// <param name="material"></param>
             <param name="habilitation"></param>
             <param name="location"></param>
+            <param name="unitOfMeasure"></param>
             <param name="quantityMaterial"></param>
+            <param name="currency"></param>
             <param name="totalPrice"></param>
             <param name="company"></param>
             <param name="availability"></param>

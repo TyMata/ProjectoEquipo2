@@ -10,20 +10,22 @@ namespace Tests
     {
         private StartHandler handler;
         private IMessage message;
-
+         
         [SetUp]
         public void SetUp()
         {
-            handler = new StartHandler();
+            this.handler = new StartHandler();
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleUnregisteredTest()
         {
             message = new TelegramBotMessage(12345, "/menu");
-            handler.SetNext(new EndHandler(null));
+            this.handler.SetNext(new EndHandler(null));
             string response;
-            bool result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(message, out response);
             StringBuilder menu = new StringBuilder("Bienvenido\n");
                 menu.Append("Usuario No Registrado:\n")
                         .Append("   /usuarioempresanoregistrado\n")
@@ -72,9 +74,11 @@ namespace Tests
                 .Append("   /buscaroferta");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(menu.ToString())); 
-            Assert.That(handler.State, Is.EqualTo(StartHandler.StartState.NotFirstTime));
+            Assert.That(this.handler.State, Is.EqualTo(StartHandler.StartState.NotFirstTime));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleUnregisteredNotFirstTimeTest()
         {
@@ -82,7 +86,7 @@ namespace Tests
             handler.SetNext(new EndHandler(null));
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "/menu";
+            this.message.Text = "/menu";
             result = handler.InternalHandle(message, out response);
             StringBuilder menu = new StringBuilder();
                 menu.Append("Usuario No Registrado:\n")
@@ -165,7 +169,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/menu");
             string response;
-            IHandler result = handler.Handle(new ConsoleMessage("/nada"), out response);
+            IHandler result = this.handler.Handle(new ConsoleMessage("/nada"), out response);
             Assert.IsNull(result);
             Assert.IsEmpty(response);
         }

@@ -30,7 +30,10 @@ namespace ClassLibrary
         }
 
         private string contactPhone;
-
+        /// <summary>
+        /// Se hace getter y setter de ContactPhone.
+        /// </summary>
+        /// <value></value>
         public string ContactPhone
         {
             get

@@ -25,7 +25,7 @@ namespace ClassLibrary
             get{
                 if (instance == null)
                 {
-                    instance = new CompanyRegister ();
+                    instance = new CompanyRegister();
                 }
                 
                 return instance;
@@ -151,7 +151,12 @@ namespace ClassLibrary
         {
             return JsonSerializer.Serialize(this, options);
         }
-
+        /// <summary>
+        /// Convierte el texto en formato json a objeto.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             CompanyRegister temp = JsonSerializer.Deserialize<CompanyRegister>(json, options);

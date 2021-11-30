@@ -30,7 +30,7 @@ namespace Tests
             material = new Material("Pallet", "Madera", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
-            oferta = new Offer(1234567, material, "habilitation", location, 5, 3000, company, true, dateTime, "continua");
+            oferta = new Offer(1234567, material, "habilitation",location, "kg", 5, "pesos", 3000, company, true, dateTime, "continua");
             company.AddOffer(oferta);
             handler = new ModifyQuantityHandler();
         }
@@ -66,12 +66,12 @@ namespace Tests
         public void HandleOfferListTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234567";
-            result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "1234567";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese la nueva cantidad de materiales de la oferta.")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
+            Assert.That(this.handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Modification));
         }
 
         /// <summary>
@@ -91,7 +91,6 @@ namespace Tests
             Assert.AreEqual(5,oferta.QuantityMaterial);
             Assert.That(response, Is.EqualTo("La cantidad de materiales se ha modificado.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyQuantityHandler.ModifyState.Start));
-
         }
 
         /// <summary>

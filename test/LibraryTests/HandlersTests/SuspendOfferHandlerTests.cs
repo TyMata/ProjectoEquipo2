@@ -33,10 +33,10 @@ namespace Tests
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             this.company.AddUser(12342);
-            oferta = new Offer(234567, new Material("Pallet","Madera","Residuo"), "habilitation", location, 3, 3000, this.company, true, new DateTime(), "continua");
+            oferta = new Offer(234567, new Material("Pallet","Madera","Residuo"), "habilitation", location,"kg", 3, "pesos", 3000, this.company, true, new DateTime(), "continua");
             this.company.AddOffer(oferta);
             Market.Instance.PublishOffer(oferta);
-            handler = new SuspendOfferHandler();
+            this.handler = new SuspendOfferHandler();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Tests
         public void HandleStartTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(message, out response);
             StringBuilder offers = new StringBuilder("Estas son tus ofertas actuales:\n");
             foreach (Offer item in this.company.OfferRegister)
             {
@@ -63,7 +63,7 @@ namespace Tests
             offers.Append("¿Cuál es el Id de la oferta que quiere suspender?");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(offers.ToString())); 
-            Assert.That(handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.ActiveOfferIdState));
+            Assert.That(this.handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.ActiveOfferIdState));
             Assert.IsTrue(this.company.OfferRegister.Contains(oferta));
         }
 
@@ -76,11 +76,11 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             message.Text = "234567";
-            result = handler.InternalHandle(message, out response);
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.IsTrue(this.company.OfferRegister.Contains(oferta));
             Assert.That(response, Is.EqualTo("La oferta ha sido suspendida.")); 
-            Assert.That(handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.Start));
+            Assert.That(this.handler.State, Is.EqualTo(SuspendOfferHandler.SuspendOfferState.Start));
             Assert.IsTrue(Market.Instance.SuspendedOfferList.Contains(oferta));
         }
 
@@ -91,7 +91,7 @@ namespace Tests
         public void InternalNotHandleTest()
         {
             string response;
-            IHandler result = handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
+            IHandler result = this.handler.Handle(new ConsoleMessage("/modificarprecio"),out response);
             Assert.IsNull(result);
             Assert.IsEmpty(response);
         }
