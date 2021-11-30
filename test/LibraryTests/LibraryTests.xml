@@ -327,6 +327,32 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
+        <member name="T:Tests.RemoveUserHandlerTests">
+            <summary>
+            Se prueba el handler para remover una company.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.SetUp">
+            <summary>
+            Se setea la company a eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.HandleStartTest">
+            <summary>
+             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.HandleCompanyTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            Borrando a la company que se deseaba eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.DoesNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
         <member name="T:Tests.ResumeOfferHandlerTest">
             <summary>
             Prueba el handler para reanudar una oferta.
@@ -342,9 +368,9 @@
             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
             </summary>
         </member>
-        <member name="M:Tests.ResumeOfferHandlerTest.HandleSuspendOfferTest">
+        <member name="M:Tests.ResumeOfferHandlerTest.HandleResumeOfferTest">
             <summary>
-            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            Prueba que el InternalHandle se haga correctamente, cambie el estado del handler y que la respuesta que se envia sea la predeterminada.
             </summary>
         </member>
         <member name="M:Tests.ResumeOfferHandlerTest.InternalNotHandleTest">
@@ -466,6 +492,11 @@
         <member name="M:Tests.MarketTest.ResumeOfferTest">
             <summary>
             Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTest.CreateOffer">
+            <summary>
+            Prueba que se cree una oferta correctamente, se publique en el mercado y se agregue a la lista de ofertas de la empresa.
             </summary>
         </member>
         <member name="T:Tests.MaterialTest">

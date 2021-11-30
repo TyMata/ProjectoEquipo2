@@ -21,8 +21,8 @@ namespace Tests
         [SetUp]
         public void SetUP()
         {
-            message = new TelegramBotMessage(1234, "/empresanoregistrada");
-            location = new LocationAdapter("address", "city", "department");
+            message = new TelegramBotMessage(1234, "/usuarioempresanoregistrado");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             handler = new UnregisteredCompanyUserHandler();
         }
@@ -34,9 +34,9 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            StringBuilder datos = new StringBuilder("Asi que eres usuario de una empresa!\n")
-                                                .Append("Para poder registrarte vamos a necesitar el codigo de invitacion\n")
-                                                .Append("Ingrese el codigo de invitacion\n");
+            StringBuilder datos = new StringBuilder("¡Así que eres usuario de una empresa!\n")
+                                                .Append("Para poder registrarte vamos a necesitar el código de invitación.\n")
+                                                .Append("Ingrese el código de invitación.");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(datos.ToString())); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Token));
@@ -53,7 +53,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.IsTrue(company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
-            Assert.That(response, Is.EqualTo( $"Se verifico el Token ingresado y se esta creando su usuario perteneciente a la empresa {company.Name}")); 
+            Assert.That(response, Is.EqualTo($"Se verificó el Token ingresado y se ha creado su usuario perteneciente a la empresa {handler.Data.Unregistered.Name}.\nIngrese /menu para ver los comandos nuevamente.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredCompanyUserHandler.UnregisteredCompanyUserState.Start));
         }
 

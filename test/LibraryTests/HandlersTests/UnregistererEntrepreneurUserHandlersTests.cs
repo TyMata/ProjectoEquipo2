@@ -31,9 +31,9 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            StringBuilder datos = new StringBuilder("Asi que eres un Emprendedor!\n")
-                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales\n")
-                                                .Append("Ingrese su nombre completo\n");
+            StringBuilder datos = new StringBuilder("¡Así que eres un Emprendedor!\n")
+                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales.\n")
+                                                .Append("Ingrese su nombre completo.");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(datos.ToString())); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name));
@@ -44,12 +44,10 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese su dirección:\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese su dirección.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Address));
         }
 
@@ -58,14 +56,12 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la ciudad:\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese la ciudad.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.City));
         }
         [Test]
@@ -73,8 +69,6 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
@@ -82,7 +76,7 @@ namespace Tests
             message.Text = "Montevideo";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese el departamento:\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese el departamento.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Department));
         }
          [Test]
@@ -90,8 +84,6 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
@@ -101,7 +93,7 @@ namespace Tests
             message.Text = "Montevideo";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo( "Ingrese sus habilitaciones\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese sus habilitaciones.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Habilitations));
         }
 
@@ -109,8 +101,6 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
@@ -122,7 +112,7 @@ namespace Tests
             message.Text = "Link";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese su rubro\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese su rubro.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Headings));
         }
 
@@ -131,8 +121,6 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.InvitationToken;
-            result = handler.InternalHandle(message, out response);
             message.Text = "Nombre del emprendedor";
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
@@ -146,7 +134,7 @@ namespace Tests
             message.Text = "Rubro";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Gracias por sus datos, se esta creando su usuario\n")); 
+            Assert.That(response, Is.EqualTo("Gracias por sus datos, ya se ha creado su usuario\n")); 
             Assert.IsTrue(company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Start));
         }

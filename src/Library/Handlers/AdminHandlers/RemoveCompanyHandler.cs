@@ -43,12 +43,12 @@ namespace ClassLibrary
             if(this.State == RemoveCompanyState.Start && this.CanHandle(input))
             {
                 this.State = RemoveCompanyState.Company;
-                response = "¿Cuál es el Id de la empresa que quieres eliminar?";
+                response = "¿Cuál es el nombre de la empresa que quieres eliminar?";
                 return true;
             }
             else if(this.State == RemoveCompanyState.Company)
             {
-                string id = input.Text;
+                this.Data.CompanyName = input.Text;
                 if (input.Text == "/menu")
                 {
                     this.State = RemoveCompanyState.Start;
@@ -56,17 +56,16 @@ namespace ClassLibrary
                     return true;
                 }
                 this.State = RemoveCompanyState.Start;
-                this.Data.CompanyId = Convert.ToInt32(id);
-                this.Data.Result = CompanyRegister.Instance.GetCompanyByUserId(this.Data.CompanyId); // sepide el Id de la company pero se usa el id del user para buscrla
+                this.Data.Result = CompanyRegister.Instance.GetCompanyByName(this.Data.CompanyName); // sepide el Id de la company pero se usa el id del user para buscrla
                 if (this.Data.Result != null)
                 {
                     CompanyRegister.Instance.Remove(this.Data.Result);
-                    response = $"La empresa {this.Data.Result.Name} ha sido eliminada";
+                    response = $"La empresa {this.Data.CompanyName} ha sido eliminada";
                     return true;
                 }
                 else
                 {
-                    response = $"La empresa con el Id \"{this.Data.CompanyId}\" no está registrada";
+                    response = $"La empresa bajo el nombre de \"{this.Data.CompanyName}\" no está registrada";
                     return true;
                 }
             }
@@ -107,7 +106,7 @@ namespace ClassLibrary
             /// El Id de la empresa que se ingresó en el estado RemoveCompanyState.Company.
             /// </summary>
             /// <value></value>
-            public int CompanyId {get; set;}
+            public string CompanyName {get; set;}
             /// <summary>
             /// El resultado de la búsqueda de la empresa por medio del Id.
             /// </summary>

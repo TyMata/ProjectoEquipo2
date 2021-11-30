@@ -20,7 +20,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            this.location = new LocationAdapter("address", "city", "department");
+            this.location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company = new Company("nombre", this.location, "rubro", "company@gmail.com", "091919191");
         }
 
@@ -48,12 +48,22 @@ namespace Tests
         /// <summary>
         /// Prueba que GetCompanyByUserId devuelva una empresa, y que sea la correcta.
         /// </summary>
+        [Test]
         public void GetCompanyByUserIdTest()
         {
             Users user = new Users(1234567, new CompanyRole(this.company));
+            UserRegister.Instance.Add(user);
             company.CompanyUsers.Add(user);
             Company result = CompanyRegister.Instance.GetCompanyByUserId(1234567);
             Assert.AreEqual(this.company, result);
+        }
+
+        [Test]
+        public void GetCompanyByName()
+        {
+            CompanyRegister.Instance.Add(this.company);
+            Company result = CompanyRegister.Instance.GetCompanyByName(this.company.Name);
+            Assert.AreEqual(this.company,result);
         }
 
         [Test]
