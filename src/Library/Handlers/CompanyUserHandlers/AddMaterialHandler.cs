@@ -70,7 +70,7 @@ namespace ClassLibrary
                 response = "Ingrese la clasificación:\n";
                 return true;
             }
-             else if(this.State == AddMaterialState.Classification)
+            else if(this.State == AddMaterialState.Classification)
             {
                 if (input.Text == "/menu")
                 {

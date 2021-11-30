@@ -8,11 +8,12 @@ namespace Tests
     /// Se prueba el handler para remover una company.
     /// </summary>
     [TestFixture]
-    public class RemoveCompanyHandlerTests
+    public class RemoveUserHandlerTests
     {
         private IMessage message;
+        private RemoveUserHandler handler;
         private Company company;
-        private RemoveCompanyHandler handler;
+        private LocationAdapter location;
 
         /// <summary>
         /// Se setea la company a eliminar.
@@ -20,9 +21,11 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            message = new TelegramBotMessage(1234,"/eliminarempresa");
-            company = CompanyRegister.Instance.CreateCompany("company", new LocationAdapter("address","city","departemnt"),"Headings", "company@gmail.com", "091919191");
-            handler = new RemoveCompanyHandler();
+            message = new TelegramBotMessage(1234,"/eliminarusuario");
+            handler = new RemoveUserHandler();
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
+            company.AddUser(1234);
         }
         /// <summary>
         ///  Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
@@ -33,8 +36,8 @@ namespace Tests
             string response;
             bool result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("¿Cuál es el nombre de la empresa que quieres eliminar?"));
-            Assert.That(handler.State, Is.EqualTo(RemoveCompanyHandler.RemoveCompanyState.Company));
+            Assert.That(response, Is.EqualTo("¿Cuál es el Id del usuario que quieres eliminar?"));
+            Assert.That(handler.State, Is.EqualTo(RemoveUserHandler.RemoveUserState.User));
         }
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
@@ -45,11 +48,11 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = company.Name;
+            message.Text = "1234";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo($"La empresa {handler.Data.CompanyName} ha sido eliminada"));
-            Assert.That(handler.State, Is.EqualTo(RemoveCompanyHandler.RemoveCompanyState.Start));
+            Assert.That(response, Is.EqualTo($"El usuario de Id \"{handler.Data.UserId}\" ha sido eliminado"));
+            Assert.That(handler.State, Is.EqualTo(RemoveUserHandler.RemoveUserState.Start));
         }
         /// <summary>
         /// Prueba que no se realice el handler.
@@ -57,12 +60,12 @@ namespace Tests
         [Test]
         public void DoesNotHandleTest()
         {
-            message = new TelegramBotMessage(1234,"/eliminaremprendedor");
+            message = new TelegramBotMessage(1234,"/eliminarempresa");
             string response;
             bool result = handler.InternalHandle(message, out response);
             Assert.IsFalse(result);
             Assert.IsEmpty(response);
-            Assert.That(handler.State, Is.EqualTo(RemoveCompanyHandler.RemoveCompanyState.Start));
+            Assert.That(handler.State, Is.EqualTo(RemoveUserHandler.RemoveUserState.Start));
         }
 
     }

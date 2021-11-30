@@ -61,9 +61,10 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="input"></param>
         /// <param name="company"></param>
-        public  void CreateCompanyUser(IMessage input,Company company)
+        public void CreateCompanyUser(int id,Company company)
         {
-            company.AddUser(input.Id);
+            company.AddUser(id);
+
         }
         
         /// <summary>

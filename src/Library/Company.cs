@@ -270,7 +270,7 @@ namespace ClassLibrary
             {
                 throw new Exception();
             }
-            Material material = new Material(name, type, classification); //TODO: Cambiar a name, type, classification.
+            Material material = new Material(name, type, classification); 
             this.producedMaterials.Add(material);
         }
         
@@ -311,9 +311,9 @@ namespace ClassLibrary
         /// <param name="offer"></param>
         public void AddOffer(Offer offer)
         {
-            if (this.OfferRegister.Exists(x => x == offer))
+            if(this.OfferRegister.Exists(x => x == offer))
             {
-                throw new Exception();
+                throw new Exception("Esta oferta ya esta creada.");
             }   
             this.OfferRegister.Add(offer);
         }

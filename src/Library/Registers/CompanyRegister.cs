@@ -94,6 +94,21 @@ namespace ClassLibrary
                 return null;
             }
             
+        }
+
+        /// <summary>
+        /// Devuelve la empresa segun el nombre de esta, si esta existe en el registro.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Company GetCompanyByName(string name)
+        {
+            if(!this.CompanyList.Exists(company => company.Name == name))
+            {
+                throw new Exception("No existe esta empresa, ingrese de nuevo el nombre");
+            }
+            Company company = this.CompanyList.Find(company => company.Name == name);
+            return company;
         } 
 
         /// <summary>
@@ -118,11 +133,13 @@ namespace ClassLibrary
         /// <param name="nombre"></param>
         /// <param name="location"></param>
         /// <param name="headings"></param>
+        /// <param name="email"></param>
+        /// <param name="phoneNumber"></param>
         public Company CreateCompany(string nombre, LocationAdapter location, string headings, string email, string phoneNumber)
         {
             Company nuevaCompany = new Company(nombre, location, headings, email, phoneNumber);
             CompanyRegister.Instance.Add(nuevaCompany);
-            TokenRegister.Instance.Add( nuevaCompany.InvitationToken, nuevaCompany ); // TODO todas las empresas tienen el mismo token
+            TokenRegister.Instance.Add(nuevaCompany.InvitationToken, nuevaCompany ); // TODO todas las empresas tienen el mismo token
             return nuevaCompany;
         }
 

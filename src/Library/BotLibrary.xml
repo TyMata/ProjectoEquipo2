@@ -286,7 +286,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.company">
+        <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.Result">
             <summary>
             La empresa creada a partir de todos los datos recolectados anteriormente.
             </summary>
@@ -348,7 +348,7 @@
             Representa los datos que va obteniendo el comando RemoveCompanyHandler en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.RemoveCompanyHandler.RemoveCompanyData.CompanyId">
+        <member name="P:ClassLibrary.RemoveCompanyHandler.RemoveCompanyData.CompanyName">
             <summary>
             El Id de la empresa que se ingresó en el estado RemoveCompanyState.Company.
             </summary>
@@ -1630,6 +1630,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.CompanyRegister.GetCompanyByName(System.String)">
+            <summary>
+            Devuelve la empresa segun el nombre de esta, si esta existe en el registro.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
             <summary>
             Por la ley de demeter
@@ -1643,6 +1650,8 @@
             <param name="nombre"></param>
             <param name="location"></param>
             <param name="headings"></param>
+            <param name="email"></param>
+            <param name="phoneNumber"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
             <summary>
@@ -1696,6 +1705,7 @@
             <param name="totalPrice"></param>
             <param name="company"></param>
             <param name="availability"></param>
+            <param name="continuity"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.ContainsActive(ClassLibrary.Offer)">
@@ -1839,7 +1849,7 @@
             Se crea la lista de usuarios y se la guarda en la DataUsers.
             </summary>
         </member>
-        <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(ClassLibrary.IMessage,ClassLibrary.Company)">
+        <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(System.Int32,ClassLibrary.Company)">
             <summary>
             Crea un usuario empresa.
             </summary>

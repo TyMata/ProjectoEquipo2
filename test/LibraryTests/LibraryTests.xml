@@ -278,7 +278,77 @@
              y que se cambie la cantidad del material de la oferta correctamente.
             </summary>
         </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandlePriceTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+            y que se modifique el precio de la oferta correctamente.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandleLocationTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+            y que se modifique la location de la oferta correctamente.
+            </summary>
+        </member>
+        <member name="M:Tests.PublishOfferHandlerTest.HandleHabilitationTest">
+            <summary>
+             /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
+            y que se modifique las habilitaciones de la oferta correctamente.
+            </summary>
+        </member>
         <member name="M:Tests.PublishOfferHandlerTest.InternalNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="T:Tests.RemoveCompanyHandlerTests">
+            <summary>
+            Se prueba el handler para remover una company.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveCompanyHandlerTests.SetUp">
+            <summary>
+            Se setea la company a eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveCompanyHandlerTests.HandleStartTest">
+            <summary>
+             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveCompanyHandlerTests.HandleCompanyTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            Borrando a la company que se deseaba eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveCompanyHandlerTests.DoesNotHandleTest">
+            <summary>
+            Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="T:Tests.RemoveUserHandlerTests">
+            <summary>
+            Se prueba el handler para remover una company.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.SetUp">
+            <summary>
+            Se setea la company a eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.HandleStartTest">
+            <summary>
+             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.HandleCompanyTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            Borrando a la company que se deseaba eliminar.
+            </summary>
+        </member>
+        <member name="M:Tests.RemoveUserHandlerTests.DoesNotHandleTest">
             <summary>
             Prueba que no se realice el handler.
             </summary>
@@ -298,9 +368,9 @@
             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler..
             </summary>
         </member>
-        <member name="M:Tests.ResumeOfferHandlerTest.HandleSuspendOfferTest">
+        <member name="M:Tests.ResumeOfferHandlerTest.HandleResumeOfferTest">
             <summary>
-            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            Prueba que el InternalHandle se haga correctamente, cambie el estado del handler y que la respuesta que se envia sea la predeterminada.
             </summary>
         </member>
         <member name="M:Tests.ResumeOfferHandlerTest.InternalNotHandleTest">
@@ -333,9 +403,34 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
+        <member name="T:Tests.UnregisteredCompanyUserHandlerTests">
+            <summary>
+            /// Prueba el handler para registrar un company user.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredCompanyUserHandlerTests.SetUP">
+            <summary>
+            Se setea el company user.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredCompanyUserHandlerTests.HandleStartTest">
+            <summary>
+            /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredCompanyUserHandlerTests.HandleTokenTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
         <member name="M:Tests.UnregisteredCompanyUserHandlerTests.InternalNotHandleTest">
             <summary>
             Prueba que no se realice el handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.SetUp">
+            <summary>
+            Se setea el usuario Entrepreneur.
             </summary>
         </member>
         <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.InternalNotHandleTest">
@@ -396,6 +491,11 @@
         <member name="M:Tests.MarketTest.ResumeOfferTest">
             <summary>
             Prueba que se despause una oferta y se cambie de lista, de las suspendidas a las actuales.
+            </summary>
+        </member>
+        <member name="M:Tests.MarketTest.CreateOffer">
+            <summary>
+            Prueba que se cree una oferta correctamente, se publique en el mercado y se agregue a la lista de ofertas de la empresa.
             </summary>
         </member>
         <member name="T:Tests.MaterialTest">

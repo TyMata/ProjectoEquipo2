@@ -50,10 +50,6 @@ namespace ClassLibrary
                 {
                     if (material == 0)
                     {
-                        this.company.AddMaterial("Pallet", "Plástico", "Residuo"); //TODO: Borrar esto
-                        this.company.AddMaterial("Bujes", "Madera", "Residuo");
-                        this.company.AddMaterial("Cáscara", "Naranja", "Residuo orgánico");
-
                         material += 1;
                     }
                     foreach (Material item in this.company.ProducedMaterials)

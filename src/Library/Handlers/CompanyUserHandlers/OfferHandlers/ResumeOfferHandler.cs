@@ -44,10 +44,10 @@ namespace ClassLibrary
             if((State == ResumeOfferState.Start) && this.CanHandle(input))
             {
                 this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder();
+                StringBuilder offers = new StringBuilder("Estas son tus ofertas:\n");
                 if(this.company != null)
                 { 
-                    foreach (Offer item in this.company.OfferRegister)
+                    foreach(Offer item in this.company.OfferRegister)
                     {
                         if(!item.Availability)
                         {

@@ -1,37 +1,30 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
-namespace ClassLibrary
-{
-    /// <summary>
-    /// Primer Handler de la CoR.
-    /// </summary>
-    public class StartHandler : AbstractHandler
-    {
-        /// <summary>
-        /// Estado para el handler de StartHandler.
-        /// </summary>
-        /// <value></value>
-        public StartState State { get; set; }
+using ClassLibrary;
+using NUnit.Framework;
 
-        /// <summary>
-        /// Constructor de los objetos StartHandler.
-        /// </summary>
-        public StartHandler()
+namespace Tests
+{
+    [TestFixture]
+    public class StartHandlerTests
+    {
+        private StartHandler handler;
+        private IMessage message;
+
+        [SetUp]
+        public void SetUp()
         {
-            this.Command = "/menu";
-            this.State = StartState.Start;
+            message = new TelegramBotMessage(1234, "/menu");
+            handler = new StartHandler();
         }
-        /// <summary>
-        /// Le otorga por pantalla los comandos que puede utilizar.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="response"></param>
-        public override bool InternalHandle(IMessage input,out string response)
+
+        [Test]
+        public void HandleStartTest()
         {
-            if (this.State == StartState.Start && this.nextHandler != null) 
-            {
-                StringBuilder menu = new StringBuilder("Bienvenido\n");
+            handler.SetNext(new EndHandler(null));
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            StringBuilder menu = new StringBuilder("Bienvenido\n");
                 menu.Append("Usuario No Registrado:\n")
                     .Append("   /usuarioempresanoregistrado\n")
                     .Append("   /emprendedornoregistrado\n\n")
@@ -52,15 +45,21 @@ namespace ClassLibrary
                     .Append("       /modificarcantidad\n\n")
                     .Append("Usuario Emprendedor:\n")
                     .Append("   /buscaroferta");
-                this.State = StartState.NotFirstTime;
-                response = menu.ToString();
-                return true;
-            }
-            else if(this.State == StartState.NotFirstTime && CanHandle(input))
-            {
-                IMessage input2 = input;
-                StringBuilder menu = new StringBuilder("Usuario No Registrado\n");
-                menu.Append("   /usuarioempresanoregistrado\n")
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo(menu.ToString())); 
+            Assert.That(handler.State, Is.EqualTo(StartHandler.StartState.NotFirstTime));
+        }
+
+        [Test]
+        public void HandleNotFirstTime()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "/menu";
+            result = handler.InternalHandle(message, out response);
+            StringBuilder menu = new StringBuilder("Bienvenido\n");
+                menu.Append("Usuario No Registrado:\n")
+                    .Append("   /usuarioempresanoregistrado\n")
                     .Append("   /emprendedornoregistrado\n\n")
                     .Append("Usuario Admin:\n")
                     .Append("   /registrarempresa\n")
@@ -79,30 +78,17 @@ namespace ClassLibrary
                     .Append("       /modificarcantidad\n\n")
                     .Append("Usuario Emprendedor:\n")
                     .Append("   /buscaroferta");
-                response = menu.ToString();
-                return true;
-            }
-            response = "";
-            return false;
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo(menu.ToString())); 
         }
 
-        /// <summary>
-        /// Indica los diferentes estados que puede tener el comando StartHandler.
-        /// </summary>
-        public enum StartState
+        [Test]
+        public void DoesNotHandleTest()
         {
-            /// <summary>
-            /// El estado inicial del comando. Aquí pide un comando a ejecutar y pasa al siguiente estado.
-            /// </summary>
-            Start,
-            NotFirstTime
-        }
-        /// <summary>
-        /// Se crea la clase RemoveUserData para cuando se desea eliminar un usuario  de la UserData.
-        /// </summary>
-        public class RemoveUserData
-        {
-            public int User { get; set; }      //TODO Es necesario un data aca???
+            string response;
+            IHandler result = handler.Handle(new ConsoleMessage("/nada"), out response);
+            Assert.IsNull(result);
+            Assert.IsEmpty(response);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Tests
             this.headings = "rubro";
             this.email = "company@gmail.com";
             this.phoneNumber = "091919191";
-            this.location = new LocationAdapter("address", "city", "department");
+            this.location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company = new Company(this.name, this.location, this.headings, this.email, this.phoneNumber);
             material = new Material("material","type","classification");
         }
@@ -90,6 +90,20 @@ namespace Tests
             Material material2 = this.company.GetMaterial("material");
             Assert.AreEqual(material.Name, material2.Name);
             Assert.IsNotNull(material2);
+        }
+
+        [Test]
+        public void GetLocationTest()
+        {
+            LocationAdapter result = this.company.GetLocation("Comandante Braga 2715");
+            Assert.AreEqual(this.location, result);
+        }
+
+        [Test]
+        public void AddMaterialTest()
+        {
+            this.company.AddMaterial("Pallet","Madera","Residuo");
+            Assert.IsTrue(this.company.ProducedMaterials.Exists(material => material.Name == "Pallet" && material.Type == "Madera" && material.Classification == "Residuo"));
         }
     }
 }

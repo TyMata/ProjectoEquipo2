@@ -44,10 +44,10 @@ namespace Tests
         { 
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "nombre de la empresa";
+            message.Text = "Nombre de la empresa";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese el pais:\n"));
+            Assert.That(response, Is.EqualTo("Ingrese el país:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Country));
         }
 
@@ -59,7 +59,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "nombre de la empresa";
+            message.Text = "Nombre de la empresa";
             result = handler.InternalHandle(message, out response);
             message.Text = "Uruguay";
             result = handler.InternalHandle(message, out response);
@@ -76,7 +76,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "nombre de la empresa";
+            message.Text = "Nombre de la empresa";
             result = handler.InternalHandle(message, out response);
             message.Text = "Uruguay";
             result = handler.InternalHandle(message, out response);
@@ -104,7 +104,7 @@ namespace Tests
             message.Text = "Montevideo";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la direccion:\n"));
+            Assert.That(response, Is.EqualTo("Ingrese la dirección:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Address));
         }
 
@@ -116,7 +116,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "nombre de la empresa";
+            message.Text = "Nombre de la empresa";
             result = handler.InternalHandle(message, out response);
             message.Text = "Uruguay";
             result = handler.InternalHandle(message, out response);
@@ -127,8 +127,54 @@ namespace Tests
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese su rubro:\n"));
+            Assert.That(response, Is.EqualTo("Ingrese el rubro:\n"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Headings));
+        }
+
+        [Test]
+        public void HandleEmailTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "Nombre de la empresa";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Uruguay";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Montevideo";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Montevideo";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Av. 8 de Octubre 2738";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Rubro de la empresa";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("Ingrese el email:\n"));
+            Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Email));
+        }
+
+        [Test]
+        public void HandlePhoneNumberTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "Nombre de la empresa";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Uruguay";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Montevideo";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Montevideo";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Av. 8 de Octubre 2738";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Rubro de la empresa";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "company@gmail.com";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+           Assert.That(response, Is.EqualTo("Ingrese el número de teléfono:\n"));
+            Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.PhoneNumber));
         }
 
         /// <summary>
@@ -139,7 +185,7 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "nombre de la empresa";
+            message.Text = "Nombre de la empresa";
             result = handler.InternalHandle(message, out response);
             message.Text = "Uruguay";
             result = handler.InternalHandle(message, out response);
@@ -149,11 +195,15 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text = "Av. 8 de Octubre 2738";
             result = handler.InternalHandle(message, out response);
-            message.Text = "rubro de la empresa";
+            message.Text = "Rubro de la empresa";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "company@gmail.com";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "099999999";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.IsTrue(CompanyRegister.Instance.Contains(handler.Data.company));
-            Assert.That(response, Is.EqualTo($"Ya se creo la empresa. El token de invitacion es {handler.Data.company.InvitationToken}"));
+            Assert.IsTrue(CompanyRegister.Instance.Contains(handler.Data.Result));
+            Assert.That(response, Is.EqualTo($"La empresa fue creada.\n El token de invitación es: {handler.Data.Result.InvitationToken}"));
             Assert.That(handler.State, Is.EqualTo(AddCompanyHandler.AddCompanyState.Start));
         }
 

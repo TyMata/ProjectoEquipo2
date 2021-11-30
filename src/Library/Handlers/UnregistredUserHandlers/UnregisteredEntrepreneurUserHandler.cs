@@ -87,7 +87,7 @@ namespace ClassLibrary
                 string rubro = input.Text;
                 this.State = UnregisteredEntrepreneurUserState.Start;
                 UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
-                response = "Gracias por sus datos, se esta creando su usuario\n";
+                response = "Gracias por sus datos, ya se ha creado su usuario\n";
                 return true;
 
             }
