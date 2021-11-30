@@ -37,44 +37,49 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if (this.State == UnregisteredCompanyUserState.Start && CanHandle(input))
-            {
-                StringBuilder datos = new StringBuilder("¡Así que eres usuario de una empresa!\n")
-                                                .Append("Para poder registrarte vamos a necesitar el código de invitación.\n")
-                                                .Append("Ingrese el código de invitación.");
-                this.State = UnregisteredCompanyUserState.Token;
-                response = datos.ToString();
-                return true;
-            }
-            else if(this.State == UnregisteredCompanyUserState.Token)
-            {
-                this.Data.Token = input.Text.Trim();
-                if (TokenRegister.Instance.IsValid(this.Data.Token))
+            try
+            {    
+                if (this.State == UnregisteredCompanyUserState.Start && CanHandle(input))
                 {
-                    this.Data.Unregistered = TokenRegister.Instance.GetCompany(this.Data.Token);
-                    this.Data.Unregistered.AddUser(input.Id);
-                    this.State = UnregisteredCompanyUserState.Start;
-                    response = $"Se verificó el Token ingresado y se ha creado su usuario perteneciente a la empresa {this.Data.Unregistered.Name}.\nIngrese /menu para ver los comandos nuevamente.";
+                    StringBuilder datos = new StringBuilder("¡Así que eres usuario de una empresa!\n")
+                                                    .Append("Para poder registrarte vamos a necesitar el código de invitación.\n")
+                                                    .Append("Ingrese el código de invitación.");
+                    this.State = UnregisteredCompanyUserState.Token;
+                    response = datos.ToString();
                     return true;
                 }
-                else
+                else if(this.State == UnregisteredCompanyUserState.Token)
                 {
-                    this.State = UnregisteredCompanyUserState.NotFirstTime;
-                    response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitación.";
+                    this.Data.Token = input.Text.Trim();
+                    if (TokenRegister.Instance.IsValid(this.Data.Token))
+                    {
+                        this.Data.Unregistered = TokenRegister.Instance.GetCompany(this.Data.Token);
+                        this.Data.Unregistered.AddUser(input.Id);
+                        this.State = UnregisteredCompanyUserState.Start;
+                        response = $"Se verificó el Token ingresado y se ha creado su usuario perteneciente a la empresa {this.Data.Unregistered.Name}.\nIngrese /menu para ver los comandos nuevamente.";
+                        return true;
+                    }
+                    else
+                    {
+                        this.State = UnregisteredCompanyUserState.NotFirstTime;
+                        response = "No se pudo verificar el Token ingresado, ingrese nuevamente el token de invitación.";
+                        return true;
+                    }
+                }
+                else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
+                {
+                    this.Data.Token = input.Text;
+                    this.State = UnregisteredCompanyUserState.Token;
+                    response = "";
                     return true;
                 }
-            }
-            else if(this.State == UnregisteredCompanyUserState.NotFirstTime)
-            {
-                this.Data.Token = input.Text;
-                this.State = UnregisteredCompanyUserState.Token;
-                response = "";
-                return true;
-            }
-            else
-            {
                 response = "";
                 return false;
+            }
+            catch(Exception e)
+            {
+                response = e.Message;
+                return true;
             }
         }
         

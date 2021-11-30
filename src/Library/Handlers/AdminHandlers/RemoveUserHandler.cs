@@ -38,37 +38,45 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if(this.State == RemoveUserState.Start && this.CanHandle(input))
+            try
             {
-                this.State = RemoveUserState.User;
-                response = "¿Cuál es el Id del usuario que quieres eliminar?";
-                return true;
-            }
-            else if(this.State == RemoveUserState.User)
-            {
-                if (input.Text == "/menu")
+                if(this.State == RemoveUserState.Start && this.CanHandle(input))
                 {
-                    this.State = RemoveUserState.Start;
-                    response = "Volviendo al menú...";
+                    this.State = RemoveUserState.User;
+                    response = "¿Cuál es el Id del usuario que quieres eliminar?";
                     return true;
                 }
-                this.State = RemoveUserState.Start;
-                this.Data.UserId = Convert.ToInt32(input.Text);
-                this.Data.Result = UserRegister.Instance.GetUserById(this.Data.UserId);
-                if (this.Data.Result != null)
+                else if(this.State == RemoveUserState.User)
                 {
-                    UserRegister.Instance.Remove(this.Data.Result);
+                    if (input.Text == "/menu")
+                    {
+                        this.State = RemoveUserState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
                     this.State = RemoveUserState.Start;
-                    response = $"El usuario de Id \"{this.Data.UserId}\" ha sido eliminado";                    
+                    this.Data.UserId = Convert.ToInt32(input.Text);
+                    this.Data.Result = UserRegister.Instance.GetUserById(this.Data.UserId);
+                    if (this.Data.Result != null)
+                    {
+                        UserRegister.Instance.Remove(this.Data.Result);
+                        this.State = RemoveUserState.Start;
+                        response = $"El usuario de Id \"{this.Data.UserId}\" ha sido eliminado";                    
+                    }
+                    else
+                    {
+                        response = $"No se encontró ningún usuario con el Id \"{this.Data.UserId}\".";
+                    }
+                    return true;
                 }
-                else
-                {
-                    response = $"No se encontró ningún usuario con el Id \"{this.Data.UserId}\".";
-                }
+                response = "";
+                return false;
+            }
+            catch(Exception e)
+            {
+                response = e.Message;
                 return true;
             }
-            response = "";
-            return false;   
         }
 
         /// <summary>

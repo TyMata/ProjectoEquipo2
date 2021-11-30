@@ -15,43 +15,48 @@ namespace ClassLibrary
 
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if (CanHandle(input))
+            try
             {
-                this.user = UserRegister.Instance.GetUserById(input.Id);
-                if(this.user != null && (this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList.Count != 0)
+                if (CanHandle(input))
                 {
-                    StringBuilder offers = new StringBuilder("Estas son tus ofertas compradas:\n");
-                    foreach (Offer item in (this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList)
+                    this.user = UserRegister.Instance.GetUserById(input.Id);
+                    if(this.user != null && (this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList.Count != 0)
                     {
-                        offers.Append($"Id de la oferta: {item.Id}.\n")
-                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
-                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
-                                .Append($"Precio: {item.TotalPrice}.\n")
-                                .Append($"Fecha de publicación: {item.PublicationDate}.\n")
-                                .Append($"Datos de la empresa:\n")
-                                .Append($"Nombre{item.Company.Name}")
-                                .Append($"E-mail{item.Company.Email}")
-                                .Append($"Número de teléfono: {item.Company.PhoneNumber}")
-                                .Append($"\n-----------------------------------------------\n\n");
+                        StringBuilder offers = new StringBuilder("Estas son tus ofertas compradas:\n");
+                        foreach (Offer item in (this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList)
+                        {
+                            offers.Append($"Id de la oferta: {item.Id}.\n")
+                                    .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                    .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                    .Append($"Precio: {item.TotalPrice}.\n")
+                                    .Append($"Fecha de publicación: {item.PublicationDate}.\n")
+                                    .Append($"Datos de la empresa:\n")
+                                    .Append($"Nombre{item.Company.Name}")
+                                    .Append($"E-mail{item.Company.Email}")
+                                    .Append($"Número de teléfono: {item.Company.PhoneNumber}")
+                                    .Append($"\n-----------------------------------------------\n\n");
+                        }
+                        response = offers.ToString();
+                        return true;
                     }
-                    response = offers.ToString();
-                    return true;
+                    else if((this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList.Count == 0)
+                    {
+                        response = "Usted no tiene ninguna oferta comprada.";
+                        return true;
+                    }
+                    else
+                    {
+                        response = "Usted no esta registrado. Registrese para hacer compras.";
+                        return true;
+                    }
                 }
-                else if((this.user.Role as EntrepreneurRole).Entrepreneur.BoughtList.Count == 0)
-                {
-                    response = "Usted no tiene ninguna oferta comprada.";
-                    return true;
-                }
-                else
-                {
-                    response = "Usted no esta registrado. Registrese para hacer compras.";
-                    return true;
-                }
-            }
-            else
-            {
                 response = string.Empty;
                 return false;
+            }
+            catch(Exception e)
+            {
+                response = e.Message;
+                return true;
             }
         }
     }

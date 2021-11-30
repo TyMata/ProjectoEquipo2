@@ -41,54 +41,62 @@ namespace ClassLibrary
         /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if(this.State == ModifyState.Start && this.CanHandle(input))
+            try
             {
-                this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                StringBuilder offers = new StringBuilder("¿Qué oferta desea modificar?\n");
-                if(this.company != null && this.company.OfferRegister != null)
+                if(this.State == ModifyState.Start && this.CanHandle(input))
                 {
-                    foreach(Offer x in this.company.OfferRegister)
+                    this.company = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
+                    StringBuilder offers = new StringBuilder("¿Qué oferta desea modificar?\n");
+                    if(this.company != null && this.company.OfferRegister != null)
                     {
-                        offers.Append($"Id: {x.Id}.\n")
-                            .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
-                            .Append($"Unidad de medida: {x.UnitOfMeasure}.\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}.\n")       
-                            .Append($"Divisa: {x.Currency}.\n")                     //TODO preguntar por id de la oferta a modificar
-                            .Append($"Precio: {x.TotalPrice}.\n")
-                            .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
-                            .Append($"\n-----------------------------------------------\n\n");
+                        foreach(Offer x in this.company.OfferRegister)
+                        {
+                            offers.Append($"Id: {x.Id}.\n")
+                                .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                                .Append($"Unidad de medida: {x.UnitOfMeasure}.\n")
+                                .Append($"Cantidad: {x.QuantityMaterial}.\n")       
+                                .Append($"Divisa: {x.Currency}.\n")                     //TODO preguntar por id de la oferta a modificar
+                                .Append($"Precio: {x.TotalPrice}.\n")
+                                .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
+                                .Append($"\n-----------------------------------------------\n\n");
+                        }
+                        offers.Append("Ingrese el Id de la oferta a modificar."); 
+                        this.State = ModifyState.OfferList;
+                        response = offers.ToString();
+                        return true;   
                     }
-                    offers.Append("Ingrese el Id de la oferta a modificar."); 
-                    this.State = ModifyState.OfferList;
-                    response = offers.ToString();
-                    return true;   
+                    else
+                    {
+                        offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
+                            .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
+                        response = offers.ToString() ;      
+                        return true;
+                    }
                 }
-                else
+                else if(this.State == ModifyState.OfferList)
                 {
-                    offers.Append($"No se encontró ninguna empresa a la que usted pertenezca.\n")
-                        .Append($"Ingrese /menu si quiere volver a ver los comandos disponibles.");
-                    response = offers.ToString() ;      
+                    this.Data.OfferId = Convert.ToInt32(input.Text);
+                    this.State = ModifyState.Modification;
+                    response = "Pase por aquí el link que lleva a sus habilitaciones.";
+                    return true;
+
+                }
+                else if (this.State == ModifyState.Modification)
+                {
+                    this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
+                    this.Data.Result.ChangeHabilitation(input.Text); 
+                    this.State = ModifyState.Start;
+                    response = "Las habilitaciones se han modificado.";
                     return true;
                 }
+                response = string.Empty;
+                return false;
             }
-            else if(this.State == ModifyState.OfferList)
+            catch(Exception e)
             {
-                this.Data.OfferId = Convert.ToInt32(input.Text);
-                this.State = ModifyState.Modification;
-                response = "Pase por aquí el link que lleva a sus habilitaciones.";
-                return true;
-
-            }
-            else if (this.State == ModifyState.Modification)
-            {
-                this.Data.Result = this.company.OfferRegister.Find(offer => offer.Id == this.Data.OfferId);
-                this.Data.Result.ChangeHabilitation(input.Text); 
-                this.State = ModifyState.Start;
-                response = "Las habilitaciones se han modificado.";
+                response = e.Message;
                 return true;
             }
-            response = string.Empty;
-            return false;
         }
 
         /// <summary>
