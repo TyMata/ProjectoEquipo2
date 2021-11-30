@@ -110,6 +110,15 @@ namespace ClassLibrary
         }
 
         /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = UnregisteredEntrepreneurUserState.Start;
+            this.Data = new UnregisteredEntrepreneurUserData();
+        }
+
+        /// <summary>
         /// Estados para el handler de un emprendedor no registrado
         /// </summary>
         public enum UnregisteredEntrepreneurUserState

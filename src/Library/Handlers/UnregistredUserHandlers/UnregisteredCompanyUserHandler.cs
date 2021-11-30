@@ -84,6 +84,15 @@ namespace ClassLibrary
         }
         
         /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = UnregisteredCompanyUserState.Start;
+            this.Data = new UnregisteredCompanyUserData();
+        }
+
+        /// <summary>
         /// Indica los diferentes estados que tiene UnregisteredCompanyUserHandler.
         /// </summary>
         public enum UnregisteredCompanyUserState

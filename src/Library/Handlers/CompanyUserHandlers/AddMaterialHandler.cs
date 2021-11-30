@@ -91,6 +91,7 @@ namespace ClassLibrary
             }
             catch(Exception e)
             {
+                InternalCancel();
                 response = e.Message;
                 return true;
             }

@@ -155,9 +155,19 @@ namespace ClassLibrary
             }
             catch(Exception e)
             {
+                InternalCancel();
                 response = e.Message;
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = OfferState.Start;
+            this.Data = new OfferData();
         }
         
         /// <summary>
