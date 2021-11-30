@@ -61,20 +61,23 @@ namespace ConsoleApplication
             Console.WriteLine(CompanyRegister.Instance.ConvertToJson(options));
             Console.WriteLine(Market.Instance.ConvertToJson(options));
 
-            foreach (Offer offer in Market.Instance.actualOfferList)
-            {
-                string temp = JsonSerializer.Serialize(Market.Instance.actualOfferList);
-                Console.WriteLine(temp);
-                File.WriteAllText(@"actualOfferListData.json", temp);
-            }
+            // foreach (Offer offer in Market.Instance.ActualOfferList)
+            // {
+            //     string temp = JsonSerializer.Serialize(Market.Instance.ActualOfferList);
+            //     Console.WriteLine(temp);
+            //     File.WriteAllText(@"actualOfferListData.json", temp);
+            // }
             foreach (Company company in CompanyRegister.Instance.CompanyList)
             {
-                // if (@"data.json" != string.Empty)
-                // {
-                //     string jsonD = File.ReadAllText(@"data.json");
-                //     CompanyRegister companyDeserializer = JsonSerializer.Deserialize<CompanyRegister>(jsonD, options);
+                // if (@"companyData.json" != string.Empty)
+                // {   
+                //     CompanyRegister.Instance.Initialize();
+
+                //     string jsonD = File.ReadAllText(@"companyData.json");
+                //     Company companyDeserializer = JsonSerializer.Deserialize<Company>(jsonD);
+
+                //     Console.WriteLine(companyDeserializer.ConvertToJson(options));
                 // }
-                // File.ReadAllText("@data.json");
                 string temp2 = JsonSerializer.Serialize(CompanyRegister.Instance.CompanyList);
                 Console.WriteLine(temp2);
                 File.WriteAllText(@"companyData.json", temp2);

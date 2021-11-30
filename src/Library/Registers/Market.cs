@@ -19,8 +19,7 @@ namespace ClassLibrary
         /// <value></value>
         public int Count { get; set; }
 
-        [JsonConstructor]
-        public Market()
+        private Market()
         {
             Initialize();
         }
@@ -41,7 +40,16 @@ namespace ClassLibrary
             }
         }
 
-        public List<Offer> actualOfferList;
+        private List<Offer> actualOfferList;
+
+        /// <summary>
+        /// Se crea la lista de ofertas.
+        /// </summary>
+        public void Initialize()
+        {
+            this.actualOfferList = new List<Offer>();
+            this.suspendedOfferList = new List<Offer>();
+        }
 
         /// <summary>
         /// Lista de ofertas actuales.
@@ -52,18 +60,11 @@ namespace ClassLibrary
         {
             get
             {
-                return this.actualOfferList;
+                return actualOfferList;
             }
         }
-        /// <summary>
-        /// Se crea la lista de ofertas.
-        /// </summary>
-        public void Initialize()
-        {
-            this.actualOfferList = new List<Offer>();
-        }
 
-        private List<Offer> suspendedOfferList = new List<Offer>();
+        private List<Offer> suspendedOfferList;
         /// <summary>
         /// Lista de ofertas suspendidas.
         /// </summary>
@@ -249,11 +250,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         } 
 
-        public void LoadFromJson(string json, JsonSerializerOptions options)
+        public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             Market temp = JsonSerializer.Deserialize<Market>(json, options);
             this.actualOfferList = temp.ActualOfferList;
-            this.suspendedOfferList = temp.suspendedOfferList;
+            this.suspendedOfferList = temp.SuspendedOfferList;
+            return this.actualOfferList;
         }
     }
 }

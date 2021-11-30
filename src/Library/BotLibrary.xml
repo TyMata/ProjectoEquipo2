@@ -1668,16 +1668,16 @@
             </summary>
             <value></value>
         </member>
+        <member name="M:ClassLibrary.Market.Initialize">
+            <summary>
+            Se crea la lista de ofertas.
+            </summary>
+        </member>
         <member name="P:ClassLibrary.Market.ActualOfferList">
             <summary>
             Lista de ofertas actuales.
             </summary>
             <value></value>
-        </member>
-        <member name="M:ClassLibrary.Market.Initialize">
-            <summary>
-            Se crea la lista de ofertas.
-            </summary>
         </member>
         <member name="P:ClassLibrary.Market.SuspendedOfferList">
             <summary>
