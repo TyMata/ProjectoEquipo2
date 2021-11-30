@@ -28,7 +28,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/modificarhabilitaciones");
             location = new LocationAdapter("address", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
+            oferta = new Offer(1234567, new Material(), "habilitation", location, "kg" ,3, "pesos", 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
             material = new Material("material", "type", "clasificacion");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
@@ -69,11 +69,11 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234567";
-            result = handler.InternalHandle(message, out response);
+            this.message.Text = "1234567";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Pase por aquí el link que lleva a sus habilitaciones.")); 
-            Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
+            Assert.That(this.handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
         }
 
         /// <summary>

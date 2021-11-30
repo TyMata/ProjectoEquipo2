@@ -25,7 +25,7 @@ namespace ClassLibrary
             get{
                 if (instance == null)
                 {
-                    instance = new CompanyRegister ();
+                    instance = new CompanyRegister();
                 }
                 
                 return instance;

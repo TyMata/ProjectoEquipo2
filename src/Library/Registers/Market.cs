@@ -30,8 +30,7 @@ namespace ClassLibrary
             }
         }
 
-        [JsonConstructor]
-        public Market()
+        private Market()
         {
             Initialize();
         }
@@ -51,10 +50,17 @@ namespace ClassLibrary
                 return instance;
             }
         }
+
+        private List<Offer> actualOfferList;
+
         /// <summary>
-        /// Se crea la lista de ofertas actuales.
+        /// Se crea la lista de ofertas.
         /// </summary>
-        public List<Offer> actualOfferList;
+        public void Initialize()
+        {
+            this.actualOfferList = new List<Offer>();
+            this.suspendedOfferList = new List<Offer>();
+        }
 
         /// <summary>
         /// Lista de ofertas actuales.
@@ -65,18 +71,11 @@ namespace ClassLibrary
         {
             get
             {
-                return this.actualOfferList;
+                return actualOfferList;
             }
         }
-        /// <summary>
-        /// Se crea la lista de ofertas.
-        /// </summary>
-        public void Initialize()
-        {
-            this.actualOfferList = new List<Offer>();
-        }
 
-        private List<Offer> suspendedOfferList = new List<Offer>();
+        private List<Offer> suspendedOfferList;
         /// <summary>
         /// Lista de ofertas suspendidas.
         /// </summary>
@@ -96,17 +95,19 @@ namespace ClassLibrary
         /// /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
+        /// <param name="unitOfMeasure"></param>
         /// <param name="quantityMaterial"></param>
+        /// <param name="currency"></param>
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="continuity"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability, string continuity)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, double totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "continua");
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, unitOfMeasure, quantityMaterial, currency, totalPrice, company, availability, DateTime.Now, "continua");
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
@@ -265,11 +266,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         } 
 
-        public void LoadFromJson(string json, JsonSerializerOptions options)
+        public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             Market temp = JsonSerializer.Deserialize<Market>(json, options);
             this.actualOfferList = temp.ActualOfferList;
-            this.suspendedOfferList = temp.suspendedOfferList;
+            this.suspendedOfferList = temp.SuspendedOfferList;
+            return this.actualOfferList;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Tests
         {
             message = new TelegramBotMessage(1234, "/mostrarofertas");
             location = new LocationAdapter("Comandante Braga 2715", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, 3, 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
+            oferta = new Offer(1234567, new Material(), "habilitation", location, "kg", 3, "pesos", 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
             material = new Material("Pallet", "Plastico", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
