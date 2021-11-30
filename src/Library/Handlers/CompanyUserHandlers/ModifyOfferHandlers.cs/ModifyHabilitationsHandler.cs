@@ -51,7 +51,9 @@ namespace ClassLibrary
                     {
                         offers.Append($"Id: {x.Id}.\n")
                             .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
-                            .Append($"Cantidad: {x.QuantityMaterial}.\n")                            //TODO preguntar por id de la oferta a modificar
+                            .Append($"Unidad de medida: {x.UnitOfMeasure}.\n")
+                            .Append($"Cantidad: {x.QuantityMaterial}.\n")       
+                            .Append($"Divisa: {x.Currency}.\n")                     //TODO preguntar por id de la oferta a modificar
                             .Append($"Precio: {x.TotalPrice}.\n")
                             .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
                             .Append($"\n-----------------------------------------------\n\n");

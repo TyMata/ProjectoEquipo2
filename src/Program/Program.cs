@@ -28,27 +28,10 @@ namespace ConsoleApplication
         {
             //TODO: Preguntar sobre las intancias del bot.
             //TODO Agregar precondiciones y postcondiciones en TODO el bot
-           TelegramBot tb = TelegramBot.Instance;
-           tb.StartCommunication();
-           Console.ReadLine();
-            // IHandler handler = new AddCompanyHandler(mc);
-            // handler.SetNext(new RemoveUserHandler(mc)
-            //         .SetNext(new RemoveCompanyHandler(mc)
-            //         .SetNext(/*new RemoveCompanyHandler(mc)
-            //         .SetNext(*/new EndHandler(mc, null))))/*)*/;
-            // mc.SendMessage("Bienvenido Admin!\n");
-            // while(true)
-            // {
-            // StringBuilder bienvenida = new StringBuilder("Que quieres hacer?\n")
-            //                                     .Append("/RegistrarEmpresa\n")
-            //                                     .Append("/EliminarUsuario\n")
-            //                                     .Append("/EliminarEmpresa\n");
-            // mc.SendMessage(bienvenida.ToString());
-            // // if (handler.Handle(mc.ReceiveMessage()) != null)
-            // // {
-            // //     return;
-            // // }
-
+            TelegramBot tb = TelegramBot.Instance;
+            tb.StartCommunication();
+            Console.ReadLine();
+            
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = MyReferenceHandler.Instance,

@@ -21,7 +21,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            message = new TelegramBotMessage(1234, "/emprendedornoregistrado");
+            this.message = new TelegramBotMessage(1234, "/emprendedornoregistrado");
             location = new LocationAdapter("address", "city", "department");
             handler = new UnregisteredEntrepreneurUserHandler();
         }
@@ -30,22 +30,22 @@ namespace Tests
         public void HandleStartTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(this.message, out response);
             StringBuilder datos = new StringBuilder("¡Así que eres un Emprendedor!\n")
                                                 .Append("Para poder registrarte vamos a necesitar algunos datos personales.\n")
                                                 .Append("Ingrese su nombre completo.");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(datos.ToString())); 
-            Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name));
+            Assert.That(this.handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name));
         }
 
         [Test]
         public void HandleTokenTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
+            bool result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese su dirección.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Address));
@@ -55,11 +55,11 @@ namespace Tests
         public void HandleAddressTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Av. 8 de Octubre 2738";
-            result = handler.InternalHandle(message, out response);
+            bool result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Av. 8 de Octubre 2738";
+            result = handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese la ciudad.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.City));
@@ -68,13 +68,13 @@ namespace Tests
         public void HandleCityTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Av. 8 de Octubre 2738";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
+            bool result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Av. 8 de Octubre 2738";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese el departamento.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Department));
@@ -83,15 +83,15 @@ namespace Tests
         public void HandleDepartmentTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Av. 8 de Octubre 2738";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
+            bool result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Av. 8 de Octubre 2738";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese sus habilitaciones.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Habilitations));
@@ -100,43 +100,43 @@ namespace Tests
         public void HandleHabilitationsTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Av. 8 de Octubre 2738";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Link";
-            result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Av. 8 de Octubre 2738";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Link";
+            result = handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese su rubro.")); 
-            Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Headings));
+            Assert.That(this.handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Headings));
         }
 
         
         public void HandleHeadingsTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "Nombre del emprendedor";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Av. 8 de Octubre 2738";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Montevideo";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Link";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Rubro";
-            result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Nombre del emprendedor";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Av. 8 de Octubre 2738";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Montevideo";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Link";
+            result = this.handler.InternalHandle(this.message, out response);
+            this.message.Text = "Rubro";
+            result = this.handler.InternalHandle(this.message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Gracias por sus datos, ya se ha creado su usuario\n")); 
-            Assert.IsTrue(company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
-            Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Start));
+            Assert.IsTrue(this.company.CompanyUsers.Contains(UserRegister.Instance.GetUserById(1234)));
+            Assert.That(this.handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Start));
         }
 
 

@@ -68,12 +68,12 @@ namespace Tests
         public void HandleMaterialTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "material";
-            result = handler.InternalHandle(message, out response);
+            bool result = handler.InternalHandle(this.message, out response);
+            this.message.Text = "material";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("Ingrese la cantidad de material.")); 
-            Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Quantity));
+            Assert.That(this.handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Quantity));
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
-            message.Text="8000";
+            message.Text = "8000";
             result = handler.InternalHandle(message, out response);
             message.Text = "Comandante Braga 2715";
             result = handler.InternalHandle(message, out response);

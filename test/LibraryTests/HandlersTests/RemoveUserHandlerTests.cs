@@ -47,12 +47,12 @@ namespace Tests
         public void HandleCompanyTest()
         {
             string response;
-            bool result = handler.InternalHandle(message, out response);
-            message.Text = "1234";
-            result = handler.InternalHandle(message, out response);
+            bool result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "1234";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo($"El usuario de Id \"{handler.Data.UserId}\" ha sido eliminado"));
-            Assert.That(handler.State, Is.EqualTo(RemoveUserHandler.RemoveUserState.Start));
+            Assert.That(response, Is.EqualTo($"El usuario de Id \"{this.handler.Data.UserId}\" ha sido eliminado"));
+            Assert.That(this.handler.State, Is.EqualTo(RemoveUserHandler.RemoveUserState.Start));
         }
         /// <summary>
         /// Prueba que no se realice el handler.

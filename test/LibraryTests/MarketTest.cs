@@ -22,7 +22,7 @@ namespace Tests
         {
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company = new Company("empresa", location, "rubro", "company@gmail.com", "091919191");
-            this.oferta = new Offer(1234567, new Material("Pallet","Madera","Residuo"), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "continua");
+            this.oferta = new Offer(1234567, new Material("Pallet","Madera","Residuo"), "habilitaciones", location, "kg", 30, "pesos", 3000, this.company, true, new DateTime(), "continua");
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Tests
         [Test]
         public void SuspendOfferTest()
         {
-            Offer nuevaOferta = new Offer(7654321, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "constante");
+            Offer nuevaOferta = new Offer(7654321, new Material(), "habilitaciones", location, "kg", 30, "pesos", 3000, this.company, true, new DateTime(), "constante");
             Market.Instance.PublishOffer(nuevaOferta);
             Market.Instance.SuspendOffer(7654321);
             Assert.IsTrue(Market.Instance.ContainsSuspended(nuevaOferta));
@@ -76,7 +76,7 @@ namespace Tests
         [Test]
         public void CreateOffer()
         {
-            Offer result = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"),"link", location, 15, 3000, this.company, true, "continua");
+            Offer result = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"),"link", location, "kg", 15, "pesos", 3000, this.company, true, "continua");
             Assert.IsTrue(Market.Instance.ContainsActive(result));
             Assert.IsTrue(this.company.OfferRegister.Contains(result));
         }

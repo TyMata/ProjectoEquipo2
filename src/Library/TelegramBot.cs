@@ -115,17 +115,8 @@ namespace ClassLibrary
             return Task.CompletedTask;
         }
 
-       // private void OnMessage(object sender, MessageEventArgs messageEventArgs)
        private async Task HandleMessageReceived(Message message)
         {
-            // IMessageChannel mc = new TelegramBotMessageChannel();
-            // IHandler handlers = new AddCompanyHandler(mc);
-            // handlers.SetNext(new RemoveUserHandler(mc)
-            //         .SetNext(new RemoveCompanyHandler(mc)
-            //         .SetNext(new EndHandler(mc, null))));
-
-
-            //Message message = messageEventArgs.Message;
             int chatId = Convert.ToInt32(message.Chat.Id);
             
             string answer;
@@ -139,63 +130,6 @@ namespace ClassLibrary
                 Client.SendTextMessageAsync(chatId, "No puedo manejar ese mensaje");
             }
         }
-
-        // /// <summary>
-        // /// Maneja las actualizaciones del bot (todo lo que llega), incluyendo mensajes, ediciones de mensajes,
-        // /// respuestas a botones, etc. En este ejemplo sólo manejamos mensajes de texto.
-        // /// </summary>
-        // public static async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
-        // {
-        //     try
-        //     {
-        //         // Sólo respondemos a mensajes de texto
-        //         if (update.Type == UpdateType.Message)
-        //         {
-        //             await HandleMessageReceived(update.Message);
-        //         }
-        //     }
-        //     catch(Exception e)
-        //     {
-        //         await HandleErrorAsync(e, cancellationToken);
-        //     }
-        // }
-
-        // /// <summary>
-        // /// Maneja los mensajes que se envían al bot.
-        // /// Lo único que hacemos por ahora es escuchar 3 tipos de mensajes:
-        // /// - "hola": responde con texto
-        // /// - "chau": responde con texto
-        // /// - "foto": responde con una foto
-        // /// </summary>
-        // /// <param name="message">El mensaje recibido</param>
-        // /// <returns></returns>
-        // private static async Task HandleMessageReceived(Message message)
-        // {
-        //     Console.WriteLine($"Received a message from {message.From.FirstName} saying: {message.Text}");
-
-        //     string response = string.Empty;
-
-        //     firstHandler.Handle(message, out response);
-
-        //     if (!string.IsNullOrEmpty(response))
-        //     {
-        //         await Client.SendTextMessageAsync(message.Chat.Id, response);
-        //     }
-        // }
-
-        // /// <summary>
-        // /// Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
-        // /// </summary>
-        // public static Task HandleErrorAsync(Exception exception, CancellationToken cancellationToken)
-        // {
-        //     if (exception is null)
-        //     {
-        //         throw new ArgumentNullException(paramName: nameof(exception));
-        //     }
-        //     Console.WriteLine(exception.Message);
-        //     return Task.CompletedTask;
-
-        // }
     }
 }
 

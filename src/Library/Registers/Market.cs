@@ -95,17 +95,19 @@ namespace ClassLibrary
         /// /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
+        /// <param name="unitOfMeasure"></param>
         /// <param name="quantityMaterial"></param>
+        /// <param name="currency"></param>
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="availability"></param>
         /// <param name="continuity"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability, string continuity)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, double totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "continua");
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, unitOfMeasure, quantityMaterial, currency, totalPrice, company, availability, DateTime.Now, "continua");
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;
