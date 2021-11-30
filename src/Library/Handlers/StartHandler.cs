@@ -57,7 +57,8 @@ namespace ClassLibrary
                 else if (UserRegister.Instance.GetUserById(input.Id).IsEntrepreneurUser())
                 {
                     menu.Append("Usuario Emprendedor:\n")
-                        .Append("   /buscaroferta");
+                        .Append("   /buscaroferta\n")
+                        .Append("   /mostrarofertascompradas\n");
                 }
                 else
                 {
@@ -77,7 +78,7 @@ namespace ClassLibrary
                 {
                     menu.Append("Usuario No Registrado:\n")
                         .Append("   /usuarioempresanoregistrado\n")
-                        .Append("   /emprendedornoregistrado\n\n");
+                        .Append("   /emprendedornoregistrado\n");
                 }
                 else if(UserRegister.Instance.GetUserById(input.Id).IsCompanyUser())
                 {
@@ -92,19 +93,20 @@ namespace ClassLibrary
                         .Append("   Para modificar alguna oferta:\n")
                         .Append("       /modificarhabilitaciones\n")
                         .Append("       /modificarprecio\n")
-                        .Append("       /modificarcantidad\n\n");
+                        .Append("       /modificarcantidad\n");
                 }
                 else if (UserRegister.Instance.GetUserById(input.Id).IsEntrepreneurUser())
                 {
                     menu.Append("Usuario Emprendedor:\n")
-                        .Append("   /buscaroferta");
+                        .Append("   /buscaroferta\n")
+                        .Append("   /mostrarofertascompradas\n");
                 }
                 else
                 {
                     menu.Append("Usuario Admin:\n")
                         .Append("   /registrarempresa\n")
                         .Append("   /eliminarusuario\n")
-                        .Append("   /eliminarempresa\n\n");
+                        .Append("   /eliminarempresa\n");
                 }
                 response = menu.ToString();
                 return true;
