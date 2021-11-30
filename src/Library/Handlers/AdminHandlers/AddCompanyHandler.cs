@@ -37,7 +37,6 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            Users user = UserRegister.Instance.GetUserById(input.Id);
             if (this.State == AddCompanyState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
             {
                 this.State = AddCompanyState.Name;

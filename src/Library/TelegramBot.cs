@@ -118,14 +118,6 @@ namespace ClassLibrary
        // private void OnMessage(object sender, MessageEventArgs messageEventArgs)
        private async Task HandleMessageReceived(Message message)
         {
-            // IMessageChannel mc = new TelegramBotMessageChannel();
-            // IHandler handlers = new AddCompanyHandler(mc);
-            // handlers.SetNext(new RemoveUserHandler(mc)
-            //         .SetNext(new RemoveCompanyHandler(mc)
-            //         .SetNext(new EndHandler(mc, null))));
-
-
-            //Message message = messageEventArgs.Message;
             int chatId = Convert.ToInt32(message.Chat.Id);
             
             string answer;
