@@ -75,13 +75,27 @@ namespace ClassLibrary
             else if(this.State == OfferState.Material)
             {
                 this.Data.Material = this.company.GetMaterial(input.Text); 
+                this.State = OfferState.UnitOfMeasure;
+                response = "Ingrese la unidad de medida del material.";
+                return true;
+            }
+            else if(this.State == OfferState.UnitOfMeasure)
+            {
+                this.Data.UnitOfMeasure = input.Text;
                 this.State = OfferState.Quantity;
-                response = "Ingrese la cantidad de material.";
+                response = "Ingrese la cantidad de material";
                 return true;
             }
             else if(this.State == OfferState.Quantity)
             {
                 this.Data.Quantity = Convert.ToInt32(input.Text);
+                this.State = OfferState.Currency;
+                response = "¿Cuál va a ser la divisa de la oferta?";
+                return true;
+            }
+            else if(this.State == OfferState.Currency)
+            {
+                this.Data.Currency = input.Text;
                 this.State = OfferState.Price;
                 response = "¿Cuál va a ser el precio total?";
                 return true;
@@ -129,7 +143,7 @@ namespace ClassLibrary
             {
                 this.Data.Continuity = input.Text;
                 this.State = OfferState.Start;
-                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location,this.Data.Quantity,this.Data.Price,this.company,true, this.Data.Continuity);
+                Market.Instance.CreateOffer(this.Data.Material,this.Data.Habilitations,this.Data.Location, this.Data.UnitOfMeasure, this.Data.Quantity,  this.Data.Currency, this.Data.Price,this.company,true, this.Data.Continuity);
                 response = "La oferta ha sido creada y publicada en el mercado.";
                 this.Data = new OfferData();
                 return true;
@@ -149,7 +163,9 @@ namespace ClassLibrary
             /// </summary>
             Start,
             Material,
+            UnitOfMeasure,
             Quantity,
+            Currency,
             Price,
             Location,
             Habilitations,
@@ -168,11 +184,15 @@ namespace ClassLibrary
             /// <value></value>
             public Material Material { get; set; }
 
+            public string UnitOfMeasure { get; set; }
+
             /// <summary>
             /// Se guarda la cantidad del material que se quiere poner en la oferta.
             /// </summary>
             /// <value></value>
             public int Quantity { get; set; }
+
+            public string Currency { get; set; }
 
             /// <summary>
             /// Se guarda el precio total de la oferta.

@@ -12,6 +12,10 @@ namespace ClassLibrary
     public class EntrepreneurRole : IRole
 	{
         private Entrepreneur entrepreneur;
+        /// <summary>
+        /// Se hace getter y setter de Entrepeneur.
+        /// </summary>
+        /// <value></value>
 		public Entrepreneur Entrepreneur 
         {
              get

@@ -99,11 +99,6 @@
             Se crea un EntrepreneurRole para las pruebas.
             </summary>
         </member>
-        <member name="M:Tests.EntrepreneurRoleTests.RoletypeTest">
-            <summary>
-            Prueba que RoleType() devuelve la string "emprendedor".
-            </summary>
-        </member>
         <member name="M:Tests.EntrepreneurRoleTests.DataTest">
             <summary>
             Prueba que la información del usuario no este vacía.
