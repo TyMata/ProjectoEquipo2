@@ -12,11 +12,23 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
+
+        public int count;
         /// <summary>
         /// Genera un numero mayor que el anterior para el Id.
         /// </summary>
         /// <value></value>
-        public int Count { get; set; }
+        public int Count 
+        { 
+            get
+            {
+                return this.count;
+            }
+            set
+            {
+                this.count = value;
+            }
+        }
 
         [JsonConstructor]
         public Market()
@@ -86,12 +98,13 @@ namespace ClassLibrary
         /// <param name="totalPrice"></param>
         /// <param name="company"></param>
         /// <param name="availability"></param>
+        /// <param name="continuity"></param>
         /// <returns></returns>
         public Offer CreateOffer(Material material,string habilitation, LocationAdapter location,int quantityMaterial, double totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
-            Offer nuevaOferta = new Offer(id ,material , habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "constante");
+            Offer nuevaOferta = new Offer(id, material, habilitation, location, quantityMaterial, totalPrice, company, availability, DateTime.Now, "continua");
             company.AddOffer(nuevaOferta);
             this.PublishOffer(nuevaOferta);
             return nuevaOferta;

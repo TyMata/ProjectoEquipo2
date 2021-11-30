@@ -75,7 +75,7 @@ namespace ClassLibrary
             else if (State == SuspendOfferState.ActiveOfferIdState)
             {
                 this.Data.Id = Convert.ToInt32(input.Text);
-                if (this.company.OfferRegister.Exists(Offer => Offer.Id == this.Data.Id))
+                if (this.company.OfferRegister.Exists(offer => offer.Id == this.Data.Id))
                 {
                     Market.Instance.SuspendOffer(this.Data.Id);             //TODO Si le pasamos un id de una empresa suspendida la activaria y reciprocamente sucede lo mismo
                     this.State = SuspendOfferState.Start;

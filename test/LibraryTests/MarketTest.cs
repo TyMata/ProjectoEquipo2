@@ -20,9 +20,9 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            location = new LocationAdapter("address", "city", "department");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company = new Company("empresa", location, "rubro", "company@gmail.com", "091919191");
-            this.oferta = new Offer(1234567, new Material(), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "constante");
+            this.oferta = new Offer(1234567, new Material("Pallet","Madera","Residuo"), "habilitaciones", location, 30, 3000, this.company, true, new DateTime(), "continua");
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Tests
         public void RemoveOfferTest()
         {
             Market.Instance.RemoveOffer(1234567);
-            Assert.IsEmpty(Market.Instance.ActualOfferList);
+            Assert.IsFalse(Market.Instance.ContainsActive(this.oferta));
         }
 
         /// <summary>
@@ -68,6 +68,17 @@ namespace Tests
             Market.Instance.ResumeOffer(1234567);
             Assert.IsTrue(Market.Instance.ContainsActive(this.oferta));
             Assert.IsFalse(Market.Instance.ContainsSuspended(this.oferta));
+        }
+
+        /// <summary>
+        /// Prueba que se cree una oferta correctamente, se publique en el mercado y se agregue a la lista de ofertas de la empresa.
+        /// </summary>
+        [Test]
+        public void CreateOffer()
+        {
+            Offer result = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"),"link", location, 15, 3000, this.company, true, "continua");
+            Assert.IsTrue(Market.Instance.ContainsActive(result));
+            Assert.IsTrue(this.company.OfferRegister.Contains(result));
         }
     }
 }

@@ -146,8 +146,8 @@ namespace ClassLibrary
                 this.State = AddCompanyState.Start;
                 this.Data.PhoneNumber = input.Text;
                 this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
-                this.Data.company = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
-                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.company.InvitationToken}";
+                this.Data.Result = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
+                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.Result.InvitationToken}";
                 return true;
             }
             response = string.Empty;
@@ -275,7 +275,7 @@ namespace ClassLibrary
             /// La empresa creada a partir de todos los datos recolectados anteriormente.
             /// </summary>
             /// <value></value>
-            public Company company { get; set; }
+            public Company Result { get; set; }
         }
     }
 }

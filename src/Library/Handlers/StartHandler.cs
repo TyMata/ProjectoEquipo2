@@ -30,7 +30,7 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input,out string response)
         {
-            if (this.State == StartState.Start && this.nextHandler != null) // TODO ver como hacer este handler o como mandlre el next handler
+            if (this.State == StartState.Start && this.nextHandler != null) 
             {
                 StringBuilder menu = new StringBuilder("Bienvenido\n");
                 if (UserRegister.Instance.GetUserById(input.Id) == null)

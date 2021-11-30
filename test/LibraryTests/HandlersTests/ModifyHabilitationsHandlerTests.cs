@@ -45,17 +45,17 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            StringBuilder sb = new StringBuilder("Que oferta desea modificar?\n");
+            StringBuilder sb = new StringBuilder("¿Qué oferta desea modificar?\n");
             foreach (Offer x in company.OfferRegister)
             {
-                sb.Append($"Id: {x.Id}\n")
-                        .Append($"Material: {x.Material}\n")
-                        .Append($"Cantidad: {x.QuantityMaterial}\n")
-                        .Append($"Fecha de publicacion: {x.PublicationDate}\n")
-                        .Append($"Precio: {x.TotalPrice}\n")
-                        .Append($"\n-----------------------------------------------\n\n");  
+                sb.Append($"Id: {x.Id}.\n")
+                  .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                  .Append($"Cantidad: {x.QuantityMaterial}.\n")                           
+                  .Append($"Precio: {x.TotalPrice}.\n")
+                  .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
+                  .Append($"\n-----------------------------------------------\n\n");
             }
-            sb.Append("Ingrese el Id de la oferta a modificar:\n");
+            sb.Append("Ingrese el Id de la oferta a modificar.");
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(sb.ToString())); 
             Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.OfferList));
@@ -72,7 +72,7 @@ namespace Tests
             message.Text = "1234567";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Pase por aquí el link que lleva a sus habilitaciones\n")); 
+            Assert.That(response, Is.EqualTo("Pase por aquí el link que lleva a sus habilitaciones.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Modification));
         }
 
@@ -91,7 +91,7 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.AreEqual("link",oferta.Habilitation);
-            Assert.That(response, Is.EqualTo("Las habilitaciones se han modificado")); 
+            Assert.That(response, Is.EqualTo("Las habilitaciones se han modificado.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Start));
         }
 

@@ -27,7 +27,7 @@ namespace Tests
         public void Setup()
         {
             message = new TelegramBotMessage(1234, "/publicaroferta");
-            location = new LocationAdapter("address", "city", "department");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             material = new Material("material", "type", "clasificacion");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
@@ -49,13 +49,13 @@ namespace Tests
             foreach (Material item in this.company.ProducedMaterials)
             {
                 materials.Append($"Nombre del Material: {item.Name}\n")
-                        .Append($"Tipo: {item.Type}\n")
-                        .Append($"Clasificacion: {item.Classification}\n")
-                        .Append($"\n-----------------------------------------------\n\n");
+                         .Append($"Tipo: {item.Type}\n")
+                         .Append($"Clasificación: {item.Classification}\n")
+                         .Append($"\n-----------------------------------------------\n\n");
             }
-             materials.Append($"Que material desea vender?:\n")
-                        .Append($"\nIngrese el nombre\n");
-             response = materials.ToString();
+            materials.Append($"¿Qué material desea vender?\n")
+                     .Append($"Ingrese el nombre.");
+            response = materials.ToString();
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(materials.ToString())); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Material));
@@ -72,7 +72,7 @@ namespace Tests
             message.Text = "material";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Cantidad de material:\n")); 
+            Assert.That(response, Is.EqualTo("Ingrese la cantidad de material.")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Quantity));
         }
 
@@ -90,7 +90,7 @@ namespace Tests
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("¿Cuál va a ser el precio total?\n")); 
+            Assert.That(response, Is.EqualTo("¿Cuál va a ser el precio total?")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Price));
 
         }
@@ -109,15 +109,16 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text="8000";
             result = handler.InternalHandle(message, out response);
-             StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
-                foreach (LocationAdapter item in this.company.Locations) 
-                {
-                    location.Append($"Ubicacion:\n")   
-                            .Append($"Direccion: {item.Address}\n")   
-                            .Append($"\n-----------------------------------------------\n\n");
-                }
-                location.Append("Ingresa la direccion de esta:\n");
-             Assert.IsTrue(result);
+            StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
+            foreach (LocationAdapter item in this.company.Locations) 
+            {
+                location.Append($"Departamento: {item.Department}\n") 
+                        .Append($"Ciudad: {item.City}\n")
+                        .Append($"Dirección: {item.Address}\n")   
+                        .Append($"-----------------------------------------------\n\n");
+            }
+            location.Append("Ingresa la dirección de esta:\n");
+            Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo(location.ToString()));
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Location));
 
@@ -135,13 +136,15 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
-            message.Text="address";
-            result=handler.InternalHandle(message, out response);
+            message.Text="8000";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Comandante Braga 2715";
+            result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("¿Que habilitaciones son necesarias para poder manipular este material?:\n")); 
+            Assert.That(response, Is.EqualTo("¿Que habilitaciones son necesarias para poder manipular este material?")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Habilitations));
 
-        }//TODO Arreglar Location y habilitationTest.
+        }
         /// <summary>
         ///  /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
         /// y que se modifique las habilitaciones de la oferta correctamente.
@@ -155,13 +158,42 @@ namespace Tests
             result = handler.InternalHandle(message, out response);
             message.Text = "12";
             result = handler.InternalHandle(message, out response);
+            message.Text="8000";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Comandante Braga 2715";
+            result = handler.InternalHandle(message, out response);
             message.Text = "Link";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("La oferta a sido creada y publicada en el mercado.\n")); 
+            Assert.That(response, Is.EqualTo($"Para determinar la continuidad de la oferta, escriba \"continua\" si es continua, o \"puntual\" si es puntual.")); 
+            Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Continuity));
+            
+        
+
+        }
+
+           [Test]
+        public void HandleContinuityTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "material";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "12";
+            result = handler.InternalHandle(message, out response);
+            message.Text="8000";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Comandante Braga 2715";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "Link";
+            result = handler.InternalHandle(message, out response);
+            message.Text = "continua";
+            result = handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("La oferta ha sido creada y publicada en el mercado.")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Start));
-            //Assert.IsTrue(Market.Instance.ActualOfferList.);
-            //TODO Arreglar esto
+            Assert.IsNotNull(Market.Instance.ActualOfferList);
+            
 
         }
 
