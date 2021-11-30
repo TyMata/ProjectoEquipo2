@@ -142,6 +142,8 @@ namespace ClassLibrary
             /// </summary>
             public int OfferId { get; set; }
 
+            public int Price {get; set;}
+
             /// <summary>
             /// El resultado de la búsqueda de la oferta ingresada.
             /// </summary>

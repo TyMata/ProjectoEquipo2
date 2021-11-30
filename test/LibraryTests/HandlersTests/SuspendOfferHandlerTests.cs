@@ -8,6 +8,8 @@ namespace Tests
 {
     /// <summary>
     /// Prueba el handler para reanudar una oferta.
+    /// Cada test por separado funcionan bien, pero cuando los corremos todos juntos se rompe HandleSuspendOfferTest(). 
+    /// Llegamos a la conclusion de que puede ser a acausa de que el SetUp se realice antes de cada test.
     /// </summary>
     [TestFixture]
     public class SuspendOfferHandlerTests
@@ -27,13 +29,14 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            message = new TelegramBotMessage(1234, "/suspenderoferta");
+            message = new TelegramBotMessage(12342, "/suspenderoferta");
             location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
             this.company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
-            this.company.AddUser(1234);
-            oferta = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"), "habilitation", location, "kg", 3, "pesos", 3000, this.company, true, "continua");
+            this.company.AddUser(12342);
+            oferta = new Offer(234567, new Material("Pallet","Madera","Residuo"), "habilitation", location,"kg", 3, "pesos", 3000, this.company, true, new DateTime(), "continua");
+            this.company.AddOffer(oferta);
+            Market.Instance.PublishOffer(oferta);
             this.handler = new SuspendOfferHandler();
-            message2 = new TelegramBotMessage(1234, oferta.Id.ToString());
         }
 
         /// <summary>
@@ -71,9 +74,9 @@ namespace Tests
         public void HandleSuspendOfferTest()
         {
             string response;
-            bool result = this.handler.InternalHandle(message, out response);
-            message.Text = oferta.Id.ToString();
-            result = this.handler.InternalHandle(message2, out response);
+            bool result = handler.InternalHandle(message, out response);
+            message.Text = "234567";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.IsTrue(this.company.OfferRegister.Contains(oferta));
             Assert.That(response, Is.EqualTo("La oferta ha sido suspendida.")); 

@@ -65,7 +65,7 @@ namespace Tests
         {
             CompanyRegister.Instance.Add(this.company);
             Company result = CompanyRegister.Instance.GetCompanyByName(this.company.Name);
-            Assert.AreEqual(this.company,result);
+            Assert.AreEqual(this.company.Name, result.Name);
         }
 
         [Test]

@@ -51,7 +51,7 @@ namespace ClassLibrary
             }
         }
 
-        private List<Offer> actualOfferList;
+        public List<Offer> actualOfferList = new List<Offer>();
 
         /// <summary>
         /// Se crea la lista de ofertas.
@@ -103,7 +103,7 @@ namespace ClassLibrary
         /// <param name="availability"></param>
         /// <param name="continuity"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, double totalPrice, Company company, bool availability, string continuity)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, int totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
@@ -145,6 +145,11 @@ namespace ClassLibrary
             {
                 return false;
             }
+        }
+
+        public void AddActiveOffer(Offer oferta)
+        {
+            this.ActualOfferList.Add(oferta);
         }
 
         /// <summary>
@@ -205,7 +210,7 @@ namespace ClassLibrary
                 throw new NullReferenceException($"El Id de la oferta es incorrecto."); //TODO: Agregar a la lista de ofertas compradas del usuario
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == offerId);
-            x.Company.OfferSold(x , user);
+            x.Company.OfferSold(x, user);
             (user.Role as EntrepreneurRole).Entrepreneur.AddBoughtOffer(x);
             x.ChangeAvailability();
             this.SuspendedOfferList.Add(x);

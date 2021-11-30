@@ -22,7 +22,7 @@ namespace Tests
         private string keywords;
         private bool availability;
         private DateTime publicationDate;
-        private double totalPrice;
+        private int totalPrice;
 
         /// <summary>
         ///  Set up del test de Offer.

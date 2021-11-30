@@ -186,6 +186,8 @@ namespace ClassLibrary
             /// <value></value>
             public Offer OfferToBuy { get; set; }
 
+            public int Id {get; set;}
+
             /// <summary>
             /// La empresa la cual le pasaremos la informacion de contacto al usuario.
             /// </summary>
