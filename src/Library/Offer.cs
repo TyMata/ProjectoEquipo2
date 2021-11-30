@@ -116,19 +116,19 @@ namespace ClassLibrary
                 this.quantityMaterial = value;
             }
         }
-        private double totalPrice;
+        private int totalPrice;
 
         /// <summary>
         /// Precio total del producto.
         /// </summary>
         /// <value></value>
-        public double TotalPrice
+        public int TotalPrice
         {
             get
             {
                 return this.totalPrice;
             }
-            private set
+            set
             {
                 this.totalPrice = value;
             }
@@ -308,7 +308,7 @@ namespace ClassLibrary
         /// <param name="availability"></param>
         /// <param name="publicationDate"></param>
         /// <param name="continuity"></param>
-        public Offer(int id, Material material, string habilitation, LocationAdapter location,string unitOfMeasure, int quantityMaterial, string currency, double totalPrice, Company company,bool availability, DateTime publicationDate, string continuity)
+        public Offer(int id, Material material, string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, int totalPrice, Company company,bool availability, DateTime publicationDate, string continuity)
         {
             this.Id = id;
             this.Material = material;

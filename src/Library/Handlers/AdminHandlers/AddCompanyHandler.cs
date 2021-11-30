@@ -70,7 +70,7 @@ namespace ClassLibrary
                 response = "Ingrese el departamento:\n";
                 return true;
             }
-             else if(this.State == AddCompanyState.State)
+            else if(this.State == AddCompanyState.State)
             {
                 if (input.Text == "/menu")
                 {

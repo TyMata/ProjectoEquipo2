@@ -59,7 +59,7 @@ namespace ClassLibrary
                     menu.Append("Usuario Emprendedor:\n")
                         .Append("   /buscaroferta");
                 }
-                else
+                else if(UserRegister.Instance.GetUserById(input.Id).IsAdminUser())
                 {
                     menu.Append("Usuario Admin:\n")
                         .Append("   /registrarempresa\n")
@@ -99,7 +99,7 @@ namespace ClassLibrary
                     menu.Append("Usuario Emprendedor:\n")
                         .Append("   /buscaroferta");
                 }
-                else
+                else if (UserRegister.Instance.GetUserById(input.Id).IsAdminUser())
                 {
                     menu.Append("Usuario Admin:\n")
                         .Append("   /registrarempresa\n")

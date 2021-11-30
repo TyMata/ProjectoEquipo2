@@ -102,7 +102,7 @@ namespace ClassLibrary
             }
             else if (this.State == OfferState.Price)
             {
-                this.Data.Price = Convert.ToDouble(input.Text);
+                this.Data.Price = Convert.ToInt32(input.Text);
                 this.State = OfferState.Location;
                 StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
                 if (this.company.Locations!=null)
@@ -198,7 +198,7 @@ namespace ClassLibrary
             /// Se guarda el precio total de la oferta.
             /// </summary>
             /// <value></value>
-            public double Price { get; set; }
+            public int Price { get; set; }
 
             /// <summary>
             /// Se guardan las habilitaciones para manejar el material.
