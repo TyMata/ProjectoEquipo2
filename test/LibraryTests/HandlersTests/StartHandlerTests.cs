@@ -10,14 +10,16 @@ namespace Tests
     {
         private StartHandler handler;
         private IMessage message;
-
+         
         [SetUp]
         public void SetUp()
         {
             message = new TelegramBotMessage(1234, "/menu");
             handler = new StartHandler();
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleStartTest()
         {
@@ -49,7 +51,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo(menu.ToString())); 
             Assert.That(handler.State, Is.EqualTo(StartHandler.StartState.NotFirstTime));
         }
-
+        /// <summary>
+        /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+        /// </summary>
         [Test]
         public void HandleNotFirstTime()
         {
