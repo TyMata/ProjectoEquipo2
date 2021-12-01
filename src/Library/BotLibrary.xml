@@ -309,7 +309,7 @@
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.AddCompanyData.PhoneNumber">
             <summary>
-            El numeo de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
+            El número de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
             </summary>
             <value></value>
         </member>
@@ -775,7 +775,7 @@
         </member>
         <member name="M:ClassLibrary.PublishOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
+            Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -791,6 +791,46 @@
             y le muestra una lista de los materiales producidos por la empresa.
             </summary>
         </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Material">
+            <summary>
+            Luego de pedir el material. En este estado el comando pide la unidad de medida del material y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.UnitOfMeasure">
+            <summary>
+            Luego de pedir la unidad de medida. En este estado el comando pide la cantidad de unidades del material y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Quantity">
+            <summary>
+            Luego de pedir la cantidad de unidades. En este estado el comando pide la divisa de la oferta y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Currency">
+            <summary>
+            Luego de pedir la divisa. En este estado el comando pide el precio de la oferta y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Price">
+            <summary>
+            Luego de pedir el precio. En este estado el comando pide la ubicación de los materiales y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Location">
+            <summary>
+            Luego de pedir la ubicación. En este estado el comando pide las habilitaciones necesarias para manejar los materiales y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Habilitations">
+            <summary>
+            Luego de pedir las habilitaciones. En este estado el comando pide que declare la continuidad de la oferta y pasa al siguiente estado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PublishOfferHandler.OfferState.Continuity">
+            <summary>
+            Luego de pedir la continuidad. En este estado el comando crea la oferta y vuelve al estado Start.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.PublishOfferHandler.OfferData">
             <summary>
             Representa los datos que va obteniendo el comando PublishOfferHandler en los diferentes estados.
@@ -802,9 +842,21 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.UnitOfMeasure">
+            <summary>
+            Se guarda la unidad de medida que se le quiere asignar al material de la oferta.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Quantity">
             <summary>
             Se guarda la cantidad del material que se quiere poner en la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Currency">
+            <summary>
+            Se guarda la divisa que se le quiere asignar a la oferta.
             </summary>
             <value></value>
         </member>
@@ -1023,6 +1075,25 @@
             Se guarda el Id de la oferta  a suspender.
             </summary>
             <value></value>
+        </member>
+        <member name="T:ClassLibrary.ShowCompanyOffersHandler">
+            <summary>
+            Handler encargado de delegar la acción de mostrarle las ofertas activas de su empresa a un CompanyUser.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ShowCompanyOffersHandler.#ctor">
+            <summary>
+            Constructor de los objetos ShowCompanyOfferHandler.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ShowCompanyOffersHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Responde con el conjunto de ofertas en caso de que sea una empresa válida con ofertas a su nombre,
+            o con un mensaje que diga si su empresa no tiene ofertas, o si el usuario no pertenece a ninguna empresa.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.EndHandler">
             <summary>
@@ -1828,6 +1899,14 @@
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
+        <member name="M:ClassLibrary.CompanyRegister.LoadFromJson(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Convierte el texto en formato json a objeto.
+            </summary>
+            <param name="json"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Market">
             <summary>
             Esta clase representa el mercado con sus ofertas.
@@ -1906,9 +1985,23 @@
         </member>
         <member name="M:ClassLibrary.Market.SearchOffers(System.String)">
             <summary>
-            Devuelve una lista de ofertas que cumplan con un parametro de busqueda , ARREGLAR KEYWORDS ANTES
+            Devuelve una lista de ofertas que cumplan con un parametro de busqueda.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Market.GetOfferById(System.Int32)">
+            <summary>
+            Devuelve una oferta por medio de su Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Market.BuyOffer(System.Int32,ClassLibrary.Users)">
+            <summary>
+            Realiza la acción de compra de una oferta y la suspende.
+            </summary>
+            <param name="offerId"></param>
+            <param name="user"></param>
         </member>
         <member name="M:ClassLibrary.Market.SuspendOffer(System.Int32)">
             <summary>
@@ -1928,6 +2021,14 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="M:ClassLibrary.Market.LoadFromJson(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Convierte el texto en formato json a objeto.
+            </summary>
+            <param name="json"></param>
+            <param name="options"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
@@ -2023,7 +2124,7 @@
             <summary>
             Crea un usuario empresa.
             </summary>
-            <param name="input"></param>
+            <param name="id"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
@@ -2102,6 +2203,12 @@
         <member name="P:ClassLibrary.Entrepreneur.Name">
             <summary>
             Nombre del emprendedor.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Entrepreneur.ContactPhone">
+            <summary>
+            Se hace getter y setter de ContactPhone.
             </summary>
             <value></value>
         </member>
@@ -2200,6 +2307,12 @@
             <summary>
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
+        </member>
+        <member name="P:ClassLibrary.EntrepreneurRole.Entrepreneur">
+            <summary>
+            Se hace getter y setter de Entrepeneur.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>

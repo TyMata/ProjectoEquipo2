@@ -266,7 +266,7 @@ namespace ClassLibrary
             public string Email { get; set; }
 
             /// <summary>
-            /// El numeo de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
+            /// El número de contacto de la empresa que se ingresó en el estado CompanyState.PhoneNumber.
             /// </summary>
             /// <value></value>
             public string PhoneNumber { get; set; }

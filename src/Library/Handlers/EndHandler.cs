@@ -14,7 +14,7 @@ namespace ClassLibrary
         public EndHandler(IHandler handler)
         {
             this.nextHandler = handler;
-        }
+        }   
 
         /// <summary>
         /// Le avisa al usuario que el comando no se reconocio y 

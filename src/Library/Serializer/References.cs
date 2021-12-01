@@ -12,6 +12,7 @@ using System.Text.Json.Serialization;
 
 namespace ClassLibrary
 {
+    
     public class MyReferenceHandler : ReferenceHandler
     {
         private static MyReferenceHandler instance;

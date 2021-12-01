@@ -13,7 +13,7 @@ namespace ClassLibrary
     {   
         private static Market instance;
 
-        public int count;
+        private int count;
         /// <summary>
         /// Genera un numero mayor que el anterior para el Id.
         /// </summary>
@@ -175,7 +175,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda , ARREGLAR KEYWORDS ANTES
+        /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda.
         /// </summary>
         /// <returns></returns>
         public List<Offer> SearchOffers(string keyword)
@@ -188,16 +188,26 @@ namespace ClassLibrary
             return x;
         }      
 
+        /// <summary>
+        /// Devuelve una oferta por medio de su Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Offer GetOfferById(int id)
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new NullReferenceException($"No existte ninguna oferta con ese Id."); //CAMBIAR EXCEPTION
+                throw new NullReferenceException($"No existe ninguna oferta con ese Id."); //CAMBIAR EXCEPTION
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             return x;
         }
 
+        /// <summary>
+        /// Realiza la acción de compra de una oferta y la suspende.
+        /// </summary>
+        /// <param name="offerId"></param>
+        /// <param name="user"></param>
         public void BuyOffer(int offerId, Users user)
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == offerId))
@@ -266,6 +276,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         } 
 
+        /// <summary>
+        /// Convierte el texto en formato json a objeto.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             Market temp = JsonSerializer.Deserialize<Market>(json, options);

@@ -52,6 +52,10 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Id del Bot.
+        /// </summary>
+        /// <value></value>
         public int BotId
         {
             get
@@ -60,6 +64,10 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Nombre del bot.
+        /// </summary>
+        /// <value></value>
         public string BotName
         {
             get
@@ -68,6 +76,10 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Se crea un Singleton de la clase TelegramBot.
+        /// </summary>
+        /// <value></value>
         public static TelegramBot Instance
         {
             get
@@ -80,8 +92,7 @@ namespace ClassLibrary
             }
         }
 
-        private IHandler handlers {get; set;}
-                                    
+        private IHandler handlers {get; set;}           
     
         public void StartCommunication()
         {

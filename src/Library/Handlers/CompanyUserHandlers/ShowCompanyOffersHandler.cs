@@ -4,15 +4,29 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Handler encargado de delegar la acción de mostrarle las ofertas activas de su empresa a un CompanyUser.
+    /// </summary>
     public class ShowCompanyOffersHandler : AbstractHandler, IHandler
     {
         private Company company;
+        
+        /// <summary>
+        /// Constructor de los objetos ShowCompanyOfferHandler.
+        /// </summary>
         public ShowCompanyOffersHandler()
         {
             this.Command = "/mostrarofertas";
             this.company = null;
         }
-
+        
+        /// <summary>
+        /// Responde con el conjunto de ofertas en caso de que sea una empresa válida con ofertas a su nombre,
+        /// o con un mensaje que diga si su empresa no tiene ofertas, o si el usuario no pertenece a ninguna empresa.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             if (CanHandle(input))

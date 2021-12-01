@@ -142,26 +142,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson(JsonSerializerOptions options)
         {
-            string result = "{\"Items\":[";
-
-            foreach (var item in this.DataUsers)
-            {
-                result = result + item.ConvertToJson(options) + ",";
-            }
-
-            result = result.Remove(result.Length - 1);
-            result = result + "]}";
-
-            string temp = JsonSerializer.Serialize(this.DataUsers);
-            return result;
-           
-            JsonSerializerOptions option = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
-
-            return JsonSerializer.Serialize(this.DataUsers, option);            
+            return JsonSerializer.Serialize(this, options);      
         }
         /// <summary>
         /// Convierte el texto en formato Json a obejto.
