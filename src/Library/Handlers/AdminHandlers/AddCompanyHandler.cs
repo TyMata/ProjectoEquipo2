@@ -5,7 +5,8 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la accion de añadir una empresa nueva al registro
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/registrarempresa".
+    /// Está encargado de delegar la acción de añadir una empresa nueva al registro.
     /// </summary>
     public class AddCompanyHandler : AbstractHandler
     {
@@ -30,8 +31,9 @@ namespace ClassLibrary
             this.State = AddCompanyState.Start;
             this.Data = new AddCompanyData();
         }
+
         /// <summary>
-        /// Pide algunos datos de la empresa que se quiere registrar la crea.
+        /// Procesa los mensajes y pide algunos datos de la empresa que se quiere registrar la crea.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -165,6 +167,15 @@ namespace ClassLibrary
 
         /// <summary>
         /// Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+        /// - Start: El estado inicial del comando. En este estado el comando pide el nombre de la empresa y pasa al
+        /// siguiente estado.
+        /// - Name: Luego de pedir el nombre. En este estado el comando pide el pais donde se encuentra ubicada y  pasa al siguiente estado.
+        /// - Country: Luego de pedir pais. En este estado el comando pide el departamento donde se encuentra ubicada y pasa al siguiente estado.
+        /// - state: Luego de pedir el departamento. En este estado el comando pide la ciudad donde se encuentra ubicada y pasa al siguiente estado.
+        /// - City: Luego de pedir la ciudad. En este estado el comando pide la dirección donde se encuentra ubicada y pasa al siguiente estado.
+        /// - Address: Luego de pedir la dirección. En este estado el comando pide el rubro de la empresa y pasa al siguiente estado.
+        /// - Headings: Luego de pedir el rubro. En este estado el comando pide el mail de contacto de la empresa y pasa al siguiente estado.
+        /// - Email: Luego de pedir email. En este estado el comando pide número telefónico de contacto y pasa al estado incial Start y crea la empresa.
         /// </summary>
         public enum AddCompanyState
         {

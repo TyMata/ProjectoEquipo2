@@ -86,7 +86,7 @@ namespace Tests
         {
             UserRegister.Instance.CreateEntrepreneurUser(12345,"098098098","Emprendedor",location, "Rubro", "link");
             Users user = UserRegister.Instance.GetUserById(12345);
-            Offer result = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"),"link", location, 15, 3000, this.company, true, "continua");
+            Offer result = Market.Instance.CreateOffer(new Material("Pallet","Madera","Residuo"),"link", location,"unidades", 15,"pesos", 3000, this.company, true, "continua");
             Market.Instance.BuyOffer(result.Id, user);
             Assert.IsTrue((user.Role as EntrepreneurRole).Entrepreneur.BoughtList.Contains(result));
             Assert.IsTrue(company.SoldOffers.ContainsKey(result));

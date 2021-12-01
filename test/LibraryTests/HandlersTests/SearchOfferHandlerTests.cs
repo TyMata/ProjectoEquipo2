@@ -25,7 +25,7 @@ namespace Tests
             UserRegister.Instance.CreateEntrepreneurUser(1234,"098098098","Emprendedor",location,"rubro","link");
             this.oferta = new Offer(1234567, material, "link", location, "kg", 3, "pesos", 3000, company, true,new DateTime(),"continua");
             company.AddOffer(oferta);
-            Market.Instance.AddActiveOffer(oferta);
+            Market.Instance.PublishOffer(oferta);
             this.handler = new SearchOfferHandler();
         }
 

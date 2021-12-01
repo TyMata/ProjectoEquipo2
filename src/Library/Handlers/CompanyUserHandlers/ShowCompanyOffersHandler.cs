@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertas".
+    /// </summary>
     public class ShowCompanyOffersHandler : AbstractHandler, IHandler
     {
         private Company company;

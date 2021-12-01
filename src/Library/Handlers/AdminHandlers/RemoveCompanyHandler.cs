@@ -4,6 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/eliminarempresa".
     /// Handler encargado de delegar la accion de eliminar una empresa del registro.
     /// </summary>
     public class RemoveCompanyHandler : AbstractHandler

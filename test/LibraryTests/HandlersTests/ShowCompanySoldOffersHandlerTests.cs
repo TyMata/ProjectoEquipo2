@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Tests
 {
     [TestFixture]
-    public class ShowCompanySoldOffersHandlerTEsts
+    public class ShowCompanySoldOffersHandlerTests
     {
         private IMessage message;
         private Company company;
@@ -25,7 +25,7 @@ namespace Tests
             this.company = CompanyRegister.Instance.CreateCompany("Empresa", this.location, "Rubro", "company@gmail.com", "099099099");
             company.AddUser(1234);
             this.material = new Material("Pallet", "Madera", "Residuo");
-            this.oferta = new Offer(13579, this.material, "link", this.location, 30, 3000, this.company, true, new DateTime(), "continua");
+            this.oferta = new Offer(13579, this.material, "link", this.location,"unidades", 30,"pesos", 3000, this.company, true, new DateTime(), "continua");
             Market.Instance.PublishOffer(this.oferta);
             EntrepreneurRole role = new EntrepreneurRole("Emprendedor", "099123456", location, "Rubro", "link" );
             Users user = new Users(2468, role);

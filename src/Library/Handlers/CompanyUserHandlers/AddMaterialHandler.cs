@@ -5,6 +5,7 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/agregarmaterial".
     /// Handler encargado de delegar la accion de añadir una empresa nueva al registro
     /// </summary>
     public class AddMaterialHandler : AbstractHandler

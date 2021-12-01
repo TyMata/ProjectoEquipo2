@@ -8,6 +8,8 @@ namespace ClassLibrary
 {
     /// <summary>
     /// Esta clase  representa un registro de tokens.
+    /// Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+    /// habrá  una solo una instancia de esta clase.
     /// </summary>
     public class TokenRegister : IJsonConvertible
     {   
@@ -62,7 +64,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo para añadir un token al diccionario de tokens.
+        /// Metodo para añadir un token al diccionario de tokens.  Por la ley de demeter y para evitar el alto acoplamiento 
+        /// se crea el Metodo Add para añadir token y su empresa al registro  de tokens
+        ///  y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="token"></param>
         /// <param name="company"></param>
@@ -72,7 +76,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo para remover un token del diccionario de tokens.
+        /// Metodo para remover un token del diccionario de tokens.  Por la ley de demeter y para evitar el alto acoplamiento 
+        /// se crea el Metodo Remove para remover un token del registro  de tokens
+        ///  y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="token"></param>
         public void Remove(string token)
@@ -81,7 +87,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea Contains.
+        /// Devuelve verdadero o falso  si el token existe en la lista de tokens.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Contains para verificar si un token 
+        /// pertence a el registro de tokens  y además que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
@@ -96,6 +104,8 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+
         /// <summary>
         /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
         /// Json utilizando JsonSerializer.Deserialize.
@@ -128,7 +138,9 @@ namespace ClassLibrary
         }
 
         /// /// <summary>
-        /// Se genera un  token para una nueva empresa y se lo añade al diccionario, por expert est aaca
+        /// Se genera un  token para una nueva empresa y se lo añade al diccionario.
+        /// Por el patrón Expert se agregó este método ya que es el experto en los tokens, contiene un diccionario con todos 
+        /// los tokens y sus respectivas empresas.
         /// </summary>
         /// <returns></returns>
         public string GenerateToken() // TODO se genera dentro de la company y se le psas una emrpresa. Ver si es mejor aca o en TokenRegister

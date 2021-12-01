@@ -5,6 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/usuarioempresanoregistrado".
     /// Handler encargado de delegar la accion de registrar un usuario empresa.
     /// </summary>
     public class UnregisteredCompanyUserHandler : AbstractHandler

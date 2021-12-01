@@ -7,6 +7,8 @@ namespace ClassLibrary
 {   
     /// <summary>
     /// Esta clase representa un registro de empresas.
+    /// Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+    /// habrá  una solo una instancia de esta clase.
     /// </summary>
     public class CompanyRegister : IJsonConvertible
     {   
@@ -55,7 +57,8 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Por la ley de demeter
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Add para añadir una empresa al registro  de empresas
+        ///  y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="company"></param>
         public void Add(Company company)
@@ -64,7 +67,9 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Método para remover empresas de la lista de empresas. Se crea por la ley de Demeter.
+        /// Método para remover empresas de la lista de empresas. 
+        ///  Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Remove para remover una empresa del registro  de empresas
+        ///  y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="company"></param>
         public void Remove(Company company)
@@ -77,7 +82,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelva una empresa segun el id del user.
+        /// Devuelve la empresa a la que pertenece el usuario, de le pasa el id de este.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -111,7 +116,9 @@ namespace ClassLibrary
         } 
 
         /// <summary>
-        /// Por la ley de demeter
+        /// Devuelve verdadero o falso si la empresa esta en el registro de empresas o no
+        ///  Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Contains verficar si  una empresa esta en el  registro  de empresas
+        ///  y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="company"></param>
         public bool Contains(Company company)
@@ -127,7 +134,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
+        /// Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator, ya que guarda en una lista 
+        /// instancias de objetos de Company
         /// </summary>
         /// <param name="nombre"></param>
         /// <param name="location"></param>

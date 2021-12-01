@@ -1700,7 +1700,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Int32,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Int32,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -1829,6 +1829,14 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
+        </member>
+        <member name="M:ClassLibrary.CompanyRegister.LoadFromJson(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Convierte el texto en formato json a objeto.
+            </summary>
+            <param name="json"></param>
+            <param name="options"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Market">
             <summary>
@@ -2025,7 +2033,7 @@
             <summary>
             Crea un usuario empresa.
             </summary>
-            <param name="input"></param>
+            <param name="id"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
@@ -2104,6 +2112,12 @@
         <member name="P:ClassLibrary.Entrepreneur.Name">
             <summary>
             Nombre del emprendedor.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Entrepreneur.ContactPhone">
+            <summary>
+            Se hace getter y setter de ContactPhone.
             </summary>
             <value></value>
         </member>
@@ -2202,6 +2216,12 @@
             <summary>
             Esta clase representa el Rol de EntrepreneurUser
             </summary>
+        </member>
+        <member name="P:ClassLibrary.EntrepreneurRole.Entrepreneur">
+            <summary>
+            Se hace getter y setter de Entrepeneur.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.EntrepreneurRole.#ctor(System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
