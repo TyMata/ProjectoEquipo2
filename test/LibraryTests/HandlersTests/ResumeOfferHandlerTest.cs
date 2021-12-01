@@ -33,7 +33,7 @@ namespace Tests
             this.company.AddUser(1234);
             oferta = new Offer(1234567,new Material("Pallet","Madera","Residuo"), "link", location, "kg", 3, "pesos", 3000, this.company, true,new DateTime(), "continua");
             this.company.AddOffer(oferta);
-            Market.Instance.AddActiveOffer(oferta);
+            Market.Instance.PublishOffer(oferta);
             Market.Instance.SuspendOffer(oferta.Id);
             handler = new ResumeOfferHandler();
         }

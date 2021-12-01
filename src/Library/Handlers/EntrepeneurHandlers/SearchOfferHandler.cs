@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/buscarofertas".
     /// Handler encargado de delegar la accion de buscar ofertas por keywords.
     /// </summary>
     public class SearchOfferHandler : AbstractHandler

@@ -32,8 +32,6 @@ namespace Tests
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
             company.ProducedMaterials.Add(material);
-           
-            
             handler = new PublishOfferHandler();
         }
 
@@ -72,28 +70,59 @@ namespace Tests
             this.message.Text = "Pallet";
             result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.That(response, Is.EqualTo("Ingrese la cantidad de material.")); 
+            Assert.That(response, Is.EqualTo("Ingrese la unidad de medida del material.")); 
+            Assert.That(this.handler.State, Is.EqualTo(PublishOfferHandler.OfferState.UnitOfMeasure));
+        }
+
+        [Test]
+        public void HandleUnitOfMeasureTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            this.message.Text = "Pallet";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("Ingrese la cantidad de material")); 
             Assert.That(this.handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Quantity));
         }
 
-        /// <summary>
-        /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
-        ///  y que se cambie la cantidad del material de la oferta correctamente.
-        /// </summary>
         [Test]
         public void HandleQuantityTest()
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "Pallet";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "12";
-            result = handler.InternalHandle(message, out response);
+            this.message.Text = "Pallet";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            Assert.IsTrue(result);
+            Assert.That(response, Is.EqualTo("¿Cuál va a ser la divisa de la oferta?")); 
+            Assert.That(this.handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Currency));
+        }
+
+        
+        [Test]
+        public void HandleCurrencyTest()
+        {
+            string response;
+            bool result = handler.InternalHandle(message, out response);
+            this.message.Text = "Pallet";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "pesos uruguayos";
+            result = this.handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("¿Cuál va a ser el precio total?")); 
-            Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Price));
-
+            Assert.That(this.handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Price));
         }
+      
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
         /// y que se modifique el precio de la oferta correctamente.
@@ -105,9 +134,13 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
-            message.Text = "12";
-            result = handler.InternalHandle(message, out response);
-            message.Text="8000";
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "pesos uruguayos";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text="8000";
             result = handler.InternalHandle(message, out response);
             StringBuilder location = new StringBuilder("Estas son las locaciones de tu empresa:\n");
             foreach (LocationAdapter item in this.company.Locations) 
@@ -134,11 +167,15 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
-            message.Text = "12";
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "pesos uruguayos";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text= "8000";
             result = handler.InternalHandle(message, out response);
-            message.Text="8000";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Comandante Braga 2715";
+            this.message.Text = "Comandante Braga 2715";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("¿Que habilitaciones son necesarias para poder manipular este material?")); 
@@ -154,15 +191,19 @@ namespace Tests
         {
             string response;
             bool result = handler.InternalHandle(message, out response);
-            message.Text = "Pallet";
+            this.message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
-            message.Text = "12";
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "pesos uruguayos";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text="8000";
             result = handler.InternalHandle(message, out response);
-            message.Text="8000";
+            this.message.Text = "Comandante Braga 2715";
             result = handler.InternalHandle(message, out response);
-            message.Text = "Comandante Braga 2715";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "Link";
+            this.message.Text = "Link";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo($"Para determinar la continuidad de la oferta, escriba \"continua\" si es continua, o \"puntual\" si es puntual.")); 
@@ -179,21 +220,24 @@ namespace Tests
             bool result = handler.InternalHandle(message, out response);
             message.Text = "Pallet";
             result = handler.InternalHandle(message, out response);
-            message.Text = "12";
+            this.message.Text = "kg";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "12";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "pesos uruguayos";
+            result = this.handler.InternalHandle(message, out response);
+            this.message.Text = "8000";
             result = handler.InternalHandle(message, out response);
-            message.Text = "8000";
+            this.message.Text = "Comandante Braga 2715";
             result = handler.InternalHandle(message, out response);
-            message.Text = "Comandante Braga 2715";
+            this.message.Text = "Link";
             result = handler.InternalHandle(message, out response);
-            message.Text = "Link";
-            result = handler.InternalHandle(message, out response);
-            message.Text = "continua";
+            this.message.Text = "continua";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
             Assert.That(response, Is.EqualTo("La oferta ha sido creada y publicada en el mercado.")); 
             Assert.That(handler.State, Is.EqualTo(PublishOfferHandler.OfferState.Start));
             Assert.IsNotNull(Market.Instance.ActualOfferList);
-            
 
         }
 

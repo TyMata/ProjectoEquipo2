@@ -6,12 +6,13 @@ namespace ClassLibrary
 {
     /// <summary>
     /// Esta clase representa un material.
+    /// por el principio de responsabilidad única (SRP), esta clase es la encargada de conocer los datos de los materiales.
     /// </summary>
     public class Material
     {   
         private string name;
         /// <summary>
-        /// Devuelve el tipo de objeto.
+        /// Obtiene el tipo de objeto.
         /// </summary>
         /// <value></value>
         public string Name{
@@ -29,7 +30,7 @@ namespace ClassLibrary
         }
         private string type;
         /// <summary>
-        /// Devuelve el tipo de material.
+        /// Obtiene el tipo de material.
         /// </summary>
         /// <value></value>
         public string Type{
@@ -47,7 +48,7 @@ namespace ClassLibrary
         }
         private string classification;
         /// <summary>
-        /// Devuelve la clasificacion del material.
+        /// Obtiene la clasificacion del material.
         /// </summary>
         /// <value></value>
         public string Classification{

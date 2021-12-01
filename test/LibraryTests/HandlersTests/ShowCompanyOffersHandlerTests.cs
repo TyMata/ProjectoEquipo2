@@ -40,10 +40,12 @@ namespace Tests
             foreach (Offer item in this.company.OfferRegister)
             {
                 offers.Append($"Id de la oferta: {item.Id}.\n")
-                      .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
-                      .Append($"Cantidad: {item.QuantityMaterial}.\n")
-                      .Append($"Precio: {item.TotalPrice}.\n")
-                      .Append($"Fecha de publicación: {item.PublicationDate}.\n");
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Unidad de medida: {item.UnitOfMeasure}.\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Divisa: {item.Currency}.\n")
+                                .Append($"Precio: {item.TotalPrice}.\n")
+                                .Append($"Fecha de publicación: {item.PublicationDate}.\n");
                 if(item.Availability)
                 {
                     offers.Append($"Disponibilidad: Activa.\n");

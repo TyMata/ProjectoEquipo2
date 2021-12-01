@@ -4,6 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/modifcarcantidad".
     /// Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
     /// </summary>
     public class ModifyQuantityHandler : AbstractHandler

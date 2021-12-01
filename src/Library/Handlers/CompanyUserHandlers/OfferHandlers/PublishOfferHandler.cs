@@ -4,6 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/publicaroferta".
     /// Handler encargado de delegar la accion de crear y publicar una oferta en el registro
     /// </summary>
     public class PublishOfferHandler : AbstractHandler

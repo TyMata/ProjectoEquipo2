@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertasvendidas".
+    /// </summary>
     public class ShowCompanySoldOffersHandler : AbstractHandler, IHandler
     {
         private Company company;

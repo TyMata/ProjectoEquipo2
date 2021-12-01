@@ -4,6 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/suspenderoferta".
     /// Handler encargado de delegar la accion de suspender una oferta.
     /// </summary>
     public class SuspendOfferHandler : AbstractHandler

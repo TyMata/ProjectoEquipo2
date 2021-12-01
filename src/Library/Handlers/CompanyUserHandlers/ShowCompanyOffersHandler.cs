@@ -5,7 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Handler encargado de delegar la acción de mostrarle las ofertas activas de su empresa a un CompanyUser.
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertas".
     /// </summary>
     public class ShowCompanyOffersHandler : AbstractHandler, IHandler
     {
