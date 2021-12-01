@@ -48,11 +48,13 @@ namespace Tests
             foreach (Offer x in company.OfferRegister)
             {
                 sb.Append($"Id: {x.Id}.\n")
-                  .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
-                  .Append($"Cantidad: {x.QuantityMaterial}.\n")                           
-                  .Append($"Precio: {x.TotalPrice}.\n")
-                  .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
-                  .Append($"\n-----------------------------------------------\n\n");
+                    .Append($"Material: {x.Material.Name} de {x.Material.Type}.\n")
+                    .Append($"Unidad de medida: {x.UnitOfMeasure}.\n")
+                    .Append($"Cantidad: {x.QuantityMaterial}.\n")       
+                    .Append($"Divisa: {x.Currency}.\n")                     
+                    .Append($"Precio: {x.TotalPrice}.\n")
+                    .Append($"Fecha de publicacion: {x.PublicationDate}.\n")
+                    .Append($"\n-----------------------------------------------\n\n");
             }
             sb.Append("Ingrese el Id de la oferta a modificar.");
             Assert.IsTrue(result);

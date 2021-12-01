@@ -5,6 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/eliminarusuario".
     /// Handler encargado de delegar la accion de eliminar un usuario del registro.
     /// </summary>
     public class RemoveUserHandler : AbstractHandler

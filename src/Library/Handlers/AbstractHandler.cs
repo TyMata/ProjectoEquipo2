@@ -4,7 +4,11 @@ using System.Linq;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Marcamos el formato del resto de handlers.
+    /// Esta es clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+    /// cadena de handlers que pueden procesar a este o no. Cada "handler" decide si procesa el mensaje, o si se lo
+    /// pasa al siguiente. Esta clase implmementa la responsabilidad de recibir el mensaje y pasarlo al siguiente
+    /// "handler" en caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y
+    /// de procesarlo, se delega a las clases sucesoras de esta clase base.
     /// </summary>
     public abstract class AbstractHandler : IHandler
     {
@@ -19,7 +23,7 @@ namespace ClassLibrary
         protected string Command;
         
         /// <summary>
-        /// Se setea el próximo handler (nextHandler).
+        /// Se establece el próximo handler (nextHandler).
         /// </summary>
         /// <param name="handler"></param>
         /// <returns></returns>
@@ -28,8 +32,10 @@ namespace ClassLibrary
             this.nextHandler = handler;
             return handler;
         }
+
         /// <summary>
-        /// Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
+        /// Este debe de ser sobrescrito por las clases sucesoras, verifica si el mensaje recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
+        /// Retorna verdadeo o falso si lo puede procesar al mensaje o no.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -76,7 +82,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo encargado de resetear el State y la Data del Handler.
+        /// Metodo encargado de resetear el State y la Data del Handler. Debe de ser sobreescrito por las clases sucesoras, estas procesan varios mensajes
+        /// y deben de volver a su estado inicial, en este handler este metodo no hace nada.
         /// </summary>
         protected virtual void InternalCancel()
         {

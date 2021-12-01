@@ -4,6 +4,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/modificarhabilitaciones".
     /// Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
     /// /// </summary>
     public class ModifyHabilitationsHandler : AbstractHandler

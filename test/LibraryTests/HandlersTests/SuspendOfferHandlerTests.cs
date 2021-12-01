@@ -54,7 +54,9 @@ namespace Tests
                 {
                     offers.Append($"Id de la oferta: {item.Id}.\n")
                                 .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Unidad de medida: {item.UnitOfMeasure}.\n")
                                 .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Divisa: {item.Currency}.\n")
                                 .Append($"Precio: {item.TotalPrice}.\n")
                                 .Append($"Fecha de publicación: {item.PublicationDate}.\n")
                                 .Append($"\n-----------------------------------------------\n\n");

@@ -7,6 +7,8 @@ namespace ClassLibrary
 {
     /// <summary>
     /// Esta clase representa una oferta.
+    /// En esta clase se utilizó el patron de diseño de Expert, tiene metodos  exclusivos de su clase ya que es la encargada de conocer
+    /// lo necesario para hacer posible la ejecución de sus métodos.
     /// </summary>
     public class Offer : IJsonConvertible
     {
@@ -107,7 +109,7 @@ namespace ClassLibrary
         private int totalPrice;
 
         /// <summary>
-        /// Precio total del producto.
+        ///  Obtiene el precio total del producto.
         /// </summary>
         /// <value></value>
         public int TotalPrice
@@ -125,7 +127,7 @@ namespace ClassLibrary
         private string currency;
 
         /// <summary>
-        /// Divisa que se empleará para llevar a cabo la compra.
+        /// Obtiene y establece la divisa que se empleará para llevar a cabo la compra.
         /// </summary>
         /// <value></value>
         public string Currency
@@ -143,7 +145,7 @@ namespace ClassLibrary
         private string unitOfMeasure; 
 
         /// <summary>
-        /// Unidad de medida para los materiales a vender.
+        /// Obtiene y establece la unidad de medida para los materiales a vender.
         /// </summary>
         /// <value></value>
         public string UnitOfMeasure
@@ -315,7 +317,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica la cantidad del material.
+        /// Modifica la cantidad del material. Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+        /// el acoplamiento bajo y la alta cohesion
         /// </summary>
         /// <param name="quantity"></param>
         public void ChangeQuantity(int quantity)
@@ -328,7 +331,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica el material
+        /// Modifica el material.
+        ///  Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+        /// el acoplamiento bajo y la alta cohesion
         /// </summary>
         /// <param name="material"></param>
         public void ChangeMaterial(Material material)
@@ -337,7 +342,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica las habilitaciones
+        /// Modifica las habilitaciones.
+        /// Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+        /// el acoplamiento bajo y la alta cohesion
         /// </summary>
         /// <param name="habilitation"></param>
         public void ChangeHabilitation(string habilitation)
@@ -346,7 +353,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica el precio
+        /// Modifica el precio.
+        /// Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+        /// el acoplamiento bajo y la alta cohesion
         /// </summary>
         /// <param name="price"></param>
         public void ChangePrice(int price)
@@ -355,7 +364,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Modifica el precio
+        /// Modifica la disponibilidad.
+        /// Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+        /// el acoplamiento bajo y la alta cohesion
         /// </summary>
         public void ChangeAvailability()
         {

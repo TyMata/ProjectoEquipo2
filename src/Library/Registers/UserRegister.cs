@@ -7,10 +7,13 @@ namespace ClassLibrary
 {   
     /// <summary>
     /// Esta clase representa un registro de usuarios.
+    /// Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+    /// habrá  una solo una instancia de esta clase.
     /// </summary>
     public class UserRegister : IJsonConvertible
     {   
         private List<Users> dataUsers = new List<Users>();
+
         /// <summary>
         /// Lista de usuarios registrados.
         /// </summary>
@@ -40,7 +43,7 @@ namespace ClassLibrary
         private static UserRegister instance;
 
         /// <summary>
-        /// Instancia de UserRegister (COMENTAR SINGLETON)
+        /// Instancia de UserRegister por Singleton.
         /// </summary>
         /// <value></value>
         public static UserRegister Instance
@@ -63,18 +66,17 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Crea un usuario empresa.
+        /// Crea un usuario empresa. Por Creator se agregó este método ya que contine una lista de instancias de objetos de Users.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="company"></param>
         public void CreateCompanyUser(int id,Company company)
         {
             company.AddUser(id);
-
         }
         
         /// <summary>
-        /// Crea un usuario emprendedor.
+        /// Crea un usuario emprendedor. Por Creator se agregó este método ya que contine una lista de instancias de objetos de Users.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="phone"></param>
@@ -90,7 +92,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Esto se hace por la ley de demeter.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método para añadir usuarios a la lista
+        /// de usuarios y además que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="item"></param>
         public void Add(Users item)
@@ -99,7 +102,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Remueve un user de la lista. Por la ley de demeter.
+        /// Remueve un user de la lista. Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para remover usuarios
+        ///  de la lista usuarios y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="item"></param>
         public void Remove(Users item)
@@ -112,7 +116,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea Contains.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método para verificar si un usarios 
+        /// está en la lista de usuarios y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -129,7 +134,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelve  un objeto user segun la id dada.
+        /// Devuelve  un objeto Users segun la id dada.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -142,6 +147,7 @@ namespace ClassLibrary
             }
             return result;
         }
+
         /// <summary>
         /// Convierte el objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
         /// Json utilizando JsonSerializer.Deserialize.
@@ -170,8 +176,9 @@ namespace ClassLibrary
 
             return JsonSerializer.Serialize(this.DataUsers, option);            
         }
+
         /// <summary>
-        /// Convierte el texto en formato Json a obejto.
+        /// Convierte el texto en formato Json a objeto.
         /// </summary>
         /// <param name="json"></param>
         public void LoadFromJson(string json)

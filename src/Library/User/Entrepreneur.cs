@@ -5,7 +5,8 @@ using Ucu.Poo.Locations.Client;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase.
+    /// Esta clase representa un Emprendedor.
+    /// Por el principio de responsabilidad única (SRP), esta clase es la encargada de conocer los datos de los materiales.
     /// </summary>
     public class Entrepreneur
     {
@@ -31,7 +32,7 @@ namespace ClassLibrary
 
         private string contactPhone;
         /// <summary>
-        /// Se hace getter y setter de ContactPhone.
+        /// Obtiene y establece el número de teléfono para contactar.
         /// </summary>
         /// <value></value>
         public string ContactPhone
@@ -51,7 +52,7 @@ namespace ClassLibrary
 
         private string heading;
         /// <summary>
-        /// Rubro del emprendedor
+        /// Obtiene y establece el rubro.
         /// </summary>
         /// <value></value>
         public string Heading
@@ -71,7 +72,7 @@ namespace ClassLibrary
      
         private  string habilitation;
         /// <summary>
-        /// Habilitaciones del emprendedor.
+        /// Obtiene y establece las habilitaciones del emprendedor.
         /// </summary>
         /// <value></value>
         public string Habilitation
@@ -91,7 +92,7 @@ namespace ClassLibrary
 
         private LocationAdapter location;
         /// <summary>
-        /// Ubicacion del emprendedor
+        /// Obtiene y establece la ubicación del emprendedor.
         /// </summary>
         /// <value></value>
         public LocationAdapter Location
@@ -147,12 +148,14 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Agrega una oferta comprada a la lista de oferta compradas
+        /// Agrega una oferta comprada a la lista de oferta compradas.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir una oferta  comprada a la lista
+        /// de ofertas compradas del emprededor y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="offer"></param>
         public void AddBoughtOffer(Offer offer)
         {
-            this.BoughtList.Add(offer);             //TODO FALTA GREGAR AL HANDLER AL MOMENTO DE HACER LA COMPRA
+            this.BoughtList.Add(offer);             
         }
     }
 }

@@ -8,7 +8,8 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Esta clase representa una empresa.
+    /// En clase se utilizó el patron de diseño de Expert. La clase Empresa tiene métodos que sean exclusivos de su clase ya que es la  
+    /// encargada de conocer todos los datos necesarios para  la ejecución de los métodos.
     /// </summary>
     public class Company : IJsonConvertible
     {
@@ -99,7 +100,7 @@ namespace ClassLibrary
         private string invitationToken;
         
         /// <summary>
-        /// Token para que un ususuario empresa pueda registrarse.
+        /// Token para que un usuario empresa pueda registrarse.
         /// </summary>
         /// <value></value>
         public string InvitationToken
@@ -257,6 +258,13 @@ namespace ClassLibrary
             this.InvitationToken = TokenRegister.Instance.GenerateToken(); 
         }
 
+        /// <summary>
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método para añadir Materiales a la lista
+        /// de materiales producidos por la empresa y que otro objeto no deba de conocer todas la conexiones internas.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="classification"></param>
         public void AddMaterial(string name, string type, string classification)
         {
             if (this.producedMaterials.Count != 0 && this.producedMaterials.Exists(mat => mat.Name == name && mat.Type == type && mat.Classification == classification))
@@ -268,7 +276,10 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users.
+        /// Añade un usuario a la lista de usuarios pertenecientes a la empresa
+        ///  Por el patrón de diseño CREATOR, crea el usuario ya que tiene la lista con los usuarios pertenecientes a esta empresa.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir usuarios empresa a la lista
+        /// de usuarios y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="id"></param>
         public void AddUser(int id)
@@ -285,7 +296,8 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Remueve  un usuario de la lista de usuarios pertenecientes a la empresa.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método par remover un usarios de la lista
+        /// de urusarios de esta empresa y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="id"></param>
         public void RemoveUser(int id)
@@ -300,7 +312,9 @@ namespace ClassLibrary
 
         /// <summary>
         /// Añade una oferta al registro de la empresa
-        /// /// </summary>
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir una oferta a la lista
+        /// de ofertas de la empresa y que otro objeto no deba de conocer todas la conexiones internas.
+        /// </summary>
         /// <param name="offer"></param>
         public void AddOffer(Offer offer)
         {
@@ -313,6 +327,8 @@ namespace ClassLibrary
         
         /// <summary>
         /// Remueve una oferta del registro de ofertas de la empresa
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea este metodo para remover una oferta de la lista
+        /// de ofertas de la empresa y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="id"></param>
         public void RemoveOffer(int id)

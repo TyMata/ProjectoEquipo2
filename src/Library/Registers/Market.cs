@@ -8,12 +8,16 @@ namespace ClassLibrary
 {
     /// <summary>
     /// Esta clase representa el mercado con sus ofertas.
+    /// Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+    /// habrá  una solo una instancia de esta clase.
     /// </summary>
     public class Market : IJsonConvertible
     {   
         private static Market instance;
 
-        public int count;
+       
+        private int count;
+
         /// <summary>
         /// Genera un numero mayor que el anterior para el Id.
         /// </summary>
@@ -36,7 +40,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Se crea un Singelton de la clase Market.
+        /// Se crea un Singleton de la clase Market.
         /// </summary>
         /// <value></value>
         public static Market Instance
@@ -90,9 +94,10 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
+        /// Crea y devuelve una nueva oferta. Creamos las ofertas aca por el patron Creator ya que Market guarda en dos listas
+        /// diferentes instancias de objetos de ofertas.
         /// </summary>
-        /// /// <param name="material"></param>
+        /// <param name="material"></param>
         /// <param name="habilitation"></param>
         /// <param name="location"></param>
         /// <param name="unitOfMeasure"></param>
@@ -114,7 +119,9 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea ContainsActive.
+        /// Devuelve verdadero o falso si la ofertas está en la lista o no.
+        /// Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo ContainsActive para verificar si una oferta está en
+        /// la lista de ofertas actuales (activas) y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
@@ -131,7 +138,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Por la ley de demeter se crea ContainsSuspended.
+        /// Por la ley de demeter  y para evitar el alto acoplamiento se crea el Metodo ContainsSuspended para verificar si una oferta esta en las lista de 
+        ///  ofertas suspendidas y además para  que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="offer"></param>
         /// <returns></returns>
@@ -147,17 +155,9 @@ namespace ClassLibrary
             }
         }
 
-        public void AddActiveOffer(Offer offer)
-        {
-            if(this.ActualOfferList.Contains(offer))
-            {
-                throw new Exception("La oferta que se quiere crear ya existe"); //TODO CAMBIAR EXCEPTION A OBJETO YA EXISTE
-            }
-            this.ActualOfferList.Add(offer);
-        }
-
         /// <summary>
-        /// Añade una nueva oferta a la lista de ofertas actuales.
+        /// Añade una nueva oferta a la lista de ofertas actuales.  Por la ley de demeter y para evitar el alto acoplamiento se crea este Metodo  para añadir oferta a la lista
+        /// de ofertas actuales y que otro objeto no deba de conocer todas la conexiones internas.
         /// </summary>
         /// <param name="newOffer"></param>
         public void PublishOffer(Offer newOffer)
@@ -170,7 +170,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Retira la oferta de la lista de ofertas actuales.
+        /// Retira la oferta de la lista de ofertas actuales.Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo RemoveOffer para remover una oferta de 
+        ///  la lista de ofertas actuales y que otro objeto no tenga que  conocer todas la conexiones internas.
         /// </summary>
         /// <param name="id"></param>
         public void RemoveOffer(int id)
@@ -184,7 +185,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda , ARREGLAR KEYWORDS ANTES
+        /// Devuelve una lista de ofertas que cumplan con un parametro de busqueda.
         /// </summary>
         /// <returns></returns>
         public List<Offer> SearchOffers(string keyword)

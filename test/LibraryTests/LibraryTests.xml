@@ -29,6 +29,16 @@
             Prueba que GetCompanyByUserId devuelva una empresa, y que sea la correcta.
             </summary>
         </member>
+        <member name="M:Tests.CompanyRegisterTest.GetCompanyByName">
+            <summary>
+            Prueba que GetCompanyByName devuelva una empresa, y que sea la correcta.
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyRegisterTest.CompanyRegisterDeserialize">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Tests.CompanyRoleTests">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.CompanyRole"/>.
@@ -89,6 +99,17 @@
             Prueba que el metodo GetMAterial de company devuelva el material correcto y que no sea nulo.
             </summary>
         </member>
+        <member name="M:Tests.CompanyTest.GetLocationTest">
+            <summary>
+            Prueba que el metódo GetLocation devuelva la locación correcta.
+            </summary>
+        </member>
+        <member name="M:Tests.CompanyTest.AddMaterialTest">
+            <summary>
+            Prueba que el metódo AddMaterial devuelva el nombre del material,su tipo y 
+            clasificación.
+            </summary>
+        </member>
         <member name="T:Tests.EntrepreneurRoleTests">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.EntrepreneurRole"/>.
@@ -140,6 +161,16 @@
             </summary>
         </member>
         <member name="M:Tests.AddCompanyHandlerTests.HandleHeadingsTest">
+            <summary>
+            Prueba que el InternalHandle se hag correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.AddCompanyHandlerTests.HandleEmailTest">
+            <summary>
+            Prueba que el InternalHandle se hag correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.AddCompanyHandlerTests.HandlePhoneNumberTest">
             <summary>
             Prueba que el InternalHandle se hag correctamente y cambie el estado del handler.
             </summary>
@@ -269,12 +300,6 @@
             Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
             </summary>
         </member>
-        <member name="M:Tests.PublishOfferHandlerTest.HandleQuantityTest">
-            <summary>
-            Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial
-             y que se cambie la cantidad del material de la oferta correctamente.
-            </summary>
-        </member>
         <member name="M:Tests.PublishOfferHandlerTest.HandlePriceTest">
             <summary>
             Prueba que el InternalHandle se haga correctamente, que cambie el estado del handler al estado inicial 
@@ -377,6 +402,21 @@
             Prueba que no se realice el handler.
             </summary>
         </member>
+        <member name="M:Tests.ShowCompanyOffersHandlerTests.SetUp">
+            <summary>
+             Se crea una oferta de una empresa para las pruebas.
+            </summary>
+        </member>
+        <member name="M:Tests.StartHandlerTests.HandleUnregisteredTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.StartHandlerTests.HandleUnregisteredNotFirstTimeTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
         <member name="T:Tests.SuspendOfferHandlerTests">
             <summary>
             Prueba el handler para reanudar una oferta.
@@ -432,6 +472,41 @@
         <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.SetUp">
             <summary>
             Se setea el usuario Entrepreneur.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleStartTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleNameTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleAddressTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleCityTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleDepartmentTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleHabilitationsTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
+            </summary>
+        </member>
+        <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.HandleHeadingsTest">
+            <summary>
+            Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
             </summary>
         </member>
         <member name="M:Tests.UnregisteredEntrepreneurUserHandlerTests.InternalNotHandleTest">
