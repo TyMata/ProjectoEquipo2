@@ -39,89 +39,97 @@ namespace ClassLibrary
         /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if ((State == SearchOfferState.Start) && this.CanHandle(input))
+            try
             {
-                this.State = SearchOfferState.ShowActiveState;
-                response = "Escriba la palabra clave de las ofertas a buscar";  //TODO: Como hacer lo de las SearchOffer.
-                return true;
-            }
-            else if(State == SearchOfferState.ShowActiveState)
-            {
-                if (input.Text == "/menu")
+                if ((State == SearchOfferState.Start) && this.CanHandle(input))
                 {
-                    this.State = SearchOfferState.Start;
-                    response = "Volviendo al menú...";
+                    this.State = SearchOfferState.ShowActiveState;
+                    response = "Escriba la palabra clave de las ofertas a buscar";  //TODO: Como hacer lo de las SearchOffer.
                     return true;
                 }
-                this.State = SearchOfferState.AskActiveOfferIdState;
-                string keyword = input.Text;
-                this.Data.Offers = Market.Instance.SearchOffers(keyword);
-                StringBuilder offers = new StringBuilder("Estas son las ofertas encontradas con esa palabra clave:\n");
-                foreach (Offer item in this.Data.Offers)
+                else if(State == SearchOfferState.ShowActiveState)
                 {
-                    offers.Append($"Id de la oferta: {item.Id}.\n")
-                            .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
-                            .Append($"Cantidad: {item.QuantityMaterial}.\n")
-                            .Append($"Fecha de publicación: {item.PublicationDate}.\n")
-                            .Append($"Precio: {item.TotalPrice}.\n")
-                            .Append($"\n-----------------------------------------------\n\n");
-                }
-                response = offers.Append($"Si desea comprar alguna de las ofertas disponibles, por favor escriba su Id.\n")
-                                .Append($"De lo contrario escriba /menu para volver al menú principal.").ToString();
-                return true;
-            }
-            else if (this.State == SearchOfferState.AskActiveOfferIdState)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = SearchOfferState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.State = SearchOfferState.BuyOfferState;
-                this.Data.Id = Convert.ToInt32(input.Text);
-                this.Data.OfferToBuy = Market.Instance.GetOfferById(this.Data.Id);
-                this.Data.Seller = this.Data.OfferToBuy.Company;
-                if (this.Data.OfferToBuy != null)
-                {
-                    StringBuilder searchResult = new StringBuilder("¿Es esta la oferta que quiere comprar?\n");
-                        searchResult.Append($"Id de la oferta: {this.Data.OfferToBuy.Id}.\n")
-                                    .Append($"Material de la oferta: {this.Data.OfferToBuy.Material.Name}.\n")
-                                    .Append($"Cantidad: {this.Data.OfferToBuy.QuantityMaterial}.\n")
-                                    .Append($"Fecha de publicación: {this.Data.OfferToBuy.PublicationDate}.\n")
-                                    .Append($"\n-----------------------------------------------\n\n")
-                                    .Append($"Ingrese \"si\" si es la correcta, o \"no\" en caso contrario.");
-                    response = searchResult.ToString();
-                }
-                else
-                {
-                    response = $"No se encontró ninguna oferta con el Id \"{this.Data.Offers}\".";
-                }
-                return true;
-            }
-            else if (this.State == SearchOfferState.BuyOfferState)
-            {
-                if(input.Text.ToLower().Trim() == "no")
-                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = SearchOfferState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
                     this.State = SearchOfferState.AskActiveOfferIdState;
-                    response = "Compra cancelada, ingrese nuevamente el Id correcto o /menu si desea volver.";
+                    string keyword = input.Text;
+                    this.Data.Offers = Market.Instance.SearchOffers(keyword);
+                    StringBuilder offers = new StringBuilder("Estas son las ofertas encontradas con esa palabra clave:\n");
+                    foreach (Offer item in this.Data.Offers)
+                    {
+                        offers.Append($"Id de la oferta: {item.Id}.\n")
+                                .Append($"Material de la oferta: {item.Material.Name} de {item.Material.Type}.\n")
+                                .Append($"Cantidad: {item.QuantityMaterial}.\n")
+                                .Append($"Fecha de publicación: {item.PublicationDate}.\n")
+                                .Append($"Precio: {item.TotalPrice}.\n")
+                                .Append($"\n-----------------------------------------------\n\n");
+                    }
+                    response = offers.Append($"Si desea comprar alguna de las ofertas disponibles, por favor escriba su Id.\n")
+                                    .Append($"De lo contrario escriba /menu para volver al menú principal.").ToString();
                     return true;
                 }
-                if(input.Text.ToLower().Trim() == "si")
+                else if (this.State == SearchOfferState.AskActiveOfferIdState)
                 {
-                    Users user = UserRegister.Instance.GetUserById(input.Id);
-                    Market.Instance.BuyOffer(this.Data.Id, user);
-                    this.State = SearchOfferState.Start;
-                    StringBuilder sb = new StringBuilder("Datos de la empresa:\n");
-                    sb.Append($"Nombre: {this.Data.Seller.Name}.\n")
-                        .Append($"Email: {this.Data.Seller.Email}.\n")
-                        .Append($"Número de teléfono: {this.Data.Seller.PhoneNumber}.");
-                    response = sb.ToString();
+                    if (input.Text == "/menu")
+                    {
+                        this.State = SearchOfferState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.State = SearchOfferState.BuyOfferState;
+                    int Id = Convert.ToInt32(input.Text);
+                    this.Data.OfferToBuy = Market.Instance.GetOfferById(Id);
+                    this.Data.Seller = this.Data.OfferToBuy.Company;
+                    if (this.Data.OfferToBuy != null)
+                    {
+                        StringBuilder searchResult = new StringBuilder("¿Es esta la oferta que quiere comprar?\n");
+                            searchResult.Append($"Id de la oferta: {this.Data.OfferToBuy.Id}.\n")
+                                        .Append($"Material de la oferta: {this.Data.OfferToBuy.Material.Name}.\n")
+                                        .Append($"Cantidad: {this.Data.OfferToBuy.QuantityMaterial}.\n")
+                                        .Append($"Fecha de publicación: {this.Data.OfferToBuy.PublicationDate}.\n")
+                                        .Append($"\n-----------------------------------------------\n\n")
+                                        .Append($"Ingrese \"si\" si es la correcta, o \"no\" en caso contrario.");
+                        response = searchResult.ToString();
+                    }
+                    else
+                    {
+                        response = $"No se encontró ninguna oferta con el Id \"{this.Data.Offers}\".";
+                    }
                     return true;
                 }
+                else if (this.State == SearchOfferState.BuyOfferState)
+                {
+                    if(input.Text.ToLower().Trim() == "no")
+                    {
+                        this.State = SearchOfferState.AskActiveOfferIdState;
+                        response = "Compra cancelada, ingrese nuevamente el Id correcto o /menu si desea volver.";
+                        return true;
+                    }
+                    if(input.Text.ToLower().Trim() == "si")
+                    {
+                        Market.Instance.BuyOffer(this.Data.OfferToBuy.Id, UserRegister.Instance.GetUserById(input.Id));
+                        this.State = SearchOfferState.Start;
+                        StringBuilder sb = new StringBuilder("Datos de la empresa:\n");
+                        sb.Append($"Nombre: {this.Data.Seller.Name}.\n")
+                            .Append($"Email: {this.Data.Seller.Email}.\n")
+                            .Append($"Número de teléfono: {this.Data.Seller.PhoneNumber}.");
+                        response = sb.ToString();
+                        return true;
+                    }
+                }
+                response = string.Empty;
+                return false;
             }
-            response = string.Empty;
-            return false;
+            catch(Exception e)
+            {
+                InternalCancel();
+                response = e.Message;
+                return true;
+            }
         }
 
         /// <summary>
