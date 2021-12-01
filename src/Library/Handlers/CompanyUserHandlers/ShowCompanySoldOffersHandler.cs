@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 using System;
 using System.Text;
 using System.Linq;
@@ -12,12 +10,22 @@ namespace ClassLibrary
     public class ShowCompanySoldOffersHandler : AbstractHandler, IHandler
     {
         private Company company;
+
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="ShowCompanySoldOffersHandler"/>
+        /// </summary>
         public ShowCompanySoldOffersHandler()
         {
             this.Command = "/mostrarofertasvendidas";
             this.company = null;
         }
 
+        /// <summary>
+        /// Procesa el mensaje y muestra la lista de ofertas de ofertas vendidas de la empresa.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns> Retorna true si se logró realizar la operacion y false en caso de que no</returns>
         public override bool InternalHandle(IMessage input, out string response)
         {   
             try
@@ -78,4 +86,3 @@ namespace ClassLibrary
         }
     }
 }
->>>>>>> origin

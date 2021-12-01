@@ -21,7 +21,7 @@ namespace ClassLibrary
         /// <value></value>
         public UnregisteredCompanyUserData Data{ get; set; }
         /// <summary>
-        /// Constructor de objetos UnregistredCompanyUserHandler.
+        /// inicializa una instancia de la clase <see cref="UnregisteredCompanyUserHandler"/>
         /// </summary>
         public UnregisteredCompanyUserHandler()
         {
@@ -29,8 +29,9 @@ namespace ClassLibrary
             this.State = UnregisteredCompanyUserState.Start;
             this.Data = new UnregisteredCompanyUserData();
         }
+
         /// <summary>
-        /// Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
+        /// Pregunta por el codigo de invitación y delega la tarea de verificar si el token es valido 
         /// y la creacion de el usuario empresa.
         /// De no ser asi se le avisa al usuario.
         /// </summary>
@@ -103,11 +104,13 @@ namespace ClassLibrary
             /// registrar a un usuario empresa.
             /// </summary>
             Start,
+
             /// <summary>
             /// Estado que vuelve a recibir un token en caso de que el ingresado anteriormente tenga
             /// errores o no se encuentre en el registro.
             /// </summary>
             NotFirstTime,
+            
             /// <summary>
             /// Estado en el cual se verifica si el token ingresado es valido o no y se informa al usuario.
             /// </summary>

@@ -9,8 +9,7 @@ namespace Tests
     /// <summary>
     /// Prueba el handler <see cref="UnregisteredEntrepreneurUserHandler"/>
     /// </summary>
-
-    public class UnregisteredEntrepreneurUserHandlerTests //TODO Object reference not set to an instance of an object. ver cual es el error este
+    public class UnregisteredEntrepreneurUserHandlerTests 
     {
         private UnregisteredEntrepreneurUserHandler handler;
         private IMessage message;
@@ -24,6 +23,7 @@ namespace Tests
             this.message = new TelegramBotMessage(1234, "/emprendedornoregistrado");
             handler = new UnregisteredEntrepreneurUserHandler();
         }
+
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
@@ -39,6 +39,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo(datos.ToString())); 
             Assert.That(this.handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Name));
         }
+
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
@@ -54,6 +55,9 @@ namespace Tests
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Phone));
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje y que le pida la dirección.
+        /// </summary>
         [Test]
         public void HandlePhoneTest()
         {
@@ -67,6 +71,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese su dirección.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Address));
         }
+
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
@@ -85,6 +90,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese la ciudad.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.City));
         }
+
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
@@ -105,6 +111,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese el departamento.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Department));
         }
+
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>
@@ -127,6 +134,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese sus habilitaciones.")); 
             Assert.That(handler.State, Is.EqualTo(UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState.Habilitations));
         }
+        
         /// <summary>
         /// Prueba que el InternalHandle se haga correctamente y cambie el estado del handler.
         /// </summary>

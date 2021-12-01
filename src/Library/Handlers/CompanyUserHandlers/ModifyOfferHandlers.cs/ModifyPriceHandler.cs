@@ -143,6 +143,10 @@ namespace ClassLibrary
             /// </summary>
             public int OfferId { get; set; }
 
+            /// <summary>
+            /// EL precio que se ingreo en el estado ModifyState.Modification.
+            /// </summary>
+            /// <value></value>
             public int Price {get; set;}
 
             /// <summary>

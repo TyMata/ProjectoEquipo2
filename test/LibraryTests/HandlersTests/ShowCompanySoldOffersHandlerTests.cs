@@ -6,6 +6,9 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    /// <summary>
+    /// Prueba la clase <see cref="ShowCompanySoldOffersHandler"/>
+    /// </summary>
     [TestFixture]
     public class ShowCompanySoldOffersHandlerTests
     {
@@ -16,6 +19,9 @@ namespace Tests
         private Offer oferta;
         private Material material;
 
+        /// <summary>
+        /// Se crean instancias de objetos necesarios para relizar las pruebas.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -32,6 +38,9 @@ namespace Tests
             Market.Instance.BuyOffer(13579, user);
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje que se muestra la lista de las ofertas vendidas de la empresa.
+        /// </summary>
         [Test]
         public void HandleTest()
         {

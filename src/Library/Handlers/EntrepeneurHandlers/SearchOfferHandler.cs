@@ -24,7 +24,6 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de objetos SearchOfferByKeyWordsHandler.
         /// </summary>
-        
         public SearchOfferHandler()
         {
             this.Command = "/buscaroferta";
@@ -33,7 +32,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// /// Se encarga de mostrar la lista de ofertas asociadas a las keywords.
+        /// Procesa el mensaje y se encarga de mostrar la lista de ofertas asociadas a las keywords.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -187,6 +186,10 @@ namespace ClassLibrary
             /// <value></value>
             public Offer OfferToBuy { get; set; }
 
+            /// <summary>
+            /// Obtiene y establece el Id de la oferta que quiere compara el emprendedor.
+            /// </summary>
+            /// <value></value>
             public int Id {get; set;}
 
             /// <summary>
