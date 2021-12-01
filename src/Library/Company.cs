@@ -93,10 +93,6 @@ namespace ClassLibrary
                 {
                     this.companyUsers = value;
                 }
-                else
-                {
-                    throw new NullReferenceException();
-                }
             }
         }
         
@@ -114,10 +110,6 @@ namespace ClassLibrary
             }
             set
             {
-                if(value == "-1")
-                {
-                    throw new Exception();
-                }
                 this.invitationToken = value;
             }
         }
@@ -137,10 +129,6 @@ namespace ClassLibrary
                 if (!string.IsNullOrEmpty(value))
                 {
                     this.headings = value;
-                }
-                else
-                {
-                    throw new NullReferenceException();
                 }
             }
         }
@@ -163,10 +151,6 @@ namespace ClassLibrary
                 {
                     this.offerRegister = value;
                 }
-                else
-                {
-                    throw new NullReferenceException();
-                }
             }
         }
 
@@ -184,10 +168,6 @@ namespace ClassLibrary
                 if (value != null)
                 {
                     this.soldOffers = value;
-                }
-                else
-                {
-                    throw new NullReferenceException();
                 }
             }
         }
@@ -212,10 +192,6 @@ namespace ClassLibrary
                 {
                     this.producedMaterials = value;
                 }
-                else
-                {
-                    throw new NullReferenceException();
-                }
             }
         }
 
@@ -233,10 +209,6 @@ namespace ClassLibrary
                 {
                     this.email = value;
                 }
-                else
-                {
-                   throw new NullReferenceException(); 
-                }
             }
         }
 
@@ -253,10 +225,6 @@ namespace ClassLibrary
                 if (value != null)
                 {
                     this.phoneNumber = value;
-                }
-                else
-                {
-                   throw new NullReferenceException(); 
                 }
             }
         }
@@ -293,7 +261,7 @@ namespace ClassLibrary
         {
             if (this.producedMaterials.Count != 0 && this.producedMaterials.Exists(mat => mat.Name == name && mat.Type == type && mat.Classification == classification))
             {
-                throw new Exception();
+                throw new InvalidInputException("El material ya fue ingresado previamente.");
             }
             Material material = new Material(name, type, classification); 
             this.producedMaterials.Add(material);
@@ -307,7 +275,7 @@ namespace ClassLibrary
         {
             if (this.companyUsers.Exists(user => user.Id == id))
             {
-                throw new Exception();
+                throw new InvalidInputException("Ya existe un usuario con ese Id.");
             }
 
             IRole rol = new CompanyRole(this);
@@ -324,7 +292,7 @@ namespace ClassLibrary
         {
             if (!this.CompanyUsers.Exists(x => x.Id == id))
             {
-                throw new Exception();
+                throw new InvalidInputException("No existe ningun usuario perteneciente a esta empresa con ese Id");
             } 
             Users x = this.CompanyUsers.Find(offer => offer.Id == id);
             this.CompanyUsers.Remove(x);
@@ -351,12 +319,11 @@ namespace ClassLibrary
         {
             if (!this.OfferRegister.Exists(x => x.Id == id))
             {
-                throw new Exception();
+                throw new InvalidInputException("No existe ninguna oferta con ese Id.");
             } 
             Offer x = this.OfferRegister.Find(offer => offer.Id == id);
             this.OfferRegister.Remove(x);
         }
-        /// TODO add token
         
         /// <summary>
         /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato

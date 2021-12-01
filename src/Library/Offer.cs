@@ -45,10 +45,6 @@ namespace ClassLibrary
                 {
                     this.material = value;
                 }
-                else
-                {
-                    //EXCEPCION OBJETO NULO
-                }
             }
         }
 
@@ -69,10 +65,6 @@ namespace ClassLibrary
                 {
                     this.habilitation = value;
                 }
-                else
-                {
-                    //EXCEPCION link invalido???????
-                }
             }
         }
         private LocationAdapter location;
@@ -92,10 +84,6 @@ namespace ClassLibrary
                 if (value != null)
                 {
                     this.location = value;
-                }
-                else
-                {
-                    //EXCEPCION OBJETO NULO
                 }
             }
         }        
@@ -187,10 +175,6 @@ namespace ClassLibrary
                 {
                     this.company = value;
                 }
-                else
-                {
-                    //EXCEPCION OBJETO NULO
-                }
             }
         }
 
@@ -212,10 +196,6 @@ namespace ClassLibrary
                 if (value != null)
                 {
                     this.keywords = value;
-                }
-                else
-                {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
                 }
             }
         }
@@ -279,7 +259,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    //EXCEPCION DE OBJETO VACIO O NULO
+                    throw new InvalidInputException("La fecha ingresada no es valida.");
                 }
             }
         }
@@ -340,6 +320,10 @@ namespace ClassLibrary
         /// <param name="quantity"></param>
         public void ChangeQuantity(int quantity)
         {
+            if (quantity < 1)
+            {
+                throw new InvalidInputException("No puede ingresar una cantidad menor a uno.");
+            }
             this.QuantityMaterial = quantity;
         }
 
