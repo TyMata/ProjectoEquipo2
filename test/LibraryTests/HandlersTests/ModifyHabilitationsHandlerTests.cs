@@ -27,13 +27,12 @@ namespace Tests
         public void Setup()
         {
             message = new TelegramBotMessage(1234, "/modificarhabilitaciones");
-            location = new LocationAdapter("address", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, "kg" ,3, "pesos", 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
-            material = new Material("material", "type", "clasificacion");
-            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
+            material = new Material("Pallet", "Plastico", "Residuo");
+            company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "Rubro", "company@gmail.com", "091919191");
+            oferta = new Offer(1234567, material, "habilitation", location,"kg", 3,"pesos", 3000, company, true, dateTime, "continua");
             company.AddUser(1234);
             company.AddOffer(oferta);
-            
             handler = new ModifyHabilitationsHandler();
         }
 
@@ -90,7 +89,7 @@ namespace Tests
             message.Text = "link";
             result = handler.InternalHandle(message, out response);
             Assert.IsTrue(result);
-            Assert.AreEqual("link",oferta.Habilitation);
+            Assert.AreEqual("link", oferta.Habilitation);
             Assert.That(response, Is.EqualTo("Las habilitaciones se han modificado.")); 
             Assert.That(handler.State, Is.EqualTo(ModifyHabilitationsHandler.ModifyState.Start));
         }

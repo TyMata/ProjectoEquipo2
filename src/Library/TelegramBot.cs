@@ -36,9 +36,10 @@ namespace ClassLibrary
                 .SetNext(new ModifyPriceHandler())
                 .SetNext(new ModifyQuantityHandler())
                 .SetNext(new ShowCompanyOffersHandler())
+                .SetNext(new ShowCompanySoldOffersHandler())
                 .SetNext(new SearchOfferHandler())
                 .SetNext(new AddMaterialHandler())
-                .SetNext(new EndHandler(null));
+                .SetNext(new ShowBoughtOffersHandler());
         }
 
         public ITelegramBotClient Client { get; private set; }
@@ -96,7 +97,6 @@ namespace ClassLibrary
     
         public void StartCommunication()
         {
-            //Client.OnMessage += OnMessage;
             Client.StartReceiving(
                 new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
                 cts.Token);
@@ -132,6 +132,7 @@ namespace ClassLibrary
             
             string answer;
             IMessage message1 = new TelegramBotMessage(chatId, message.Text);
+            
             if (handlers.Handle(message1,out answer) != null)
             {
                 Client.SendTextMessageAsync(chatId, answer);
@@ -139,7 +140,7 @@ namespace ClassLibrary
             else
             {
                 Client.SendTextMessageAsync(chatId, "No puedo manejar ese mensaje");
-            }
+            }            
         }
     }
 }

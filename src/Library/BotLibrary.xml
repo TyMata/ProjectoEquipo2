@@ -69,6 +69,8 @@
             <param name="name"></param>
             <param name="location"></param>
             <param name="headings"></param>
+            <param name="email"></param>
+            <param name="phoneNumber"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
@@ -1769,7 +1771,7 @@
             JsonConstructor para objetos Offer.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Double,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
+        <member name="M:ClassLibrary.Offer.#ctor(System.Int32,ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.Int32,System.Int32,ClassLibrary.Company,System.Boolean,System.DateTime,System.String)">
             <summary>
             Constructor de Offer.
             </summary>
@@ -1941,7 +1943,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Double,ClassLibrary.Company,System.Boolean,System.String)">
+        <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Int32,ClassLibrary.Company,System.Boolean,System.String)">
             <summary>
             Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
             </summary>

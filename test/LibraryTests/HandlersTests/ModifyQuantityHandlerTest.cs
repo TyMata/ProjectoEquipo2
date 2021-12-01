@@ -26,13 +26,12 @@ namespace Tests
         public void Setup()
         {
             message = new TelegramBotMessage(1234, "/modificarcantidad");
-            location = new LocationAdapter("address", "city", "department");
-            oferta = new Offer(1234567, new Material(), "habilitation", location, "kg", 5, "pesos", 3000, new Company("nombre", location, "rubro", "company@gmail.com", "091919191"), true, dateTime, "constante");
-            material = new Material("material", "type", "clasificacion");
+            location = new LocationAdapter("Comandante Braga 2715", "Montevideo", "Montevideo");
+            material = new Material("Pallet", "Madera", "Residuo");
             company =  CompanyRegister.Instance.CreateCompany("Nombre de la empresa", location, "headings", "company@gmail.com", "091919191");
             company.AddUser(1234);
+            oferta = new Offer(1234567, material, "habilitation",location, "kg", 5, "pesos", 3000, company, true, dateTime, "continua");
             company.AddOffer(oferta);
-            
             handler = new ModifyQuantityHandler();
         }
 

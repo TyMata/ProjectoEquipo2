@@ -51,7 +51,7 @@ namespace ClassLibrary
             }
         }
 
-        private List<Offer> actualOfferList;
+        public List<Offer> actualOfferList = new List<Offer>();
 
         /// <summary>
         /// Se crea la lista de ofertas.
@@ -103,7 +103,7 @@ namespace ClassLibrary
         /// <param name="availability"></param>
         /// <param name="continuity"></param>
         /// <returns></returns>
-        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, double totalPrice, Company company, bool availability, string continuity)
+        public Offer CreateOffer(Material material,string habilitation, LocationAdapter location, string unitOfMeasure, int quantityMaterial, string currency, int totalPrice, Company company, bool availability, string continuity)
         {
             this.Count ++;
             int id = this.Count;
@@ -147,6 +147,15 @@ namespace ClassLibrary
             }
         }
 
+        public void AddActiveOffer(Offer offer)
+        {
+            if(this.ActualOfferList.Contains(offer))
+            {
+                throw new Exception("La oferta que se quiere crear ya existe"); //TODO CAMBIAR EXCEPTION A OBJETO YA EXISTE
+            }
+            this.ActualOfferList.Add(offer);
+        }
+
         /// <summary>
         /// Añade una nueva oferta a la lista de ofertas actuales.
         /// </summary>
@@ -155,7 +164,7 @@ namespace ClassLibrary
         {
             if(this.ActualOfferList.Contains(newOffer))
             {
-                throw new Exception("La oferta que se quiere crear ya existe"); //CAMBIAR EXCEPTION
+                throw new Exception("La oferta que se quiere crear ya existe"); //TODO CAMBIAR EXCEPTION
             }
             this.ActualOfferList.Add(newOffer);
         }
@@ -168,7 +177,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             this.ActualOfferList.Remove(x);
@@ -182,7 +191,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Keywords.Contains(keyword)))
             {
-                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             List<Offer> x = this.ActualOfferList.FindAll(offer => offer.Keywords.Contains(keyword));
             return x;
@@ -197,7 +206,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new NullReferenceException($"No existe ninguna oferta con ese Id."); //CAMBIAR EXCEPTION
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             return x;
@@ -212,10 +221,10 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == offerId))
             {
-                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //TODO: Agregar a la lista de ofertas compradas del usuario
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == offerId);
-            x.Company.OfferSold(x , user);
+            x.Company.OfferSold(x, user);
             (user.Role as EntrepreneurRole).Entrepreneur.AddBoughtOffer(x);
             x.ChangeAvailability();
             this.SuspendedOfferList.Add(x);
@@ -230,7 +239,7 @@ namespace ClassLibrary
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
             {
-                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             Offer x = this.ActualOfferList.Find(offer => offer.Id == id);
             x.ChangeAvailability();
@@ -246,7 +255,7 @@ namespace ClassLibrary
         {
             if (!this.SuspendedOfferList.Exists(offer => offer.Id == id))
             {
-                throw new NullReferenceException($"El Id de la oferta es incorrecto."); //CAMBIAR EXCEPTION
+                throw new InvalidInputException($"No existe ninguna oferta con ese Id.");
             }
             Offer x = this.SuspendedOfferList.Find(offer => offer.Id == id);
             x.ChangeAvailability();

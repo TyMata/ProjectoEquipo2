@@ -36,72 +36,86 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            if ((this.State == UnregisteredEntrepreneurUserState.Start) && (CanHandle(input)))
+            try
             {
-                StringBuilder datos = new StringBuilder("¡Así que eres un Emprendedor!\n")
-                                                .Append("Para poder registrarte vamos a necesitar algunos datos personales.\n")
-                                                .Append("Ingrese su nombre completo.");
-                this.State = UnregisteredEntrepreneurUserState.Name;
-                response = datos.ToString();
-                return true;
-            }
-            else if(this.State == UnregisteredEntrepreneurUserState.Name)
-            {
-                this.Data.Name =  input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Phone;
-                response = "Ingrese su numero de teléfono.";
-                return true;
-            }
-            else if(this.State == UnregisteredEntrepreneurUserState.Phone)
-            {
-                this.Data.Phone =  input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Address;
-                response = "Ingrese su dirección.";
-                return true;
-            }
-            else if (this.State == UnregisteredEntrepreneurUserState.Address)
-            {
-                this.Data.Address =  input.Text;
-                this.State = UnregisteredEntrepreneurUserState.City;
-                response = "Ingrese la ciudad.";
-                return true;
-            }
-            else if(this.State == UnregisteredEntrepreneurUserState.City)
-            {
-                this.Data.City = input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Department;
-                response = "Ingrese el departamento.";
-                return true;
-            }
-            else if (this.State == UnregisteredEntrepreneurUserState.Department)
-            {
-                this.Data.Department = input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Habilitations;
-                this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
-                response = "Ingrese sus habilitaciones.";
-                return true;
-            }
-            else if (this.State == UnregisteredEntrepreneurUserState.Habilitations)
-            {
-                string habilitaciones =  input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Headings;
-                response = "Ingrese su rubro.";
-                return true;
-            }
-            else if (this.State == UnregisteredEntrepreneurUserState.Headings)
-            {
-                string rubro = input.Text;
-                this.State = UnregisteredEntrepreneurUserState.Start;
-                UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Phone ,this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
-                response = "Gracias por sus datos, se esta creando su usuario\n";
-                return true;
+                if ((this.State == UnregisteredEntrepreneurUserState.Start) && (CanHandle(input)))
+                {
+                    StringBuilder datos = new StringBuilder("¡Así que eres un Emprendedor!\n")
+                                                    .Append("Para poder registrarte vamos a necesitar algunos datos personales.\n")
+                                                    .Append("Ingrese su nombre completo.");
+                    this.State = UnregisteredEntrepreneurUserState.Name;
+                    response = datos.ToString();
+                    return true;
+                }
+                else if(this.State == UnregisteredEntrepreneurUserState.Name)
+                {
+                    this.Data.Name =  input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Phone;
+                    response = "Ingrese su numero de teléfono.";
+                    return true;
+                }
+                else if(this.State == UnregisteredEntrepreneurUserState.Phone)
+                {
+                    this.Data.Phone =  input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Address;
+                    response = "Ingrese su dirección.";
+                    return true;
+                }
+                else if (this.State == UnregisteredEntrepreneurUserState.Address)
+                {
+                    this.Data.Address =  input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.City;
+                    response = "Ingrese la ciudad.";
+                    return true;
+                }
+                else if(this.State == UnregisteredEntrepreneurUserState.City)
+                {
+                    this.Data.City = input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Department;
+                    response = "Ingrese el departamento.";
+                    return true;
+                }
+                else if (this.State == UnregisteredEntrepreneurUserState.Department)
+                {
+                    this.Data.Department = input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Habilitations;
+                    this.Data.LocationResult = new LocationAdapter(this.Data.Address,this.Data.City,this.Data.Department);
+                    response = "Ingrese sus habilitaciones.";
+                    return true;
+                }
+                else if (this.State == UnregisteredEntrepreneurUserState.Habilitations)
+                {
+                    string habilitaciones =  input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Headings;
+                    response = "Ingrese su rubro.";
+                    return true;
+                }
+                else if (this.State == UnregisteredEntrepreneurUserState.Headings)
+                {
+                    string rubro = input.Text;
+                    this.State = UnregisteredEntrepreneurUserState.Start;
+                    UserRegister.Instance.CreateEntrepreneurUser(input.Id, this.Data.Phone ,this.Data.Name, this.Data.LocationResult, this.Data.Headings,this.Data.Habilitations);
+                    response = "Gracias por sus datos, se esta creando su usuario\n";
+                    return true;
 
-            }
-            else
-            {
+                }
                 response = "";
                 return false;
-            } 
+            }
+            catch(Exception e)
+            {
+                response = e.Message;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Retorna este handler al estado inicial.
+        /// </summary>
+        protected override void InternalCancel()
+        {
+            this.State = UnregisteredEntrepreneurUserState.Start;
+            this.Data = new UnregisteredEntrepreneurUserData();
         }
 
         /// <summary>

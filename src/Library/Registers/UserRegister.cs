@@ -21,7 +21,14 @@ namespace ClassLibrary
             {
                 return this.dataUsers;
             } 
-            private set{} //CARGAR DE JSON LISTA DE USUARIOS REGISTRADOS
+            private set
+            {
+                if (value != null)
+                {
+                    this.dataUsers = value;
+                }
+                
+            }
         }
 
         
@@ -99,7 +106,7 @@ namespace ClassLibrary
         {
             if (!this.DataUsers.Contains(item))
             {
-                throw new Exception(); //CAMBIAR
+                throw new Exception(); //TODO CAMBIAR
             }
             this.DataUsers.Remove(item);
         }

@@ -16,7 +16,7 @@ namespace Tests
         private LocationAdapter location;
 
         /// <summary>
-        /// Se setea la company a eliminar.
+        /// Se crea una company y un user, el cual se va a eliminar.
         /// </summary>
         [SetUp]
         public void SetUp()
