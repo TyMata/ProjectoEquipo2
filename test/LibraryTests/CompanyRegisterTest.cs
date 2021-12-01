@@ -57,6 +57,7 @@ namespace Tests
             Company result = CompanyRegister.Instance.GetCompanyByUserId(1234567);
             Assert.AreEqual(this.company, result);
         }
+
         /// <summary>
         /// Prueba que GetCompanyByName devuelva una empresa, y que sea la correcta.
         /// </summary>
@@ -68,6 +69,9 @@ namespace Tests
             Assert.AreEqual(this.company.Name, result.Name);
         }
 
+        /// <summary>
+        /// Prueba que se tranforme un objeto a un string (json).
+        /// </summary>
         [Test]
         public void CompanyRegisterSerialize()
         {

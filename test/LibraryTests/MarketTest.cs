@@ -81,6 +81,9 @@ namespace Tests
             Assert.IsTrue(this.company.OfferRegister.Contains(result));
         }
 
+        /// <summary>
+        /// Prueba que compre una oferta correctamente y se agregue a las listas.
+        /// </summary>
         [Test]
         public void BuyOffer()
         {

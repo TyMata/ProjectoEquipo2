@@ -8,3 +8,14 @@ Para esta entrega decidimos no utilizar la clase Materials ya que nuestro plan p
 Tampoco decidimos utilizar la clase Setup ya que realizamos cambios en la Chain of Responsability y hay Handlers a los cuales les faltan metodos (aun no creados) necesarios para que funcionen.
 
 Como conclusion final, no estamos satisfechos con nuestro trabajo ya que sentimos y sabemos que podriamos haberlo realizado mejor de haber entendido la consigna desde un principo y creemos que podriamos haber utilizado de mejor manera algunos patrones GRASP y principios SOLID. Tambien se podrian haber realizado mayor cantidad de tests de haber terminado las clases antes.
+
+## Notas entrega 3
+Tenemos el conocimiento de que no se pueden ver los comandos del administrador al momento de ingresar por primera vez al bot. Establecimos a cada usuario diferente se le muestre un menu con sus respectivos comandos. Como no logramos que el Deserialize() de json funcione, no pudimos establecer un admin. Para el uso de este Bot sin ningun problema, cuando se ingresa al bot por primera vez, si lo quiere hacer como un usuario empresa,  debe primero de ingrsar el comando de admin "/registraempresa" para generar un token y registar la empresa. Luego si ingresar como un usario empresa no registrado y registarse con el token generado previamente.
+
+Qué desafíos de la entrega fueron los más difíciles:
+La implementacion de el Serializer fue algo muy desafiante para nuestro grupo. Nos costó lograr que se pasar los objetos a strings en formato json. Para la implementación de el Deserializer(), tuvimos mas desafíos para poder lograrla, pero no pudimos superarlos. A causa de esto no logramos que funcione, lo que nos trajo varios problemas y formas menos correctas de solucionarlos. 
+También la falta de conocimiento acerca de lo que es un bot y la implementación en telegram. Fué un desafío que nos llevó muchas horas de estudio, trabajo en grupo y cambios constantes en el código previamente hecho.
+
+Qué cosas aprendieron enfrentándose al proyecto que no aprendieron en clase como parte de la currícula:
+Aprenidimos a enfrentar problemas con soluciones que no teniamos ni idea de su existencia y supimos como lograrlo trabajando en equipo .
+
