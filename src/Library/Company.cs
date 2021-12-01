@@ -32,7 +32,7 @@ namespace ClassLibrary
             }
         }
 
-        public string name;
+        private string name;
 
         /// <summary>
         /// Nombre de la empresa
@@ -157,6 +157,10 @@ namespace ClassLibrary
 
         private Dictionary<Offer, Users> soldOffers = new Dictionary<Offer, Users>();
         
+        /// <summary>
+        /// Ofertas vendidas por la empresa.
+        /// </summary>
+        /// <value></value>
         [JsonInclude]
         public Dictionary<Offer, Users> SoldOffers
         {
@@ -196,8 +200,12 @@ namespace ClassLibrary
             }
         }
 
-        public string email;
+        private string email;
 
+        /// <summary>
+        /// Email de la empresa.
+        /// </summary>
+        /// <value></value>
         public string Email
         {
             get
@@ -213,8 +221,12 @@ namespace ClassLibrary
             }
         }
 
-        public string phoneNumber;
+        private string phoneNumber;
 
+        /// <summary>
+        /// Número de teléfono de la empresa.
+        /// </summary>
+        /// <value></value>
         public string PhoneNumber
         {
             get
@@ -251,7 +263,7 @@ namespace ClassLibrary
         {
             this.Name = name;
             this.Locations.Add(location);
-            this.Id = CompanyRegister.Instance.CompanyList.Count + 1;//TODO hacer lista de keywords this.name this.material (en offer)
+            this.Id = CompanyRegister.Instance.CompanyList.Count + 1;
             this.Headings = headings;
             this.Email = email;
             this.PhoneNumber = phoneNumber;
@@ -342,7 +354,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+        /// Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato.
         /// Json utilizando JsonSerializer.Deserialize.
         /// </summary>
         /// <returns>El objeto convertido a texto en formato Json.</returns>
@@ -357,7 +369,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
+        /// Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este.
         /// </summary>
         /// <param name="json"></param>
         public void LoadFromJson(string json)
@@ -394,7 +406,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
+        /// Devuelve una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
@@ -411,9 +423,14 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Añade una oferta a la lista de ofertas vendidas.
+        /// </summary>
+        /// <param name="offer"></param>
+        /// <param name="user"></param>
         public void OfferSold(Offer offer, Users user)
         {
-            this.SoldOffers.Add(offer, user); //TODO HAcer esto bien, precondiciones preuntando si ya esta ingresada en el diccionario y falta agregar a la lista en el handler al momento de hacerse la compra
+            this.SoldOffers.Add(offer, user);
         }
     }
 }

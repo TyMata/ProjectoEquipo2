@@ -14,7 +14,6 @@ namespace ClassLibrary
     public class Market : IJsonConvertible
     {   
         private static Market instance;
-
        
         private int count;
 
@@ -198,6 +197,11 @@ namespace ClassLibrary
             return x;
         }      
 
+        /// <summary>
+        /// Devuelve una oferta por medio de su Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Offer GetOfferById(int id)
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == id))
@@ -208,6 +212,11 @@ namespace ClassLibrary
             return x;
         }
 
+        /// <summary>
+        /// Realiza la acción de compra de una oferta y la suspende.
+        /// </summary>
+        /// <param name="offerId"></param>
+        /// <param name="user"></param>
         public void BuyOffer(int offerId, Users user)
         {
             if (!this.ActualOfferList.Exists(offer => offer.Id == offerId))
@@ -276,6 +285,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this, options);
         } 
 
+        /// <summary>
+        /// Convierte el texto en formato json a objeto.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public object LoadFromJson(string json, JsonSerializerOptions options)
         {
             Market temp = JsonSerializer.Deserialize<Market>(json, options);

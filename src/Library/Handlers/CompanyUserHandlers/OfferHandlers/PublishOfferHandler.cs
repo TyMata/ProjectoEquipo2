@@ -36,7 +36,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla
+        /// Pregunta por los datos de la oferta a crear y delega la accion de crearla y publicarla.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="response"></param>
@@ -181,14 +181,38 @@ namespace ClassLibrary
             /// y le muestra una lista de los materiales producidos por la empresa.
             /// </summary>
             Start,
+
+            /// <summary>
+            /// Luego de pedir el material. En este estado el comando pide la unidad de medida del material y pasa al siguiente estado.
+            /// </summary>
             Material,
+            /// <summary>
+            /// Luego de pedir la unidad de medida. En este estado el comando pide la cantidad de unidades del material y pasa al siguiente estado.
+            /// </summary>
             UnitOfMeasure,
+            /// <summary>
+            /// Luego de pedir la cantidad de unidades. En este estado el comando pide la divisa de la oferta y pasa al siguiente estado.
+            /// </summary>
             Quantity,
+            /// <summary>
+            /// Luego de pedir la divisa. En este estado el comando pide el precio de la oferta y pasa al siguiente estado.
+            /// </summary>
             Currency,
+            /// <summary>
+            /// Luego de pedir el precio. En este estado el comando pide la ubicación de los materiales y pasa al siguiente estado.
+            /// </summary>
             Price,
+            /// <summary>
+            /// Luego de pedir la ubicación. En este estado el comando pide las habilitaciones necesarias para manejar los materiales y pasa al siguiente estado.
+            /// </summary>
             Location,
+            /// <summary>
+            /// Luego de pedir las habilitaciones. En este estado el comando pide que declare la continuidad de la oferta y pasa al siguiente estado.
+            /// </summary>
             Habilitations,
-            Offer,
+            /// <summary>
+            /// Luego de pedir la continuidad. En este estado el comando crea la oferta y vuelve al estado Start.
+            /// </summary>
             Continuity
         }
 
@@ -204,7 +228,7 @@ namespace ClassLibrary
             public Material Material { get; set; }
 
             /// <summary>
-            /// Se guarda la unidad de medida del material que se quiere poner en la oferta.
+            /// Se guarda la unidad de medida que se le quiere asignar al material de la oferta.
             /// </summary>
             /// <value></value>
             public string UnitOfMeasure { get; set; }
@@ -216,7 +240,7 @@ namespace ClassLibrary
             public int Quantity { get; set; }
 
             /// <summary>
-            /// Se guarda la divisa que se quiere poner en la oferta.
+            /// Se guarda la divisa que se le quiere asignar a la oferta.
             /// </summary>
             /// <value></value>
             public string Currency { get; set; }
