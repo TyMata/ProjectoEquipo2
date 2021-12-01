@@ -109,7 +109,7 @@ namespace ClassLibrary
         {
             if(!this.CompanyList.Exists(company => company.Name == name))
             {
-                throw new Exception("No existe esta empresa, ingrese de nuevo el nombre");
+                throw new InvalidInputException("No existe esta empresa, ingrese de nuevo el nombre");
             }
             Company company = this.CompanyList.Find(company => company.Name == name);
             return company;

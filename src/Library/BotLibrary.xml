@@ -804,9 +804,21 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.UnitOfMeasure">
+            <summary>
+            Se guarda la unidad de medida del material que se quiere poner en la oferta.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Quantity">
             <summary>
             Se guarda la cantidad del material que se quiere poner en la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublishOfferHandler.OfferData.Currency">
+            <summary>
+            Se guarda la divisa que se quiere poner en la oferta.
             </summary>
             <value></value>
         </member>

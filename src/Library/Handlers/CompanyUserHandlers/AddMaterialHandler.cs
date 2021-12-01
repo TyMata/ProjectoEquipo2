@@ -38,56 +38,64 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            Users user = UserRegister.Instance.GetUserById(input.Id);
-            if (this.State == AddMaterialState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
+            try
             {
-                this.State = AddMaterialState.Name;
-                response = "Ingrese el nombre del material a añadir. Ej: Pallet, cáscara, etc.\n";
-                return true;
-            }
-            else if(this.State == AddMaterialState.Name)
-            {
-                if (input.Text == "/menu")
+                if (this.State == AddMaterialState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
                 {
-                    this.State = AddMaterialState.Start;
-                    response = "Volviendo al menú...";
+                    this.State = AddMaterialState.Name;
+                    response = "Ingrese el nombre del material a añadir. Ej: Pallet, cáscara, etc.\n";
                     return true;
                 }
-                this.Data.Name = input.Text;
-                this.State = AddMaterialState.Type;
-                response = "Ingrese el tipo:\n";
-                return true;
-            }
-            else if(this.State == AddMaterialState.Type)
-            {
-                if (input.Text == "/menu")
+                else if(this.State == AddMaterialState.Name)
                 {
-                    this.State = AddMaterialState.Start;
-                    response = "Volviendo al menú...";
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddMaterialState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Name = input.Text;
+                    this.State = AddMaterialState.Type;
+                    response = "Ingrese el tipo:\n";
                     return true;
                 }
-                this.Data.Type = input.Text;
-                this.State = AddMaterialState.Classification;
-                response = "Ingrese la clasificación:\n";
-                return true;
-            }
-            else if(this.State == AddMaterialState.Classification)
-            {
-                if (input.Text == "/menu")
+                else if(this.State == AddMaterialState.Type)
                 {
-                    this.State = AddMaterialState.Start;
-                    response = "Volviendo al menú...";
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddMaterialState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Type = input.Text;
+                    this.State = AddMaterialState.Classification;
+                    response = "Ingrese la clasificación:\n";
                     return true;
                 }
-                this.Data.Classification = input.Text;
-                this.State = AddMaterialState.Start;
-                Company temp = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
-                temp.AddMaterial(this.Data.Name, this.Data.Type, this.Data.Classification);
-                response = "Se añadió el material";
+                else if(this.State == AddMaterialState.Classification)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddMaterialState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Classification = input.Text;
+                    this.State = AddMaterialState.Start;
+                    Company temp = CompanyRegister.Instance.GetCompanyByUserId(input.Id);
+                    temp.AddMaterial(this.Data.Name, this.Data.Type, this.Data.Classification);
+                    response = "Se añadió el material";
+                    return true;
+                }
+                response = string.Empty;
+                return false;
+            }
+            catch(Exception e)
+            {
+                InternalCancel();
+                response = e.Message;
                 return true;
             }
-            response = string.Empty;
-            return false;
         }  
 
         /// <summary>

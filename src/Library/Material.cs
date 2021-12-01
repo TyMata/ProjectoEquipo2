@@ -26,10 +26,6 @@ namespace ClassLibrary
                 {
                     this.name = value;
                 }
-                else
-                {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
-                }
             }
         }
         private string type;
@@ -48,10 +44,6 @@ namespace ClassLibrary
                 {
                     this.type = value;
                 }
-                else
-                {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
-                }
             }
         }
         private string classification;
@@ -69,10 +61,6 @@ namespace ClassLibrary
                 if (!String.IsNullOrEmpty(value))
                 {
                     this.classification = value;
-                }
-                else
-                {
-                    //EXCEPCION DE NOMBRE VACIO O NULO
                 }
             }
         }

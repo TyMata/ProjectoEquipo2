@@ -58,7 +58,7 @@ namespace ClassLibrary
         {
             if (!TokenList.ContainsKey(codigo))
             {
-                throw new Exception();
+                throw new InvalidInputException("No se encontro ninguna empresa con ese Id.");
             }
             return TokenList[codigo];
         }

@@ -39,121 +39,129 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)
         {
-            Users user = UserRegister.Instance.GetUserById(input.Id);
-            if (this.State == AddCompanyState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
+            try
             {
-                this.State = AddCompanyState.Name;
-                response = "Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n";
+                if (this.State == AddCompanyState.Start && this.CanHandle(input))  //TODO: Verificar que sea el rol correcto.
+                {
+                    this.State = AddCompanyState.Name;
+                    response = "Para poder registrar una empresa vamos a necesitar algunos datos de esta.\n\nIngrese el nombre de la empresa:\n";
+                    return true;
+                }
+                else if(this.State == AddCompanyState.Name)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Name = input.Text;
+                    this.State = AddCompanyState.Country;
+                    response = "Ingrese el país:\n";
+                    return true;
+                }
+                else if(this.State == AddCompanyState.Country)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Country = input.Text;
+                    this.State = AddCompanyState.State;
+                    response = "Ingrese el departamento:\n";
+                    return true;
+                }
+                else if(this.State == AddCompanyState.State)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Estate = input.Text;
+                    this.State = AddCompanyState.City;
+                    response = "Ingrese la ciudad:\n";
+                    return true;
+                } 
+            else if(this.State == AddCompanyState.City)
+                {   
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.City = input.Text;
+                    this.State = AddCompanyState.Address;
+                    response = "Ingrese la dirección:\n";
+                    return true;
+                } 
+                else if(this.State == AddCompanyState.Address)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Address= input.Text;
+                    this.State = AddCompanyState.Headings;
+                    response = "Ingrese el rubro:\n";
+                    return true;
+                } 
+                else if(this.State == AddCompanyState.Headings)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.Data.Headings = input.Text;
+                    this.State = AddCompanyState.Email;
+                    response = "Ingrese el email:\n";
+                    return true;
+                }
+                else if(this.State == AddCompanyState.Email)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.State = AddCompanyState.PhoneNumber;
+                    this.Data.Email = input.Text;
+                    response = "Ingrese el número de teléfono:\n";
+                    return true;
+                }
+                else if(this.State == AddCompanyState.PhoneNumber)
+                {
+                    if (input.Text == "/menu")
+                    {
+                        this.State = AddCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.State = AddCompanyState.Start;
+                    this.Data.PhoneNumber = input.Text;
+                    this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
+                    this.Data.Result = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
+                    response = $"La empresa fue creada.\n El token de invitación es: {this.Data.Result.InvitationToken}";
+                    return true;
+                }
+                response = string.Empty;
+                return false;
+            }
+            catch(Exception e)
+            {
+                InternalCancel();
+                response = e.Message;
                 return true;
             }
-            else if(this.State == AddCompanyState.Name)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.Name = input.Text;
-                this.State = AddCompanyState.Country;
-                response = "Ingrese el país:\n";
-                return true;
-            }
-            else if(this.State == AddCompanyState.Country)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.Country = input.Text;
-                this.State = AddCompanyState.State;
-                response = "Ingrese el departamento:\n";
-                return true;
-            }
-            else if(this.State == AddCompanyState.State)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.Estate = input.Text;
-                this.State = AddCompanyState.City;
-                response = "Ingrese la ciudad:\n";
-                return true;
-            } 
-           else if(this.State == AddCompanyState.City)
-            {   
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.City = input.Text;
-                this.State = AddCompanyState.Address;
-                response = "Ingrese la dirección:\n";
-                return true;
-            } 
-            else if(this.State == AddCompanyState.Address)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.Address= input.Text;
-                this.State = AddCompanyState.Headings;
-                response = "Ingrese el rubro:\n";
-                return true;
-            } 
-             else if(this.State == AddCompanyState.Headings)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.Data.Headings = input.Text;
-                this.State = AddCompanyState.Email;
-                response = "Ingrese el email:\n";
-                return true;
-            }
-            else if(this.State == AddCompanyState.Email)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.State = AddCompanyState.PhoneNumber;
-                this.Data.Email = input.Text;
-                response = "Ingrese el número de teléfono:\n";
-                return true;
-            }
-            else if(this.State == AddCompanyState.PhoneNumber)
-            {
-                if (input.Text == "/menu")
-                {
-                    this.State = AddCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.State = AddCompanyState.Start;
-                this.Data.PhoneNumber = input.Text;
-                this.Data.Location = new LocationAdapter(this.Data.Address, this.Data.City,this.Data.Estate);
-                this.Data.Result = CompanyRegister.Instance.CreateCompany(this.Data.Name, this.Data.Location,this.Data.Headings, this.Data.Email, this.Data.PhoneNumber);
-                response = $"La empresa fue creada.\n El token de invitación es: {this.Data.Result.InvitationToken}";
-                return true;
-            }
-            response = string.Empty;
-            return false;
         }  
 
         /// <summary>

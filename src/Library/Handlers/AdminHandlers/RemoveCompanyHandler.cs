@@ -41,37 +41,46 @@ namespace ClassLibrary
         /// <param name="response"></param>
         public override bool InternalHandle(IMessage input, out string response)  //TODO: mandar lista de companies.
         {
-            if(this.State == RemoveCompanyState.Start && this.CanHandle(input))
+            try
             {
-                this.State = RemoveCompanyState.Company;
-                response = "¿Cuál es el nombre de la empresa que quieres eliminar?";
+                if(this.State == RemoveCompanyState.Start && this.CanHandle(input))
+                {
+                    this.State = RemoveCompanyState.Company;
+                    response = "¿Cuál es el nombre de la empresa que quieres eliminar?";
+                    return true;
+                }
+                else if(this.State == RemoveCompanyState.Company)
+                {
+                    this.Data.CompanyName = input.Text;
+                    if (input.Text == "/menu")
+                    {
+                        this.State = RemoveCompanyState.Start;
+                        response = "Volviendo al menú...";
+                        return true;
+                    }
+                    this.State = RemoveCompanyState.Start;
+                    this.Data.Result = CompanyRegister.Instance.GetCompanyByName(this.Data.CompanyName); // sepide el Id de la company pero se usa el id del user para buscrla
+                    if (this.Data.Result != null)
+                    {
+                        CompanyRegister.Instance.Remove(this.Data.Result);
+                        response = $"La empresa {this.Data.CompanyName} ha sido eliminada";
+                        return true;
+                    }
+                    else
+                    {
+                        response = $"La empresa bajo el nombre de \"{this.Data.CompanyName}\" no está registrada";
+                        return true;
+                    }
+                }
+                response = string.Empty;   
+                return false;
+            }
+            catch(Exception e)
+            {
+                InternalCancel();
+                response = e.Message;
                 return true;
             }
-            else if(this.State == RemoveCompanyState.Company)
-            {
-                this.Data.CompanyName = input.Text;
-                if (input.Text == "/menu")
-                {
-                    this.State = RemoveCompanyState.Start;
-                    response = "Volviendo al menú...";
-                    return true;
-                }
-                this.State = RemoveCompanyState.Start;
-                this.Data.Result = CompanyRegister.Instance.GetCompanyByName(this.Data.CompanyName); // sepide el Id de la company pero se usa el id del user para buscrla
-                if (this.Data.Result != null)
-                {
-                    CompanyRegister.Instance.Remove(this.Data.Result);
-                    response = $"La empresa {this.Data.CompanyName} ha sido eliminada";
-                    return true;
-                }
-                else
-                {
-                    response = $"La empresa bajo el nombre de \"{this.Data.CompanyName}\" no está registrada";
-                    return true;
-                }
-            }
-            response = string.Empty;   
-            return false;
         }
 
         /// <summary>
