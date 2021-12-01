@@ -5,6 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/menu".
     /// Primer Handler de la CoR.
     /// </summary>
     public class StartHandler : AbstractHandler

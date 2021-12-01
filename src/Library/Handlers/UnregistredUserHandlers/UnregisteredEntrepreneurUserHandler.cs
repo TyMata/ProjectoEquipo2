@@ -5,6 +5,7 @@ using System.Text;
 namespace ClassLibrary
 {
     /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/emprendedornoregistrado".
     /// Handler encargado de crear un usuario emprendedor.
     /// </summary>
     public class UnregisteredEntrepreneurUserHandler : AbstractHandler

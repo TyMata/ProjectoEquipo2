@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    /// <summary>
+    /// Prueba la clase <see cref="SearchOfferHandler"/>
+    /// </summary>
     public class SearchOfferHandlerTests
     {
         private IMessage message;
@@ -29,6 +32,9 @@ namespace Tests
             this.handler = new SearchOfferHandler();
         }
 
+        /// <summary>
+        /// Prueba que el mensaje sea procesado y que pida una palabra clave para buscar ofertas.
+        /// </summary>
         [Test]
         public void HandleStartTest()
         {
@@ -39,6 +45,9 @@ namespace Tests
             Assert.That(this.handler.State, Is.EqualTo(SearchOfferHandler.SearchOfferState.ShowActiveState));
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje y que muestre las ofertas con la palabra clave que ingresó.
+        /// </summary>
         [Test]
         public void HandleShowActiveTest()
         {
@@ -63,6 +72,9 @@ namespace Tests
             Assert.That(this.handler.State, Is.EqualTo(SearchOfferHandler.SearchOfferState.AskActiveOfferIdState));
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje, le muestre la oferta a comprar  y que ingrese si quiere realizar la compra.
+        /// </summary>
         [Test]
         public void HandleAskActiveOfferIdTest()
         {
@@ -85,6 +97,9 @@ namespace Tests
             Assert.That(this.handler.State, Is.EqualTo(SearchOfferHandler.SearchOfferState.BuyOfferState));
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje y que la compra fue relizada, además que se le envie al comprado los datos del vendedor.
+        /// </summary>
         [Test]
         public void HandleBuyOfferTest()
         {
@@ -105,6 +120,9 @@ namespace Tests
             Assert.That(this.handler.State, Is.EqualTo(SearchOfferHandler.SearchOfferState.Start));
         }
 
+        /// <summary>
+        /// Prueba que no se procese el mensaje ya que no es el correcto.
+        /// </summary>
         [Test]
         public void InternalNotHandleTest()
         {

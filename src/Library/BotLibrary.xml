@@ -6,7 +6,8 @@
     <members>
         <member name="T:ClassLibrary.Company">
             <summary>
-            Esta clase representa una empresa.
+            En clase se utilizó el patron de diseño de Expert. La clase Empresa tiene métodos que sean exclusivos de su clase ya que es la  
+            encargada de conocer todos los datos necesarios para  la ejecución de los métodos.
             </summary>
         </member>
         <member name="P:ClassLibrary.Company.Id">
@@ -35,7 +36,7 @@
         </member>
         <member name="P:ClassLibrary.Company.InvitationToken">
             <summary>
-            Token para que un ususuario empresa pueda registrarse.
+            Token para que un usuario empresa pueda registrarse.
             </summary>
             <value></value>
         </member>
@@ -51,9 +52,27 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Company.SoldOffers">
+            <summary>
+            Ofertas vendidas por la empresa.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Company.ProducedMaterials">
             <summary>
             Materiales producidos por la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Company.Email">
+            <summary>
+            Email de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Company.PhoneNumber">
+            <summary>
+            Número de teléfono de la empresa.
             </summary>
             <value></value>
         </member>
@@ -72,41 +91,57 @@
             <param name="email"></param>
             <param name="phoneNumber"></param>
         </member>
+        <member name="M:ClassLibrary.Company.AddMaterial(System.String,System.String,System.String)">
+            <summary>
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método para añadir Materiales a la lista
+            de materiales producidos por la empresa y que otro objeto no deba de conocer todas la conexiones internas.
+            </summary>
+            <param name="name"></param>
+            <param name="type"></param>
+            <param name="classification"></param>
+        </member>
         <member name="M:ClassLibrary.Company.AddUser(System.Int32)">
             <summary>
-            Añade un usuario a la lista de usuarios pertenecientes a la empresa, CREATOR, crea user ya que tiene  una lista de users.
+            Añade un usuario a la lista de usuarios pertenecientes a la empresa
+             Por el patrón de diseño CREATOR, crea el usuario ya que tiene la lista con los usuarios pertenecientes a esta empresa.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir usuarios empresa a la lista
+            de usuarios y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveUser(System.Int32)">
             <summary>
-            Remueve  un usuario de la lista de usuarios pertenecientes a la empresa.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método par remover un usarios de la lista
+            de urusarios de esta empresa y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.AddOffer(ClassLibrary.Offer)">
             <summary>
             Añade una oferta al registro de la empresa
-            /// </summary>
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir una oferta a la lista
+            de ofertas de la empresa y que otro objeto no deba de conocer todas la conexiones internas.
+            </summary>
             <param name="offer"></param>
         </member>
         <member name="M:ClassLibrary.Company.RemoveOffer(System.Int32)">
             <summary>
             Remueve una oferta del registro de ofertas de la empresa
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este metodo para remover una oferta de la lista
+            de ofertas de la empresa y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="id"></param>
         </member>
         <member name="M:ClassLibrary.Company.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
-            TODO add token
             <summary>
-            Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato
+            Convierte un objeto a texto en formato Json. El objeto puede ser reconstruido a partir del texto en formato.
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
         <member name="M:ClassLibrary.Company.LoadFromJson(System.String)">
             <summary>
-            Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este
+            Carga los datos del archivo en formato .json y reconstruye los objetos a partir de este.
             </summary>
             <param name="json"></param>
         </member>
@@ -119,14 +154,25 @@
         </member>
         <member name="M:ClassLibrary.Company.GetLocation(System.String)">
             <summary>
-            Devuelva una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
+            Devuelve una ubicacion dentro de la lista de ubicaciones de la empresa a partir de la dirección.
             </summary>
             <param name="address"></param>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.Company.OfferSold(ClassLibrary.Offer,ClassLibrary.Users)">
+            <summary>
+            Añade una oferta a la lista de ofertas vendidas.
+            </summary>
+            <param name="offer"></param>
+            <param name="user"></param>
+        </member>
         <member name="T:ClassLibrary.AbstractHandler">
             <summary>
-            Marcamos el formato del resto de handlers.
+            Esta es clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+            cadena de handlers que pueden procesar a este o no. Cada "handler" decide si procesa el mensaje, o si se lo
+            pasa al siguiente. Esta clase implmementa la responsabilidad de recibir el mensaje y pasarlo al siguiente
+            "handler" en caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y
+            de procesarlo, se delega a las clases sucesoras de esta clase base.
             </summary>
         </member>
         <member name="F:ClassLibrary.AbstractHandler.nextHandler">
@@ -141,14 +187,15 @@
         </member>
         <member name="M:ClassLibrary.AbstractHandler.SetNext(ClassLibrary.IHandler)">
             <summary>
-            Se setea el próximo handler (nextHandler).
+            Se establece el próximo handler (nextHandler).
             </summary>
             <param name="handler"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.AbstractHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Verifica si el comando recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
+            Este debe de ser sobrescrito por las clases sucesoras, verifica si el mensaje recibido es el perteneciente a esta clase, y ejecuta el workflow, o le pasa al próximo handler.
+            Retorna verdadeo o falso si lo puede procesar al mensaje o no.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -171,12 +218,14 @@
         </member>
         <member name="M:ClassLibrary.AbstractHandler.InternalCancel">
             <summary>
-            Metodo encargado de resetear el State y la Data del Handler.
+            Metodo encargado de resetear el State y la Data del Handler. Debe de ser sobreescrito por las clases sucesoras, estas procesan varios mensajes
+            y deben de volver a su estado inicial, en este handler este metodo no hace nada.
             </summary>
         </member>
         <member name="T:ClassLibrary.AddCompanyHandler">
             <summary>
-            Handler encargado de delegar la accion de añadir una empresa nueva al registro
+            Un handler del patrón Chain Of Responsability que implementa el comando "/registrarempresa".
+            Está encargado de delegar la acción de añadir una empresa nueva al registro.
             </summary>
         </member>
         <member name="P:ClassLibrary.AddCompanyHandler.State">
@@ -198,7 +247,7 @@
         </member>
         <member name="M:ClassLibrary.AddCompanyHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pide algunos datos de la empresa que se quiere registrar la crea.
+            Procesa los mensajes y pide algunos datos de la empresa que se quiere registrar la crea.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -211,6 +260,15 @@
         <member name="T:ClassLibrary.AddCompanyHandler.AddCompanyState">
             <summary>
             Indica los diferentes estados que puede tener el comando AddCompanyHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide el nombre de la empresa y pasa al
+            siguiente estado.
+            - Name: Luego de pedir el nombre. En este estado el comando pide el pais donde se encuentra ubicada y  pasa al siguiente estado.
+            - Country: Luego de pedir pais. En este estado el comando pide el departamento donde se encuentra ubicada y pasa al siguiente estado.
+            - state: Luego de pedir el departamento. En este estado el comando pide la ciudad donde se encuentra ubicada y pasa al siguiente estado.
+            - City: Luego de pedir la ciudad. En este estado el comando pide la dirección donde se encuentra ubicada y pasa al siguiente estado.
+            - Address: Luego de pedir la dirección. En este estado el comando pide el rubro de la empresa y pasa al siguiente estado.
+            - Headings: Luego de pedir el rubro. En este estado el comando pide el mail de contacto de la empresa y pasa al siguiente estado.
+            - Email: Luego de pedir email. En este estado el comando pide número telefónico de contacto y pasa al estado incial Start y crea la empresa.
             </summary>
         </member>
         <member name="F:ClassLibrary.AddCompanyHandler.AddCompanyState.Start">
@@ -323,6 +381,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveCompanyHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/eliminarempresa".
             Handler encargado de delegar la accion de eliminar una empresa del registro.
             </summary>
         </member>
@@ -391,6 +450,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveUserHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/eliminarusuario".
             Handler encargado de delegar la accion de eliminar un usuario del registro.
             </summary>
         </member>
@@ -459,6 +519,7 @@
         </member>
         <member name="T:ClassLibrary.AddMaterialHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/agregarmaterial".
             Handler encargado de delegar la accion de añadir una empresa nueva al registro
             </summary>
         </member>
@@ -539,6 +600,7 @@
         </member>
         <member name="T:ClassLibrary.ModifyHabilitationsHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/modificarhabilitaciones".
             Handler para que el usuario empresa pueda modificar las habilitaciones de una determinada oferta.
             /// </summary>
         </member>
@@ -611,6 +673,7 @@
         </member>
         <member name="T:ClassLibrary.ModifyPriceHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/modificarprecio".
             Handler para que el usuario empresa pueda modificar el precio de una determinada oferta.
             </summary>
         </member>
@@ -676,6 +739,12 @@
             La dirección que se ingresó en el estado ModifyState.OfferList.
             </summary>
         </member>
+        <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Price">
+            <summary>
+            EL precio que se ingreo en el estado ModifyState.Modification.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.ModifyPriceHandler.ModifyOfferData.Result">
             <summary>
             El resultado de la búsqueda de la oferta ingresada.
@@ -683,6 +752,7 @@
         </member>
         <member name="T:ClassLibrary.ModifyQuantityHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/modifcarcantidad".
             Handler para que el usuario empresa pueda modificar la cantidad de material en una determinada oferta.
             </summary>
         </member>
@@ -755,6 +825,7 @@
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/publicaroferta".
             Handler encargado de delegar la accion de crear y publicar una oferta en el registro
             </summary>
         </member>
@@ -781,6 +852,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.PublishOfferHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.PublishOfferHandler.OfferState">
             <summary>
@@ -894,6 +970,7 @@
         </member>
         <member name="T:ClassLibrary.RemoveOfferHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/removeroferta".
             Handler encargado de delegar la accion de retirar una oferta.
             </summary>
         </member>
@@ -956,6 +1033,7 @@
         </member>
         <member name="T:ClassLibrary.ResumeOfferHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/reanudaroferta".
             Handler encargado de delegar la accion de volver a activar una oferta suspendida.
             </summary>
         </member>
@@ -1018,6 +1096,7 @@
         </member>
         <member name="T:ClassLibrary.SuspendOfferHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/suspenderoferta".
             Handler encargado de delegar la accion de suspender una oferta.
             </summary>
         </member>
@@ -1080,7 +1159,7 @@
         </member>
         <member name="T:ClassLibrary.ShowCompanyOffersHandler">
             <summary>
-            Handler encargado de delegar la acción de mostrarle las ofertas activas de su empresa a un CompanyUser.
+            Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertas".
             </summary>
         </member>
         <member name="M:ClassLibrary.ShowCompanyOffersHandler.#ctor">
@@ -1097,26 +1176,27 @@
             <param name="response"></param>
             <returns></returns>
         </member>
-        <member name="T:ClassLibrary.EndHandler">
+        <member name="T:ClassLibrary.ShowCompanySoldOffersHandler">
             <summary>
-            Handler encargado de darle final a la CoR.
+            Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertasvendidas".
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.#ctor(ClassLibrary.IHandler)">
+        <member name="M:ClassLibrary.ShowCompanySoldOffersHandler.#ctor">
             <summary>
-            Constructor de objetos EndHandler.
+            Inicializa una nueva instancia de la clase <see cref="T:ClassLibrary.ShowCompanySoldOffersHandler"/>
             </summary>
         </member>
-        <member name="M:ClassLibrary.EndHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+        <member name="M:ClassLibrary.ShowCompanySoldOffersHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Le avisa al usuario que el comando no se reconocio y 
-            va denuevo al primer handler de la cadena.
+            Procesa el mensaje y muestra la lista de ofertas de ofertas vendidas de la empresa.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+            <returns> Retorna true si se logró realizar la operacion y false en caso de que no</returns>
         </member>
         <member name="T:ClassLibrary.SearchOfferHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/buscarofertas".
             Handler encargado de delegar la accion de buscar ofertas por keywords.
             </summary>
         </member>
@@ -1139,7 +1219,7 @@
         </member>
         <member name="M:ClassLibrary.SearchOfferHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            /// Se encarga de mostrar la lista de ofertas asociadas a las keywords.
+            Procesa el mensaje y se encarga de mostrar la lista de ofertas asociadas a las keywords.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
@@ -1194,15 +1274,45 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Id">
+            <summary>
+            Obtiene y establece el Id de la oferta que quiere compara el emprendedor.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.SearchOfferHandler.SearchOfferData.Seller">
             <summary>
             La empresa la cual le pasaremos la informacion de contacto al usuario.
             </summary>
             <value></value>
         </member>
+        <member name="T:ClassLibrary.ShowBoughtOffersHandler">
+            <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertascompradas".
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ShowBoughtOffersHandler.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:ClassLibrary.ShowBoughtOffersHandler"/>
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ShowBoughtOffersHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
+            <summary>
+            Procesa el mensaje y muestra la ofertas compradas por el emprendedor.
+            </summary>
+            <param name="input"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
-            Esta clase representa los handlers.
+            Interfaz para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+            cadena de "handlers" que pueden procesar el mensaje o no. Cada handler decide si procesa el mensaje, o si se lo
+            pasa al siguiente. Esta interfaz define un método para definir el "handler" siguiente y una una operación para
+            recibir el mensaje a procesar y en caso de que no lo procesese lo pasa al siguiente "handler". La responsabilidad de
+            decidir si el mensaje se procesa o no, y de procesarlo, se realiza en las clases que implementan esta interfaz.
+            
+            La interfaz se crea a partir del Dependency Inversion Principle (Dip), para que los clientes de la CoR, no dependan de una clase "handler" que potencialmente es abstracta.
             </summary>
         </member>
         <member name="M:ClassLibrary.IHandler.SetNext(ClassLibrary.IHandler)">
@@ -1213,7 +1323,8 @@
         </member>
         <member name="M:ClassLibrary.IHandler.Handle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Verifica si se realiza el proceso o se lo manda al next handler.
+            Procesa el mensaje o lo pasa al siguiente si tiene un handler siguiente.
+            Devuelve el handler que procesa el mensaje.
             </summary>
         </member>
         <member name="M:ClassLibrary.IHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
@@ -1226,6 +1337,7 @@
         </member>
         <member name="T:ClassLibrary.StartHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/menu".
             Primer Handler de la CoR.
             </summary>
         </member>
@@ -1264,6 +1376,7 @@
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/usuarioempresanoregistrado".
             Handler encargado de delegar la accion de registrar un usuario empresa.
             </summary>
         </member>
@@ -1281,17 +1394,22 @@
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.#ctor">
             <summary>
-            Constructor de objetos UnregistredCompanyUserHandler.
+            inicializa una instancia de la clase <see cref="T:ClassLibrary.UnregisteredCompanyUserHandler"/>
             </summary>
         </member>
         <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalHandle(ClassLibrary.IMessage,System.String@)">
             <summary>
-            Pregunta por el codigo de invitacion y delega la tarea de verificar si el token es valido 
+            Pregunta por el codigo de invitación y delega la tarea de verificar si el token es valido 
             y la creacion de el usuario empresa.
             De no ser asi se le avisa al usuario.
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredCompanyUserHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredCompanyUserHandler.UnregisteredCompanyUserState">
             <summary>
@@ -1332,6 +1450,7 @@
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler">
             <summary>
+            Un handler del patrón Chain Of Responsability que implementa el comando "/emprendedornoregistrado".
             Handler encargado de crear un usuario emprendedor.
             </summary>
         </member>
@@ -1358,6 +1477,11 @@
             </summary>
             <param name="input"></param>
             <param name="response"></param>
+        </member>
+        <member name="M:ClassLibrary.UnregisteredEntrepreneurUserHandler.InternalCancel">
+            <summary>
+            Retorna este handler al estado inicial.
+            </summary>
         </member>
         <member name="T:ClassLibrary.UnregisteredEntrepreneurUserHandler.UnregisteredEntrepreneurUserState">
             <summary>
@@ -1528,23 +1652,24 @@
         <member name="T:ClassLibrary.Material">
             <summary>
             Esta clase representa un material.
+            por el principio de responsabilidad única (SRP), esta clase es la encargada de conocer los datos de los materiales.
             </summary>
         </member>
         <member name="P:ClassLibrary.Material.Name">
             <summary>
-            Devuelve el tipo de objeto.
+            Obtiene el tipo de objeto.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Material.Type">
             <summary>
-            Devuelve el tipo de material.
+            Obtiene el tipo de material.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Material.Classification">
             <summary>
-            Devuelve la clasificacion del material.
+            Obtiene la clasificacion del material.
             </summary>
             <value></value>
         </member>
@@ -1666,26 +1791,11 @@
             <param name="id"></param>
             <param name="text"></param>
         </member>
-        <member name="T:ClassLibrary.TelegramBotMessageChannel">
-            <summary>
-            Esta clase representa los mensajes.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.TelegramBotMessageChannel.ReceiveMessage">
-            <summary>
-            Recibe un mensaje y devuelve un IMessage a partir del mensaje recibido
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.TelegramBotMessageChannel.SendMessage(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="mensaje"></param>
-        </member>
         <member name="T:ClassLibrary.Offer">
             <summary>
             Esta clase representa una oferta.
+            En esta clase se utilizó el patron de diseño de Expert, tiene metodos  exclusivos de su clase ya que es la encargada de conocer
+            lo necesario para hacer posible la ejecución de sus métodos.
             </summary>
         </member>
         <member name="P:ClassLibrary.Offer.Id">
@@ -1720,19 +1830,19 @@
         </member>
         <member name="P:ClassLibrary.Offer.TotalPrice">
             <summary>
-            Precio total del producto.
+             Obtiene el precio total del producto.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.Currency">
             <summary>
-            Divisa que se empleará para llevar a cabo la compra.
+            Obtiene y establece la divisa que se empleará para llevar a cabo la compra.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Offer.UnitOfMeasure">
             <summary>
-            Unidad de medida para los materiales a vender.
+            Obtiene y establece la unidad de medida para los materiales a vender.
             </summary>
             <value></value>
         </member>
@@ -1790,31 +1900,40 @@
         </member>
         <member name="M:ClassLibrary.Offer.ChangeQuantity(System.Int32)">
             <summary>
-            Modifica la cantidad del material.
+            Modifica la cantidad del material. Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+            el acoplamiento bajo y la alta cohesion
             </summary>
             <param name="quantity"></param>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeMaterial(ClassLibrary.Material)">
             <summary>
-            Modifica el material
+            Modifica el material.
+             Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+            el acoplamiento bajo y la alta cohesion
             </summary>
             <param name="material"></param>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeHabilitation(System.String)">
             <summary>
-            Modifica las habilitaciones
+            Modifica las habilitaciones.
+            Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+            el acoplamiento bajo y la alta cohesion
             </summary>
             <param name="habilitation"></param>
         </member>
         <member name="M:ClassLibrary.Offer.ChangePrice(System.Int32)">
             <summary>
-            Modifica el precio
+            Modifica el precio.
+            Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+            el acoplamiento bajo y la alta cohesion
             </summary>
             <param name="price"></param>
         </member>
         <member name="M:ClassLibrary.Offer.ChangeAvailability">
             <summary>
-            Modifica el precio
+            Modifica la disponibilidad.
+            Por los patrones de Low Coupling y High Cohesion se crea este metodo para mantener
+            el acoplamiento bajo y la alta cohesion
             </summary>
         </member>
         <member name="M:ClassLibrary.Offer.ConvertToJson(System.Text.Json.JsonSerializerOptions)">
@@ -1833,6 +1952,8 @@
         <member name="T:ClassLibrary.CompanyRegister">
             <summary>
             Esta clase representa un registro de empresas.
+            Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+            habrá  una solo una instancia de esta clase.
             </summary>
         </member>
         <member name="P:ClassLibrary.CompanyRegister.Instance">
@@ -1854,19 +1975,22 @@
         </member>
         <member name="M:ClassLibrary.CompanyRegister.Add(ClassLibrary.Company)">
             <summary>
-            Por la ley de demeter
+            Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Add para añadir una empresa al registro  de empresas
+             y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.Remove(ClassLibrary.Company)">
             <summary>
-            Método para remover empresas de la lista de empresas. Se crea por la ley de Demeter.
+            Método para remover empresas de la lista de empresas. 
+             Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Remove para remover una empresa del registro  de empresas
+             y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.GetCompanyByUserId(System.Int32)">
             <summary>
-            Devuelva una empresa segun el id del user.
+            Devuelve la empresa a la que pertenece el usuario, de le pasa el id de este.
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -1880,13 +2004,16 @@
         </member>
         <member name="M:ClassLibrary.CompanyRegister.Contains(ClassLibrary.Company)">
             <summary>
-            Por la ley de demeter
+            Devuelve verdadero o falso si la empresa esta en el registro de empresas o no
+             Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Contains verficar si  una empresa esta en el  registro  de empresas
+             y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.CompanyRegister.CreateCompany(System.String,ClassLibrary.LocationAdapter,System.String,System.String,System.String)">
             <summary>
-            Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator.
+            Crea un objeto Company y lo añade a los registros. Se coloco aqui el metodo por el patron Creator, ya que guarda en una lista 
+            instancias de objetos de Company
             </summary>
             <param name="nombre"></param>
             <param name="location"></param>
@@ -1912,6 +2039,8 @@
         <member name="T:ClassLibrary.Market">
             <summary>
             Esta clase representa el mercado con sus ofertas.
+            Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+            habrá  una solo una instancia de esta clase.
             </summary>
         </member>
         <member name="P:ClassLibrary.Market.Count">
@@ -1922,7 +2051,7 @@
         </member>
         <member name="P:ClassLibrary.Market.Instance">
             <summary>
-            Se crea un Singelton de la clase Market.
+            Se crea un Singleton de la clase Market.
             </summary>
             <value></value>
         </member>
@@ -1945,9 +2074,10 @@
         </member>
         <member name="M:ClassLibrary.Market.CreateOffer(ClassLibrary.Material,System.String,ClassLibrary.LocationAdapter,System.String,System.Int32,System.String,System.Int32,ClassLibrary.Company,System.Boolean,System.String)">
             <summary>
-            Crea y devuelve una nueva oferta. Creamos las ofertas aca por Creator.
+            Crea y devuelve una nueva oferta. Creamos las ofertas aca por el patron Creator ya que Market guarda en dos listas
+            diferentes instancias de objetos de ofertas.
             </summary>
-            /// <param name="material"></param>
+            <param name="material"></param>
             <param name="habilitation"></param>
             <param name="location"></param>
             <param name="unitOfMeasure"></param>
@@ -1961,27 +2091,32 @@
         </member>
         <member name="M:ClassLibrary.Market.ContainsActive(ClassLibrary.Offer)">
             <summary>
-            Por la ley de demeter se crea ContainsActive.
+            Devuelve verdadero o falso si la ofertas está en la lista o no.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo ContainsActive para verificar si una oferta está en
+            la lista de ofertas actuales (activas) y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="offer"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.ContainsSuspended(ClassLibrary.Offer)">
             <summary>
-            Por la ley de demeter se crea ContainsSuspended.
+            Por la ley de demeter  y para evitar el alto acoplamiento se crea el Metodo ContainsSuspended para verificar si una oferta esta en las lista de 
+             ofertas suspendidas y además para  que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="offer"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Market.PublishOffer(ClassLibrary.Offer)">
             <summary>
-            Añade una nueva oferta a la lista de ofertas actuales.
+            Añade una nueva oferta a la lista de ofertas actuales.  Por la ley de demeter y para evitar el alto acoplamiento se crea este Metodo  para añadir oferta a la lista
+            de ofertas actuales y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="newOffer"></param>
         </member>
         <member name="M:ClassLibrary.Market.RemoveOffer(System.Int32)">
             <summary>
-            Retira la oferta de la lista de ofertas actuales.
+            Retira la oferta de la lista de ofertas actuales.Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo RemoveOffer para remover una oferta de 
+             la lista de ofertas actuales y que otro objeto no tenga que  conocer todas la conexiones internas.
             </summary>
             <param name="id"></param>
         </member>
@@ -2035,6 +2170,8 @@
         <member name="T:ClassLibrary.TokenRegister">
             <summary>
             Esta clase  representa un registro de tokens.
+            Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+            habrá  una solo una instancia de esta clase.
             </summary>
         </member>
         <member name="F:ClassLibrary.TokenRegister.TokenList">
@@ -2063,20 +2200,26 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.Add(System.String,ClassLibrary.Company)">
             <summary>
-            Metodo para añadir un token al diccionario de tokens.
+            Metodo para añadir un token al diccionario de tokens.  Por la ley de demeter y para evitar el alto acoplamiento 
+            se crea el Metodo Add para añadir token y su empresa al registro  de tokens
+             y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="token"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.TokenRegister.Remove(System.String)">
             <summary>
-            Metodo para remover un token del diccionario de tokens.
+            Metodo para remover un token del diccionario de tokens.  Por la ley de demeter y para evitar el alto acoplamiento 
+            se crea el Metodo Remove para remover un token del registro  de tokens
+             y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="token"></param>
         </member>
         <member name="M:ClassLibrary.TokenRegister.IsValid(System.String)">
             <summary>
-            Por la ley de demeter se crea Contains.
+            Devuelve verdadero o falso  si el token existe en la lista de tokens.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea el Metodo Contains para verificar si un token 
+            pertence a el registro de tokens  y además que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="codigo"></param>
             <returns></returns>
@@ -2096,13 +2239,17 @@
         </member>
         <member name="M:ClassLibrary.TokenRegister.GenerateToken">
             /// <summary>
-            Se genera un  token para una nueva empresa y se lo añade al diccionario, por expert est aaca
+            Se genera un  token para una nueva empresa y se lo añade al diccionario.
+            Por el patrón Expert se agregó este método ya que es el experto en los tokens, contiene un diccionario con todos 
+            los tokens y sus respectivas empresas.
             </summary>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.UserRegister">
             <summary>
             Esta clase representa un registro de usuarios.
+            Se utiliza el patrón de diseño creacional Singleton para crear esta clase ya que mos permite asegurarnos que
+            habrá  una solo una instancia de esta clase.
             </summary>
         </member>
         <member name="P:ClassLibrary.UserRegister.DataUsers">
@@ -2113,7 +2260,7 @@
         </member>
         <member name="P:ClassLibrary.UserRegister.Instance">
             <summary>
-            Instancia de UserRegister (COMENTAR SINGLETON)
+            Instancia de UserRegister por Singleton.
             </summary>
             <value></value>
         </member>
@@ -2124,14 +2271,14 @@
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateCompanyUser(System.Int32,ClassLibrary.Company)">
             <summary>
-            Crea un usuario empresa.
+            Crea un usuario empresa. Por Creator se agregó este método ya que contine una lista de instancias de objetos de Users.
             </summary>
             <param name="id"></param>
             <param name="company"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.CreateEntrepreneurUser(System.Int32,System.String,System.String,ClassLibrary.LocationAdapter,System.String,System.String)">
             <summary>
-            Crea un usuario emprendedor.
+            Crea un usuario emprendedor. Por Creator se agregó este método ya que contine una lista de instancias de objetos de Users.
             </summary>
             <param name="id"></param>
             <param name="phone"></param>
@@ -2142,26 +2289,29 @@
         </member>
         <member name="M:ClassLibrary.UserRegister.Add(ClassLibrary.Users)">
             <summary>
-            Esto se hace por la ley de demeter.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método para añadir usuarios a la lista
+            de usuarios y además que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="item"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.Remove(ClassLibrary.Users)">
             <summary>
-            Remueve un user de la lista. Por la ley de demeter.
+            Remueve un user de la lista. Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para remover usuarios
+             de la lista usuarios y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="item"></param>
         </member>
         <member name="M:ClassLibrary.UserRegister.ContainsUser(ClassLibrary.Users)">
             <summary>
-            Por la ley de demeter se crea Contains.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método para verificar si un usarios 
+            está en la lista de usuarios y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="user"></param>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.UserRegister.GetUserById(System.Int32)">
             <summary>
-            Devuelve  un objeto user segun la id dada.
+            Devuelve  un objeto Users segun la id dada.
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -2175,7 +2325,7 @@
         </member>
         <member name="M:ClassLibrary.UserRegister.LoadFromJson(System.String)">
             <summary>
-            Convierte el texto en formato Json a obejto.
+            Convierte el texto en formato Json a objeto.
             </summary>
             <param name="json"></param>
         </member>
@@ -2192,6 +2342,24 @@
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
         </member>
+        <member name="P:ClassLibrary.TelegramBot.BotId">
+            <summary>
+            Id del Bot.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.TelegramBot.BotName">
+            <summary>
+            Nombre del bot.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.TelegramBot.Instance">
+            <summary>
+            Se crea un Singleton de la clase TelegramBot.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.TelegramBot.HandleErrorAsync(System.Exception,System.Threading.CancellationToken)">
             <summary>
             Manejo de excepciones. Por ahora simplemente la imprimimos en la consola.
@@ -2199,7 +2367,8 @@
         </member>
         <member name="T:ClassLibrary.Entrepreneur">
             <summary>
-            Esta clase.
+            Esta clase representa un Emprendedor.
+            Por el principio de responsabilidad única (SRP), esta clase es la encargada de conocer los datos de los materiales.
             </summary>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Name">
@@ -2210,25 +2379,25 @@
         </member>
         <member name="P:ClassLibrary.Entrepreneur.ContactPhone">
             <summary>
-            Se hace getter y setter de ContactPhone.
+            Obtiene y establece el número de teléfono para contactar.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Heading">
             <summary>
-            Rubro del emprendedor
+            Obtiene y establece el rubro.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Habilitation">
             <summary>
-            Habilitaciones del emprendedor.
+            Obtiene y establece las habilitaciones del emprendedor.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Entrepreneur.Location">
             <summary>
-            Ubicacion del emprendedor
+            Obtiene y establece la ubicación del emprendedor.
             </summary>
             <value></value>
         </member>
@@ -2250,7 +2419,9 @@
         </member>
         <member name="M:ClassLibrary.Entrepreneur.AddBoughtOffer(ClassLibrary.Offer)">
             <summary>
-            Agrega una oferta comprada a la lista de oferta compradas
+            Agrega una oferta comprada a la lista de oferta compradas.
+            Por la ley de demeter y para evitar el alto acoplamiento se crea este método  para añadir una oferta  comprada a la lista
+            de ofertas compradas del emprededor y que otro objeto no deba de conocer todas la conexiones internas.
             </summary>
             <param name="offer"></param>
         </member>
@@ -2394,18 +2565,6 @@
             Json utilizando JsonSerializer.Deserialize.
             </summary>
             <returns>El objeto convertido a texto en formato Json.</returns>
-        </member>
-        <member name="T:Singleton`1">
-            <summary>
-            Se crea la clase singleton para usar.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:Singleton`1.Instance">
-            <summary>
-            metodo
-            </summary>
-            <value></value>
         </member>
     </members>
 </doc>

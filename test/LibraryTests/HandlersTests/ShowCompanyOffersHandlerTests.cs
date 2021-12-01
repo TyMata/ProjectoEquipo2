@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    /// <summary>
+    /// Prueba la clase <see cref="ShowCompanyOffersHandler"/>
+    /// </summary>
     [TestFixture]
     public class ShowCompanyOffersHandlerTests
     {
@@ -15,6 +18,7 @@ namespace Tests
         private ShowCompanyOffersHandler handler;
         private Offer oferta;
         private DateTime dateTime;
+
         /// <summary>
         ///  Se crea una oferta de una empresa para las pruebas.
         /// </summary>
@@ -31,6 +35,9 @@ namespace Tests
             handler = new ShowCompanyOffersHandler();
         }
 
+        /// <summary>
+        /// Prueba que se procese el mensaje y que se muestren las ofertas actuales de la empresa.
+        /// </summary>
         [Test]
         public void HandleStartTest()
         {
@@ -60,6 +67,9 @@ namespace Tests
             Assert.That(response, Is.EqualTo(offers.ToString())); 
         }
 
+        /// <summary>
+        /// Prueba que no se procese el mensaje ya que no es el correcto.
+        /// </summary>
         [Test]
         public void DoesNotHandleTest()
         {

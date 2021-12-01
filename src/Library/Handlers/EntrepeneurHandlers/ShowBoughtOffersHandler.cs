@@ -4,15 +4,28 @@ using System.Text;
 
 namespace ClassLibrary
 {
+    /// <summary>
+    /// Un handler del patrón Chain Of Responsability que implementa el comando "/mostrarofertascompradas".
+    /// </summary>
     public class ShowBoughtOffersHandler : AbstractHandler, IHandler
     {
         private Users user;
+
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="ShowBoughtOffersHandler"/>
+        /// </summary>
         public ShowBoughtOffersHandler()
         {
             this.Command = "/mostrarofertascompradas";
             this.user = null;
         }
 
+        /// <summary>
+        /// Procesa el mensaje y muestra la ofertas compradas por el emprendedor.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public override bool InternalHandle(IMessage input, out string response)
         {
             try
